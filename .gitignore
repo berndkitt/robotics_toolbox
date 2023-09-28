@@ -1,0 +1,9 @@
+# directories (auto generated)
+**/documentation/html/
+**/documentation/latex/
+bin/
+build/
+libs/
+
+# files
+Makefile
