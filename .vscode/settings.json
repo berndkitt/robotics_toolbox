@@ -1,0 +1,17 @@
+{
+    "cmake.configureOnEdit": false,
+    "cmake.configureOnOpen": false,
+    "cmake.parallelJobs": 8,
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "files.trimFinalNewlines": false,
+    "files.trimTrailingWhitespace": true,
+    "files.watcherExclude":
+    {
+        "**/bin/**": true,
+        "**/build/**": true,
+        "**/documentation/html/**": true,
+        "**/documentation/latex/**": true
+    }
+}
