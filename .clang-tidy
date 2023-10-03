@@ -1,0 +1,46 @@
+---
+# output diagnostics for all header files matching the defined regular expression
+# - output diagnostics of all header files
+HeaderFilterRegex: '.*'
+
+# define checks
+# - disable all checks
+# - enable check groups
+# - disable individual checks
+Checks: >
+    -*,
+    bugprone-*,
+    cert-*,
+    clang-analyzer-*,
+    clang-diagnostic-*,
+    cppcoreguidelines-*,
+    misc-*,
+    modernize-*,
+    performance-*,
+    portability-*,
+    readability-*,
+    readability-identifier-naming,
+    -modernize-use-equals-default,
+    -modernize-use-trailing-return-type
+
+# define options for specific checks
+CheckOptions:
+    - key:   readability-identifier-naming.ClassCase
+      value: CamelCase
+    - key:   readability-identifier-naming.ClassMethodCase
+      value: CamelCase
+    - key:   readability-identifier-naming.ParameterCase
+      value: CamelCase
+    - key:   readability-identifier-naming.PrivateMemberCase
+      value: CamelCase
+    - key:   readability-identifier-naming.PrivateMemberPrefix
+      value: 'm_'
+    - key:   readability-identifier-naming.ProtectedMemberCase
+      value: CamelCase
+    - key:   readability-identifier-naming.ProtectedMemberPrefix
+      value: 'm_'
+    - key:   readability-identifier-naming.PublicMemberCase
+      value: CamelCase
+    - key:   readability-identifier-naming.PublicMemberPrefix
+      value: 'm_'
+...
