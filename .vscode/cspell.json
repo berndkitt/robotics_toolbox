@@ -1,7 +1,9 @@
 {
     "language": "en",
     "ignoreWords": [
-        "berndkitt"
+        "berndkitt",
+        "bugprone",
+        "cppcoreguidelines"
     ],
     "words": [
         "Bernd",
