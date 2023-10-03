@@ -5,6 +5,11 @@
     "editor.detectIndentation": false,
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
+    "files.associations":
+    {
+        ".clang-tidy": "yaml",
+        "LICENSE": "plaintext"
+    },
     "files.trimFinalNewlines": false,
     "files.trimTrailingWhitespace": true,
     "files.watcherExclude":
