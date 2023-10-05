@@ -1,0 +1,12 @@
+{
+    "language": "en",
+    "ignoreWords": [
+        "berndkitt",
+        "bugprone",
+        "cppcoreguidelines"
+    ],
+    "words": [
+        "Bernd",
+        "Kitt"
+    ]
+}
