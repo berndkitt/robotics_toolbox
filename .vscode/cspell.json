@@ -3,10 +3,13 @@
     "ignoreWords": [
         "berndkitt",
         "bugprone",
-        "cppcoreguidelines"
+        "cppcoreguidelines",
+        "GLOBALTYPESBASE",
+        "GLOBALTYPESDERIVED"
     ],
     "words": [
         "Bernd",
+        "Eigen",
         "Kitt"
     ]
 }
