@@ -6,4 +6,5 @@ build/
 libs/
 
 # files
+DoxygenWarnings.log
 Makefile
