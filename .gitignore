@@ -1,4 +1,5 @@
 # directories (auto generated)
+__pycache__
 **/documentation/html/
 **/documentation/latex/
 bin/
