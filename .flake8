@@ -1,0 +1,16 @@
+[flake8]
+exclude         = __pycache__
+ignore          = B023,
+                  E221,
+                  E241,
+                  E501,
+                  Q000
+max-line-length = 140
+# B023: Function definition does not bind loop variable 'file_to_process'.
+# E221: Multiple spaces before operator
+# E241: Multiple spaces after ':'
+# E501: Line too long
+# Q000: Double quotes found but single quotes preferred
+
+[flake8-import-order]
+import-order-style = google
