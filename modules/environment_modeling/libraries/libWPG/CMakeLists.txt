@@ -6,6 +6,7 @@ execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumbe
 
 # build libWPG
 add_library(${PROJECT_NAME} STATIC
+    source_code/src/LIBWPGVersion.cpp
     source_code/src/WorldPointGeneratorBase.cpp
     source_code/src/WorldPointGeneratorCuboid.cpp)
 
