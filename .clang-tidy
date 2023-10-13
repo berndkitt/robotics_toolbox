@@ -20,6 +20,9 @@ Checks: >
     portability-*,
     readability-*,
     readability-identifier-naming,
+    -bugprone-easily-swappable-parameters,
+    -cert-msc32-c,
+    -cert-msc51-cpp,
     -modernize-use-equals-default,
     -modernize-use-trailing-return-type
 
