@@ -3,7 +3,8 @@ project(WPG)
 
 # build libWPG
 add_library(${PROJECT_NAME} STATIC
-    source_code/src/WorldPointGeneratorBase.cpp)
+    source_code/src/WorldPointGeneratorBase.cpp
+    source_code/src/WorldPointGeneratorCuboid.cpp)
 
 # define include directories for libWPG
 target_include_directories(${PROJECT_NAME} PRIVATE
