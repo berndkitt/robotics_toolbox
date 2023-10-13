@@ -1,17 +1,22 @@
 {
     "language": "en",
     "ignoreWords": [
+        "GLOBALTYPESBASE",
+        "GLOBALTYPESDERIVED",
+        "LIBWPG",
+        "LIBWPGVERSION",
+        "WORLDPOINTGENERATORBASE",
+        "WORLDPOINTGENERATORCUBOID",
         "berndkitt",
         "bugprone",
-        "cppcoreguidelines",
-        "GLOBALTYPESBASE",
-        "GLOBALTYPESDERIVED"
+        "cppcoreguidelines"
     ],
     "words": [
         "Bernd",
         "Doxyfile",
         "Doxygen",
         "Eigen",
-        "Kitt"
+        "Kitt",
+        "swappable"
     ]
 }
