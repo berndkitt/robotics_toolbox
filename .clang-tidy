@@ -1,7 +1,7 @@
 ---
 # output diagnostics for all header files matching the defined regular expression
-# - output diagnostics of all header files
-HeaderFilterRegex: '.*'
+# - output diagnostics of all header files of the toolbox
+HeaderFilterRegex: './common/*.*, **/modules/**/*.*'
 
 # define checks
 # - disable all checks
