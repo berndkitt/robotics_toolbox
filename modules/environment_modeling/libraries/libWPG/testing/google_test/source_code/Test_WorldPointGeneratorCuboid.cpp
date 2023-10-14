@@ -59,9 +59,11 @@ TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
 {
-    WorldPointGeneratorCuboid WPG(50);
+    const T_ULONG NumberOfWorldPoints = 50;
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), 50);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPoints);
+
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPoints);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -72,9 +74,11 @@ TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfW
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
 {
-    WorldPointGeneratorCuboid WPG(100);
+    const T_ULONG NumberOfWorldPoints = 100;
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), 100);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPoints);
+
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPoints);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -130,7 +134,16 @@ TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
 {
-    WorldPointGeneratorCuboid WPG(1000, -5.0, 5.0, -2.0, 2.0, 3.0, 30.0, 10);
+    const T_ULONG NumberOfWorldPoints = 1000;
+    const T_REAL  MinX                = -5.0;
+    const T_REAL  MaxX                = 5.0;
+    const T_REAL  MinY                = -2.0;
+    const T_REAL  MaxY                = 2.0;
+    const T_REAL  MinZ                = 3.0;
+    const T_REAL  MaxZ                = 30.0;
+    const T_ULONG Seed                = 10;
+
+   WorldPointGeneratorCuboid WPG(NumberOfWorldPoints, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
 
     const T_ColumnVectorReal3d WorldPoint = WPG.GetWorldPoints()[0];
 
@@ -152,7 +165,16 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
 {
-    WorldPointGeneratorCuboid WPG(1000, -5.0, 5.0, -2.0, 2.0, 3.0, 30.0, 10);
+    const T_ULONG NumberOfWorldPoints = 1000;
+    const T_REAL  MinX                = -5.0;
+    const T_REAL  MaxX                = 5.0;
+    const T_REAL  MinY                = -2.0;
+    const T_REAL  MaxY                = 2.0;
+    const T_REAL  MinZ                = 3.0;
+    const T_REAL  MaxZ                = 30.0;
+    const T_ULONG Seed                = 10;
+
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPoints, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
 
     const T_ColumnVectorReal3d WorldPoint = WPG.GetWorldPoints()[4];
 
@@ -185,13 +207,13 @@ TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPoints, MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
 
-    const T_ListColumnVectorReal3d WorldPoints = WPG.GetWorldPoints();
+    const T_ListColumnVectorReal3d& WorldPoints = WPG.GetWorldPoints();
 
     T_ULONG NumberOfPointsOutOfRange = NumberOfWorldPoints;
 
     for(T_ULONG i_WorldPoint = 0; i_WorldPoint < NumberOfWorldPoints; i_WorldPoint++)
     {
-        const T_ColumnVectorReal3d CurrentWorldPoint = WorldPoints[i_WorldPoint];
+        const T_ColumnVectorReal3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
 
         const T_REAL CurrentCoordinateX = CurrentWorldPoint(0);
         const T_REAL CurrentCoordinateY = CurrentWorldPoint(1);
