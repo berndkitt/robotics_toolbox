@@ -1,17 +1,38 @@
 {
     "language": "en",
     "ignoreWords": [
+        "BUILDTIME",
+        "BUILDUSER",
+        "DEFAULTARGUMENT",
+        "DEFAULTCONSTRUCTOR",
+        "GITCOMMITHASH",
+        "GLOBALTYPESBASE",
+        "GLOBALTYPESDERIVED",
+        "INRANGE",
+        "ISMATCHING",
+        "LIBWPG",
+        "LIBWPGVERSION",
+        "NUMBEROFWORLDPOINTS",
+        "VERSIONMAJOR",
+        "VERSIONMINOR",
+        "VERSIONPATCH",
+        "VERSIONSTRINGWITHLIBRARYNAME",
+        "VERSIONSTRINGWITHOUTLIBRARYNAME",
+        "WORLDPOINT",
+        "WORLDPOINTGENERATORBASE",
+        "WORLDPOINTGENERATORCUBOID",
+        "WORLDPOINTS",
         "berndkitt",
         "bugprone",
-        "cppcoreguidelines",
-        "GLOBALTYPESBASE",
-        "GLOBALTYPESDERIVED"
+        "cppcoreguidelines"
     ],
     "words": [
         "Bernd",
         "Doxyfile",
         "Doxygen",
+        "Doxywizard",
         "Eigen",
-        "Kitt"
+        "Kitt",
+        "swappable"
     ]
 }

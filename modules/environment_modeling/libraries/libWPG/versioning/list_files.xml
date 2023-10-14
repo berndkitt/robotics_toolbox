@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- path is relative to the main directory of the library -->
+<file_list>
+    <file>./source_code/include/LIBWPGVersion.h</file>
+    <file>./source_code/include/WorldPointGeneratorBase.h</file>
+    <file>./source_code/include/WorldPointGeneratorCuboid.h</file>
+    <file>./source_code/src/LIBWPGVersion.cpp</file>
+    <file>./source_code/src/WorldPointGeneratorBase.cpp</file>
+    <file>./source_code/src/WorldPointGeneratorCuboid.cpp</file>
+</file_list>

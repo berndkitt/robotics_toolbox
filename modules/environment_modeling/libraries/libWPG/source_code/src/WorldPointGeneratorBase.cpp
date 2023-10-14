@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file GlobalTypesBase.h
+/// \file WorldPointGeneratorBase.cpp
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
 This file is part of the Robotics Toolbox.
 
-Copyright (C) 2023
+Copyright (C) 2021
 
 Authors: Bernd Kitt (b.kitt@berndkitt.de)
 
@@ -23,13 +23,30 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#ifndef GLOBALTYPESBASE_H
-#define GLOBALTYPESBASE_H
+#include "../include/WorldPointGeneratorBase.h"
 
-// base types
-using T_REAL  = double;         ///< Alias for floating point values.
-using T_SLONG = signed long;    ///< Alias for signed long values.
-using T_ULONG = unsigned long;  ///< Alias for unsigned long values.
-using T_BOOL  = bool;           ///< Alias for boolean values.
+WorldPointGeneratorBase::~WorldPointGeneratorBase()
+{
 
-#endif // GLOBALTYPESBASE_H
+}
+
+T_ULONG WorldPointGeneratorBase::GetNumberOfWorldPoints() const
+{
+    return m_NumberOfWorldPoints;
+}
+
+const T_ListColumnVectorReal3d& WorldPointGeneratorBase::GetWorldPoints() const
+{
+    return m_ListOfWorldPoints;
+}
+
+WorldPointGeneratorBase::WorldPointGeneratorBase(const T_ULONG NumberOfWorldPoints,
+                                                 const T_ULONG SeedValue) : m_NumberOfWorldPoints{NumberOfWorldPoints},
+                                                                            m_SeedValue{SeedValue}
+{
+    // pre-allocate memory
+    m_ListOfWorldPoints.resize(m_NumberOfWorldPoints);
+
+    // initialize random number generator
+    m_RandomNumberEngine.seed(m_SeedValue);
+}

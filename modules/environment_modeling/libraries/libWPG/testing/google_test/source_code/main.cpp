@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file GlobalTypesBase.h
+/// \file main.cpp
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
 This file is part of the Robotics Toolbox.
 
-Copyright (C) 2023
+Copyright (C) 2022
 
 Authors: Bernd Kitt (b.kitt@berndkitt.de)
 
@@ -23,13 +23,15 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#ifndef GLOBALTYPESBASE_H
-#define GLOBALTYPESBASE_H
+#include <gtest/gtest.h>
 
-// base types
-using T_REAL  = double;         ///< Alias for floating point values.
-using T_SLONG = signed long;    ///< Alias for signed long values.
-using T_ULONG = unsigned long;  ///< Alias for unsigned long values.
-using T_BOOL  = bool;           ///< Alias for boolean values.
-
-#endif // GLOBALTYPESBASE_H
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Entry point for the unit tests of libWPG.
+///
+/// Main function which serves as entry point for the unit tests of libWPG.
+///////////////////////////////////////////////////////////////////////////////
+int main(int argc, char** argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}

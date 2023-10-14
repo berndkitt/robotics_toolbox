@@ -16,5 +16,10 @@
         "**/build/**": true,
         "**/documentation/html/**": true,
         "**/documentation/latex/**": true
-    }
+    },
+    "testMate.cpp.test.advancedExecutables": [
+        {
+            "pattern": "**/unit_tests_*"
+        }
+    ]
 }
