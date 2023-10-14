@@ -29,15 +29,15 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../../../versioning/libWPG_Version.h"
 
 // definition of macros for the unit tests
-#define TEST_BUILD_TIME_IS_FITTING                                        TEST  ///< Define to get a unique test name.
-#define TEST_BUILD_USER_IS_FITTING                                        TEST  ///< Define to get a unique test name.
-#define TEST_GIT_COMMIT_HASH_IS_FITTING                                   TEST  ///< Define to get a unique test name.
-#define TEST_VERSION_MAJOR_IS_FITTING                                     TEST  ///< Define to get a unique test name.
-#define TEST_VERSION_MINOR_IS_FITTING                                     TEST  ///< Define to get a unique test name.
-#define TEST_VERSION_PATCH_IS_FITTING                                     TEST  ///< Define to get a unique test name.
-#define TEST_VERSION_STRING_WITH_LIBRARY_NAME_DEFAULT_ARGUMENT_IS_FITTING TEST  ///< Define to get a unique test name.
-#define TEST_VERSION_STRING_WITH_LIBRARY_NAME_IS_FITTING                  TEST  ///< Define to get a unique test name.
-#define TEST_VERSION_STRING_WITHOUT_LIBRARY_NAME_IS_FITTING               TEST  ///< Define to get a unique test name.
+#define TEST_BUILDTIME_ISMATCHING                                    TEST   ///< Define to get a unique test name.
+#define TEST_BUILDUSER_ISMATCHING                                    TEST   ///< Define to get a unique test name.
+#define TEST_GITCOMMITHASH_ISMATCHING                                TEST   ///< Define to get a unique test name.
+#define TEST_VERSIONMAJOR_ISMATCHING                                 TEST   ///< Define to get a unique test name.
+#define TEST_VERSIONMINOR_ISMATCHING                                 TEST   ///< Define to get a unique test name.
+#define TEST_VERSIONPATCH_ISMATCHING                                 TEST   ///< Define to get a unique test name.
+#define TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING TEST   ///< Define to get a unique test name.
+#define TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING                 TEST   ///< Define to get a unique test name.
+#define TEST_VERSIONSTRINGWITHOUTLIBRARYNAME_ISMATCHING              TEST   ///< Define to get a unique test name.
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the build time.
@@ -45,7 +45,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 /// Tests whether the provided build time does match the expected build time or
 /// not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_BUILD_TIME_IS_FITTING(LIBWPGVersion, Test_Build_Time_Is_Fitting)
+TEST_BUILDTIME_ISMATCHING(LIBWPGVersion, Test_BuildTime_IsMatching)
 {
     ASSERT_EQ(LIBWPGVersion::GetBuildTime(), BuildTime);
 }
@@ -56,7 +56,7 @@ TEST_BUILD_TIME_IS_FITTING(LIBWPGVersion, Test_Build_Time_Is_Fitting)
 /// Tests whether the provided build user does match the expected build user or
 /// not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_BUILD_USER_IS_FITTING(LIBWPGVersion, Test_Build_User_Is_Fitting)
+TEST_BUILDUSER_ISMATCHING(LIBWPGVersion, Test_BuildUser_IsMatching)
 {
     ASSERT_EQ(LIBWPGVersion::GetBuildUser(), BuildUser);
 }
@@ -67,7 +67,7 @@ TEST_BUILD_USER_IS_FITTING(LIBWPGVersion, Test_Build_User_Is_Fitting)
 /// Tests whether the provided Git commit hash does match the expected Git
 /// commit hash or not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_GIT_COMMIT_HASH_IS_FITTING(LIBWPGVersion, Test_Git_Commit_Hash_Is_Fitting)
+TEST_GITCOMMITHASH_ISMATCHING(LIBWPGVersion, Test_GitCommitHash_IsMatching)
 {
     ASSERT_EQ(LIBWPGVersion::GetGitCommitHash(), GitCommitHash);
 }
@@ -78,7 +78,7 @@ TEST_GIT_COMMIT_HASH_IS_FITTING(LIBWPGVersion, Test_Git_Commit_Hash_Is_Fitting)
 /// Tests whether the provided major version number does match the expected
 /// major version number or not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_VERSION_MAJOR_IS_FITTING(LIBWPGVersion, Test_Version_Major_Is_Fitting)
+TEST_VERSIONMAJOR_ISMATCHING(LIBWPGVersion, Test_VersionMajor_IsMatching)
 {
     ASSERT_EQ(LIBWPGVersion::GetVersionMajor(), VersionMajor);
 }
@@ -89,7 +89,7 @@ TEST_VERSION_MAJOR_IS_FITTING(LIBWPGVersion, Test_Version_Major_Is_Fitting)
 /// Tests whether the provided minor version number does match the expected
 /// minor version number or not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_VERSION_MINOR_IS_FITTING(LIBWPGVersion, Test_Version_Minor_Is_Fitting)
+TEST_VERSIONMINOR_ISMATCHING(LIBWPGVersion, Test_VersionMinor_IsMatching)
 {
     ASSERT_EQ(LIBWPGVersion::GetVersionMinor(), VersionMinor);
 }
@@ -100,7 +100,7 @@ TEST_VERSION_MINOR_IS_FITTING(LIBWPGVersion, Test_Version_Minor_Is_Fitting)
 /// Tests whether the provided patch version number does match the expected
 /// patch version number or not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_VERSION_PATCH_IS_FITTING(LIBWPGVersion, Test_Version_Patch_Is_Fitting)
+TEST_VERSIONPATCH_ISMATCHING(LIBWPGVersion, Test_VersionPatch_IsMatching)
 {
     ASSERT_EQ(LIBWPGVersion::GetVersionPatch(), VersionPatch);
 }
@@ -112,7 +112,7 @@ TEST_VERSION_PATCH_IS_FITTING(LIBWPGVersion, Test_Version_Patch_Is_Fitting)
 /// number or not. The default argument is used. Hence, the name of the library
 /// is expected to be in front of the version number.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_VERSION_STRING_WITH_LIBRARY_NAME_DEFAULT_ARGUMENT_IS_FITTING(LIBWPGVersion, Test_Version_String_With_Library_Name_Default_Argument_Is_Fitting)
+TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING(LIBWPGVersion, Test_VersionStringWithLibraryName_DefaultArgument_IsMatching)
 {
     std::string VersionStringExpected = "libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch);
 
@@ -126,7 +126,7 @@ TEST_VERSION_STRING_WITH_LIBRARY_NAME_DEFAULT_ARGUMENT_IS_FITTING(LIBWPGVersion,
 /// number or not. The argument is set to "true". Hence, the name of the
 /// library is expected to be in front of the version number.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_VERSION_STRING_WITH_LIBRARY_NAME_IS_FITTING(LIBWPGVersion, Test_Version_String_With_Library_Name_Is_Fitting)
+TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING(LIBWPGVersion, Test_VersionStringWithLibraryName_IsMatching)
 {
     std::string VersionStringExpected = "libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch);
 
@@ -140,7 +140,7 @@ TEST_VERSION_STRING_WITH_LIBRARY_NAME_IS_FITTING(LIBWPGVersion, Test_Version_Str
 /// number or not. The argument is set to "false". Hence, the name of the
 /// library is not expected to be in front of the version number.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_VERSION_STRING_WITHOUT_LIBRARY_NAME_IS_FITTING(LIBWPGVersion, Test_Version_String_Without_Library_Name_Is_Fitting)
+TEST_VERSIONSTRINGWITHOUTLIBRARYNAME_ISMATCHING(LIBWPGVersion, Test_VersionStringWithoutLibraryName_IsMatching)
 {
     std::string VersionStringExpected = "v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch);
 

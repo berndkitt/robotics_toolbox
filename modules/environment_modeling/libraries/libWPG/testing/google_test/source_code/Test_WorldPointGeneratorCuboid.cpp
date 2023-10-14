@@ -28,14 +28,14 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../../../source_code/include/WorldPointGeneratorCuboid.h"
 
 // definition of macros for the unit tests
-#define TEST_NUMBER_OF_WORLD_POINTS_DEFAULT_CONSTRUCTOR_IS_FITTING TEST ///< Define to get a unique test name.
-#define TEST_NUMBER_OF_WORLD_POINTS_50_IS_FITTING                  TEST ///< Define to get a unique test name.
-#define TEST_NUMBER_OF_WORLD_POINTS_100_IS_FITTING                 TEST ///< Define to get a unique test name.
-#define TEST_WORLD_POINT_0_DEFAULT_CONSTRUCTOR_IS_FITTING          TEST ///< Define to get a unique test name.
-#define TEST_WORLD_POINT_4_DEFAULT_CONSTRUCTOR_IS_FITTING          TEST ///< Define to get a unique test name.
-#define TEST_WORLD_POINT_0_SEED_10_IS_FITTING                      TEST ///< Define to get a unique test name.
-#define TEST_WORLD_POINT_4_SEED_10_IS_FITTING                      TEST ///< Define to get a unique test name.
-#define TEST_WORLD_POINTS_IN_RANGE                                 TEST ///< Define to get a unique test name.
+#define TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING TEST ///< Define to get a unique test name.
+#define TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING                 TEST ///< Define to get a unique test name.
+#define TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING                TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING        TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING        TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_0_SEED_10_ISMATCHING                   TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_4_SEED_10_ISMATCHING                   TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINTS_INRANGE                               TEST ///< Define to get a unique test name.
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the number of world points.
@@ -44,7 +44,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 /// world points or not. The default constructor is used. Hence, the
 /// expectation is to get the default number of world points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBER_OF_WORLD_POINTS_DEFAULT_CONSTRUCTOR_IS_FITTING(WorldPointGeneratorCuboid, Test_Number_Of_World_Points_Default_Constructor_Is_Fitting)
+TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
 {
     WorldPointGeneratorCuboid WPG;
 
@@ -57,7 +57,7 @@ TEST_NUMBER_OF_WORLD_POINTS_DEFAULT_CONSTRUCTOR_IS_FITTING(WorldPointGeneratorCu
 /// Tests whether the number of world points does match the expected number of
 /// world points or not. The expectation is to get 50 world points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBER_OF_WORLD_POINTS_50_IS_FITTING(WorldPointGeneratorCuboid, Test_Number_Of_World_Points_50_Is_Fitting)
+TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
 {
     WorldPointGeneratorCuboid WPG(50);
 
@@ -70,7 +70,7 @@ TEST_NUMBER_OF_WORLD_POINTS_50_IS_FITTING(WorldPointGeneratorCuboid, Test_Number
 /// Tests whether the number of world points does match the expected number of
 /// world points or not. The expectation is to get 100 world points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBER_OF_WORLD_POINTS_100_IS_FITTING(WorldPointGeneratorCuboid, Test_Number_Of_World_Points_100_Is_Fitting)
+TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
 {
     WorldPointGeneratorCuboid WPG(100);
 
@@ -84,7 +84,7 @@ TEST_NUMBER_OF_WORLD_POINTS_100_IS_FITTING(WorldPointGeneratorCuboid, Test_Numbe
 /// coordinates or not. The default constructor is used to generate the world
 /// points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLD_POINT_0_DEFAULT_CONSTRUCTOR_IS_FITTING(WorldPointGeneratorCuboid, Test_World_Point_0_Default_Constructor_Is_Fitting)
+TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_0_DefaultConstructor_IsMatching)
 {
     WorldPointGeneratorCuboid WPG;
 
@@ -106,7 +106,7 @@ TEST_WORLD_POINT_0_DEFAULT_CONSTRUCTOR_IS_FITTING(WorldPointGeneratorCuboid, Tes
 /// coordinates or not. The default constructor is used to generate the world
 /// points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLD_POINT_4_DEFAULT_CONSTRUCTOR_IS_FITTING(WorldPointGeneratorCuboid, Test_World_Point_4_Default_Constructor_Is_Fitting)
+TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_4_DefaultConstructor_IsMatching)
 {
     WorldPointGeneratorCuboid WPG;
 
@@ -128,7 +128,7 @@ TEST_WORLD_POINT_4_DEFAULT_CONSTRUCTOR_IS_FITTING(WorldPointGeneratorCuboid, Tes
 /// coordinates or not. The seed value 10 is used to initialize the generation
 /// of the world coordinates.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLD_POINT_0_SEED_10_IS_FITTING(WorldPointGeneratorCuboid, Test_World_Point_0_Seed_10_Is_Fitting)
+TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
 {
     WorldPointGeneratorCuboid WPG(1000, -5.0, 5.0, -2.0, 2.0, 3.0, 30.0, 10);
 
@@ -150,7 +150,7 @@ TEST_WORLD_POINT_0_SEED_10_IS_FITTING(WorldPointGeneratorCuboid, Test_World_Poin
 /// coordinates or not. The seed value 10 is used to initialize the generation
 /// of the world coordinates.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLD_POINT_4_SEED_10_IS_FITTING(WorldPointGeneratorCuboid, Test_World_Point_4_Seed_10_Is_Fitting)
+TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
 {
     WorldPointGeneratorCuboid WPG(1000, -5.0, 5.0, -2.0, 2.0, 3.0, 30.0, 10);
 
@@ -173,7 +173,7 @@ TEST_WORLD_POINT_4_SEED_10_IS_FITTING(WorldPointGeneratorCuboid, Test_World_Poin
 /// generated and the location of each world point is checked against the size
 /// of the cuboid.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLD_POINTS_IN_RANGE(WorldPointGeneratorCuboid, Test_World_Points_In_Range)
+TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
 {
     const T_ULONG NumberOfWorldPoints = 1000000;
     const T_REAL MinX                 = -5.0;
