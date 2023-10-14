@@ -19,6 +19,11 @@ set(CMAKE_CXX_FLAGS         "-Wall -Wextra -Wpedantic")
 set(CMAKE_CXX_FLAGS_DEBUG   "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
+# add compile options (for code coverage only)
+if(OPTION_BUILD_UNIT_TESTS)
+    add_compile_options(-fprofile-arcs -ftest-coverage)
+endif(OPTION_BUILD_UNIT_TESTS)
+
 # define output directories for the libraries
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/libs)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/libs)
