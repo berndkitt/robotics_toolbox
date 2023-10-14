@@ -81,7 +81,7 @@ TEST_NUMBER_OF_WORLD_POINTS_100_IS_FITTING(WorldPointGeneratorCuboid, Test_Numbe
 /// \brief Test for the coordinates of a world point.
 ///
 /// Tests whether the coordinates of the 0th world point match the expected
-/// coordinates or not. The default constructor is used to create the world
+/// coordinates or not. The default constructor is used to generate the world
 /// points.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLD_POINT_0_DEFAULT_CONSTRUCTOR_IS_FITTING(WorldPointGeneratorCuboid, Test_World_Point_0_Default_Constructor_Is_Fitting)
@@ -103,7 +103,7 @@ TEST_WORLD_POINT_0_DEFAULT_CONSTRUCTOR_IS_FITTING(WorldPointGeneratorCuboid, Tes
 /// \brief Test for the coordinates of a world point.
 ///
 /// Tests whether the coordinates of the 4th world point match the expected
-/// coordinates or not. The default constructor is used to create the world
+/// coordinates or not. The default constructor is used to generate the world
 /// points.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLD_POINT_4_DEFAULT_CONSTRUCTOR_IS_FITTING(WorldPointGeneratorCuboid, Test_World_Point_4_Default_Constructor_Is_Fitting)
@@ -170,8 +170,8 @@ TEST_WORLD_POINT_4_SEED_10_IS_FITTING(WorldPointGeneratorCuboid, Test_World_Poin
 ///
 /// Tests whether the location of the generated world points is within the
 /// predefined size of the cuboid. Hence, a big number of world points is
-/// and the location of each world point is checked against the size of the
-/// cuboid.
+/// generated and the location of each world point is checked against the size
+/// of the cuboid.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLD_POINTS_IN_RANGE(WorldPointGeneratorCuboid, Test_World_Points_In_Range)
 {

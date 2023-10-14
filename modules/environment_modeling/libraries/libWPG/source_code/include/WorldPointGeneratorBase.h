@@ -40,7 +40,7 @@ class WorldPointGeneratorBase
 protected: // protected attributes
     const T_ULONG                  m_NumberOfWorldPoints;   ///< Number of 3d world points.
           T_ListColumnVectorReal3d m_ListOfWorldPoints;     ///< List containing the 3d world points.
-          std::mt19937             m_RandomNumberEngine;    ///< Random number engine used to create the 3d world points.
+          std::mt19937             m_RandomNumberEngine;    ///< Random number engine used to generate the 3d world points.
     const T_ULONG                  m_SeedValue;             ///< Seed value used to initialize the random number engine.
 
 public: // public methods

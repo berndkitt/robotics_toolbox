@@ -33,8 +33,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///
 /// \brief Generator for 3d world points inside a cuboid.
 ///
-/// Generator which randomly creates a given number of 3d world points inside a
-/// cuboid of predefined extend.
+/// Generator which randomly generates a given number of 3d world points inside
+/// a cuboid of predefined extend.
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorCuboid : public WorldPointGeneratorBase
 {
