@@ -27,9 +27,9 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define GLOBALTYPESBASE_H
 
 // base types
-typedef double        T_REAL;   ///< Typedef for floating point values.
-typedef signed long   T_SLONG;  ///< Typedef for signed long values.
-typedef unsigned long T_ULONG;  ///< Typedef for unsigned long values.
-typedef bool          T_BOOL;   ///< Typedef for boolean values.
+using T_REAL  = double;         ///< Alias for floating point values.
+using T_SLONG = signed long;    ///< Alias for signed long values.
+using T_ULONG = unsigned long;  ///< Alias for unsigned long values.
+using T_BOOL  = bool;           ///< Alias for boolean values.
 
 #endif // GLOBALTYPESBASE_H
