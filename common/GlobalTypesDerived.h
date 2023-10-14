@@ -29,7 +29,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include <Eigen/Dense>
 #include <Eigen/StdVector>
 
-#include "GlobalTypesBase.h"
+#include <GlobalTypesBase.h>
 
 // lists
 typedef std::vector<T_REAL>  T_ListReal;            ///< Typedef for lists containing floating point values.
