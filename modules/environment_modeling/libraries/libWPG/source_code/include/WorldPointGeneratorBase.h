@@ -72,8 +72,8 @@ protected: // protected methods
     ///
     /// \remark    Protected constructor to prevent creating objects of that class.
     ///////////////////////////////////////////////////////////////////////////////
-    WorldPointGeneratorBase(const uint64 NumberOfWorldPoints = 1000,
-                            const uint64 SeedValue           = 0);
+    WorldPointGeneratorBase(const uint64 NumberOfWorldPoints = 1000U,
+                            const uint64 SeedValue           = 0U);
 };
 
 #endif // WORLDPOINTGENERATORBASE_H
