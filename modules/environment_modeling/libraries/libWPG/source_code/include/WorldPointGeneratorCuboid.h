@@ -39,12 +39,12 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 class WorldPointGeneratorCuboid : public WorldPointGeneratorBase
 {
 protected: // protected attributes
-    const T_REAL m_MinX;    ///< Smallest value of the 3d world points inside the cuboid in X-direction.
-    const T_REAL m_MaxX;    ///< Largest value of the 3d world points inside the cuboid in X-direction.
-    const T_REAL m_MinY;    ///< Smallest value of the 3d world points inside the cuboid in Y-direction.
-    const T_REAL m_MaxY;    ///< Largest value of the 3d world points inside the cuboid in Y-direction.
-    const T_REAL m_MinZ;    ///< Smallest value of the 3d world points inside the cuboid in Z-direction.
-    const T_REAL m_MaxZ;    ///< Largest value of the 3d world points inside the cuboid in Z-direction.
+    const float64 m_MinX;   ///< Smallest value of the 3d world points inside the cuboid in X-direction.
+    const float64 m_MaxX;   ///< Largest value of the 3d world points inside the cuboid in X-direction.
+    const float64 m_MinY;   ///< Smallest value of the 3d world points inside the cuboid in Y-direction.
+    const float64 m_MaxY;   ///< Largest value of the 3d world points inside the cuboid in Y-direction.
+    const float64 m_MinZ;   ///< Smallest value of the 3d world points inside the cuboid in Z-direction.
+    const float64 m_MaxZ;   ///< Largest value of the 3d world points inside the cuboid in Z-direction.
 
 public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
@@ -59,14 +59,14 @@ public: // public methods
     /// \param[in] MaxZ                Largest value of the 3d world points inside the cuboid in Z-direction.
     /// \param[in] SeedValue           Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
-    WorldPointGeneratorCuboid(const T_ULONG NumberOfWorldPoints = 1000,
-                              const T_REAL  MinX                = -5.0,
-                              const T_REAL  MaxX                = 5.0,
-                              const T_REAL  MinY                = -2.0,
-                              const T_REAL  MaxY                = 2.0,
-                              const T_REAL  MinZ                = 3.0,
-                              const T_REAL  MaxZ                = 30.0,
-                              const T_ULONG SeedValue           = 0);
+    WorldPointGeneratorCuboid(const uint64  NumberOfWorldPoints = 1000,
+                              const float64 MinX                = -5.0,
+                              const float64 MaxX                = 5.0,
+                              const float64 MinY                = -2.0,
+                              const float64 MaxY                = 2.0,
+                              const float64 MinZ                = 3.0,
+                              const float64 MaxZ                = 30.0,
+                              const uint64  SeedValue           = 0);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.

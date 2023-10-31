@@ -30,19 +30,19 @@ WorldPointGeneratorBase::~WorldPointGeneratorBase()
 
 }
 
-T_ULONG WorldPointGeneratorBase::GetNumberOfWorldPoints() const
+uint64 WorldPointGeneratorBase::GetNumberOfWorldPoints() const
 {
     return m_NumberOfWorldPoints;
 }
 
-const T_ListColumnVectorReal3d& WorldPointGeneratorBase::GetWorldPoints() const
+const ListColumnVectorFloat64_3d& WorldPointGeneratorBase::GetWorldPoints() const
 {
     return m_ListOfWorldPoints;
 }
 
-WorldPointGeneratorBase::WorldPointGeneratorBase(const T_ULONG NumberOfWorldPoints,
-                                                 const T_ULONG SeedValue) : m_NumberOfWorldPoints{NumberOfWorldPoints},
-                                                                            m_SeedValue{SeedValue}
+WorldPointGeneratorBase::WorldPointGeneratorBase(const uint64 NumberOfWorldPoints,
+                                                 const uint64 SeedValue) : m_NumberOfWorldPoints{NumberOfWorldPoints},
+                                                                           m_SeedValue{SeedValue}
 {
     // pre-allocate memory
     m_ListOfWorldPoints.resize(m_NumberOfWorldPoints);

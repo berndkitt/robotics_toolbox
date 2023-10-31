@@ -73,21 +73,21 @@ public: // public methods
     ///
     /// \return Major version number of the library.
     ///////////////////////////////////////////////////////////////////////////////
-    static T_ULONG GetVersionMajor();
+    static uint64 GetVersionMajor();
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the minor version number of the library.
     ///
     /// \return Minor version number of the library.
     ///////////////////////////////////////////////////////////////////////////////
-    static T_ULONG GetVersionMinor();
+    static uint64 GetVersionMinor();
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the patch version number of the library.
     ///
     /// \return Patch version number of the library.
     ///////////////////////////////////////////////////////////////////////////////
-    static T_ULONG GetVersionPatch();
+    static uint64 GetVersionPatch();
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Getter for the library version as string.
@@ -100,7 +100,7 @@ public: // public methods
     ///
     /// \return    Library version as string.
     ///////////////////////////////////////////////////////////////////////////////
-    static std::string GetVersionString(const T_BOOL AddLibraryName = true);
+    static std::string GetVersionString(const boolean AddLibraryName = true);
 };
 
 #endif // LIBWPGVERSION_H

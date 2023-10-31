@@ -82,9 +82,9 @@ class VersionNumberGenerator:
         version_header_file.write("\n")
 
         # write version number
-        version_header_file.write("const T_ULONG VersionMajor = " + self._version_major + ";\n")
-        version_header_file.write("const T_ULONG VersionMinor = " + self._version_minor + ";\n")
-        version_header_file.write("const T_ULONG VersionPatch = " + self._version_patch + ";\n\n")
+        version_header_file.write("const uint64 VersionMajor = " + self._version_major + ";\n")
+        version_header_file.write("const uint64 VersionMinor = " + self._version_minor + ";\n")
+        version_header_file.write("const uint64 VersionPatch = " + self._version_patch + ";\n\n")
 
         # write build information
         version_header_file.write("const std::string BuildUser = \"" + self._build_user + "\";\n")

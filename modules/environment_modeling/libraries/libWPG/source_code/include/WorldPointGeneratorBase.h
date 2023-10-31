@@ -38,10 +38,10 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 class WorldPointGeneratorBase
 {
 protected: // protected attributes
-    const T_ULONG                  m_NumberOfWorldPoints;   ///< Number of 3d world points.
-          T_ListColumnVectorReal3d m_ListOfWorldPoints;     ///< List containing the 3d world points.
-          std::mt19937             m_RandomNumberEngine;    ///< Random number engine used to generate the 3d world points.
-    const T_ULONG                  m_SeedValue;             ///< Seed value used to initialize the random number engine.
+    const uint64                     m_NumberOfWorldPoints; ///< Number of 3d world points.
+          ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the 3d world points.
+          std::mt19937               m_RandomNumberEngine;  ///< Random number engine used to generate the 3d world points.
+    const uint64                     m_SeedValue;           ///< Seed value used to initialize the random number engine.
 
 public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
@@ -54,14 +54,14 @@ public: // public methods
     ///
     /// \return Number of 3d world points.
     ///////////////////////////////////////////////////////////////////////////////
-    T_ULONG GetNumberOfWorldPoints() const;
+    uint64 GetNumberOfWorldPoints() const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the list containing the 3d world points.
     ///
     /// \return List containing the 3d world points.
     ///////////////////////////////////////////////////////////////////////////////
-    const T_ListColumnVectorReal3d& GetWorldPoints() const;
+    const ListColumnVectorFloat64_3d& GetWorldPoints() const;
 
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
@@ -72,8 +72,8 @@ protected: // protected methods
     ///
     /// \remark    Protected constructor to prevent creating objects of that class.
     ///////////////////////////////////////////////////////////////////////////////
-    WorldPointGeneratorBase(const T_ULONG NumberOfWorldPoints = 1000,
-                            const T_ULONG SeedValue           = 0);
+    WorldPointGeneratorBase(const uint64 NumberOfWorldPoints = 1000,
+                            const uint64 SeedValue           = 0);
 };
 
 #endif // WORLDPOINTGENERATORBASE_H
