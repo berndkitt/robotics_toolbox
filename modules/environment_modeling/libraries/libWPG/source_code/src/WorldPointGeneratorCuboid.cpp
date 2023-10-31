@@ -25,14 +25,14 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "../include/WorldPointGeneratorCuboid.h"
 
-WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const T_ULONG NumberOfWorldPoints,
-                                                     const T_REAL  MinX,
-                                                     const T_REAL  MaxX,
-                                                     const T_REAL  MinY,
-                                                     const T_REAL  MaxY,
-                                                     const T_REAL  MinZ,
-                                                     const T_REAL  MaxZ,
-                                                     const T_ULONG SeedValue) : WorldPointGeneratorBase(NumberOfWorldPoints, SeedValue),
+WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorldPoints,
+                                                     const float64 MinX,
+                                                     const float64 MaxX,
+                                                     const float64 MinY,
+                                                     const float64 MaxY,
+                                                     const float64 MinZ,
+                                                     const float64 MaxZ,
+                                                     const uint64  SeedValue) : WorldPointGeneratorBase(NumberOfWorldPoints, SeedValue),
                                                                                 m_MinX{MinX},
                                                                                 m_MaxX{MaxX},
                                                                                 m_MinY{MinY},
@@ -41,19 +41,19 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const T_ULONG NumberOfWorld
                                                                                 m_MaxZ{MaxZ}
 {
     // create uniform distributions
-    std::uniform_real_distribution<T_REAL> UniformDistributionX(m_MinX, m_MaxX);
-    std::uniform_real_distribution<T_REAL> UniformDistributionY(m_MinY, m_MaxY);
-    std::uniform_real_distribution<T_REAL> UniformDistributionZ(m_MinZ, m_MaxZ);
+    std::uniform_real_distribution<float64> UniformDistributionX(m_MinX, m_MaxX);
+    std::uniform_real_distribution<float64> UniformDistributionY(m_MinY, m_MaxY);
+    std::uniform_real_distribution<float64> UniformDistributionZ(m_MinZ, m_MaxZ);
 
     // randomly generate the 3d world points
-    T_ColumnVectorReal3d CurrentWorldPoint;
+    ColumnVectorFloat64_3d CurrentWorldPoint;
 
-    for(T_ULONG i_WorldPoint = 0; i_WorldPoint < m_NumberOfWorldPoints; i_WorldPoint++)
+    for(uint64 i_WorldPoint {0U}; i_WorldPoint < m_NumberOfWorldPoints; i_WorldPoint++)
     {
         // randomly generate the coordinates of the current 3d world point
-        const T_REAL CurrentCoordinateX = UniformDistributionX(m_RandomNumberEngine);
-        const T_REAL CurrentCoordinateY = UniformDistributionY(m_RandomNumberEngine);
-        const T_REAL CurrentCoordinateZ = UniformDistributionZ(m_RandomNumberEngine);
+        const float64 CurrentCoordinateX {UniformDistributionX(m_RandomNumberEngine)};
+        const float64 CurrentCoordinateY {UniformDistributionY(m_RandomNumberEngine)};
+        const float64 CurrentCoordinateZ {UniformDistributionZ(m_RandomNumberEngine)};
 
         // add the current 3d world point
         CurrentWorldPoint(0) = CurrentCoordinateX;

@@ -27,9 +27,16 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define GLOBALTYPESBASE_H
 
 // base types
-using T_REAL  = double;         ///< Alias for floating point values.
-using T_SLONG = signed long;    ///< Alias for signed long values.
-using T_ULONG = unsigned long;  ///< Alias for unsigned long values.
-using T_BOOL  = bool;           ///< Alias for boolean values.
+using float32 = float;          ///< Alias for 32-bit floating point values.
+using float64 = double;         ///< Alias for 64-bit floating point values.
+using sint8   = signed char;    ///< Alias for 8-bit signed integer values.
+using uint8   = unsigned char;  ///< Alias for 8-bit unsigned integer values.
+using sint16  = signed short;   ///< Alias for 16-bit signed integer values.
+using uint16  = unsigned short; ///< Alias for 16-bit unsigned integer values.
+using sint32  = signed int;     ///< Alias for 32-bit signed integer values.
+using uint32  = unsigned int;   ///< Alias for 32-bit unsigned integer values.
+using sint64  = signed long;    ///< Alias for 64-bit signed integer values.
+using uint64  = unsigned long;  ///< Alias for 64-bit unsigned integer values.
+using boolean = bool;           ///< Alias for boolean values.
 
 #endif // GLOBALTYPESBASE_H
