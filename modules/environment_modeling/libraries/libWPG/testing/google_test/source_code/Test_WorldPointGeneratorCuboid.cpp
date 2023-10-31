@@ -46,9 +46,11 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
 {
+    const uint64 NumberOfWorldPoints = 1000U;
+
     WorldPointGeneratorCuboid WPG;
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), 1000U);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPoints);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
