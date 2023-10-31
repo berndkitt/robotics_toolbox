@@ -82,16 +82,16 @@ class VersionNumberGenerator:
         version_header_file.write("\n")
 
         # write version number
-        version_header_file.write("const uint64 VersionMajor = " + self._version_major + "U;\n")
-        version_header_file.write("const uint64 VersionMinor = " + self._version_minor + "U;\n")
-        version_header_file.write("const uint64 VersionPatch = " + self._version_patch + "U;\n\n")
+        version_header_file.write("const uint64 VersionMajor {" + self._version_major + "U};\n")
+        version_header_file.write("const uint64 VersionMinor {" + self._version_minor + "U};\n")
+        version_header_file.write("const uint64 VersionPatch {" + self._version_patch + "U};\n\n")
 
         # write build information
-        version_header_file.write("const std::string BuildUser = \"" + self._build_user + "\";\n")
-        version_header_file.write("const std::string BuildTime = \"" + self._build_time + "\";\n\n")
+        version_header_file.write("const std::string BuildUser {\"" + self._build_user + "\"};\n")
+        version_header_file.write("const std::string BuildTime {\"" + self._build_time + "\"};\n\n")
 
         # write Git commit hash
-        version_header_file.write("const std::string GitCommitHash = \"" + self._git_commit_hash + "\";\n")
+        version_header_file.write("const std::string GitCommitHash {\"" + self._git_commit_hash + "\"};\n")
 
         # close file
         version_header_file.close()
