@@ -32,6 +32,7 @@
         "Doxygen",
         "Doxywizard",
         "Eigen",
+        "Gcovr",
         "Kitt",
         "swappable"
     ]
