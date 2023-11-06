@@ -6,6 +6,7 @@ pipeline
     {
         CMAKE_BUILD_DIRECTORY             = "build"
         JENKINS_BUILD_ARTIFACTS_DIRECTORY = "jenkins_build_artifacts"
+        NUMBER_OF_THREADS                 = "8"
     }
 
     options
@@ -34,6 +35,25 @@ pipeline
             steps
             {
                 sh "cmake -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
+            }
+        }
+        stage("Environment Modeling")
+        {
+            parallel
+            {
+                stage("libWPG")
+                {
+                    stages
+                    {
+                        stage("CMake Build")
+                        {
+                            steps
+                            {
+                                sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t WPG -j${env.NUMBER_OF_THREADS}"
+                            }
+                        }
+                    }
+                }
             }
         }
     }
