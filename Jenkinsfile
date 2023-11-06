@@ -70,6 +70,9 @@ pipeline
     {
         always
         {
+            // build artifacts archiving
+            archiveArtifacts artifacts: "${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/**, libs/**", allowEmptyArchive: true, fingerprint: true, onlyIfSuccessful: true
+
             // workspace cleanup
             cleanWs()
         }
