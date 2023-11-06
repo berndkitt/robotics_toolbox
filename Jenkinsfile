@@ -29,4 +29,13 @@ pipeline
             }
         }
     }
+
+    post
+    {
+        always
+        {
+            // workspace cleanup
+            cleanWs()
+        }
+    }
 }
