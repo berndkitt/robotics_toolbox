@@ -30,11 +30,11 @@ pipeline
                 sh "python3 -m flake8 --tee --output-file ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/flake8_results.txt **/*.py"
             }
         }
-        stage("CMake")
+        stage("CMake (Release)")
         {
             steps
             {
-                sh "cmake -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
+                sh "cmake -D CMAKE_BUILD_TYPE=Release -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
             }
         }
         stage("Environment Modeling")
