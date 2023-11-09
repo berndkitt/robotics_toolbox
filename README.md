@@ -17,9 +17,9 @@ Additionally, the following Python packages are required:
 - Gcovr (see [https://pypi.org/project/gcovr/](https://pypi.org/project/gcovr/))
 - GitPython (see [https://pypi.org/project/GitPython/](https://pypi.org/project/GitPython/))
 
-In the following, it is assumed that the C++ tools and Python packages mentioned above have been installed on the system already.
+In the following, it is assumed that the C++ tools and Python packages mentioned above have been installed already.
 
-A Dockerfile based on Ubuntu 22.04 with all the prerequisites available is part of the repository (see [Docker](#docker)). In case Docker shall be used as development environment, Docker also needs to be installed on the system.
+A Dockerfile based on Ubuntu 22.04 with all the prerequisites available is part of the repository (see [Docker](#docker) section). In case the development shall happen inside a Docker container, Docker also needs to be installed on the system (see [https://www.docker.com/](https://www.docker.com/)).
 
 ### Clone Repository
 
@@ -29,7 +29,7 @@ To get your own version of the Git repository, you can clone the repository to y
 git clone --recursive https://github.com/berndkitt/robotics_toolbox.git
 ```
 
-in the terminal. Afterwards a subdirectory called `robotics_toolbox` will be available in the directory the command was called.
+in the terminal. Afterwards a subdirectory called `robotics_toolbox` will be available inside the directory the command was called.
 
 ### CMake
 
@@ -39,9 +39,9 @@ The *Robotics Toolbox for C++* uses CMake as build environment. In a first step,
 cmake -B ./build/ -S ./
 ```
 
-in the terminal while being in the main directory of the toolbox. This will create a directory called `build`` which contains all the temporary build files.
+in the terminal, while being in the main directory of the toolbox. This will create a directory called `build` which contains all the temporary build files.
 
-Afterwards, the individual parts of the toolbox can be build. It is recommended to build the all targets of the toolbox by running
+Afterwards, the individual parts of the toolbox can be build. It is recommended to build all targets of the toolbox by running
 
 ```bash
 cmake --build ./build/ -t all -j4
@@ -51,19 +51,23 @@ in the terminal. This will create a directory called `libs` which contains all t
 
 ### Docker
 
-Build the Docker image:
+In order to make use of the Docker container, the first step is to build the Docker image by running
 
 ```bash
 docker build -t robotics_toolbox .
 ```
 
-Run the Docker image:
+in the terminal.
+
+After the Docker image has been built, a Docker container can by started by running
 
 ```bash
 docker run -dit -v <absolute_path_on_host>:<absolute_path_in_container> --name robotics_toolbox -h ubuntu robotics_toolbox
 ```
 
-Using the command above, the local version of the repository is made available inside the Docker container. `absolute_path_on_host` needs to be replaced by the directory the repository was cloned into on the host machine (see [Clone Repository](#clone-repository)), `absolute_path_in_container` needs to be replaced by the path the repository shall be available inside the container.
+in the terminal.
+
+Using the command above, the local version of the repository is made available inside the Docker container. `absolute_path_on_host` needs to be replaced by the directory the repository was cloned into on the host machine (see [Clone Repository](#clone-repository) section), `absolute_path_in_container` needs to be replaced by the path the repository shall be available inside the container.
 
 Example: `docker run -dit -v /development/robotics_toolbox/:/mnt/ --name robotics_toolbox -h ubuntu robotics_toolbox`
 
