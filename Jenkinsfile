@@ -79,6 +79,25 @@ pipeline
                 }
             }
         }
+        stage("Mapping and Localization")
+        {
+            parallel
+            {
+                stage("libFB")
+                {
+                    stages
+                    {
+                        stage("CMake Build")
+                        {
+                            steps
+                            {
+                                sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FB -j${env.NUMBER_OF_THREADS}"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     post
