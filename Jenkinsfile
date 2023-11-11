@@ -94,6 +94,14 @@ pipeline
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FB -j${env.NUMBER_OF_THREADS}"
                             }
                         }
+                        stage("GoogleTest")
+                        {
+                            steps
+                            {
+                                sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libFB -j${env.NUMBER_OF_THREADS}"
+                                sh "./bin/unit_tests_libFB --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/googletest_libFB.json"
+                            }
+                        }
                     }
                 }
             }
