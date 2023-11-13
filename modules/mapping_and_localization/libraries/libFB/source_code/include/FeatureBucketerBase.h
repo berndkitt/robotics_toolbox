@@ -23,37 +23,22 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#ifndef FEATUREBUCKETER_H
-#define FEATUREBUCKETER_H
+#ifndef FEATUREBUCKETERBASE_H
+#define FEATUREBUCKETERBASE_H
 
 #include <random>
 
 #include <GlobalTypesDerived.h>
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \enum  FeatureSelectionScheme
+/// \class FeatureBucketerBase
 ///
-/// \brief Defines the selection scheme which is used to select the features in the buckets.
-///////////////////////////////////////////////////////////////////////////////
-enum FeatureSelectionScheme
-{
-    SelectByChance, ///< Features are selected by chance.
-    SelectByOrder   ///< Features are selected in the order they are provided.
-};
-
-///////////////////////////////////////////////////////////////////////////////
-/// \class FeatureBucketer
-///
-/// \brief Divides an image into rectangular buckets and selects a certain
-///        number of features in each bucket.
+/// \brief Base class for different kinds of feature bucketers.
 ///
 /// The feature bucketer divides the image into rectangular buckets and selects
-/// a certain amount of features in each bucket. There are two selection
-/// schemes available. The first one selects the features inside each bucket by
-/// chance, the second selects the features in each bucket in the order they
-/// are provided.
+/// a certain amount of features in each bucket.
 ///////////////////////////////////////////////////////////////////////////////
-class FeatureBucketer
+class FeatureBucketerBase
 {
 protected: // protected attributes
     const uint64                  m_NumberOfPixelsHorizontal;  ///< Number of pixels in horizontal direction.
@@ -64,7 +49,6 @@ protected: // protected attributes
           MatrixUInt64            m_FeatureMask;               ///< Mask defining the buckets and the number of features in each bucket.
           float64                 m_BucketSizeHorizontal;      ///< Size of each bucket in horizontal direction.
           float64                 m_BucketSizeVertical;        ///< Size of each bucket in vertical direction.
-    const FeatureSelectionScheme  m_SelectionScheme;           ///< Selection scheme used to select the features in the buckets.
           ListUInt64              m_SelectedIndices;           ///< List containing the indices of the selected features.
           ListUInt64              m_RejectedIndices;           ///< List containing the indices of the rejected features.
           ListUInt64              m_BucketIDs;                 ///< List containing the bucket IDs for all provided features.
@@ -74,8 +58,6 @@ protected: // protected attributes
           uint64                  m_NumberOfRejectedIndices;   ///< Number of features which have been rejected.
           uint64                  m_NumberOfValidFeatures;     ///< Number of valid features.
           uint64                  m_NumberOfInvalidFeatures;   ///< Number of invalid features.
-          std::mt19937            m_RandomNumberEngine;        ///< Random number engine used to select the image points.
-    const uint64                  m_SeedValue;                 ///< Seed value used to initialize the random number engine.
 
 public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
@@ -89,16 +71,12 @@ public: // public methods
     /// \param[in] NumberOfBucketsHorizontal        Number of buckets in horizontal direction.
     /// \param[in] NumberOfBucketsVertical          Number of buckets in vertical direction.
     /// \param[in] MaximumNumberOfFeaturesPerBucket Maximum number of selected features in each bucket.
-    /// \param[in] SelectionScheme                  Selection scheme used to select the features in the buckets.
-    /// \param[in] SeedValue                        Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
-    FeatureBucketer(const uint64                 NumberOfPixelsHorizontal         = 1024U,
-                    const uint64                 NumberOfPixelsVertical           = 768U,
-                    const uint64                 NumberOfBucketsHorizontal        = 8U,
-                    const uint64                 NumberOfBucketsVertical          = 4U,
-                    const uint64                 MaximumNumberOfFeaturesPerBucket = 5U,
-                    const FeatureSelectionScheme SelectionScheme                  = SelectByChance,
-                    const uint64                 SeedValue                        = 0U);
+    FeatureBucketerBase(const uint64 NumberOfPixelsHorizontal         = 1024U,
+                        const uint64 NumberOfPixelsVertical           = 768U,
+                        const uint64 NumberOfBucketsHorizontal        = 8U,
+                        const uint64 NumberOfBucketsVertical          = 4U,
+                        const uint64 MaximumNumberOfFeaturesPerBucket = 5U);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
@@ -110,19 +88,15 @@ public: // public methods
     /// \param[in] NumberOfPixelsHorizontal Number of pixels in horizontal direction.
     /// \param[in] NumberOfPixelsVertical   Number of pixels in vertical direction.
     /// \param[in] FeatureMask              Mask defining the buckets and the number of features in each bucket.
-    /// \param[in] SelectionScheme          Selection scheme used to select the features in the buckets.
-    /// \param[in] SeedValue                Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
-    FeatureBucketer(const uint64                 NumberOfPixelsHorizontal,
-                    const uint64                 NumberOfPixelsVertical,
-                    const MatrixUInt64&          FeatureMask,
-                    const FeatureSelectionScheme SelectionScheme          = SelectByChance,
-                    const uint64                 SeedValue                = 0U);
+    FeatureBucketerBase(const uint64        NumberOfPixelsHorizontal,
+                        const uint64        NumberOfPixelsVertical,
+                        const MatrixUInt64& FeatureMask);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
     ///////////////////////////////////////////////////////////////////////////////
-    ~FeatureBucketer();
+    virtual ~FeatureBucketerBase();
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Bucket a set of given features.
@@ -189,14 +163,11 @@ public: // public methods
 
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Selects the features in each bucket by chance.
+    /// \brief     Core method to bucket a set of given features.
+    ///
+    /// This method implements the selection scheme and depends on the class.
     ///////////////////////////////////////////////////////////////////////////////
-    void BucketFeaturesByChance();
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Selects the features in each bucket in the order they are provided.
-    ///////////////////////////////////////////////////////////////////////////////
-    void BucketFeaturesByOrder();
+    virtual void BucketFeaturesWithScheme() = 0;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief      Computes the bucket ID for a single feature.
@@ -219,4 +190,4 @@ protected: // protected methods
     void ComputeBucketIDs(const ListColumnVectorFloat64_2d& ImagePoints);
 };
 
-#endif // FEATUREBUCKETER_H
+#endif // FEATUREBUCKETERBASE_H

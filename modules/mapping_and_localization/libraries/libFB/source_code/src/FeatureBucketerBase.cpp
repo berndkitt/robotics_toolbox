@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file FeatureBucketer.cpp
+/// \file FeatureBucketerBase.cpp
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
@@ -23,20 +23,14 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#include <Tools.h>
+#include "../include/FeatureBucketerBase.h"
 
-#include "../include/FeatureBucketer.h"
-
-FeatureBucketer::FeatureBucketer(const uint64                 NumberOfPixelsHorizontal,
-                                 const uint64                 NumberOfPixelsVertical,
-                                 const uint64                 NumberOfBucketsHorizontal,
-                                 const uint64                 NumberOfBucketsVertical,
-                                 const uint64                 MaximumNumberOfFeaturesPerBucket,
-                                 const FeatureSelectionScheme SelectionScheme,
-                                 const uint64                 SeedValue) : m_NumberOfPixelsHorizontal{NumberOfPixelsHorizontal},
-                                                                           m_NumberOfPixelsVertical{NumberOfPixelsVertical},
-                                                                           m_SelectionScheme{SelectionScheme},
-                                                                           m_SeedValue{SeedValue}
+FeatureBucketerBase::FeatureBucketerBase(const uint64 NumberOfPixelsHorizontal,
+                                         const uint64 NumberOfPixelsVertical,
+                                         const uint64 NumberOfBucketsHorizontal,
+                                         const uint64 NumberOfBucketsVertical,
+                                         const uint64 MaximumNumberOfFeaturesPerBucket) : m_NumberOfPixelsHorizontal{NumberOfPixelsHorizontal},
+                                                                                          m_NumberOfPixelsVertical{NumberOfPixelsVertical}
 {
     // set internal attributes
     m_NumberOfBucketsHorizontal = NumberOfBucketsHorizontal;
@@ -54,19 +48,12 @@ FeatureBucketer::FeatureBucketer(const uint64                 NumberOfPixelsHori
 
     m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal);
     m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);
-
-    // initialize random number generator
-    m_RandomNumberEngine.seed(m_SeedValue);
 }
 
-FeatureBucketer::FeatureBucketer(const uint64                 NumberOfPixelsHorizontal,
-                                 const uint64                 NumberOfPixelsVertical,
-                                 const MatrixUInt64&          FeatureMask,
-                                 const FeatureSelectionScheme SelectionScheme,
-                                 const uint64                 SeedValue) : m_NumberOfPixelsHorizontal{NumberOfPixelsHorizontal},
-                                                                           m_NumberOfPixelsVertical{NumberOfPixelsVertical},
-                                                                           m_SelectionScheme{SelectionScheme},
-                                                                           m_SeedValue{SeedValue}
+FeatureBucketerBase::FeatureBucketerBase(const uint64        NumberOfPixelsHorizontal,
+                                         const uint64        NumberOfPixelsVertical,
+                                         const MatrixUInt64& FeatureMask) : m_NumberOfPixelsHorizontal{NumberOfPixelsHorizontal},
+                                                                            m_NumberOfPixelsVertical{NumberOfPixelsVertical}
 {
     // set internal attributes
     m_NumberOfBucketsHorizontal = FeatureMask.cols();
@@ -83,17 +70,14 @@ FeatureBucketer::FeatureBucketer(const uint64                 NumberOfPixelsHori
 
     m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal);
     m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);
-
-    // initialize random number generator
-    m_RandomNumberEngine.seed(m_SeedValue);
 }
 
-FeatureBucketer::~FeatureBucketer()
+FeatureBucketerBase::~FeatureBucketerBase()
 {
 
 }
 
-void FeatureBucketer::BucketFeatures(const ListColumnVectorFloat64_2d& ImagePoints)
+void FeatureBucketerBase::BucketFeatures(const ListColumnVectorFloat64_2d& ImagePoints)
 {
     // clear variables
     m_NumberOfSelectedIndices = 0U;
@@ -106,179 +90,52 @@ void FeatureBucketer::BucketFeatures(const ListColumnVectorFloat64_2d& ImagePoin
     ComputeBucketIDs(ImagePoints);
 
     // select feature in buckets
-    switch(m_SelectionScheme)
-    {
-        case SelectByChance:
-        {
-            BucketFeaturesByChance();
-            break;
-        }
-        case SelectByOrder:
-        {
-            BucketFeaturesByOrder();
-            break;
-        }
-        // no default needed as all options are covered
-    }
+    BucketFeaturesWithScheme();
 }
 
-float64 FeatureBucketer::GetBucketSizeHorizontal() const
+float64 FeatureBucketerBase::GetBucketSizeHorizontal() const
 {
     return m_BucketSizeHorizontal;
 }
 
-float64 FeatureBucketer::GetBucketSizeVertical() const
+float64 FeatureBucketerBase::GetBucketSizeVertical() const
 {
     return m_BucketSizeVertical;
 }
 
-uint64 FeatureBucketer::GetNumberOfBucketsHorizontal() const
+uint64 FeatureBucketerBase::GetNumberOfBucketsHorizontal() const
 {
     return m_NumberOfBucketsHorizontal;
 }
 
-uint64 FeatureBucketer::GetNumberOfBucketsVertical() const
+uint64 FeatureBucketerBase::GetNumberOfBucketsVertical() const
 {
     return m_NumberOfBucketsVertical;
 }
 
-uint64 FeatureBucketer::GetNumberOfPixelsHorizontal() const
+uint64 FeatureBucketerBase::GetNumberOfPixelsHorizontal() const
 {
     return m_NumberOfPixelsHorizontal;
 }
 
-uint64 FeatureBucketer::GetNumberOfPixelsVertical() const
+uint64 FeatureBucketerBase::GetNumberOfPixelsVertical() const
 {
     return m_NumberOfPixelsVertical;
 }
 
-const ListUInt64& FeatureBucketer::GetRejectedIndices() const
+const ListUInt64& FeatureBucketerBase::GetRejectedIndices() const
 {
     return m_RejectedIndices;
 }
 
-const ListUInt64& FeatureBucketer::GetSelectedIndices() const
+const ListUInt64& FeatureBucketerBase::GetSelectedIndices() const
 {
     return m_SelectedIndices;
 }
 
-void FeatureBucketer::BucketFeaturesByChance()
-{
-    // bucket features by chance
-    for(uint64 i_Bucket = 0; i_Bucket < m_NumberOfBuckets; i_Bucket++)
-    {
-        // get maximum number of features in current bucket
-        const uint64 MaximumNumberOfFeaturesInCurrentBucket {m_FeatureMask(i_Bucket)};
-
-        // get number of features in current bucket
-        const uint64 NumberOfFeaturesInCurrentBucket {m_FeatureIndices[i_Bucket].size()};
-
-        // select features
-        if(NumberOfFeaturesInCurrentBucket <= MaximumNumberOfFeaturesInCurrentBucket)
-        {
-            // collect selected features (all are selected)
-            for(uint64 i_Feature {0U}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
-            {
-                const uint64 CurrentFeatureIndex = m_FeatureIndices[i_Bucket][i_Feature];
-
-                m_SelectedIndices.push_back(CurrentFeatureIndex);
-                m_NumberOfSelectedIndices++;
-            }
-        }
-        else
-        {
-            // create uniform distribution
-            std::uniform_int_distribution<uint64> UniformDistribution(0U, NumberOfFeaturesInCurrentBucket - 1U);
-
-            // randomly chose feature indices for current bucket
-            uint64     FeatureCounter = 0;
-            ListUInt64 ChosenIndices;
-
-            ChosenIndices.resize(MaximumNumberOfFeaturesInCurrentBucket);
-
-            while(FeatureCounter < MaximumNumberOfFeaturesInCurrentBucket)
-            {
-                // randomly chose index
-                const uint64 RandomNumber {UniformDistribution(m_RandomNumberEngine)};
-                const uint64 ChosenIndex  {m_FeatureIndices[i_Bucket][RandomNumber]};
-
-                // check whether the chosen index is already an entity of the list
-                if(!Tools::IsMember(ChosenIndices, ChosenIndex))
-                {
-                    ChosenIndices[FeatureCounter] = ChosenIndex;
-                    FeatureCounter++;
-                }
-            }
-
-            // store selected and rejected indices
-            for(uint64 i_Feature {0U}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
-            {
-                const uint64 CurrentIndex {m_FeatureIndices[i_Bucket][i_Feature]};
-
-                if(Tools::IsMember(ChosenIndices, CurrentIndex))
-                {
-                    m_SelectedIndices.push_back(CurrentIndex);
-                    m_NumberOfSelectedIndices++;
-                }
-                else
-                {
-                    m_RejectedIndices.push_back(CurrentIndex);
-                    m_NumberOfRejectedIndices++;
-                }
-            }
-        }
-    }
-}
-
-void FeatureBucketer::BucketFeaturesByOrder()
-{
-    // bucket features in the order they are provided in the list
-    for(uint64 i_Bucket {0U}; i_Bucket < m_NumberOfBuckets; i_Bucket++)
-    {
-        // get maximum number of features in current bucket
-        const uint64 MaximumNumberOfFeaturesInCurrentBucket {m_FeatureMask(i_Bucket)};
-
-        // get number of features in current bucket
-        const uint64 NumberOfFeaturesInCurrentBucket {m_FeatureIndices[i_Bucket].size()};
-
-        // select features
-        if(NumberOfFeaturesInCurrentBucket <= MaximumNumberOfFeaturesInCurrentBucket)
-        {
-            // collect selected features (all are selected)
-            for(uint64 i_Feature {0U}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
-            {
-                const uint64 CurrentFeatureIndex {m_FeatureIndices[i_Bucket][i_Feature]};
-
-                m_SelectedIndices.push_back(CurrentFeatureIndex);
-                m_NumberOfSelectedIndices++;
-            }
-        }
-        else
-        {
-            // collect selected features
-            for(uint64 i_Feature {0U}; i_Feature < MaximumNumberOfFeaturesInCurrentBucket; i_Feature++)
-            {
-                const uint64 CurrentFeatureIndex {m_FeatureIndices[i_Bucket][i_Feature]};
-
-                m_SelectedIndices.push_back(CurrentFeatureIndex);
-                m_NumberOfSelectedIndices++;
-            }
-
-            // collect rejected features
-            for(uint64 i_Feature {MaximumNumberOfFeaturesInCurrentBucket}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
-            {
-                const uint64 CurrentFeatureIndex {m_FeatureIndices[i_Bucket][i_Feature]};
-
-                m_RejectedIndices.push_back(CurrentFeatureIndex);
-                m_NumberOfRejectedIndices++;
-            }
-        }
-    }
-}
-
-boolean FeatureBucketer::ComputeBucketID(const float64 CoordinateImagePointHorizontal,
-                                         const float64 CoordinateImagePointVertical,
-                                               uint64& BucketID) const
+boolean FeatureBucketerBase::ComputeBucketID(const float64 CoordinateImagePointHorizontal,
+                                             const float64 CoordinateImagePointVertical,
+                                                   uint64& BucketID) const
 {
     // check whether the current feature is visible in the image or not
     boolean BucketIDIsValid {false};
@@ -303,7 +160,7 @@ boolean FeatureBucketer::ComputeBucketID(const float64 CoordinateImagePointHoriz
     return BucketIDIsValid;
 }
 
-void FeatureBucketer::ComputeBucketIDs(const ListColumnVectorFloat64_2d& ImagePoints)
+void FeatureBucketerBase::ComputeBucketIDs(const ListColumnVectorFloat64_2d& ImagePoints)
 {
     // get number of image points
     const uint64 NumberOfImagePoints {ImagePoints.size()};

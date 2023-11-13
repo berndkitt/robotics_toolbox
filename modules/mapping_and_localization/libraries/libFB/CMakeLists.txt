@@ -6,7 +6,9 @@ execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumbe
 
 # build libFB
 add_library(${PROJECT_NAME} STATIC
-    source_code/src/FeatureBucketer.cpp
+    source_code/src/FeatureBucketerBase.cpp
+    source_code/src/FeatureBucketerByChance.cpp
+    source_code/src/FeatureBucketerByOrder.cpp
     source_code/src/LIBFBVersion.cpp)
 
 # define include directories for libFB

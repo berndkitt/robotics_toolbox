@@ -2,8 +2,12 @@
 
 <!-- path is relative to the main directory of the library -->
 <file_list>
-    <file>./source_code/include/FeatureBucketer.h</file>
+    <file>./source_code/include/FeatureBucketerBase.h</file>
+    <file>./source_code/include/FeatureBucketerByChance.h</file>
+    <file>./source_code/include/FeatureBucketerByOrder.h</file>
     <file>./source_code/include/LIBFBVersion.h</file>
-    <file>./source_code/src/FeatureBucketer.cpp</file>
+    <file>./source_code/src/FeatureBucketerBase.cpp</file>
+    <file>./source_code/src/FeatureBucketerByChance.cpp</file>
+    <file>./source_code/src/FeatureBucketerByOrder.cpp</file>
     <file>./source_code/src/LIBFBVersion.cpp</file>
 </file_list>
