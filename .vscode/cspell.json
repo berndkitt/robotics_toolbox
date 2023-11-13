@@ -6,6 +6,9 @@
         "DEFAULTARGUMENT",
         "DEFAULTCONSTRUCTOR",
         "FEATUREBUCKETER",
+        "FEATUREBUCKETERBASE",
+        "FEATUREBUCKETERBYCHANCE",
+        "FEATUREBUCKETERBYORDER",
         "GITCOMMITHASH",
         "GLOBALTYPESBASE",
         "GLOBALTYPESDERIVED",
@@ -31,6 +34,7 @@
     ],
     "words": [
         "Bernd",
+        "bucketers",
         "Doxyfile",
         "Doxygen",
         "Doxywizard",
