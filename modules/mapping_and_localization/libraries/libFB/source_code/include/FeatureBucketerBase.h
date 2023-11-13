@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file FeatureBucketer.h
+/// \file FeatureBucketerBase.h
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
@@ -41,19 +41,19 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 class FeatureBucketerBase
 {
 protected: // protected attributes
-    const uint64                  m_NumberOfPixelsHorizontal;  ///< Number of pixels in horizontal direction.
-    const uint64                  m_NumberOfPixelsVertical;    ///< Number of pixels in vertical direction.
-          uint64                  m_NumberOfBucketsHorizontal; ///< Number of buckets in horizontal direction.
-          uint64                  m_NumberOfBucketsVertical;   ///< Number of buckets in vertical direction.
-          uint64                  m_NumberOfBuckets;           ///< Total number of buckets.
-          MatrixUInt64            m_FeatureMask;               ///< Mask defining the buckets and the number of features in each bucket.
-          float64                 m_BucketSizeHorizontal;      ///< Size of each bucket in horizontal direction.
-          float64                 m_BucketSizeVertical;        ///< Size of each bucket in vertical direction.
-          ListUInt64              m_SelectedIndices;           ///< List containing the indices of the selected features.
-          ListUInt64              m_RejectedIndices;           ///< List containing the indices of the rejected features.
-          ListUInt64              m_BucketIDs;                 ///< List containing the bucket IDs for all provided features.
-          ListBoolean             m_BucketIDIsValid;           ///< List defining whether the bucket ID is valid or not.
-          std::vector<ListUInt64> m_FeatureIndices;            ///< List containing the feature indices for all buckets (contains one entry more than buckets; last entry used for invalid features).
+    const uint64                  m_NumberOfPixelsHorizontal;   ///< Number of pixels in horizontal direction.
+    const uint64                  m_NumberOfPixelsVertical;     ///< Number of pixels in vertical direction.
+          uint64                  m_NumberOfBucketsHorizontal;  ///< Number of buckets in horizontal direction.
+          uint64                  m_NumberOfBucketsVertical;    ///< Number of buckets in vertical direction.
+          uint64                  m_NumberOfBuckets;            ///< Total number of buckets.
+          MatrixUInt64            m_FeatureMask;                ///< Mask defining the buckets and the number of features in each bucket.
+          float64                 m_BucketSizeHorizontal;       ///< Size of each bucket in horizontal direction.
+          float64                 m_BucketSizeVertical;         ///< Size of each bucket in vertical direction.
+          ListUInt64              m_SelectedIndices;            ///< List containing the indices of the selected features.
+          ListUInt64              m_RejectedIndices;            ///< List containing the indices of the rejected features.
+          ListUInt64              m_BucketIDs;                  ///< List containing the bucket IDs for all provided features.
+          ListBoolean             m_BucketIDIsValid;            ///< List defining whether the bucket ID is valid or not.
+          std::vector<ListUInt64> m_FeatureIndices;             ///< List containing the feature indices for all buckets (contains one entry more than buckets; last entry used for invalid features).
 
 public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
@@ -159,7 +159,7 @@ public: // public methods
 
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Core method to bucket a set of given features.
+    /// \brief Core method to bucket a set of given features.
     ///
     /// This method implements the selection scheme and depends on the class.
     ///////////////////////////////////////////////////////////////////////////////

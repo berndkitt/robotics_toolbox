@@ -90,9 +90,9 @@ public: // public methods
 
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Core method to bucket a set of given features.
+    /// \brief Core method to bucket a set of given features.
     ///
-    /// This method implements the selection "by chance".
+    /// This method implements the selection scheme "by chance".
     ///////////////////////////////////////////////////////////////////////////////
     virtual void BucketFeaturesWithScheme();
 };
