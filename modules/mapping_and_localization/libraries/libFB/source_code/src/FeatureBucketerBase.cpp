@@ -30,16 +30,10 @@ FeatureBucketerBase::FeatureBucketerBase(const uint64 NumberOfPixelsHorizontal,
                                          const uint64 NumberOfBucketsHorizontal,
                                          const uint64 NumberOfBucketsVertical,
                                          const uint64 MaximumNumberOfFeaturesPerBucket) : m_NumberOfPixelsHorizontal{NumberOfPixelsHorizontal},
-                                                                                          m_NumberOfPixelsVertical{NumberOfPixelsVertical}
+                                                                                          m_NumberOfPixelsVertical{NumberOfPixelsVertical},
+                                                                                          m_NumberOfBucketsHorizontal{NumberOfBucketsHorizontal},
+                                                                                          m_NumberOfBucketsVertical{NumberOfBucketsVertical}
 {
-    // set internal attributes
-    m_NumberOfBucketsHorizontal = NumberOfBucketsHorizontal;
-    m_NumberOfBucketsVertical   = NumberOfBucketsVertical;
-    m_NumberOfSelectedIndices   = 0U;
-    m_NumberOfRejectedIndices   = 0U;
-    m_NumberOfValidFeatures     = 0U;
-    m_NumberOfInvalidFeatures   = 0U;
-
     // compute derived attributes
     m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical;
 
@@ -58,10 +52,6 @@ FeatureBucketerBase::FeatureBucketerBase(const uint64        NumberOfPixelsHoriz
     // set internal attributes
     m_NumberOfBucketsHorizontal = FeatureMask.cols();
     m_NumberOfBucketsVertical   = FeatureMask.rows();
-    m_NumberOfSelectedIndices   = 0U;
-    m_NumberOfRejectedIndices   = 0U;
-    m_NumberOfValidFeatures     = 0U;
-    m_NumberOfInvalidFeatures   = 0U;
 
     // compute derived attributes
     m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical;
@@ -80,9 +70,6 @@ FeatureBucketerBase::~FeatureBucketerBase()
 void FeatureBucketerBase::BucketFeatures(const ListColumnVectorFloat64_2d& ImagePoints)
 {
     // clear variables
-    m_NumberOfSelectedIndices = 0U;
-    m_NumberOfRejectedIndices = 0U;
-
     m_SelectedIndices.clear();
     m_RejectedIndices.clear();
 
@@ -166,9 +153,6 @@ void FeatureBucketerBase::ComputeBucketIDs(const ListColumnVectorFloat64_2d& Ima
     const uint64 NumberOfImagePoints {ImagePoints.size()};
 
     // clear variables and pre-allocate memory
-    m_NumberOfValidFeatures   = 0U;
-    m_NumberOfInvalidFeatures = 0U;
-
     m_BucketIDs.clear();
     m_BucketIDIsValid.clear();
     m_FeatureIndices.clear();
@@ -197,14 +181,5 @@ void FeatureBucketerBase::ComputeBucketIDs(const ListColumnVectorFloat64_2d& Ima
         m_BucketIDIsValid[i_ImagePoint] = BucketIDIsValid;
 
         m_FeatureIndices[BucketID].push_back(i_ImagePoint);
-
-        if(BucketIDIsValid)
-        {
-            m_NumberOfValidFeatures++;
-        }
-        else
-        {
-            m_NumberOfInvalidFeatures++;
-        }
     }
 }

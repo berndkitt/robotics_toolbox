@@ -66,7 +66,6 @@ void FeatureBucketerByOrder::BucketFeaturesWithScheme()
                 const uint64 CurrentFeatureIndex {m_FeatureIndices[i_Bucket][i_Feature]};
 
                 m_SelectedIndices.push_back(CurrentFeatureIndex);
-                m_NumberOfSelectedIndices++;
             }
         }
         else
@@ -77,7 +76,6 @@ void FeatureBucketerByOrder::BucketFeaturesWithScheme()
                 const uint64 CurrentFeatureIndex {m_FeatureIndices[i_Bucket][i_Feature]};
 
                 m_SelectedIndices.push_back(CurrentFeatureIndex);
-                m_NumberOfSelectedIndices++;
             }
 
             // collect rejected features
@@ -86,7 +84,6 @@ void FeatureBucketerByOrder::BucketFeaturesWithScheme()
                 const uint64 CurrentFeatureIndex {m_FeatureIndices[i_Bucket][i_Feature]};
 
                 m_RejectedIndices.push_back(CurrentFeatureIndex);
-                m_NumberOfRejectedIndices++;
             }
         }
     }

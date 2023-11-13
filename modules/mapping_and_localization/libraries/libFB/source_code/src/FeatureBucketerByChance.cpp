@@ -72,7 +72,6 @@ void FeatureBucketerByChance::BucketFeaturesWithScheme()
                 const uint64 CurrentFeatureIndex = m_FeatureIndices[i_Bucket][i_Feature];
 
                 m_SelectedIndices.push_back(CurrentFeatureIndex);
-                m_NumberOfSelectedIndices++;
             }
         }
         else
@@ -108,12 +107,10 @@ void FeatureBucketerByChance::BucketFeaturesWithScheme()
                 if(Tools::IsMember(ChosenIndices, CurrentIndex))
                 {
                     m_SelectedIndices.push_back(CurrentIndex);
-                    m_NumberOfSelectedIndices++;
                 }
                 else
                 {
                     m_RejectedIndices.push_back(CurrentIndex);
-                    m_NumberOfRejectedIndices++;
                 }
             }
         }

@@ -54,10 +54,6 @@ protected: // protected attributes
           ListUInt64              m_BucketIDs;                 ///< List containing the bucket IDs for all provided features.
           ListBoolean             m_BucketIDIsValid;           ///< List defining whether the bucket ID is valid or not.
           std::vector<ListUInt64> m_FeatureIndices;            ///< List containing the feature indices for all buckets (contains one entry more than buckets; last entry used for invalid features).
-          uint64                  m_NumberOfSelectedIndices;   ///< Number of features which have been selected.
-          uint64                  m_NumberOfRejectedIndices;   ///< Number of features which have been rejected.
-          uint64                  m_NumberOfValidFeatures;     ///< Number of valid features.
-          uint64                  m_NumberOfInvalidFeatures;   ///< Number of invalid features.
 
 public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
