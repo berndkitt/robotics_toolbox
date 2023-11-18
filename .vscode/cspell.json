@@ -1,8 +1,12 @@
 {
     "language": "en",
     "ignoreWords": [
+        "BUCKETSIZEHORIZONTAL",
+        "BUCKETSIZEVERTICAL",
         "BUILDTIME",
         "BUILDUSER",
+        "BYCHANCE",
+        "BYORDER",
         "DEFAULTARGUMENT",
         "DEFAULTCONSTRUCTOR",
         "FEATUREBUCKETER",
@@ -18,6 +22,10 @@
         "LIBFBVERSION",
         "LIBWPG",
         "LIBWPGVERSION",
+        "NUMBEROFBUCKETSHORIZONTAL",
+        "NUMBEROFBUCKETSVERTICAL",
+        "NUMBEROFPIXELSHORIZONTAL",
+        "NUMBEROFPIXELSVERTICAL",
         "NUMBEROFWORLDPOINTS",
         "VERSIONMAJOR",
         "VERSIONMINOR",
