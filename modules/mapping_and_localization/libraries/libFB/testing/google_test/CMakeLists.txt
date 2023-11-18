@@ -4,7 +4,10 @@ project(unit_tests_libFB)
 # build unit tests
 add_executable(${PROJECT_NAME}
     source_code/main.cpp
-    source_code/Test_LIBFBVersion.cpp)
+    source_code/Test_FeatureBucketerByChance.cpp
+    source_code/Test_FeatureBucketerByOrder.cpp
+    source_code/Test_LIBFBVersion.cpp
+    ../../../../../../common/Tools.cpp)
 
 # define include directories for the unit tests
 target_include_directories(${PROJECT_NAME} PRIVATE
