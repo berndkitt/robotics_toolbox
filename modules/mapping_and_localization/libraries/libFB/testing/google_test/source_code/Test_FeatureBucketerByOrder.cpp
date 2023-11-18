@@ -162,8 +162,8 @@ TEST_BUCKETSIZEVERTICAL_300_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_Buck
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for number of buckets in horizontal direction.
 ///
-/// Tests whether the number of buckets in horizontal direction does match
-/// the expected number or not. The default constructor is used. Hence, the
+/// Tests whether the number of buckets in horizontal direction does match the
+/// expected number or not. The default constructor is used. Hence, the
 /// expectation is to get 8 buckets.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSHORIZONTAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfBucketsHorizontal_DefaultConstructor_ByOrder_IsMatching)
@@ -178,8 +178,8 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBuck
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for number of buckets in horizontal direction.
 ///
-/// Tests whether the number of buckets in horizontal direction does match
-/// the expected number or not. The expectation is to get 4 buckets.
+/// Tests whether the number of buckets in horizontal direction does match the
+/// expected number or not. The expectation is to get 4 buckets.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSHORIZONTAL_4_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfBucketsHorizontal_4_ByOrder_IsMatching)
 {
@@ -197,8 +197,8 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_4_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for number of buckets in horizontal direction.
 ///
-/// Tests whether the number of buckets in horizontal direction does match
-/// the expected number or not. The expectation is to get 10 buckets.
+/// Tests whether the number of buckets in horizontal direction does match the
+/// expected number or not. The expectation is to get 10 buckets.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSHORIZONTAL_10_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfBucketsHorizontal_10_ByOrder_IsMatching)
 {
@@ -215,8 +215,8 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_10_BYORDER_ISMATCHING(FeatureBucketerByOrder, Tes
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for number of buckets in vertical direction.
 ///
-/// Tests whether the number of buckets in vertical direction does match
-/// the expected number or not. The default constructor is used. Hence, the
+/// Tests whether the number of buckets in vertical direction does match the
+/// expected number or not. The default constructor is used. Hence, the
 /// expectation is to get 4 buckets.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSVERTICAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfBucketsVertical_DefaultConstructor_ByOrder_IsMatching)
@@ -231,8 +231,8 @@ TEST_NUMBEROFBUCKETSVERTICAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBucket
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for number of buckets in vertical direction.
 ///
-/// Tests whether the number of buckets in vertical direction does match
-/// the expected number or not. The expectation is to get 2 buckets.
+/// Tests whether the number of buckets in vertical direction does match the
+/// expected number or not. The expectation is to get 2 buckets.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSVERTICAL_2_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfBucketsVertical_2_ByOrder_IsMatching)
 {
@@ -250,8 +250,8 @@ TEST_NUMBEROFBUCKETSVERTICAL_2_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_N
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for number of buckets in vertical direction.
 ///
-/// Tests whether the number of buckets in vertical direction does match
-/// the expected number or not. The expectation is to get 8 buckets.
+/// Tests whether the number of buckets in vertical direction does match the
+/// expected number or not. The expectation is to get 8 buckets.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSVERTICAL_8_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfBucketsVertical_8_ByOrder_IsMatching)
 {
@@ -268,8 +268,8 @@ TEST_NUMBEROFBUCKETSVERTICAL_8_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_N
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for number of pixels in horizontal direction.
 ///
-/// Tests whether the number of pixels in horizontal direction does match
-/// the expected number or not. The default constructor is used. Hence, the
+/// Tests whether the number of pixels in horizontal direction does match the
+/// expected number or not. The default constructor is used. Hence, the
 /// expectation is to get 1024 pixels.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFPIXELSHORIZONTAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfPixelsHorizontal_DefaultConstructor_ByOrder_IsMatching)
@@ -321,8 +321,8 @@ TEST_NUMBEROFPIXELSHORIZONTAL_1000_BYORDER_ISMATCHING(FeatureBucketerByOrder, Te
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for number of pixels in vertical direction.
 ///
-/// Tests whether the number of pixels in vertical direction does match
-/// the expected number or not. The default constructor is used. Hence, the
+/// Tests whether the number of pixels in vertical direction does match the
+/// expected number or not. The default constructor is used. Hence, the
 /// expectation is to get 768 pixels.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFPIXELSVERTICAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfPixelsVertical_DefaultConstructor_ByOrder_IsMatching)
