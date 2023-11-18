@@ -39,17 +39,13 @@ RUN mkdir ${DIR_DEV_TOOLS}
 RUN cd ${DIR_DEV_TOOLS} && \
     git clone --recursive https://github.com/google/googletest.git && \
     cd ${DIR_DEV_TOOLS}/googletest/ && \
-    mkdir build && \
-    cd build && \
-    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ ../ && \
-    make -j8 install
+    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ -B ./build/ -S ./ && \
+    cmake --build ./build/ -t install -j8
 
 RUN cd ${DIR_DEV_TOOLS} && \
     git clone --recursive https://gitlab.com/libeigen/eigen.git && \
     cd ${DIR_DEV_TOOLS}/eigen/ && \
-    mkdir build && \
-    cd build && \
-    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ ../ && \
-    make -j8 install
+    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ -B ./build/ -S ./ && \
+    cmake --build ./build/ -t install -j8
 
 RUN rm -rf ${DIR_DEV_TOOLS}
