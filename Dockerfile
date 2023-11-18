@@ -5,7 +5,7 @@ FROM ubuntu:22.04
 ENV DIR_DEV_TOOLS "/development_tools"
 
 # upgrade installed Linux packages
-RUN apt update && apt upgrade
+RUN apt update && apt upgrade -y
 
 # install useful Linux packages
 RUN apt install -y build-essential \
