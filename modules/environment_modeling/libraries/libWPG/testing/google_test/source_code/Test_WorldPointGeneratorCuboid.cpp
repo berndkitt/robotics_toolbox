@@ -46,9 +46,11 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
 {
+    const uint64 NumberOfWorldPoints {1000U};
+
     WorldPointGeneratorCuboid WPG;
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), 1000);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPoints);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -59,7 +61,7 @@ TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
 {
-    const T_ULONG NumberOfWorldPoints = 50;
+    const uint64 NumberOfWorldPoints {50U};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPoints);
 
@@ -74,7 +76,7 @@ TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfW
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
 {
-    const T_ULONG NumberOfWorldPoints = 100;
+    const uint64 NumberOfWorldPoints {100U};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPoints);
 
@@ -92,11 +94,11 @@ TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_
 {
     WorldPointGeneratorCuboid WPG;
 
-    const T_ColumnVectorReal3d WorldPoint = WPG.GetWorldPoints()[0];
+    const ColumnVectorFloat64_3d WorldPoint {WPG.GetWorldPoints()[0]};
 
-    const T_REAL ValueX = WorldPoint(0);
-    const T_REAL ValueY = WorldPoint(1);
-    const T_REAL ValueZ = WorldPoint(2);
+    const float64 ValueX {WorldPoint(0)};
+    const float64 ValueY {WorldPoint(1)};
+    const float64 ValueZ {WorldPoint(2)};
 
     ASSERT_DOUBLE_EQ(ValueX, 0.92844616516682632);
     ASSERT_DOUBLE_EQ(ValueY, 1.3770629770263931);
@@ -114,11 +116,11 @@ TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_
 {
     WorldPointGeneratorCuboid WPG;
 
-    const T_ColumnVectorReal3d WorldPoint = WPG.GetWorldPoints()[4];
+    const ColumnVectorFloat64_3d WorldPoint {WPG.GetWorldPoints()[4]};
 
-    const T_REAL ValueX = WorldPoint(0);
-    const T_REAL ValueY = WorldPoint(1);
-    const T_REAL ValueZ = WorldPoint(2);
+    const float64 ValueX {WorldPoint(0)};
+    const float64 ValueY {WorldPoint(1)};
+    const float64 ValueZ {WorldPoint(2)};
 
     ASSERT_DOUBLE_EQ(ValueX, -1.0721520670502338);
     ASSERT_DOUBLE_EQ(ValueY, 1.3443150761775642);
@@ -134,22 +136,22 @@ TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
 {
-    const T_ULONG NumberOfWorldPoints = 1000;
-    const T_REAL  MinX                = -5.0;
-    const T_REAL  MaxX                = 5.0;
-    const T_REAL  MinY                = -2.0;
-    const T_REAL  MaxY                = 2.0;
-    const T_REAL  MinZ                = 3.0;
-    const T_REAL  MaxZ                = 30.0;
-    const T_ULONG Seed                = 10;
+    const uint64  NumberOfWorldPoints {1000U};
+    const float64 MinX                {-5.0};
+    const float64 MaxX                {5.0};
+    const float64 MinY                {-2.0};
+    const float64 MaxY                {2.0};
+    const float64 MinZ                {3.0};
+    const float64 MaxZ                {30.0};
+    const uint64  Seed                {10U};
 
    WorldPointGeneratorCuboid WPG(NumberOfWorldPoints, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
 
-    const T_ColumnVectorReal3d WorldPoint = WPG.GetWorldPoints()[0];
+    const ColumnVectorFloat64_3d WorldPoint {WPG.GetWorldPoints()[0]};
 
-    const T_REAL ValueX = WorldPoint(0);
-    const T_REAL ValueY = WorldPoint(1);
-    const T_REAL ValueZ = WorldPoint(2);
+    const float64 ValueX {WorldPoint(0)};
+    const float64 ValueY {WorldPoint(1)};
+    const float64 ValueZ {WorldPoint(2)};
 
     ASSERT_DOUBLE_EQ(ValueX, -2.0123884133731003);
     ASSERT_DOUBLE_EQ(ValueY, -0.02164028676156704);
@@ -165,22 +167,22 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
 {
-    const T_ULONG NumberOfWorldPoints = 1000;
-    const T_REAL  MinX                = -5.0;
-    const T_REAL  MaxX                = 5.0;
-    const T_REAL  MinY                = -2.0;
-    const T_REAL  MaxY                = 2.0;
-    const T_REAL  MinZ                = 3.0;
-    const T_REAL  MaxZ                = 30.0;
-    const T_ULONG Seed                = 10;
+    const uint64  NumberOfWorldPoints {1000U};
+    const float64 MinX                {-5.0};
+    const float64 MaxX                {5.0};
+    const float64 MinY                {-2.0};
+    const float64 MaxY                {2.0};
+    const float64 MinZ                {3.0};
+    const float64 MaxZ                {30.0};
+    const uint64  Seed                {10U};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPoints, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
 
-    const T_ColumnVectorReal3d WorldPoint = WPG.GetWorldPoints()[4];
+    const ColumnVectorFloat64_3d WorldPoint {WPG.GetWorldPoints()[4]};
 
-    const T_REAL ValueX = WorldPoint(0);
-    const T_REAL ValueY = WorldPoint(1);
-    const T_REAL ValueZ = WorldPoint(2);
+    const float64 ValueX {WorldPoint(0)};
+    const float64 ValueY {WorldPoint(1)};
+    const float64 ValueZ {WorldPoint(2)};
 
     ASSERT_DOUBLE_EQ(ValueX, -1.6392841678952141);
     ASSERT_DOUBLE_EQ(ValueY, 1.5632661213280561);
@@ -197,31 +199,31 @@ TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
 {
-    const T_ULONG NumberOfWorldPoints = 1000000;
-    const T_REAL MinX                 = -5.0;
-    const T_REAL MaxX                 = 5.0;
-    const T_REAL MinY                 = -2.0;
-    const T_REAL MaxY                 = 2.0;
-    const T_REAL MinZ                 = 3.0;
-    const T_REAL MaxZ                 = 30.0;
+    const uint64  NumberOfWorldPoints {1000U};
+    const float64 MinX                {-5.0};
+    const float64 MaxX                {5.0};
+    const float64 MinY                {-2.0};
+    const float64 MaxY                {2.0};
+    const float64 MinZ                {3.0};
+    const float64 MaxZ                {30.0};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPoints, MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
 
-    const T_ListColumnVectorReal3d& WorldPoints = WPG.GetWorldPoints();
+    const ListColumnVectorFloat64_3d& WorldPoints {WPG.GetWorldPoints()};
 
-    T_ULONG NumberOfPointsOutOfRange = NumberOfWorldPoints;
+    uint64 NumberOfPointsOutOfRange = NumberOfWorldPoints;
 
-    for(T_ULONG i_WorldPoint = 0; i_WorldPoint < NumberOfWorldPoints; i_WorldPoint++)
+    for(uint64 i_WorldPoint {0U}; i_WorldPoint < NumberOfWorldPoints; i_WorldPoint++)
     {
-        const T_ColumnVectorReal3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
+        const ColumnVectorFloat64_3d& CurrentWorldPoint {WorldPoints[i_WorldPoint]};
 
-        const T_REAL CurrentCoordinateX = CurrentWorldPoint(0);
-        const T_REAL CurrentCoordinateY = CurrentWorldPoint(1);
-        const T_REAL CurrentCoordinateZ = CurrentWorldPoint(2);
+        const float64 CurrentCoordinateX {CurrentWorldPoint(0)};
+        const float64 CurrentCoordinateY {CurrentWorldPoint(1)};
+        const float64 CurrentCoordinateZ {CurrentWorldPoint(2)};
 
-        T_BOOL XCoordinateIsInRange = ((CurrentCoordinateX > MinX) && (CurrentCoordinateX < MaxX));
-        T_BOOL YCoordinateIsInRange = ((CurrentCoordinateY > MinY) && (CurrentCoordinateY < MaxY));
-        T_BOOL ZCoordinateIsInRange = ((CurrentCoordinateZ > MinZ) && (CurrentCoordinateZ < MaxZ));
+        boolean XCoordinateIsInRange {((CurrentCoordinateX > MinX) && (CurrentCoordinateX < MaxX))};
+        boolean YCoordinateIsInRange {((CurrentCoordinateY > MinY) && (CurrentCoordinateY < MaxY))};
+        boolean ZCoordinateIsInRange {((CurrentCoordinateZ > MinZ) && (CurrentCoordinateZ < MaxZ))};
 
         if(XCoordinateIsInRange && YCoordinateIsInRange && ZCoordinateIsInRange)
         {
@@ -229,5 +231,5 @@ TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
         }
     }
 
-    ASSERT_EQ(NumberOfPointsOutOfRange, 0);
+    ASSERT_EQ(NumberOfPointsOutOfRange, 0U);
 }

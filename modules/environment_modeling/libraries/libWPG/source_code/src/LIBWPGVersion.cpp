@@ -41,24 +41,24 @@ std::string LIBWPGVersion::GetGitCommitHash()
     return GitCommitHash;
 }
 
-T_ULONG LIBWPGVersion::GetVersionMajor()
+uint64 LIBWPGVersion::GetVersionMajor()
 {
     return VersionMajor;
 }
 
-T_ULONG LIBWPGVersion::GetVersionMinor()
+uint64 LIBWPGVersion::GetVersionMinor()
 {
     return VersionMinor;
 }
 
-T_ULONG LIBWPGVersion::GetVersionPatch()
+uint64 LIBWPGVersion::GetVersionPatch()
 {
     return VersionPatch;
 }
 
-std::string LIBWPGVersion::GetVersionString(const T_BOOL AddLibraryName)
+std::string LIBWPGVersion::GetVersionString(const boolean AddLibraryName)
 {
-    std::string VersionString = "v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch);
+    std::string VersionString {"v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     if(AddLibraryName)
     {

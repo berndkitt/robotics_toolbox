@@ -114,7 +114,7 @@ TEST_VERSIONPATCH_ISMATCHING(LIBWPGVersion, Test_VersionPatch_IsMatching)
 ///////////////////////////////////////////////////////////////////////////////
 TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING(LIBWPGVersion, Test_VersionStringWithLibraryName_DefaultArgument_IsMatching)
 {
-    std::string VersionStringExpected = "libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch);
+    std::string VersionStringExpected {"libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     ASSERT_EQ(LIBWPGVersion::GetVersionString(), VersionStringExpected);
 }
@@ -128,7 +128,7 @@ TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING(LIBWPGVersion, Test
 ///////////////////////////////////////////////////////////////////////////////
 TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING(LIBWPGVersion, Test_VersionStringWithLibraryName_IsMatching)
 {
-    std::string VersionStringExpected = "libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch);
+    std::string VersionStringExpected {"libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     ASSERT_EQ(LIBWPGVersion::GetVersionString(true), VersionStringExpected);
 }
@@ -142,7 +142,7 @@ TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING(LIBWPGVersion, Test_VersionStringWi
 ///////////////////////////////////////////////////////////////////////////////
 TEST_VERSIONSTRINGWITHOUTLIBRARYNAME_ISMATCHING(LIBWPGVersion, Test_VersionStringWithoutLibraryName_IsMatching)
 {
-    std::string VersionStringExpected = "v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch);
+    std::string VersionStringExpected {"v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     ASSERT_EQ(LIBWPGVersion::GetVersionString(false), VersionStringExpected);
 }
