@@ -144,11 +144,29 @@ public: // public methods
     uint64 GetNumberOfPixelsVertical() const;
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// \brief  Getter for the list of the rejected features.
+    ///
+    /// \param[in]  ImagePoints         List containing all image points which shall be distributed into the buckets.
+    /// \param[out] RejectedImagePoints List containing the image points which have been rejected.
+    ///////////////////////////////////////////////////////////////////////////////
+    void GetRejectedFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
+                                   ListColumnVectorFloat64_2d& RejectedImagePoints) const;
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the list of indices of the rejected features.
     ///
     /// \return List of rejected feature indices.
     ///////////////////////////////////////////////////////////////////////////////
     const ListUInt64& GetRejectedIndices() const;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief  Getter for the list of the selected features.
+    ///
+    /// \param[in]  ImagePoints         List containing all image points which shall be distributed into the buckets.
+    /// \param[out] SelectedImagePoints List containing the image points which have been selected.
+    ///////////////////////////////////////////////////////////////////////////////
+    void GetSelectedFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
+                                   ListColumnVectorFloat64_2d& SelectedImagePoints) const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the list of indices of the selected features.

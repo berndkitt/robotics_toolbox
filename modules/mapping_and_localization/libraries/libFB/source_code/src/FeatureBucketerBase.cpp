@@ -110,9 +110,43 @@ uint64 FeatureBucketerBase::GetNumberOfPixelsVertical() const
     return m_NumberOfPixelsVertical;
 }
 
+void FeatureBucketerBase::GetRejectedFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
+                                                    ListColumnVectorFloat64_2d& RejectedImagePoints) const
+{
+    // get number of rejected features
+    const uint64 NumberOfRejectedFeatures {m_RejectedIndices.size()};
+
+    // clear variables and pre-allocate memory
+    RejectedImagePoints.clear();
+    RejectedImagePoints.resize(NumberOfRejectedFeatures);
+
+    // get rejected features
+    for(uint64 i_Feature {0U}; i_Feature < NumberOfRejectedFeatures; i_Feature++)
+    {
+        RejectedImagePoints[i_Feature] = ImagePoints[m_RejectedIndices[i_Feature]];
+    }
+}
+
 const ListUInt64& FeatureBucketerBase::GetRejectedIndices() const
 {
     return m_RejectedIndices;
+}
+
+void FeatureBucketerBase::GetSelectedFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
+                                                    ListColumnVectorFloat64_2d& SelectedImagePoints) const
+{
+    // get number of selected features
+    const uint64 NumberOfSelectedFeatures {m_SelectedIndices.size()};
+
+    // clear variables and pre-allocate memory
+    SelectedImagePoints.clear();
+    SelectedImagePoints.resize(NumberOfSelectedFeatures);
+
+    // get selected features
+    for(uint64 i_Feature {0U}; i_Feature < NumberOfSelectedFeatures; i_Feature++)
+    {
+        SelectedImagePoints[i_Feature] = ImagePoints[m_SelectedIndices[i_Feature]];
+    }
 }
 
 const ListUInt64& FeatureBucketerBase::GetSelectedIndices() const
