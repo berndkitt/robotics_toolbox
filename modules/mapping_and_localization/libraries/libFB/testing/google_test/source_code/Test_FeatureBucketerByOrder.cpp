@@ -40,6 +40,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define TEST_NUMBEROFBUCKETSVERTICAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING   TEST   ///< Define to get a unique test name.
 #define TEST_NUMBEROFBUCKETSVERTICAL_2_BYORDER_ISMATCHING                    TEST   ///< Define to get a unique test name.
 #define TEST_NUMBEROFBUCKETSVERTICAL_8_BYORDER_ISMATCHING                    TEST   ///< Define to get a unique test name.
+#define TEST_NUMBEROFINDICES_8_SELECTED_0_REJECTED_BYORDER_ISMATCHING        TEST   ///< Define to get a unique test name.
+#define TEST_NUMBEROFINDICES_16_SELECTED_8_REJECTED_BYORDER_ISMATCHING       TEST   ///< Define to get a unique test name.
 #define TEST_NUMBEROFPIXELSHORIZONTAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING  TEST   ///< Define to get a unique test name.
 #define TEST_NUMBEROFPIXELSHORIZONTAL_800_BYORDER_ISMATCHING                 TEST   ///< Define to get a unique test name.
 #define TEST_NUMBEROFPIXELSHORIZONTAL_1000_BYORDER_ISMATCHING                TEST   ///< Define to get a unique test name.
@@ -263,6 +265,105 @@ TEST_NUMBEROFBUCKETSVERTICAL_8_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_N
     FeatureBucketerByOrder FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
     ASSERT_DOUBLE_EQ(FB.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for number of selected and rejected indices.
+///
+/// Tests whether the numbers of selected and rejected indices match the
+/// expected numbers or not. The image points are created in a way that all
+/// points will be selected and no point will be rejected.
+///////////////////////////////////////////////////////////////////////////////
+TEST_NUMBEROFINDICES_8_SELECTED_0_REJECTED_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfIndices_8_Selected_0_Rejected_ByOrder_IsMatching)
+{
+    const uint64 NumberOfPixelsHorizontal         {600U};
+    const uint64 NumberOfPixelsVertical           {200U};
+    const uint64 NumberOfBucketsHorizontal        {4U};
+    const uint64 NumberOfBucketsVertical          {2U};
+    const uint64 MaximumNumberOfFeaturesPerBucket {1U};
+    const uint64 NumberOfSelectedIndicesExpected  {8U};
+    const uint64 NumberOfRejectedIndicesExpected  {0U};
+
+    FeatureBucketerByOrder FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket);
+
+    ListColumnVectorFloat64_2d ImagePoints;
+
+    const float64 BucketSizeHorizontal {FB.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical   {FB.GetBucketSizeVertical()};
+
+    for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+    {
+        const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row))};
+
+        for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+        {
+            const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column))};
+
+            ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
+
+            ImagePoints.push_back(ImagePoint);
+        }
+    }
+
+    FB.BucketFeatures(ImagePoints);
+
+    const uint64 NumberOfSelectedIndices {FB.GetSelectedIndices().size()};
+    const uint64 NumberOfRejectedIndices {FB.GetRejectedIndices().size()};
+
+    ASSERT_EQ(NumberOfSelectedIndices, NumberOfSelectedIndicesExpected);
+    ASSERT_EQ(NumberOfRejectedIndices, NumberOfRejectedIndicesExpected);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for number of selected and rejected indices.
+///
+/// Tests whether the numbers of selected and rejected indices match the
+/// expected numbers or not. The image points are created in a way that 16
+/// points will be selected and 8 points will be rejected.
+///////////////////////////////////////////////////////////////////////////////
+TEST_NUMBEROFINDICES_16_SELECTED_8_REJECTED_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_NumberOfIndices_16_Selected_8_Rejected_ByOrder_IsMatching)
+{
+    const uint64 NumberOfPixelsHorizontal         {600U};
+    const uint64 NumberOfPixelsVertical           {200U};
+    const uint64 NumberOfBucketsHorizontal        {4U};
+    const uint64 NumberOfBucketsVertical          {2U};
+    const uint64 MaximumNumberOfFeaturesPerBucket {2U};
+    const uint64 NumberOfSelectedIndicesExpected  {16U};
+    const uint64 NumberOfRejectedIndicesExpected  {8U};
+
+    FeatureBucketerByOrder FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket);
+
+    ListColumnVectorFloat64_2d ImagePoints;
+
+    const uint64  NumberOfFeaturesPerBucket {3U};
+    const float64 PixelOffset               {2.0};
+    const float64 BucketSizeHorizontal      {FB.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical        {FB.GetBucketSizeVertical()};
+
+    for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
+    {
+        for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+        {
+            const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) + PixelOffset};
+
+            for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+            {
+                const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) + PixelOffset};
+
+                ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
+
+                ImagePoints.push_back(ImagePoint);
+            }
+        }
+    }
+
+    FB.BucketFeatures(ImagePoints);
+
+    const uint64 NumberOfSelectedIndices {FB.GetSelectedIndices().size()};
+    const uint64 NumberOfRejectedIndices {FB.GetRejectedIndices().size()};
+
+    ASSERT_EQ(NumberOfSelectedIndices, NumberOfSelectedIndicesExpected);
+    ASSERT_EQ(NumberOfRejectedIndices, NumberOfRejectedIndicesExpected);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
