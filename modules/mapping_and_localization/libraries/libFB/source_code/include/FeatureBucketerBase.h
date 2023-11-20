@@ -147,10 +147,10 @@ public: // public methods
     /// \brief  Getter for the list of the rejected features.
     ///
     /// \param[in]  ImagePoints         List containing all image points which shall be distributed into the buckets.
-    /// \param[out] RejectedImagePoints List containing the image points which have been rejected.
+    /// \param[out] ImagePointsRejected List containing the image points which have been rejected.
     ///////////////////////////////////////////////////////////////////////////////
     void GetRejectedFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
-                                   ListColumnVectorFloat64_2d& RejectedImagePoints) const;
+                                   ListColumnVectorFloat64_2d& ImagePointsRejected) const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the list of indices of the rejected features.
@@ -163,10 +163,10 @@ public: // public methods
     /// \brief  Getter for the list of the selected features.
     ///
     /// \param[in]  ImagePoints         List containing all image points which shall be distributed into the buckets.
-    /// \param[out] SelectedImagePoints List containing the image points which have been selected.
+    /// \param[out] ImagePointsSelected List containing the image points which have been selected.
     ///////////////////////////////////////////////////////////////////////////////
     void GetSelectedFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
-                                   ListColumnVectorFloat64_2d& SelectedImagePoints) const;
+                                   ListColumnVectorFloat64_2d& ImagePointsSelected) const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the list of indices of the selected features.
