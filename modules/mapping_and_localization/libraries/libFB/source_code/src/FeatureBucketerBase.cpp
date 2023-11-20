@@ -217,3 +217,15 @@ void FeatureBucketerBase::ComputeBucketIDs(const ListColumnVectorFloat64_2d& Ima
         m_FeatureIndices[BucketID].push_back(i_ImagePoint);
     }
 }
+
+void FeatureBucketerBase::SelectAllFeaturesInBucket(const uint64 BucketID,
+                                                    const uint64 NumberOfFeaturesInCurrentBucket)
+{
+    // select all feature in the current bucket
+    for(uint64 i_Feature {0U}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
+    {
+        const uint64 CurrentFeatureIndex = m_FeatureIndices[BucketID][i_Feature];
+
+        m_SelectedIndices.push_back(CurrentFeatureIndex);
+    }
+}

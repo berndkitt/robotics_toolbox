@@ -202,6 +202,15 @@ protected: // protected methods
     /// \param[in] ImagePoints List containing all image points which shall be distributed into the buckets.
     ///////////////////////////////////////////////////////////////////////////////
     void ComputeBucketIDs(const ListColumnVectorFloat64_2d& ImagePoints);
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief     Selects all features in a bucket.
+    ///
+    /// \param[in] BucketID                        ID of the bucket from top left to bottom right.
+    /// \param[in] NumberOfFeaturesInCurrentBucket Number of features in the current bucket.
+    ///////////////////////////////////////////////////////////////////////////////
+    void SelectAllFeaturesInBucket(const uint64 BucketID,
+                                   const uint64 NumberOfFeaturesInCurrentBucket);
 };
 
 #endif // FEATUREBUCKETERBASE_H

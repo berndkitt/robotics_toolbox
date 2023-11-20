@@ -67,12 +67,7 @@ void FeatureBucketerByChance::BucketFeaturesWithScheme()
         if(NumberOfFeaturesInCurrentBucket <= MaximumNumberOfFeaturesInCurrentBucket)
         {
             // collect selected features (all are selected)
-            for(uint64 i_Feature {0U}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
-            {
-                const uint64 CurrentFeatureIndex = m_FeatureIndices[i_Bucket][i_Feature];
-
-                m_SelectedIndices.push_back(CurrentFeatureIndex);
-            }
+            SelectAllFeaturesInBucket(i_Bucket, NumberOfFeaturesInCurrentBucket);
         }
         else
         {
