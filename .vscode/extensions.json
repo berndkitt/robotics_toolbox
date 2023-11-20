@@ -2,6 +2,7 @@
     // List of extensions which should be recommended for users of this workspace.
     "recommendations": [
         "alefragnani.bookmarks",
+        "chouzz.vscode-better-align",
         "davidanson.vscode-markdownlint",
         "eamodio.gitlens",
         "george-alisson.html-preview-vscode",
@@ -14,6 +15,8 @@
         "matepek.vscode-catch2-test-adapter",
         "matthewthorning.align-vertically",
         "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers",
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-toolsai.jupyter",
@@ -23,7 +26,6 @@
         "streetsidesoftware.code-spell-checker",
         "twxs.cmake",
         "usernamehw.errorlens",
-        "wwm.better-align",
         "yzhang.markdown-all-in-one",
     ],
     // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
