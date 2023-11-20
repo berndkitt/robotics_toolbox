@@ -49,9 +49,9 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define TEST_NUMBEROFPIXELSVERTICAL_400_BYCHANCE_ISMATCHING                   TEST  ///< Define to get a unique test name.
 #define TEST_NUMBEROFPIXELSVERTICAL_600_BYCHANCE_ISMATCHING                   TEST  ///< Define to get a unique test name.
 #define TEST_REJECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING                     TEST  ///< Define to get a unique test name.
-#define TEST_REJECTEDFEATURE_0_SEED_3_BYCHANCE_ISMATCHING                     TEST  ///< Define to get a unique test name.
+#define TEST_REJECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING                   TEST  ///< Define to get a unique test name.
 #define TEST_SELECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING                     TEST  ///< Define to get a unique test name.
-#define TEST_SELECTEDFEATURE_0_SEED_3_BYCHANCE_ISMATCHING                     TEST  ///< Define to get a unique test name.
+#define TEST_SELECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING                   TEST  ///< Define to get a unique test name.
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the bucket size in horizontal direction.
@@ -537,17 +537,17 @@ TEST_REJECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
 /// \brief Test for the coordinate of the first rejected feature.
 ///
 /// Tests whether the image coordinates of the first rejected feature are
-/// matching the expected coordinates or not. The seed value 3 is used to
+/// matching the expected coordinates or not. The seed value 127 is used to
 /// initialize the selection of the features in each bucket.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_REJECTEDFEATURE_0_SEED_3_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_RejectedFeature_0_Seed_3_ByChance_IsMatching)
+TEST_REJECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_RejectedFeature_0_Seed_127_ByChance_IsMatching)
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
     const uint64 NumberOfBucketsHorizontal        {4U};
     const uint64 NumberOfBucketsVertical          {2U};
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
-    const uint64 SeedValue                        {3U};
+    const uint64 SeedValue                        {127U};
 
     FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
 
@@ -647,17 +647,17 @@ TEST_SELECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
 /// \brief Test for the coordinate of the first selected feature.
 ///
 /// Tests whether the image coordinates of the first selected feature are
-/// matching the expected coordinates or not. The seed value 3 is used to
+/// matching the expected coordinates or not. The seed value 127 is used to
 /// initialize the selection of the features in each bucket.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_SELECTEDFEATURE_0_SEED_3_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_SelectedFeature_0_Seed_3_ByChance_IsMatching)
+TEST_SELECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_SelectedFeature_0_Seed_127_ByChance_IsMatching)
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
     const uint64 NumberOfBucketsHorizontal        {4U};
     const uint64 NumberOfBucketsVertical          {2U};
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
-    const uint64 SeedValue                        {3U};
+    const uint64 SeedValue                        {127U};
 
     FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
 
@@ -694,6 +694,6 @@ TEST_SELECTEDFEATURE_0_SEED_3_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
     const float64 CoordinateX {SelectedImagePoints[0](0)};
     const float64 CoordinateY {SelectedImagePoints[0](1)};
 
-    ASSERT_DOUBLE_EQ(CoordinateX, 83.0);
-    ASSERT_DOUBLE_EQ(CoordinateY, 58.0);
+    ASSERT_DOUBLE_EQ(CoordinateX, 77.0);
+    ASSERT_DOUBLE_EQ(CoordinateY, 52.0);
 }
