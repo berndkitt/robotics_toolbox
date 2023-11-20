@@ -221,9 +221,9 @@ TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
         const float64 CurrentCoordinateY {CurrentWorldPoint(1)};
         const float64 CurrentCoordinateZ {CurrentWorldPoint(2)};
 
-        boolean XCoordinateIsInRange {((CurrentCoordinateX > MinX) && (CurrentCoordinateX < MaxX))};
-        boolean YCoordinateIsInRange {((CurrentCoordinateY > MinY) && (CurrentCoordinateY < MaxY))};
-        boolean ZCoordinateIsInRange {((CurrentCoordinateZ > MinZ) && (CurrentCoordinateZ < MaxZ))};
+        const boolean XCoordinateIsInRange {((CurrentCoordinateX > MinX) && (CurrentCoordinateX < MaxX))};
+        const boolean YCoordinateIsInRange {((CurrentCoordinateY > MinY) && (CurrentCoordinateY < MaxY))};
+        const boolean ZCoordinateIsInRange {((CurrentCoordinateZ > MinZ) && (CurrentCoordinateZ < MaxZ))};
 
         if(XCoordinateIsInRange && YCoordinateIsInRange && ZCoordinateIsInRange)
         {
