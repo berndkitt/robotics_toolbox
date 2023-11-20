@@ -48,6 +48,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define TEST_NUMBEROFPIXELSVERTICAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING    TEST   ///< Define to get a unique test name.
 #define TEST_NUMBEROFPIXELSVERTICAL_400_BYORDER_ISMATCHING                   TEST   ///< Define to get a unique test name.
 #define TEST_NUMBEROFPIXELSVERTICAL_600_BYORDER_ISMATCHING                   TEST   ///< Define to get a unique test name.
+#define TEST_REJECTEDFEATURE_0_BYORDER_ISMATCHING                            TEST   ///< Define to get a unique test name.
+#define TEST_SELECTEDFEATURE_0_BYORDER_ISMATCHING                            TEST   ///< Define to get a unique test name.
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the bucket size in horizontal direction.
@@ -470,4 +472,110 @@ TEST_NUMBEROFPIXELSVERTICAL_600_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_
     FeatureBucketerByOrder FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
     ASSERT_DOUBLE_EQ(FB.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the coordinate of the first rejected feature.
+///
+/// Tests whether the image coordinates of the first rejected feature are
+/// matching the expected coordinates or not.
+///////////////////////////////////////////////////////////////////////////////
+TEST_REJECTEDFEATURE_0_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_RejectedFeature_0_ByOrder_IsMatching)
+{
+    const uint64 NumberOfPixelsHorizontal         {600U};
+    const uint64 NumberOfPixelsVertical           {200U};
+    const uint64 NumberOfBucketsHorizontal        {4U};
+    const uint64 NumberOfBucketsVertical          {2U};
+    const uint64 MaximumNumberOfFeaturesPerBucket {2U};
+
+    FeatureBucketerByOrder FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket);
+
+    ListColumnVectorFloat64_2d ImagePoints;
+
+    const uint64  NumberOfFeaturesPerBucket {3U};
+    const float64 PixelOffset               {2.0};
+    const float64 BucketSizeHorizontal      {FB.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical        {FB.GetBucketSizeVertical()};
+
+    for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
+    {
+        for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+        {
+            const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
+
+            for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+            {
+                const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
+
+                ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
+
+                ImagePoints.push_back(ImagePoint);
+            }
+        }
+    }
+
+    FB.BucketFeatures(ImagePoints);
+
+    ListColumnVectorFloat64_2d RejectedImagePoints;
+
+    FB.GetRejectedFeatures(ImagePoints, RejectedImagePoints);
+
+    const float64 CoordinateX {RejectedImagePoints[0](0)};
+    const float64 CoordinateY {RejectedImagePoints[0](1)};
+
+    ASSERT_DOUBLE_EQ(CoordinateX, 79.0);
+    ASSERT_DOUBLE_EQ(CoordinateY, 54.0);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the coordinate of the first selected feature.
+///
+/// Tests whether the image coordinates of the first selected feature are
+/// matching the expected coordinates or not.
+///////////////////////////////////////////////////////////////////////////////
+TEST_SELECTEDFEATURE_0_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_SelectedFeature_0_ByOrder_IsMatching)
+{
+    const uint64 NumberOfPixelsHorizontal         {600U};
+    const uint64 NumberOfPixelsVertical           {200U};
+    const uint64 NumberOfBucketsHorizontal        {4U};
+    const uint64 NumberOfBucketsVertical          {2U};
+    const uint64 MaximumNumberOfFeaturesPerBucket {2U};
+
+    FeatureBucketerByOrder FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket);
+
+    ListColumnVectorFloat64_2d ImagePoints;
+
+    const uint64  NumberOfFeaturesPerBucket {3U};
+    const float64 PixelOffset               {2.0};
+    const float64 BucketSizeHorizontal      {FB.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical        {FB.GetBucketSizeVertical()};
+
+    for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
+    {
+        for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+        {
+            const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
+
+            for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+            {
+                const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
+
+                ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
+
+                ImagePoints.push_back(ImagePoint);
+            }
+        }
+    }
+
+    FB.BucketFeatures(ImagePoints);
+
+    ListColumnVectorFloat64_2d SelectedImagePoints;
+
+    FB.GetSelectedFeatures(ImagePoints, SelectedImagePoints);
+
+    const float64 CoordinateX {SelectedImagePoints[0](0)};
+    const float64 CoordinateY {SelectedImagePoints[0](1)};
+
+    ASSERT_DOUBLE_EQ(CoordinateX, 75.0);
+    ASSERT_DOUBLE_EQ(CoordinateY, 50.0);
 }
