@@ -48,8 +48,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define TEST_NUMBEROFPIXELSVERTICAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING    TEST  ///< Define to get a unique test name.
 #define TEST_NUMBEROFPIXELSVERTICAL_400_BYCHANCE_ISMATCHING                   TEST  ///< Define to get a unique test name.
 #define TEST_NUMBEROFPIXELSVERTICAL_600_BYCHANCE_ISMATCHING                   TEST  ///< Define to get a unique test name.
-#define TEST_REJECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING                     TEST  ///< Define to get a unique test name.
-#define TEST_REJECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING                   TEST  ///< Define to get a unique test name.
+#define TEST_REJECTEDFEATURE_3_SEED_0_BYCHANCE_ISMATCHING                     TEST  ///< Define to get a unique test name.
+#define TEST_REJECTEDFEATURE_3_SEED_127_BYCHANCE_ISMATCHING                   TEST  ///< Define to get a unique test name.
 #define TEST_SELECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING                     TEST  ///< Define to get a unique test name.
 #define TEST_SELECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING                   TEST  ///< Define to get a unique test name.
 
@@ -485,7 +485,7 @@ TEST_NUMBEROFPIXELSVERTICAL_600_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
 /// matching the expected coordinates or not. The seed value 0 is used to
 /// initialize the selection of the features in each bucket.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_REJECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_RejectedFeature_0_Seed_0_ByChance_IsMatching)
+TEST_REJECTEDFEATURE_3_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_RejectedFeature_3_Seed_0_ByChance_IsMatching)
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
@@ -526,11 +526,11 @@ TEST_REJECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
 
     FB.GetRejectedFeatures(ImagePoints, RejectedImagePoints);
 
-    const float64 CoordinateX {RejectedImagePoints[0](0)};
-    const float64 CoordinateY {RejectedImagePoints[0](1)};
+    const float64 CoordinateX {RejectedImagePoints[3](0)};
+    const float64 CoordinateY {RejectedImagePoints[3](1)};
 
-    ASSERT_DOUBLE_EQ(CoordinateX, 75.0);
-    ASSERT_DOUBLE_EQ(CoordinateY, 50.0);
+    ASSERT_DOUBLE_EQ(CoordinateX, 81.0);
+    ASSERT_DOUBLE_EQ(CoordinateY, 56.0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -540,7 +540,7 @@ TEST_REJECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
 /// matching the expected coordinates or not. The seed value 127 is used to
 /// initialize the selection of the features in each bucket.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_REJECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_RejectedFeature_0_Seed_127_ByChance_IsMatching)
+TEST_REJECTEDFEATURE_3_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_RejectedFeature_3_Seed_127_ByChance_IsMatching)
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
@@ -581,11 +581,11 @@ TEST_REJECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
 
     FB.GetRejectedFeatures(ImagePoints, RejectedImagePoints);
 
-    const float64 CoordinateX {RejectedImagePoints[0](0)};
-    const float64 CoordinateY {RejectedImagePoints[0](1)};
+    const float64 CoordinateX {RejectedImagePoints[3](0)};
+    const float64 CoordinateY {RejectedImagePoints[3](1)};
 
-    ASSERT_DOUBLE_EQ(CoordinateX, 75.0);
-    ASSERT_DOUBLE_EQ(CoordinateY, 50.0);
+    ASSERT_DOUBLE_EQ(CoordinateX, 87.0);
+    ASSERT_DOUBLE_EQ(CoordinateY, 62.0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
