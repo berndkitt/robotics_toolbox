@@ -346,11 +346,11 @@ TEST_NUMBEROFINDICES_16_SELECTED_8_REJECTED_BYORDER_ISMATCHING(FeatureBucketerBy
     {
         for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
         {
-            const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) + PixelOffset};
+            const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
             for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
             {
-                const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) + PixelOffset};
+                const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
                 ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
 
