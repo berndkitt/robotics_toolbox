@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- path is relative to the main directory of the library -->
+<file_list>
+    <file>./source_code/include/FeatureBucketerVisualizer.h</file>
+    <file>./source_code/src/FeatureBucketerVisualizer.cpp</file>
+</file_list>
