@@ -160,11 +160,10 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
         if(m_DrawGrid)
         {
             // get bucket information
-            const uint64 NumberOfBucketsHorizontal {Bucketer.GetNumberOfBucketsHorizontal()};
-            const uint64 NumberOfBucketsVertical   {Bucketer.GetNumberOfBucketsVertical()};
-
-            const float64 BucketSizeHorizontal     {Bucketer.GetBucketSizeHorizontal()};
-            const float64 BucketSizeVertical       {Bucketer.GetBucketSizeVertical()};
+            const uint64  NumberOfBucketsHorizontal {Bucketer.GetNumberOfBucketsHorizontal()};
+            const uint64  NumberOfBucketsVertical   {Bucketer.GetNumberOfBucketsVertical()};
+            const float64 BucketSizeHorizontal      {Bucketer.GetBucketSizeHorizontal()};
+            const float64 BucketSizeVertical        {Bucketer.GetBucketSizeVertical()};
 
             DrawGrid(NumberOfBucketsHorizontal, NumberOfBucketsVertical, BucketSizeHorizontal, BucketSizeVertical, BucketingImage);
         }
