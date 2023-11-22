@@ -151,11 +151,6 @@ protected: // protected methods
                   const float64  BucketSizeHorizontal,
                   const float64  BucketSizeVertical,
                         cv::Mat& BucketingImage) const;
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Set the default drawing colors.
-    ///////////////////////////////////////////////////////////////////////////////
-    void SetDefaultDrawingColors();
 };
 
 #endif // FEATUREBUCKETERVISUALIZER_H

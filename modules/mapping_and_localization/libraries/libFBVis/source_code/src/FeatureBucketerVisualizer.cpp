@@ -41,7 +41,10 @@ FeatureBucketerVisualizer::FeatureBucketerVisualizer(const FeatureColorMode Colo
                                                                                      m_Delay{Delay}
 {
     // set default drawing colors
-    SetDefaultDrawingColors();
+    m_ColorGrid     = cv::Scalar(0,   255, 255); // BGR -> yellow
+    m_ColorSelected = cv::Scalar(0,   255, 0);   // BGR -> green
+    m_ColorRejected = cv::Scalar(0,   0,   255); // BGR -> red
+    m_ColorAll      = cv::Scalar(255, 255, 0);   // BGR -> cyan
 }
 
 FeatureBucketerVisualizer::~FeatureBucketerVisualizer()
@@ -257,13 +260,4 @@ void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
         // draw horizontal line
         cv::line(BucketingImage, TopPoint, BottomPoint, m_ColorGrid, m_LineThickness);
     }
-}
-
-void FeatureBucketerVisualizer::SetDefaultDrawingColors()
-{
-    // set default drawing colors
-    m_ColorGrid     = cv::Scalar(0,   255, 255); // BGR -> yellow
-    m_ColorSelected = cv::Scalar(0,   255, 0);   // BGR -> green
-    m_ColorRejected = cv::Scalar(0,   0,   255); // BGR -> red
-    m_ColorAll      = cv::Scalar(255, 255, 0);   // BGR -> cyan
 }
