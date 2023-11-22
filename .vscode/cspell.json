@@ -13,6 +13,7 @@
         "FEATUREBUCKETERBASE",
         "FEATUREBUCKETERBYCHANCE",
         "FEATUREBUCKETERBYORDER",
+        "FEATUREBUCKETERVISUALIZER",
         "GITCOMMITHASH",
         "GLOBALTYPESBASE",
         "GLOBALTYPESDERIVED",
@@ -20,6 +21,8 @@
         "ISMATCHING",
         "LIBFB",
         "LIBFBVERSION",
+        "LIBFBVIS",
+        "LIBFBVISVERSION",
         "LIBWPG",
         "LIBWPGVERSION",
         "NUMBEROFBUCKETSHORIZONTAL",
@@ -29,6 +32,7 @@
         "NUMBEROFPIXELSVERTICAL",
         "NUMBEROFWORLDPOINTS",
         "REJECTEDFEATURE",
+        "Rejectedindices",
         "SELECTEDFEATURE",
         "VERSIONMAJOR",
         "VERSIONMINOR",
@@ -41,7 +45,9 @@
         "WORLDPOINTS",
         "berndkitt",
         "bugprone",
-        "cppcoreguidelines"
+        "cppcoreguidelines",
+        "imshow",
+        "imwrite"
     ],
     "words": [
         "Bernd",
