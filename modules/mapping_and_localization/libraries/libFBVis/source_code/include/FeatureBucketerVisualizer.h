@@ -129,13 +129,11 @@ protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief         Draw features into the bucketing image.
     ///
-    /// \param[in]     ImagePoints    List containing all image points.
-    /// \param[in]     FeatureIndices List of feature indices to draw.
-    /// \param[in]     FeatureColor   Color used to draw the features.
-    /// \param[in,out] BucketingImage Image showing the bucketing result.
+    /// \param[in]     ImagePointsToDraw List containing the image points to draw.
+    /// \param[in]     FeatureColor      Color used to draw the features.
+    /// \param[in,out] BucketingImage    Image showing the bucketing result.
     ///////////////////////////////////////////////////////////////////////////////
-    void DrawFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
-                      const ListUInt64&                 FeatureIndices,
+    void DrawFeatures(const ListColumnVectorFloat64_2d& ImagePointsToDraw,
                       const cv::Scalar&                 FeatureColor,
                             cv::Mat&                    BucketingImage) const;
 

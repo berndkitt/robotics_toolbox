@@ -94,6 +94,13 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
     const uint64 NumberOfSelectedIndices {SelectedIndices.size()};
     const uint64 NumberOfRejectedIndices {Rejectedindices.size()};
 
+    // get selected and rejected image points
+    ListColumnVectorFloat64_2d ImagePointsRejected;
+    ListColumnVectorFloat64_2d ImagePointsSelected;
+
+    Bucketer.GetRejectedFeatures(ImagePoints, ImagePointsRejected);
+    Bucketer.GetSelectedFeatures(ImagePoints, ImagePointsSelected);
+
     // get number of provided features
     const uint64 NumberOfFeatures {ImagePoints.size()};
 
@@ -117,27 +124,27 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
         {
             case SelectedOnly:
             {
-                DrawFeatures(ImagePoints, SelectedIndices, m_ColorSelected, BucketingImage);
+                DrawFeatures(ImagePointsSelected, m_ColorSelected, BucketingImage);
 
                 break;
             }
             case RejectedOnly:
             {
-                DrawFeatures(ImagePoints, Rejectedindices, m_ColorRejected, BucketingImage);
+                DrawFeatures(ImagePointsRejected, m_ColorRejected, BucketingImage);
 
                 break;
             }
             case AllFeatures:
             {
-                DrawFeatures(ImagePoints, Rejectedindices, m_ColorAll, BucketingImage);
-                DrawFeatures(ImagePoints, SelectedIndices, m_ColorAll, BucketingImage);
+                DrawFeatures(ImagePointsRejected, m_ColorAll, BucketingImage);
+                DrawFeatures(ImagePointsSelected, m_ColorAll, BucketingImage);
 
                 break;
             }
             case AllFeaturesColored:
             {
-                DrawFeatures(ImagePoints, Rejectedindices, m_ColorRejected, BucketingImage);
-                DrawFeatures(ImagePoints, SelectedIndices, m_ColorSelected, BucketingImage);
+                DrawFeatures(ImagePointsRejected, m_ColorRejected, BucketingImage);
+                DrawFeatures(ImagePointsSelected, m_ColorSelected, BucketingImage);
 
                 break;
             }
@@ -164,23 +171,19 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
     }
 }
 
-void FeatureBucketerVisualizer::DrawFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
-                                             const ListUInt64&                 FeatureIndices,
+void FeatureBucketerVisualizer::DrawFeatures(const ListColumnVectorFloat64_2d& ImagePointsToDraw,
                                              const cv::Scalar&                 FeatureColor,
                                                    cv::Mat&                    BucketingImage) const
 {
     // get number of features to draw
-    const uint64 NumberOfFeaturesToDraw {FeatureIndices.size()};
+    const uint64 NumberOfFeaturesToDraw {ImagePointsToDraw.size()};
 
     // draw features
     for(uint64 i_Feature {0U}; i_Feature < NumberOfFeaturesToDraw; i_Feature++)
     {
-        // get index of current feature
-        const uint64 CurrentIndex {FeatureIndices[i_Feature]};
-
         // get coordinates of current feature
-        const float64 CoordinateHorizontal {ImagePoints[CurrentIndex](0)};
-        const float64 CoordinateVertical   {ImagePoints[CurrentIndex](1)};
+        const float64 CoordinateHorizontal {ImagePointsToDraw[i_Feature](0)};
+        const float64 CoordinateVertical   {ImagePointsToDraw[i_Feature](1)};
 
         // draw point
         const cv::Point CurrentPoint(CoordinateHorizontal, CoordinateVertical);
