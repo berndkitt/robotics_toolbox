@@ -6,7 +6,8 @@ execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumbe
 
 # build libFBVis
 add_library(${PROJECT_NAME} STATIC
-    source_code/src/FeatureBucketerVisualizer.cpp)
+    source_code/src/FeatureBucketerVisualizer.cpp
+    source_code/src/LIBFBVISVersion.cpp)
 
 # define include directories for libFBVis
 target_include_directories(${PROJECT_NAME} PRIVATE
