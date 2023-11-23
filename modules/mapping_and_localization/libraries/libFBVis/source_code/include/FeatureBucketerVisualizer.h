@@ -56,10 +56,10 @@ class FeatureBucketerVisualizer
 protected: // protected attributes
     const FeatureColorMode m_ColorMode;         ///< Color mode used to visualize the features.
     const boolean          m_DrawGrid;          ///< Flag whether the grid is drawn or not.
-    const uint64           m_PointRadius;       ///< Radius of the drawn points.
-    const sint64           m_PointThickness;    ///< Thickness of the drawn points (negative means filled circle).
-    const uint64           m_LineThickness;     ///< Thickness of the lines of the grid.
-    const sint64           m_Delay;             ///< Delay how long the image is shown on the screen.
+    const sint32           m_PointRadius;       ///< Radius of the drawn points.
+    const sint32           m_PointThickness;    ///< Thickness of the drawn points (negative means filled circle).
+    const sint32           m_LineThickness;     ///< Thickness of the lines of the grid.
+    const sint32           m_Delay;             ///< Delay how long the image is shown on the screen.
           cv::Scalar       m_ColorGrid;         ///< Color of the lines of the grid.
           cv::Scalar       m_ColorSelected;     ///< Color of the selected features.
           cv::Scalar       m_ColorRejected;     ///< Color of the rejected features.
@@ -78,10 +78,10 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     FeatureBucketerVisualizer(const FeatureColorMode ColorMode      = AllFeaturesColored,
                               const boolean          DrawGrid       = true,
-                              const uint64           PointRadius    = 4,
-                              const sint64           PointThickness = -1,
-                              const uint64           LineThickness  = 3,
-                              const sint64           Delay          = 0);
+                              const sint32           PointRadius    = 4,
+                              const sint32           PointThickness = -1,
+                              const sint32           LineThickness  = 3,
+                              const sint32           Delay          = 0);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
