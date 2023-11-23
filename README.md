@@ -8,8 +8,9 @@
 
 The *Robotics Toolbox for C++* depends on the following external C++ tools:
 
-- GoogleTest (see [https://github.com/google/googletest](https://github.com/google/googletest))
 - Eigen (see [https://eigen.tuxfamily.org/index.php?title=Main_Page](https://eigen.tuxfamily.org/index.php?title=Main_Page))
+- GoogleTest (see [https://github.com/google/googletest](https://github.com/google/googletest))
+- OpenCV (see [https://github.com/opencv/opencv](https://github.com/opencv/opencv))
 
 Additionally, the following Python packages are required:
 
