@@ -23,12 +23,24 @@ pipeline
                 sh "mkdir ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}"
             }
         }
-        stage("Flake8 Checks")
+        stage("Source Code Checks")
         {
-            steps
+            parallel
             {
-                sh "python3 -m flake8 --tee --output-file ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/flake8_results.txt **/*.py"
-            }
+                stage("Clang-Tidy")
+                {
+                    steps
+                    {
+                        sh "clang-tidy ./common/**/*.cpp ./modules/**/*.cpp -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4 > ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/clangtidy_results.txt"
+                    }
+                }
+                stage("Flake8")
+                {
+                    steps
+                    {
+                        sh "python3 -m flake8 --tee --output-file ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/flake8_results.txt **/*.py"
+                    }
+                }
         }
         stage("CMake (Release)")
         {
