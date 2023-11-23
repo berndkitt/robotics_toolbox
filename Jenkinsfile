@@ -126,6 +126,13 @@ pipeline
                                 sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 25.5 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
+                        stage("Doxygen")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFB --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/"
+                            }
+                        }
                     }
                 }
                 stage("libFBVis")
