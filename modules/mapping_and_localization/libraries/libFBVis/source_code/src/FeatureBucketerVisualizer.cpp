@@ -188,7 +188,7 @@ void FeatureBucketerVisualizer::DrawFeatures(const ListColumnVectorFloat64_2d& I
         const float64 CoordinateVertical   {ImagePointsToDraw[i_Feature](1)};
 
         // draw point
-        const cv::Point CurrentPoint(CoordinateHorizontal, CoordinateVertical);
+        const cv::Point2d CurrentPoint(CoordinateHorizontal, CoordinateVertical);
 
         cv::circle(BucketingImage, CurrentPoint, m_PointRadius, FeatureColor, m_PointThickness);
     }
@@ -227,8 +227,8 @@ void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
         }
 
         // define start and end point of the line
-        const cv::Point LeftPoint(0U, CoordinateVertical);
-        const cv::Point RightPoint(ImageWidth - 1U, CoordinateVertical);
+        const cv::Point2d LeftPoint(0.0, CoordinateVertical);
+        const cv::Point2d RightPoint(static_cast<float64>(ImageWidth - 1U), CoordinateVertical);
 
         // draw horizontal line
         cv::line(BucketingImage, LeftPoint, RightPoint, m_ColorGrid, m_LineThickness);
@@ -254,8 +254,8 @@ void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
         }
 
         // define start and end point of the line
-        const cv::Point TopPoint(CoordinateHorizontal, 0U);
-        const cv::Point BottomPoint(CoordinateHorizontal, ImageHeight - 1U);
+        const cv::Point2d TopPoint(CoordinateHorizontal, 0.0);
+        const cv::Point2d BottomPoint(CoordinateHorizontal, static_cast<float64>(ImageHeight - 1U));
 
         // draw horizontal line
         cv::line(BucketingImage, TopPoint, BottomPoint, m_ColorGrid, m_LineThickness);
