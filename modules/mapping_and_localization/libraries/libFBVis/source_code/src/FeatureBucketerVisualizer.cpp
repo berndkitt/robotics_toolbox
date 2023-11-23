@@ -90,8 +90,8 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
                                                            cv::Mat&                    BucketingImage) const
 {
     // get selected and rejected indices
-    const ListUInt64 SelectedIndices {Bucketer.GetSelectedIndices()};
-    const ListUInt64 Rejectedindices {Bucketer.GetRejectedIndices()};
+    const ListUInt64& SelectedIndices {Bucketer.GetSelectedIndices()};
+    const ListUInt64& Rejectedindices {Bucketer.GetRejectedIndices()};
 
     // get number of selected and rejected indices
     const uint64 NumberOfSelectedIndices {SelectedIndices.size()};
