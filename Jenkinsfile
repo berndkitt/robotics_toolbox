@@ -39,7 +39,7 @@ pipeline
                 {
                     steps
                     {
-                        sh "clang-tidy ./**/*.cpp -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4 > ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/clangtidy_results.txt"
+                        sh "python3 ./scripts/RunClangTidy.py --output_path ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/"
                     }
                 }
                 stage("Flake8")
