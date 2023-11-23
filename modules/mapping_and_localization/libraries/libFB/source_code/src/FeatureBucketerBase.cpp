@@ -35,13 +35,13 @@ FeatureBucketerBase::FeatureBucketerBase(const uint64 NumberOfPixelsHorizontal,
                                                                                           m_NumberOfBucketsVertical{NumberOfBucketsVertical}
 {
     // compute derived attributes
-    m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical;
+    m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical; // NOLINT(cppcoreguidelines-prefer-member-initializer)
 
     m_FeatureMask.resize(m_NumberOfBucketsVertical, m_NumberOfBucketsHorizontal);
     m_FeatureMask.setConstant(MaximumNumberOfFeaturesPerBucket);
 
-    m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal);
-    m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);
+    m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal); // NOLINT(cppcoreguidelines-prefer-member-initializer)
+    m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);   // NOLINT(cppcoreguidelines-prefer-member-initializer)
 }
 
 FeatureBucketerBase::FeatureBucketerBase(const uint64        NumberOfPixelsHorizontal,
@@ -50,16 +50,16 @@ FeatureBucketerBase::FeatureBucketerBase(const uint64        NumberOfPixelsHoriz
                                                                             m_NumberOfPixelsVertical{NumberOfPixelsVertical}
 {
     // set internal attributes
-    m_NumberOfBucketsHorizontal = FeatureMask.cols();
-    m_NumberOfBucketsVertical   = FeatureMask.rows();
+    m_NumberOfBucketsHorizontal = FeatureMask.cols(); // NOLINT(cppcoreguidelines-prefer-member-initializer)
+    m_NumberOfBucketsVertical   = FeatureMask.rows(); // NOLINT(cppcoreguidelines-prefer-member-initializer)
 
     // compute derived attributes
-    m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical;
+    m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical; // NOLINT(cppcoreguidelines-prefer-member-initializer)
 
     m_FeatureMask = FeatureMask;
 
-    m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal);
-    m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);
+    m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal); // NOLINT(cppcoreguidelines-prefer-member-initializer)
+    m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);   // NOLINT(cppcoreguidelines-prefer-member-initializer)
 }
 
 FeatureBucketerBase::~FeatureBucketerBase()
