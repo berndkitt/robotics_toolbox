@@ -41,10 +41,10 @@ FeatureBucketerVisualizer::FeatureBucketerVisualizer(const FeatureColorMode Colo
                                                                                      m_Delay{Delay}
 {
     // set default drawing colors
-    m_ColorGrid     = cv::Scalar(0,   255, 255); // BGR -> yellow
-    m_ColorSelected = cv::Scalar(0,   255, 0);   // BGR -> green
-    m_ColorRejected = cv::Scalar(0,   0,   255); // BGR -> red
-    m_ColorAll      = cv::Scalar(255, 255, 0);   // BGR -> cyan
+    m_ColorGrid     = cv::Scalar(0,   255, 255); // BGR -> yellow // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorSelected = cv::Scalar(0,   255, 0);   // BGR -> green  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorRejected = cv::Scalar(0,   0,   255); // BGR -> red    // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorAll      = cv::Scalar(255, 255, 0);   // BGR -> cyan   // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
 }
 
 FeatureBucketerVisualizer::~FeatureBucketerVisualizer()
