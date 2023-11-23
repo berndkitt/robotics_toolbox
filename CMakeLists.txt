@@ -65,6 +65,7 @@ set(OPTION_BUILD_UNIT_TESTS ON CACHE BOOL "Build the unit tests of the modules."
 
 # search for 3rd party packages
 find_package(Eigen3 REQUIRED)
+find_package(OpenCV REQUIRED)
 
 # set compile options
 set(CMAKE_CXX_FLAGS         "-Wall -Wextra -Wpedantic")

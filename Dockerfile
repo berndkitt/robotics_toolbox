@@ -37,6 +37,13 @@ RUN python3 -m pip install flake8 \
 RUN mkdir ${DIR_DEV_TOOLS}
 
 RUN cd ${DIR_DEV_TOOLS} && \
+    git clone --recursive https://github.com/opencv/opencv.git && \
+    git clone --recursive https://github.com/opencv/opencv_contrib.git && \
+    cd ${DIR_DEV_TOOLS}/opencv/ && \
+    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules/ -D OPENCV_ENABLE_NONFREE=ON -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_EXAMPLES=OFF -D BUILD_TESTS=OFF -D BUILD_PERF_TESTS=OFF -B ./build/ -S ./ && \
+    cmake --build ./build/ -t install -j8
+
+RUN cd ${DIR_DEV_TOOLS} && \
     git clone --recursive https://github.com/google/googletest.git && \
     cd ${DIR_DEV_TOOLS}/googletest/ && \
     cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ -B ./build/ -S ./ && \
