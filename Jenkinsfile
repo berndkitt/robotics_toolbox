@@ -163,6 +163,13 @@ pipeline
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_details.html"
                             }
                         }
+                        stage("Doxygen")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
+                            }
+                        }
                     }
                 }
             }
