@@ -1,0 +1,37 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Flake8 (all Python files)",
+            "detail": "Trigger Flake8 checks for all Python files",
+            "type": "shell",
+            "group": "test",
+            "command": "python3 -m flake8 --statistics --count --show-source",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true
+            },
+            "args": [],
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        }
+    ],
+    "problemMatcher": [
+        {
+            "owner": "Flake8",
+            "fileLocation": "relative",
+            "pattern": {
+                "regexp": "(.*):(\\d+):(\\d+): ([A-Z]{1,3}[0-9]{3}.*)",
+                "file": 1,
+                "line": 2,
+                "column": 3,
+                "message": 4
+            },
+            "severity": "error"
+        }
+    ]
+}
