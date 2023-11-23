@@ -1,5 +1,5 @@
 """
-Script to generate a version number.
+Script to generate the Doxygen documentation.
 
 The script generated the Doxygen documentation for an entity and creates a ZIP file containing the
 HTML and LaTeX version of the documentation.
