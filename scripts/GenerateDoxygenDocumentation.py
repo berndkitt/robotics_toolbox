@@ -43,7 +43,7 @@ if __name__ == "__main__":
     args = argument_parser.parse_args()
 
     # get documentation directory of the entity to report
-    documentation_directory = os.path.join(args.base_directory, args.entity, "documentation")
+    documentation_directory = os.path.join(args.base_path, args.entity, "documentation")
 
     # go to documentation directory
     os.chdir(documentation_directory)
