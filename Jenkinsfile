@@ -76,6 +76,13 @@ pipeline
                                 sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 20.0 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
+                        stage("Doxygen")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/environment_modeling/libraries/ --entity libWPG --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/"
+                            }
+                        }
                     }
                 }
             }
