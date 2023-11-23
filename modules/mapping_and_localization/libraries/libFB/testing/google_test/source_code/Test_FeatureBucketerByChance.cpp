@@ -64,9 +64,9 @@ TEST_BUCKETSIZEHORIZONTAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBucketer
 {
     const float64 BucketSizeHorizontal {128.0};
 
-    FeatureBucketerByChance FB;
+    FeatureBucketerByChance Bucketer;
 
-    ASSERT_DOUBLE_EQ(FB.GetBucketSizeHorizontal(), BucketSizeHorizontal);
+    ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeHorizontal(), BucketSizeHorizontal);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -84,9 +84,9 @@ TEST_BUCKETSIZEHORIZONTAL_80_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_B
     const uint64  NumberOfBucketsVertical   {8U};
     const float64 BucketSizeHorizontal      {80.0};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
-    ASSERT_DOUBLE_EQ(FB.GetBucketSizeHorizontal(), BucketSizeHorizontal);
+    ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeHorizontal(), BucketSizeHorizontal);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -105,9 +105,9 @@ TEST_BUCKETSIZEHORIZONTAL_250_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
     const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
     const float64      BucketSizeHorizontal      {250.0};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
-    ASSERT_DOUBLE_EQ(FB.GetBucketSizeHorizontal(), BucketSizeHorizontal);
+    ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeHorizontal(), BucketSizeHorizontal);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -121,9 +121,9 @@ TEST_BUCKETSIZEVERTICAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBucketerBy
 {
     const float64 BucketSizeVertical {192.0};
 
-    FeatureBucketerByChance FB;
+    FeatureBucketerByChance Bucketer;
 
-    ASSERT_DOUBLE_EQ(FB.GetBucketSizeVertical(), BucketSizeVertical);
+    ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeVertical(), BucketSizeVertical);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -140,9 +140,9 @@ TEST_BUCKETSIZEVERTICAL_50_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_Buc
     const uint64  NumberOfBucketsVertical   {8U};
     const float64 BucketSizeVertical        {50.0};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
-    ASSERT_DOUBLE_EQ(FB.GetBucketSizeVertical(), BucketSizeVertical);
+    ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeVertical(), BucketSizeVertical);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -160,9 +160,9 @@ TEST_BUCKETSIZEVERTICAL_300_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_Bu
     const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
     const float64      BucketSizeVertical        {300.0};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
-    ASSERT_DOUBLE_EQ(FB.GetBucketSizeVertical(), BucketSizeVertical);
+    ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeVertical(), BucketSizeVertical);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -176,9 +176,9 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBuc
 {
     const uint64 NumberOfBucketsHorizontal {8U};
 
-    FeatureBucketerByChance FB;
+    FeatureBucketerByChance Bucketer;
 
-    ASSERT_EQ(FB.GetNumberOfBucketsHorizontal(), NumberOfBucketsHorizontal);
+    ASSERT_EQ(Bucketer.GetNumberOfBucketsHorizontal(), NumberOfBucketsHorizontal);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -195,9 +195,9 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_4_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Te
     const uint64       NumberOfBucketsVertical   {2U};
     const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
-    ASSERT_DOUBLE_EQ(FB.GetNumberOfBucketsHorizontal(), NumberOfBucketsHorizontal);
+    ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfBucketsHorizontal(), NumberOfBucketsHorizontal);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -213,9 +213,9 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_10_BYCHANCE_ISMATCHING(FeatureBucketerByChance, T
     const uint64  NumberOfBucketsHorizontal {10U};
     const uint64  NumberOfBucketsVertical   {8U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
-    ASSERT_DOUBLE_EQ(FB.GetNumberOfBucketsHorizontal(), NumberOfBucketsHorizontal);
+    ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfBucketsHorizontal(), NumberOfBucketsHorizontal);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -229,9 +229,9 @@ TEST_NUMBEROFBUCKETSVERTICAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBucke
 {
     const uint64 NumberOfBucketsVertical {4U};
 
-    FeatureBucketerByChance FB;
+    FeatureBucketerByChance Bucketer;
 
-    ASSERT_EQ(FB.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
+    ASSERT_EQ(Bucketer.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -248,9 +248,9 @@ TEST_NUMBEROFBUCKETSVERTICAL_2_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test
     const uint64       NumberOfBucketsVertical   {2U};
     const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
-    ASSERT_DOUBLE_EQ(FB.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
+    ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -266,9 +266,9 @@ TEST_NUMBEROFBUCKETSVERTICAL_8_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test
     const uint64  NumberOfBucketsHorizontal {10U};
     const uint64  NumberOfBucketsVertical   {8U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
-    ASSERT_DOUBLE_EQ(FB.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
+    ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -289,12 +289,12 @@ TEST_NUMBEROFINDICES_8_SELECTED_0_REJECTED_BYCHANCE_ISMATCHING(FeatureBucketerBy
     const uint64 NumberOfSelectedIndicesExpected  {8U};
     const uint64 NumberOfRejectedIndicesExpected  {0U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
 
     ListColumnVectorFloat64_2d ImagePoints;
 
-    const float64 BucketSizeHorizontal {FB.GetBucketSizeHorizontal()};
-    const float64 BucketSizeVertical   {FB.GetBucketSizeVertical()};
+    const float64 BucketSizeHorizontal {Bucketer.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical   {Bucketer.GetBucketSizeVertical()};
 
     for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
     {
@@ -310,10 +310,10 @@ TEST_NUMBEROFINDICES_8_SELECTED_0_REJECTED_BYCHANCE_ISMATCHING(FeatureBucketerBy
         }
     }
 
-    FB.BucketFeatures(ImagePoints);
+    Bucketer.BucketFeatures(ImagePoints);
 
-    const uint64 NumberOfSelectedIndices {FB.GetSelectedIndices().size()};
-    const uint64 NumberOfRejectedIndices {FB.GetRejectedIndices().size()};
+    const uint64 NumberOfSelectedIndices {Bucketer.GetSelectedIndices().size()};
+    const uint64 NumberOfRejectedIndices {Bucketer.GetRejectedIndices().size()};
 
     ASSERT_EQ(NumberOfSelectedIndices, NumberOfSelectedIndicesExpected);
     ASSERT_EQ(NumberOfRejectedIndices, NumberOfRejectedIndicesExpected);
@@ -337,14 +337,14 @@ TEST_NUMBEROFINDICES_16_SELECTED_8_REJECTED_BYCHANCE_ISMATCHING(FeatureBucketerB
     const uint64 NumberOfSelectedIndicesExpected  {16U};
     const uint64 NumberOfRejectedIndicesExpected  {8U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
 
     ListColumnVectorFloat64_2d ImagePoints;
 
     const uint64  NumberOfFeaturesPerBucket {3U};
     const float64 PixelOffset               {2.0};
-    const float64 BucketSizeHorizontal      {FB.GetBucketSizeHorizontal()};
-    const float64 BucketSizeVertical        {FB.GetBucketSizeVertical()};
+    const float64 BucketSizeHorizontal      {Bucketer.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical        {Bucketer.GetBucketSizeVertical()};
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
@@ -363,10 +363,10 @@ TEST_NUMBEROFINDICES_16_SELECTED_8_REJECTED_BYCHANCE_ISMATCHING(FeatureBucketerB
         }
     }
 
-    FB.BucketFeatures(ImagePoints);
+    Bucketer.BucketFeatures(ImagePoints);
 
-    const uint64 NumberOfSelectedIndices {FB.GetSelectedIndices().size()};
-    const uint64 NumberOfRejectedIndices {FB.GetRejectedIndices().size()};
+    const uint64 NumberOfSelectedIndices {Bucketer.GetSelectedIndices().size()};
+    const uint64 NumberOfRejectedIndices {Bucketer.GetRejectedIndices().size()};
 
     ASSERT_EQ(NumberOfSelectedIndices, NumberOfSelectedIndicesExpected);
     ASSERT_EQ(NumberOfRejectedIndices, NumberOfRejectedIndicesExpected);
@@ -383,9 +383,9 @@ TEST_NUMBEROFPIXELSHORIZONTAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBuck
 {
     const uint64 NumberOfPixelsHorizontal {1024U};
 
-    FeatureBucketerByChance FB;
+    FeatureBucketerByChance Bucketer;
 
-    ASSERT_EQ(FB.GetNumberOfPixelsHorizontal(), NumberOfPixelsHorizontal);
+    ASSERT_EQ(Bucketer.GetNumberOfPixelsHorizontal(), NumberOfPixelsHorizontal);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -401,9 +401,9 @@ TEST_NUMBEROFPIXELSHORIZONTAL_800_BYCHANCE_ISMATCHING(FeatureBucketerByChance, T
     const uint64  NumberOfBucketsHorizontal {10U};
     const uint64  NumberOfBucketsVertical   {8U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
-    ASSERT_DOUBLE_EQ(FB.GetNumberOfPixelsHorizontal(), NumberOfPixelsHorizontal);
+    ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfPixelsHorizontal(), NumberOfPixelsHorizontal);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -420,9 +420,9 @@ TEST_NUMBEROFPIXELSHORIZONTAL_1000_BYCHANCE_ISMATCHING(FeatureBucketerByChance, 
     const uint64       NumberOfBucketsVertical   {2U};
     const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsHorizontal, NumberOfBucketsVertical)};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
-    ASSERT_DOUBLE_EQ(FB.GetNumberOfPixelsHorizontal(), NumberOfPixelsHorizontal);
+    ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfPixelsHorizontal(), NumberOfPixelsHorizontal);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -436,9 +436,9 @@ TEST_NUMBEROFPIXELSVERTICAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBucket
 {
     const uint64 NumberOfPixelsVertical {768U};
 
-    FeatureBucketerByChance FB;
+    FeatureBucketerByChance Bucketer;
 
-    ASSERT_EQ(FB.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
+    ASSERT_EQ(Bucketer.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -454,9 +454,9 @@ TEST_NUMBEROFPIXELSVERTICAL_400_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
     const uint64  NumberOfBucketsHorizontal {10U};
     const uint64  NumberOfBucketsVertical   {8U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
-    ASSERT_DOUBLE_EQ(FB.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
+    ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -473,9 +473,9 @@ TEST_NUMBEROFPIXELSVERTICAL_600_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
     const uint64       NumberOfBucketsVertical   {2U};
     const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsHorizontal, NumberOfBucketsVertical)};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
-    ASSERT_DOUBLE_EQ(FB.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
+    ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -494,14 +494,14 @@ TEST_REJECTEDFEATURE_3_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
     const uint64 SeedValue                        {0U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
 
     ListColumnVectorFloat64_2d ImagePoints;
 
     const uint64  NumberOfFeaturesPerBucket {8U};
     const float64 PixelOffset               {2.0};
-    const float64 BucketSizeHorizontal      {FB.GetBucketSizeHorizontal()};
-    const float64 BucketSizeVertical        {FB.GetBucketSizeVertical()};
+    const float64 BucketSizeHorizontal      {Bucketer.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical        {Bucketer.GetBucketSizeVertical()};
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
@@ -520,11 +520,11 @@ TEST_REJECTEDFEATURE_3_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
         }
     }
 
-    FB.BucketFeatures(ImagePoints);
+    Bucketer.BucketFeatures(ImagePoints);
 
     ListColumnVectorFloat64_2d RejectedImagePoints;
 
-    FB.GetRejectedFeatures(ImagePoints, RejectedImagePoints);
+    Bucketer.GetRejectedFeatures(ImagePoints, RejectedImagePoints);
 
     const float64 CoordinateX {RejectedImagePoints[3](0)};
     const float64 CoordinateY {RejectedImagePoints[3](1)};
@@ -549,14 +549,14 @@ TEST_REJECTEDFEATURE_3_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
     const uint64 SeedValue                        {127U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
 
     ListColumnVectorFloat64_2d ImagePoints;
 
     const uint64  NumberOfFeaturesPerBucket {8U};
     const float64 PixelOffset               {2.0};
-    const float64 BucketSizeHorizontal      {FB.GetBucketSizeHorizontal()};
-    const float64 BucketSizeVertical        {FB.GetBucketSizeVertical()};
+    const float64 BucketSizeHorizontal      {Bucketer.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical        {Bucketer.GetBucketSizeVertical()};
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
@@ -575,11 +575,11 @@ TEST_REJECTEDFEATURE_3_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
         }
     }
 
-    FB.BucketFeatures(ImagePoints);
+    Bucketer.BucketFeatures(ImagePoints);
 
     ListColumnVectorFloat64_2d RejectedImagePoints;
 
-    FB.GetRejectedFeatures(ImagePoints, RejectedImagePoints);
+    Bucketer.GetRejectedFeatures(ImagePoints, RejectedImagePoints);
 
     const float64 CoordinateX {RejectedImagePoints[3](0)};
     const float64 CoordinateY {RejectedImagePoints[3](1)};
@@ -604,14 +604,14 @@ TEST_SELECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
     const uint64 SeedValue                        {0U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
 
     ListColumnVectorFloat64_2d ImagePoints;
 
     const uint64  NumberOfFeaturesPerBucket {8U};
     const float64 PixelOffset               {2.0};
-    const float64 BucketSizeHorizontal      {FB.GetBucketSizeHorizontal()};
-    const float64 BucketSizeVertical        {FB.GetBucketSizeVertical()};
+    const float64 BucketSizeHorizontal      {Bucketer.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical        {Bucketer.GetBucketSizeVertical()};
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
@@ -630,11 +630,11 @@ TEST_SELECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
         }
     }
 
-    FB.BucketFeatures(ImagePoints);
+    Bucketer.BucketFeatures(ImagePoints);
 
     ListColumnVectorFloat64_2d SelectedImagePoints;
 
-    FB.GetSelectedFeatures(ImagePoints, SelectedImagePoints);
+    Bucketer.GetSelectedFeatures(ImagePoints, SelectedImagePoints);
 
     const float64 CoordinateX {SelectedImagePoints[0](0)};
     const float64 CoordinateY {SelectedImagePoints[0](1)};
@@ -659,14 +659,14 @@ TEST_SELECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
     const uint64 SeedValue                        {127U};
 
-    FeatureBucketerByChance FB(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
+    FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket, SeedValue);
 
     ListColumnVectorFloat64_2d ImagePoints;
 
     const uint64  NumberOfFeaturesPerBucket {8U};
     const float64 PixelOffset               {2.0};
-    const float64 BucketSizeHorizontal      {FB.GetBucketSizeHorizontal()};
-    const float64 BucketSizeVertical        {FB.GetBucketSizeVertical()};
+    const float64 BucketSizeHorizontal      {Bucketer.GetBucketSizeHorizontal()};
+    const float64 BucketSizeVertical        {Bucketer.GetBucketSizeVertical()};
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
@@ -685,11 +685,11 @@ TEST_SELECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
         }
     }
 
-    FB.BucketFeatures(ImagePoints);
+    Bucketer.BucketFeatures(ImagePoints);
 
     ListColumnVectorFloat64_2d SelectedImagePoints;
 
-    FB.GetSelectedFeatures(ImagePoints, SelectedImagePoints);
+    Bucketer.GetSelectedFeatures(ImagePoints, SelectedImagePoints);
 
     const float64 CoordinateX {SelectedImagePoints[0](0)};
     const float64 CoordinateY {SelectedImagePoints[0](1)};
