@@ -58,6 +58,7 @@
         "Eigen",
         "Gcovr",
         "Kitt",
+        "OpenCV",
         "swappable"
     ]
 }

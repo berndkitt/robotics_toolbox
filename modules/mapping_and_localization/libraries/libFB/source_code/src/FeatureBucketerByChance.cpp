@@ -27,9 +27,9 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 FeatureBucketerByChance::FeatureBucketerByChance(const uint64 NumberOfPixelsHorizontal,
                                                  const uint64 NumberOfPixelsVertical,
-                                                 const uint64 NumberOfBucketsHorizontal,
-                                                 const uint64 NumberOfBucketsVertical,
-                                                 const uint64 MaximumNumberOfFeaturesPerBucket,
+                                                 const uint8  NumberOfBucketsHorizontal,
+                                                 const uint8  NumberOfBucketsVertical,
+                                                 const uint8  MaximumNumberOfFeaturesPerBucket,
                                                  const uint64 SeedValue) : FeatureBucketerBase(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket),
                                                                            m_SeedValue{SeedValue}
 {
@@ -37,11 +37,11 @@ FeatureBucketerByChance::FeatureBucketerByChance(const uint64 NumberOfPixelsHori
     m_RandomNumberEngine.seed(m_SeedValue);
 }
 
-FeatureBucketerByChance::FeatureBucketerByChance(const uint64        NumberOfPixelsHorizontal,
-                                                 const uint64        NumberOfPixelsVertical,
-                                                 const MatrixUInt64& FeatureMask,
-                                                 const uint64        SeedValue) : FeatureBucketerBase(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask),
-                                                                                  m_SeedValue{SeedValue}
+FeatureBucketerByChance::FeatureBucketerByChance(const uint64       NumberOfPixelsHorizontal,
+                                                 const uint64       NumberOfPixelsVertical,
+                                                 const MatrixUInt8& FeatureMask,
+                                                 const uint64       SeedValue) : FeatureBucketerBase(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask),
+                                                                                 m_SeedValue{SeedValue}
 {
     // initialize random number generator
     m_RandomNumberEngine.seed(m_SeedValue);
@@ -55,10 +55,10 @@ FeatureBucketerByChance::~FeatureBucketerByChance()
 void FeatureBucketerByChance::BucketFeaturesWithScheme()
 {
     // bucket features by chance
-    for(uint64 i_Bucket = 0; i_Bucket < m_NumberOfBuckets; i_Bucket++)
+    for(uint16 i_Bucket = 0; i_Bucket < m_NumberOfBuckets; i_Bucket++)
     {
         // get maximum number of features in current bucket
-        const uint64 MaximumNumberOfFeaturesInCurrentBucket {m_FeatureMask(i_Bucket)};
+        const uint8 MaximumNumberOfFeaturesInCurrentBucket {m_FeatureMask(i_Bucket)};
 
         // get number of features in current bucket
         const uint64 NumberOfFeaturesInCurrentBucket {m_FeatureIndices[i_Bucket].size()};

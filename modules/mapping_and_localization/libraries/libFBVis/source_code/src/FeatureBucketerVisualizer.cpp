@@ -30,10 +30,10 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 FeatureBucketerVisualizer::FeatureBucketerVisualizer(const FeatureColorMode ColorMode,
                                                      const boolean          DrawGrid,
-                                                     const uint64           PointRadius,
-                                                     const sint64           PointThickness,
-                                                     const uint64           LineThickness,
-                                                     const sint64           Delay) : m_ColorMode{ColorMode},
+                                                     const sint32           PointRadius,
+                                                     const sint32           PointThickness,
+                                                     const sint32           LineThickness,
+                                                     const sint32           Delay) : m_ColorMode{ColorMode},
                                                                                      m_DrawGrid{DrawGrid},
                                                                                      m_PointRadius{PointRadius},
                                                                                      m_PointThickness{PointThickness},
@@ -41,10 +41,10 @@ FeatureBucketerVisualizer::FeatureBucketerVisualizer(const FeatureColorMode Colo
                                                                                      m_Delay{Delay}
 {
     // set default drawing colors
-    m_ColorGrid     = cv::Scalar(0,   255, 255); // BGR -> yellow
-    m_ColorSelected = cv::Scalar(0,   255, 0);   // BGR -> green
-    m_ColorRejected = cv::Scalar(0,   0,   255); // BGR -> red
-    m_ColorAll      = cv::Scalar(255, 255, 0);   // BGR -> cyan
+    m_ColorGrid     = cv::Scalar(0,   255, 255); // BGR -> yellow // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorSelected = cv::Scalar(0,   255, 0);   // BGR -> green  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorRejected = cv::Scalar(0,   0,   255); // BGR -> red    // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorAll      = cv::Scalar(255, 255, 0);   // BGR -> cyan   // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
 }
 
 FeatureBucketerVisualizer::~FeatureBucketerVisualizer()
@@ -90,8 +90,8 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
                                                            cv::Mat&                    BucketingImage) const
 {
     // get selected and rejected indices
-    const ListUInt64 SelectedIndices {Bucketer.GetSelectedIndices()};
-    const ListUInt64 Rejectedindices {Bucketer.GetRejectedIndices()};
+    const ListUInt64& SelectedIndices {Bucketer.GetSelectedIndices()};
+    const ListUInt64& Rejectedindices {Bucketer.GetRejectedIndices()};
 
     // get number of selected and rejected indices
     const uint64 NumberOfSelectedIndices {SelectedIndices.size()};
@@ -163,8 +163,8 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
         if(m_DrawGrid)
         {
             // get bucket information
-            const uint64  NumberOfBucketsHorizontal {Bucketer.GetNumberOfBucketsHorizontal()};
-            const uint64  NumberOfBucketsVertical   {Bucketer.GetNumberOfBucketsVertical()};
+            const uint8   NumberOfBucketsHorizontal {Bucketer.GetNumberOfBucketsHorizontal()};
+            const uint8   NumberOfBucketsVertical   {Bucketer.GetNumberOfBucketsVertical()};
             const float64 BucketSizeHorizontal      {Bucketer.GetBucketSizeHorizontal()};
             const float64 BucketSizeVertical        {Bucketer.GetBucketSizeVertical()};
 
@@ -188,14 +188,14 @@ void FeatureBucketerVisualizer::DrawFeatures(const ListColumnVectorFloat64_2d& I
         const float64 CoordinateVertical   {ImagePointsToDraw[i_Feature](1)};
 
         // draw point
-        const cv::Point CurrentPoint(CoordinateHorizontal, CoordinateVertical);
+        const cv::Point2d CurrentPoint(CoordinateHorizontal, CoordinateVertical);
 
         cv::circle(BucketingImage, CurrentPoint, m_PointRadius, FeatureColor, m_PointThickness);
     }
 }
 
-void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
-                                         uint64   NumberOfBucketsVertical,
+void FeatureBucketerVisualizer::DrawGrid(uint8    NumberOfBucketsHorizontal,
+                                         uint8    NumberOfBucketsVertical,
                                          float64  BucketSizeHorizontal,
                                          float64  BucketSizeVertical,
                                          cv::Mat& BucketingImage) const
@@ -208,7 +208,7 @@ void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
     const float64 Offset {static_cast<float64>(m_LineThickness) * 0.5};
 
     // plot horizontal lines
-    for(uint64 i_Line {0U}; i_Line < (NumberOfBucketsVertical + 1U); i_Line++)
+    for(uint8 i_Line {0U}; i_Line < (NumberOfBucketsVertical + 1U); i_Line++)
     {
         // get vertical coordinate of the line
         float64 CoordinateVertical {static_cast<float64>(i_Line) * BucketSizeVertical};
@@ -227,15 +227,15 @@ void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
         }
 
         // define start and end point of the line
-        const cv::Point LeftPoint(0U, CoordinateVertical);
-        const cv::Point RightPoint(ImageWidth - 1U, CoordinateVertical);
+        const cv::Point2d LeftPoint(0.0, CoordinateVertical);
+        const cv::Point2d RightPoint(static_cast<float64>(ImageWidth - 1U), CoordinateVertical);
 
         // draw horizontal line
         cv::line(BucketingImage, LeftPoint, RightPoint, m_ColorGrid, m_LineThickness);
     }
 
     // plot vertical lines
-    for(uint64 i_Line {0U}; i_Line < (NumberOfBucketsHorizontal + 1U); i_Line++)
+    for(uint8 i_Line {0U}; i_Line < (NumberOfBucketsHorizontal + 1U); i_Line++)
     {
         // get horizontal coordinate of the line
         float64 CoordinateHorizontal {static_cast<float64>(i_Line) * BucketSizeHorizontal};
@@ -254,8 +254,8 @@ void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
         }
 
         // define start and end point of the line
-        const cv::Point TopPoint(CoordinateHorizontal, 0U);
-        const cv::Point BottomPoint(CoordinateHorizontal, ImageHeight - 1U);
+        const cv::Point2d TopPoint(CoordinateHorizontal, 0.0);
+        const cv::Point2d BottomPoint(CoordinateHorizontal, static_cast<float64>(ImageHeight - 1U));
 
         // draw horizontal line
         cv::line(BucketingImage, TopPoint, BottomPoint, m_ColorGrid, m_LineThickness);

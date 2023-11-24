@@ -27,39 +27,38 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 FeatureBucketerBase::FeatureBucketerBase(const uint64 NumberOfPixelsHorizontal,
                                          const uint64 NumberOfPixelsVertical,
-                                         const uint64 NumberOfBucketsHorizontal,
-                                         const uint64 NumberOfBucketsVertical,
-                                         const uint64 MaximumNumberOfFeaturesPerBucket) : m_NumberOfPixelsHorizontal{NumberOfPixelsHorizontal},
+                                         const uint8  NumberOfBucketsHorizontal,
+                                         const uint8  NumberOfBucketsVertical,
+                                         const uint8  MaximumNumberOfFeaturesPerBucket) : m_NumberOfPixelsHorizontal{NumberOfPixelsHorizontal},
                                                                                           m_NumberOfPixelsVertical{NumberOfPixelsVertical},
                                                                                           m_NumberOfBucketsHorizontal{NumberOfBucketsHorizontal},
                                                                                           m_NumberOfBucketsVertical{NumberOfBucketsVertical}
 {
     // compute derived attributes
-    m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical;
+    m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical; // NOLINT(cppcoreguidelines-prefer-member-initializer)
 
     m_FeatureMask.resize(m_NumberOfBucketsVertical, m_NumberOfBucketsHorizontal);
     m_FeatureMask.setConstant(MaximumNumberOfFeaturesPerBucket);
 
-    m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal);
-    m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);
+    m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal); // NOLINT(cppcoreguidelines-prefer-member-initializer)
+    m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);   // NOLINT(cppcoreguidelines-prefer-member-initializer)
 }
 
-FeatureBucketerBase::FeatureBucketerBase(const uint64        NumberOfPixelsHorizontal,
-                                         const uint64        NumberOfPixelsVertical,
-                                         const MatrixUInt64& FeatureMask) : m_NumberOfPixelsHorizontal{NumberOfPixelsHorizontal},
-                                                                            m_NumberOfPixelsVertical{NumberOfPixelsVertical}
+FeatureBucketerBase::FeatureBucketerBase(const uint64       NumberOfPixelsHorizontal,
+                                         const uint64       NumberOfPixelsVertical,
+                                         const MatrixUInt8& FeatureMask) : m_NumberOfPixelsHorizontal{NumberOfPixelsHorizontal},
+                                                                           m_NumberOfPixelsVertical{NumberOfPixelsVertical},
+                                                                           m_FeatureMask{FeatureMask}
 {
     // set internal attributes
-    m_NumberOfBucketsHorizontal = FeatureMask.cols();
-    m_NumberOfBucketsVertical   = FeatureMask.rows();
+    m_NumberOfBucketsHorizontal = FeatureMask.cols(); // NOLINT(cppcoreguidelines-prefer-member-initializer)
+    m_NumberOfBucketsVertical   = FeatureMask.rows(); // NOLINT(cppcoreguidelines-prefer-member-initializer)
 
     // compute derived attributes
-    m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical;
+    m_NumberOfBuckets = m_NumberOfBucketsHorizontal * m_NumberOfBucketsVertical; // NOLINT(cppcoreguidelines-prefer-member-initializer)
 
-    m_FeatureMask = FeatureMask;
-
-    m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal);
-    m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);
+    m_BucketSizeHorizontal = static_cast<float64>(m_NumberOfPixelsHorizontal) / static_cast<float64>(m_NumberOfBucketsHorizontal); // NOLINT(cppcoreguidelines-prefer-member-initializer)
+    m_BucketSizeVertical   = static_cast<float64>(m_NumberOfPixelsVertical)   / static_cast<float64>(m_NumberOfBucketsVertical);   // NOLINT(cppcoreguidelines-prefer-member-initializer)
 }
 
 FeatureBucketerBase::~FeatureBucketerBase()
@@ -90,12 +89,12 @@ float64 FeatureBucketerBase::GetBucketSizeVertical() const
     return m_BucketSizeVertical;
 }
 
-uint64 FeatureBucketerBase::GetNumberOfBucketsHorizontal() const
+uint8 FeatureBucketerBase::GetNumberOfBucketsHorizontal() const
 {
     return m_NumberOfBucketsHorizontal;
 }
 
-uint64 FeatureBucketerBase::GetNumberOfBucketsVertical() const
+uint8 FeatureBucketerBase::GetNumberOfBucketsVertical() const
 {
     return m_NumberOfBucketsVertical;
 }
@@ -156,7 +155,7 @@ const ListUInt64& FeatureBucketerBase::GetSelectedIndices() const
 
 boolean FeatureBucketerBase::ComputeBucketID(const float64 CoordinateImagePointHorizontal,
                                              const float64 CoordinateImagePointVertical,
-                                                   uint64& BucketID) const
+                                                   uint16& BucketID) const
 {
     // check whether the current feature is visible in the image or not
     boolean BucketIDIsValid {false};
@@ -167,8 +166,8 @@ boolean FeatureBucketerBase::ComputeBucketID(const float64 CoordinateImagePointH
     if(ImagePointIsVisibleHorizontal && ImagePointIsVisibleVertical)
     {
         // compute bucket IDs in horizontal and vertical direction
-        const uint64 BucketIDHorizontal {static_cast<uint64>(CoordinateImagePointHorizontal / m_BucketSizeHorizontal)};
-        const uint64 BucketIDVertical   {static_cast<uint64>(CoordinateImagePointVertical   / m_BucketSizeVertical)};
+        const uint8 BucketIDHorizontal {static_cast<uint8>(CoordinateImagePointHorizontal / m_BucketSizeHorizontal)};
+        const uint8 BucketIDVertical   {static_cast<uint8>(CoordinateImagePointVertical   / m_BucketSizeVertical)};
 
         // compute bucket ID
         BucketID = BucketIDVertical * m_NumberOfBucketsHorizontal + BucketIDHorizontal;
@@ -203,7 +202,7 @@ void FeatureBucketerBase::ComputeBucketIDs(const ListColumnVectorFloat64_2d& Ima
         const float64 CoordinateImagePointVertical   {ImagePoints[i_ImagePoint](1)};
 
         // compute bucket ID for current feature
-        uint64  BucketID        {m_NumberOfBuckets}; // initialized with the invalid bucket ID
+        uint16  BucketID        {m_NumberOfBuckets}; // initialized with the invalid bucket ID
         boolean BucketIDIsValid {false};
 
         BucketIDIsValid = ComputeBucketID(CoordinateImagePointHorizontal,
@@ -218,7 +217,7 @@ void FeatureBucketerBase::ComputeBucketIDs(const ListColumnVectorFloat64_2d& Ima
     }
 }
 
-void FeatureBucketerBase::SelectAllFeaturesInBucket(const uint64 BucketID,
+void FeatureBucketerBase::SelectAllFeaturesInBucket(const uint16 BucketID,
                                                     const uint64 NumberOfFeaturesInCurrentBucket)
 {
     // select all feature in the current bucket

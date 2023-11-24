@@ -43,15 +43,15 @@ class FeatureBucketerBase
 protected: // protected attributes
     const uint64                  m_NumberOfPixelsHorizontal;   ///< Number of pixels in horizontal direction.
     const uint64                  m_NumberOfPixelsVertical;     ///< Number of pixels in vertical direction.
-          uint64                  m_NumberOfBucketsHorizontal;  ///< Number of buckets in horizontal direction.
-          uint64                  m_NumberOfBucketsVertical;    ///< Number of buckets in vertical direction.
-          uint64                  m_NumberOfBuckets;            ///< Total number of buckets.
-          MatrixUInt64            m_FeatureMask;                ///< Mask defining the buckets and the number of features in each bucket.
+          uint8                   m_NumberOfBucketsHorizontal;  ///< Number of buckets in horizontal direction.
+          uint8                   m_NumberOfBucketsVertical;    ///< Number of buckets in vertical direction.
+          uint16                  m_NumberOfBuckets;            ///< Total number of buckets.
+          MatrixUInt8             m_FeatureMask;                ///< Mask defining the buckets and the number of features in each bucket.
           float64                 m_BucketSizeHorizontal;       ///< Size of each bucket in horizontal direction.
           float64                 m_BucketSizeVertical;         ///< Size of each bucket in vertical direction.
           ListUInt64              m_SelectedIndices;            ///< List containing the indices of the selected features.
           ListUInt64              m_RejectedIndices;            ///< List containing the indices of the rejected features.
-          ListUInt64              m_BucketIDs;                  ///< List containing the bucket IDs for all provided features.
+          ListUInt16              m_BucketIDs;                  ///< List containing the bucket IDs for all provided features.
           ListBoolean             m_BucketIDIsValid;            ///< List defining whether the bucket ID is valid or not.
           std::vector<ListUInt64> m_FeatureIndices;             ///< List containing the feature indices for all buckets (contains one entry more than buckets; last entry used for invalid features).
 
@@ -70,9 +70,9 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     FeatureBucketerBase(const uint64 NumberOfPixelsHorizontal         = 1024U,
                         const uint64 NumberOfPixelsVertical           = 768U,
-                        const uint64 NumberOfBucketsHorizontal        = 8U,
-                        const uint64 NumberOfBucketsVertical          = 4U,
-                        const uint64 MaximumNumberOfFeaturesPerBucket = 5U);
+                        const uint8  NumberOfBucketsHorizontal        = 8U,
+                        const uint8  NumberOfBucketsVertical          = 4U,
+                        const uint8  MaximumNumberOfFeaturesPerBucket = 5U);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
@@ -85,9 +85,9 @@ public: // public methods
     /// \param[in] NumberOfPixelsVertical   Number of pixels in vertical direction.
     /// \param[in] FeatureMask              Mask defining the buckets and the number of features in each bucket.
     ///////////////////////////////////////////////////////////////////////////////
-    FeatureBucketerBase(const uint64        NumberOfPixelsHorizontal,
-                        const uint64        NumberOfPixelsVertical,
-                        const MatrixUInt64& FeatureMask);
+    FeatureBucketerBase(const uint64       NumberOfPixelsHorizontal,
+                        const uint64       NumberOfPixelsVertical,
+                        const MatrixUInt8& FeatureMask);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
@@ -120,14 +120,14 @@ public: // public methods
     ///
     /// \return Number of buckets in horizontal direction.
     ///////////////////////////////////////////////////////////////////////////////
-    uint64 GetNumberOfBucketsHorizontal() const;
+    uint8 GetNumberOfBucketsHorizontal() const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the number of buckets in vertical direction.
     ///
     /// \return Number of buckets in vertical direction.
     ///////////////////////////////////////////////////////////////////////////////
-    uint64 GetNumberOfBucketsVertical() const;
+    uint8 GetNumberOfBucketsVertical() const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the number of pixels in horizontal direction.
@@ -194,7 +194,7 @@ protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
     boolean ComputeBucketID(const float64 CoordinateImagePointHorizontal,
                             const float64 CoordinateImagePointVertical,
-                                  uint64& BucketID) const;
+                                  uint16& BucketID) const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Computes the bucket IDs for all features.
@@ -209,7 +209,7 @@ protected: // protected methods
     /// \param[in] BucketID                        ID of the bucket from top left to bottom right.
     /// \param[in] NumberOfFeaturesInCurrentBucket Number of features in the current bucket.
     ///////////////////////////////////////////////////////////////////////////////
-    void SelectAllFeaturesInBucket(const uint64 BucketID,
+    void SelectAllFeaturesInBucket(const uint16 BucketID,
                                    const uint64 NumberOfFeaturesInCurrentBucket);
 };
 
