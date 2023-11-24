@@ -146,8 +146,8 @@ protected: // protected methods
     /// \param[in]     BucketSizeVertical        Size of each bucket in vertical direction.
     /// \param[in,out] BucketingImage            Image showing the bucketing result.
     ///////////////////////////////////////////////////////////////////////////////
-    void DrawGrid(const uint64   NumberOfBucketsHorizontal,
-                  const uint64   NumberOfBucketsVertical,
+    void DrawGrid(const uint8    NumberOfBucketsHorizontal,
+                  const uint8    NumberOfBucketsVertical,
                   const float64  BucketSizeHorizontal,
                   const float64  BucketSizeVertical,
                         cv::Mat& BucketingImage) const;

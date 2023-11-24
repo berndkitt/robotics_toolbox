@@ -61,9 +61,9 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     FeatureBucketerByChance(const uint64 NumberOfPixelsHorizontal         = 1024U,
                             const uint64 NumberOfPixelsVertical           = 768U,
-                            const uint64 NumberOfBucketsHorizontal        = 8U,
-                            const uint64 NumberOfBucketsVertical          = 4U,
-                            const uint64 MaximumNumberOfFeaturesPerBucket = 5U,
+                            const uint8  NumberOfBucketsHorizontal        = 8U,
+                            const uint8  NumberOfBucketsVertical          = 4U,
+                            const uint8  MaximumNumberOfFeaturesPerBucket = 5U,
                             const uint64 SeedValue                        = 0U);
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -78,10 +78,10 @@ public: // public methods
     /// \param[in] FeatureMask              Mask defining the buckets and the number of features in each bucket.
     /// \param[in] SeedValue                Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
-    FeatureBucketerByChance(const uint64        NumberOfPixelsHorizontal,
-                            const uint64        NumberOfPixelsVertical,
-                            const MatrixUInt64& FeatureMask,
-                            const uint64        SeedValue                = 0U);
+    FeatureBucketerByChance(const uint64       NumberOfPixelsHorizontal,
+                            const uint64       NumberOfPixelsVertical,
+                            const MatrixUInt8& FeatureMask,
+                            const uint64       SeedValue                = 0U);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.

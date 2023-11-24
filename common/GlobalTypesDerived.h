@@ -34,6 +34,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 // lists
 using ListFloat64 = std::vector<float64>;   ///< Alias for lists containing 64-bit floating point values.
 using ListSInt64  = std::vector<sint64>;    ///< Alias for lists containing 64-bit signed integer values.
+using ListUInt16  = std::vector<uint16>;    ///< Alias for lists containing 16-bit unsigned integer values.
 using ListUInt64  = std::vector<uint64>;    ///< Alias for lists containing 64-bit unsigned integer values.
 using ListBoolean = std::vector<boolean>;   ///< Alias for lists containing boolean values.
 
@@ -64,6 +65,7 @@ using ListRowVectorFloat64_4d = std::vector< RowVectorFloat64_4d, Eigen::aligned
 // general matrices
 using MatrixFloat64 = Eigen::Matrix<float64, Eigen::Dynamic, Eigen::Dynamic>;   ///< Alias for general matrices of 64-bit floating point values.
 using MatrixSInt64  = Eigen::Matrix<sint64, Eigen::Dynamic, Eigen::Dynamic>;    ///< Alias for general matrices of 64-bit signed integer values.
+using MatrixUInt8   = Eigen::Matrix<uint8, Eigen::Dynamic, Eigen::Dynamic>;     ///< Alias for general matrices of 8-bit unsigned integer values.
 using MatrixUInt64  = Eigen::Matrix<uint64, Eigen::Dynamic, Eigen::Dynamic>;    ///< Alias for general matrices of 64-bit unsigned integer values.
 using MatrixBoolean = Eigen::Matrix<boolean, Eigen::Dynamic, Eigen::Dynamic>;   ///< Alias for general matrices of boolean values.
 

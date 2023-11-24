@@ -54,9 +54,9 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     FeatureBucketerByOrder(const uint64 NumberOfPixelsHorizontal         = 1024U,
                            const uint64 NumberOfPixelsVertical           = 768U,
-                           const uint64 NumberOfBucketsHorizontal        = 8U,
-                           const uint64 NumberOfBucketsVertical          = 4U,
-                           const uint64 MaximumNumberOfFeaturesPerBucket = 5U);
+                           const uint8  NumberOfBucketsHorizontal        = 8U,
+                           const uint8  NumberOfBucketsVertical          = 4U,
+                           const uint8  MaximumNumberOfFeaturesPerBucket = 5U);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
@@ -69,9 +69,9 @@ public: // public methods
     /// \param[in] NumberOfPixelsVertical   Number of pixels in vertical direction.
     /// \param[in] FeatureMask              Mask defining the buckets and the number of features in each bucket.
     ///////////////////////////////////////////////////////////////////////////////
-    FeatureBucketerByOrder(const uint64        NumberOfPixelsHorizontal,
-                           const uint64        NumberOfPixelsVertical,
-                           const MatrixUInt64& FeatureMask);
+    FeatureBucketerByOrder(const uint64       NumberOfPixelsHorizontal,
+                           const uint64       NumberOfPixelsVertical,
+                           const MatrixUInt8& FeatureMask);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.

@@ -80,8 +80,8 @@ TEST_BUCKETSIZEHORIZONTAL_80_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_B
 {
     const uint64  NumberOfPixelsHorizontal  {800U};
     const uint64  NumberOfPixelsVertical    {400U};
-    const uint64  NumberOfBucketsHorizontal {10U};
-    const uint64  NumberOfBucketsVertical   {8U};
+    const uint8   NumberOfBucketsHorizontal {10U};
+    const uint8   NumberOfBucketsVertical   {8U};
     const float64 BucketSizeHorizontal      {80.0};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
@@ -98,12 +98,12 @@ TEST_BUCKETSIZEHORIZONTAL_80_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_B
 ///////////////////////////////////////////////////////////////////////////////
 TEST_BUCKETSIZEHORIZONTAL_250_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_BucketSizeHorizontal_250_ByChance_IsMatching)
 {
-    const uint64       NumberOfPixelsHorizontal  {1000U};
-    const uint64       NumberOfPixelsVertical    {600U};
-    const uint64       NumberOfBucketsHorizontal {4U};
-    const uint64       NumberOfBucketsVertical   {2U};
-    const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
-    const float64      BucketSizeHorizontal      {250.0};
+    const uint64      NumberOfPixelsHorizontal  {1000U};
+    const uint64      NumberOfPixelsVertical    {600U};
+    const uint8       NumberOfBucketsHorizontal {4U};
+    const uint8       NumberOfBucketsVertical   {2U};
+    const MatrixUInt8 FeatureMask               {MatrixUInt8::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
+    const float64     BucketSizeHorizontal      {250.0};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
@@ -136,8 +136,8 @@ TEST_BUCKETSIZEVERTICAL_50_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_Buc
 {
     const uint64  NumberOfPixelsHorizontal  {800U};
     const uint64  NumberOfPixelsVertical    {400U};
-    const uint64  NumberOfBucketsHorizontal {10U};
-    const uint64  NumberOfBucketsVertical   {8U};
+    const uint8   NumberOfBucketsHorizontal {10U};
+    const uint8   NumberOfBucketsVertical   {8U};
     const float64 BucketSizeVertical        {50.0};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
@@ -153,12 +153,12 @@ TEST_BUCKETSIZEVERTICAL_50_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_Buc
 ///////////////////////////////////////////////////////////////////////////////
 TEST_BUCKETSIZEVERTICAL_300_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_BucketSizeVertical_300_ByChance_IsMatching)
 {
-    const uint64       NumberOfPixelsHorizontal  {1000U};
-    const uint64       NumberOfPixelsVertical    {600U};
-    const uint64       NumberOfBucketsHorizontal {4U};
-    const uint64       NumberOfBucketsVertical   {2U};
-    const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
-    const float64      BucketSizeVertical        {300.0};
+    const uint64      NumberOfPixelsHorizontal  {1000U};
+    const uint64      NumberOfPixelsVertical    {600U};
+    const uint8       NumberOfBucketsHorizontal {4U};
+    const uint8       NumberOfBucketsVertical   {2U};
+    const MatrixUInt8 FeatureMask               {MatrixUInt8::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
+    const float64     BucketSizeVertical        {300.0};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
@@ -174,7 +174,7 @@ TEST_BUCKETSIZEVERTICAL_300_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_Bu
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSHORIZONTAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfBucketsHorizontal_DefaultConstructor_ByChance_IsMatching)
 {
-    const uint64 NumberOfBucketsHorizontal {8U};
+    const uint8 NumberOfBucketsHorizontal {8U};
 
     FeatureBucketerByChance Bucketer;
 
@@ -189,11 +189,11 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBuc
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSHORIZONTAL_4_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfBucketsHorizontal_4_ByChance_IsMatching)
 {
-    const uint64       NumberOfPixelsHorizontal  {1000U};
-    const uint64       NumberOfPixelsVertical    {600U};
-    const uint64       NumberOfBucketsHorizontal {4U};
-    const uint64       NumberOfBucketsVertical   {2U};
-    const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
+    const uint64      NumberOfPixelsHorizontal  {1000U};
+    const uint64      NumberOfPixelsVertical    {600U};
+    const uint8       NumberOfBucketsHorizontal {4U};
+    const uint8       NumberOfBucketsVertical   {2U};
+    const MatrixUInt8 FeatureMask               {MatrixUInt8::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
@@ -208,10 +208,10 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_4_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Te
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSHORIZONTAL_10_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfBucketsHorizontal_10_ByChance_IsMatching)
 {
-    const uint64  NumberOfPixelsHorizontal  {800U};
-    const uint64  NumberOfPixelsVertical    {400U};
-    const uint64  NumberOfBucketsHorizontal {10U};
-    const uint64  NumberOfBucketsVertical   {8U};
+    const uint64 NumberOfPixelsHorizontal  {800U};
+    const uint64 NumberOfPixelsVertical    {400U};
+    const uint8  NumberOfBucketsHorizontal {10U};
+    const uint8  NumberOfBucketsVertical   {8U};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
@@ -227,7 +227,7 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_10_BYCHANCE_ISMATCHING(FeatureBucketerByChance, T
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSVERTICAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfBucketsVertical_DefaultConstructor_ByChance_IsMatching)
 {
-    const uint64 NumberOfBucketsVertical {4U};
+    const uint8 NumberOfBucketsVertical {4U};
 
     FeatureBucketerByChance Bucketer;
 
@@ -242,11 +242,11 @@ TEST_NUMBEROFBUCKETSVERTICAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBucke
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSVERTICAL_2_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfBucketsVertical_2_ByChance_IsMatching)
 {
-    const uint64       NumberOfPixelsHorizontal  {1000U};
-    const uint64       NumberOfPixelsVertical    {600U};
-    const uint64       NumberOfBucketsHorizontal {4U};
-    const uint64       NumberOfBucketsVertical   {2U};
-    const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
+    const uint64      NumberOfPixelsHorizontal  {1000U};
+    const uint64      NumberOfPixelsVertical    {600U};
+    const uint8       NumberOfBucketsHorizontal {4U};
+    const uint8       NumberOfBucketsVertical   {2U};
+    const MatrixUInt8 FeatureMask               {MatrixUInt8::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
@@ -261,10 +261,10 @@ TEST_NUMBEROFBUCKETSVERTICAL_2_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFBUCKETSVERTICAL_8_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfBucketsVertical_8_ByChance_IsMatching)
 {
-    const uint64  NumberOfPixelsHorizontal  {800U};
-    const uint64  NumberOfPixelsVertical    {400U};
-    const uint64  NumberOfBucketsHorizontal {10U};
-    const uint64  NumberOfBucketsVertical   {8U};
+    const uint64 NumberOfPixelsHorizontal  {800U};
+    const uint64 NumberOfPixelsVertical    {400U};
+    const uint8  NumberOfBucketsHorizontal {10U};
+    const uint8  NumberOfBucketsVertical   {8U};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
@@ -282,8 +282,8 @@ TEST_NUMBEROFINDICES_8_SELECTED_0_REJECTED_BYCHANCE_ISMATCHING(FeatureBucketerBy
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
-    const uint64 NumberOfBucketsHorizontal        {4U};
-    const uint64 NumberOfBucketsVertical          {2U};
+    const uint8  NumberOfBucketsHorizontal        {4U};
+    const uint8  NumberOfBucketsVertical          {2U};
     const uint64 MaximumNumberOfFeaturesPerBucket {1U};
     const uint64 SeedValue                        {0U};
     const uint64 NumberOfSelectedIndicesExpected  {8U};
@@ -296,11 +296,11 @@ TEST_NUMBEROFINDICES_8_SELECTED_0_REJECTED_BYCHANCE_ISMATCHING(FeatureBucketerBy
     const float64 BucketSizeHorizontal {Bucketer.GetBucketSizeHorizontal()};
     const float64 BucketSizeVertical   {Bucketer.GetBucketSizeVertical()};
 
-    for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+    for(uint8 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
     {
         const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row))};
 
-        for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+        for(uint8 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
         {
             const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column))};
 
@@ -330,8 +330,8 @@ TEST_NUMBEROFINDICES_16_SELECTED_8_REJECTED_BYCHANCE_ISMATCHING(FeatureBucketerB
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
-    const uint64 NumberOfBucketsHorizontal        {4U};
-    const uint64 NumberOfBucketsVertical          {2U};
+    const uint8  NumberOfBucketsHorizontal        {4U};
+    const uint8  NumberOfBucketsVertical          {2U};
     const uint64 MaximumNumberOfFeaturesPerBucket {2U};
     const uint64 SeedValue                        {0U};
     const uint64 NumberOfSelectedIndicesExpected  {16U};
@@ -348,11 +348,11 @@ TEST_NUMBEROFINDICES_16_SELECTED_8_REJECTED_BYCHANCE_ISMATCHING(FeatureBucketerB
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
-        for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+        for(uint8 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
         {
             const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
-            for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+            for(uint8 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
             {
                 const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
@@ -396,10 +396,10 @@ TEST_NUMBEROFPIXELSHORIZONTAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBuck
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFPIXELSHORIZONTAL_800_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfPixelsHorizontal_800_ByChance_IsMatching)
 {
-    const uint64  NumberOfPixelsHorizontal  {800U};
-    const uint64  NumberOfPixelsVertical    {400U};
-    const uint64  NumberOfBucketsHorizontal {10U};
-    const uint64  NumberOfBucketsVertical   {8U};
+    const uint64 NumberOfPixelsHorizontal  {800U};
+    const uint64 NumberOfPixelsVertical    {400U};
+    const uint8  NumberOfBucketsHorizontal {10U};
+    const uint8  NumberOfBucketsVertical   {8U};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
@@ -414,11 +414,11 @@ TEST_NUMBEROFPIXELSHORIZONTAL_800_BYCHANCE_ISMATCHING(FeatureBucketerByChance, T
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFPIXELSHORIZONTAL_1000_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfPixelsHorizontal_1000_ByChance_IsMatching)
 {
-    const uint64       NumberOfPixelsHorizontal  {1000U};
-    const uint64       NumberOfPixelsVertical    {600U};
-    const uint64       NumberOfBucketsHorizontal {4U};
-    const uint64       NumberOfBucketsVertical   {2U};
-    const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsHorizontal, NumberOfBucketsVertical)};
+    const uint64      NumberOfPixelsHorizontal  {1000U};
+    const uint64      NumberOfPixelsVertical    {600U};
+    const uint8       NumberOfBucketsHorizontal {4U};
+    const uint8       NumberOfBucketsVertical   {2U};
+    const MatrixUInt8 FeatureMask               {MatrixUInt8::Zero(NumberOfBucketsHorizontal, NumberOfBucketsVertical)};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
@@ -449,10 +449,10 @@ TEST_NUMBEROFPIXELSVERTICAL_DEFAULTCONSTRUCTOR_BYCHANCE_ISMATCHING(FeatureBucket
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFPIXELSVERTICAL_400_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfPixelsVertical_400_ByChance_IsMatching)
 {
-    const uint64  NumberOfPixelsHorizontal  {800U};
-    const uint64  NumberOfPixelsVertical    {400U};
-    const uint64  NumberOfBucketsHorizontal {10U};
-    const uint64  NumberOfBucketsVertical   {8U};
+    const uint64 NumberOfPixelsHorizontal  {800U};
+    const uint64 NumberOfPixelsVertical    {400U};
+    const uint8  NumberOfBucketsHorizontal {10U};
+    const uint8  NumberOfBucketsVertical   {8U};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
@@ -467,11 +467,11 @@ TEST_NUMBEROFPIXELSVERTICAL_400_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFPIXELSVERTICAL_600_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_NumberOfPixelsVertical_600_ByChance_IsMatching)
 {
-    const uint64       NumberOfPixelsHorizontal  {1000U};
-    const uint64       NumberOfPixelsVertical    {600U};
-    const uint64       NumberOfBucketsHorizontal {4U};
-    const uint64       NumberOfBucketsVertical   {2U};
-    const MatrixUInt64 FeatureMask               {MatrixUInt64::Zero(NumberOfBucketsHorizontal, NumberOfBucketsVertical)};
+    const uint64      NumberOfPixelsHorizontal  {1000U};
+    const uint64      NumberOfPixelsVertical    {600U};
+    const uint8       NumberOfBucketsHorizontal {4U};
+    const uint8       NumberOfBucketsVertical   {2U};
+    const MatrixUInt8 FeatureMask               {MatrixUInt8::Zero(NumberOfBucketsHorizontal, NumberOfBucketsVertical)};
 
     FeatureBucketerByChance Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
@@ -489,8 +489,8 @@ TEST_REJECTEDFEATURE_3_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
-    const uint64 NumberOfBucketsHorizontal        {4U};
-    const uint64 NumberOfBucketsVertical          {2U};
+    const uint8  NumberOfBucketsHorizontal        {4U};
+    const uint8  NumberOfBucketsVertical          {2U};
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
     const uint64 SeedValue                        {0U};
 
@@ -505,11 +505,11 @@ TEST_REJECTEDFEATURE_3_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
-        for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+        for(uint8 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
         {
             const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
-            for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+            for(uint8 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
             {
                 const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
@@ -544,8 +544,8 @@ TEST_REJECTEDFEATURE_3_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
-    const uint64 NumberOfBucketsHorizontal        {4U};
-    const uint64 NumberOfBucketsVertical          {2U};
+    const uint8  NumberOfBucketsHorizontal        {4U};
+    const uint8  NumberOfBucketsVertical          {2U};
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
     const uint64 SeedValue                        {127U};
 
@@ -560,11 +560,11 @@ TEST_REJECTEDFEATURE_3_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
-        for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+        for(uint8 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
         {
             const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
-            for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+            for(uint8 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
             {
                 const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
@@ -599,8 +599,8 @@ TEST_SELECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
-    const uint64 NumberOfBucketsHorizontal        {4U};
-    const uint64 NumberOfBucketsVertical          {2U};
+    const uint8  NumberOfBucketsHorizontal        {4U};
+    const uint8  NumberOfBucketsVertical          {2U};
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
     const uint64 SeedValue                        {0U};
 
@@ -615,11 +615,11 @@ TEST_SELECTEDFEATURE_0_SEED_0_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Test_
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
-        for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+        for(uint8 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
         {
             const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
-            for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+            for(uint8 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
             {
                 const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
@@ -654,8 +654,8 @@ TEST_SELECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
 {
     const uint64 NumberOfPixelsHorizontal         {600U};
     const uint64 NumberOfPixelsVertical           {200U};
-    const uint64 NumberOfBucketsHorizontal        {4U};
-    const uint64 NumberOfBucketsVertical          {2U};
+    const uint8  NumberOfBucketsHorizontal        {4U};
+    const uint8  NumberOfBucketsVertical          {2U};
     const uint64 MaximumNumberOfFeaturesPerBucket {3U};
     const uint64 SeedValue                        {127U};
 
@@ -670,11 +670,11 @@ TEST_SELECTEDFEATURE_0_SEED_127_BYCHANCE_ISMATCHING(FeatureBucketerByChance, Tes
 
     for(uint64 i_ImagePoint {0U}; i_ImagePoint < NumberOfFeaturesPerBucket; i_ImagePoint++)
     {
-        for(uint64 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
+        for(uint8 i_Row {0U}; i_Row < NumberOfBucketsVertical; i_Row++)
         {
             const float64 CoordinateVertical {BucketSizeVertical * (0.5 + static_cast<float64>(i_Row)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
-            for(uint64 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
+            for(uint8 i_Column {0U}; i_Column < NumberOfBucketsHorizontal; i_Column++)
             {
                 const float64 CoordinateHorizontal {BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 

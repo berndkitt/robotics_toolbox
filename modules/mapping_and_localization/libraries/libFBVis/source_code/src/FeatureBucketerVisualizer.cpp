@@ -163,8 +163,8 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
         if(m_DrawGrid)
         {
             // get bucket information
-            const uint64  NumberOfBucketsHorizontal {Bucketer.GetNumberOfBucketsHorizontal()};
-            const uint64  NumberOfBucketsVertical   {Bucketer.GetNumberOfBucketsVertical()};
+            const uint8   NumberOfBucketsHorizontal {Bucketer.GetNumberOfBucketsHorizontal()};
+            const uint8   NumberOfBucketsVertical   {Bucketer.GetNumberOfBucketsVertical()};
             const float64 BucketSizeHorizontal      {Bucketer.GetBucketSizeHorizontal()};
             const float64 BucketSizeVertical        {Bucketer.GetBucketSizeVertical()};
 
@@ -194,8 +194,8 @@ void FeatureBucketerVisualizer::DrawFeatures(const ListColumnVectorFloat64_2d& I
     }
 }
 
-void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
-                                         uint64   NumberOfBucketsVertical,
+void FeatureBucketerVisualizer::DrawGrid(uint8    NumberOfBucketsHorizontal,
+                                         uint8    NumberOfBucketsVertical,
                                          float64  BucketSizeHorizontal,
                                          float64  BucketSizeVertical,
                                          cv::Mat& BucketingImage) const
@@ -208,7 +208,7 @@ void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
     const float64 Offset {static_cast<float64>(m_LineThickness) * 0.5};
 
     // plot horizontal lines
-    for(uint64 i_Line {0U}; i_Line < (NumberOfBucketsVertical + 1U); i_Line++)
+    for(uint8 i_Line {0U}; i_Line < (NumberOfBucketsVertical + 1U); i_Line++)
     {
         // get vertical coordinate of the line
         float64 CoordinateVertical {static_cast<float64>(i_Line) * BucketSizeVertical};
@@ -235,7 +235,7 @@ void FeatureBucketerVisualizer::DrawGrid(uint64   NumberOfBucketsHorizontal,
     }
 
     // plot vertical lines
-    for(uint64 i_Line {0U}; i_Line < (NumberOfBucketsHorizontal + 1U); i_Line++)
+    for(uint8 i_Line {0U}; i_Line < (NumberOfBucketsHorizontal + 1U); i_Line++)
     {
         // get horizontal coordinate of the line
         float64 CoordinateHorizontal {static_cast<float64>(i_Line) * BucketSizeHorizontal};
