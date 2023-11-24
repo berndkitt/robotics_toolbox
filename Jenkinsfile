@@ -90,6 +90,13 @@ pipeline
                                 sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 20.0 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
+                        stage("Doxygen")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/environment_modeling/libraries/ --entity libWPG --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/"
+                            }
+                        }
                     }
                 }
             }
@@ -133,6 +140,13 @@ pipeline
                                 sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 25.4 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
+                        stage("Doxygen")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFB --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/"
+                            }
+                        }
                     }
                 }
                 stage("libFBVis")
@@ -161,6 +175,13 @@ pipeline
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_summary.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_details.html"
+                            }
+                        }
+                        stage("Doxygen")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
                             }
                         }
                     }
