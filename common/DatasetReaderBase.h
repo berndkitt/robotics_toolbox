@@ -86,11 +86,11 @@ protected: // protected methods
     /// \param[out] ListFilenamesWithPath List of filenames found, including the absolute path.
     /// \param[out] NumberOfFilesFound    Number of files found.
     ///////////////////////////////////////////////////////////////////////////////
-    void ExtractFilesInDirectory(const std::filesystem::path     Path,
-                                 const std::string               FileBasename,
-                                 const std::string               FileExtension,
-                                       std::vector<std::string>& ListFilenamesWithPath,
-                                       uint64&                   NumberOfFilesFound);
+    static void ExtractFilesInDirectory(const std::filesystem::path     Path,
+                                        const std::string               FileBasename,
+                                        const std::string               FileExtension,
+                                              std::vector<std::string>& ListFilenamesWithPath,
+                                              uint64&                   NumberOfFilesFound);
 };
 
 #endif // DATASETREADERBASE_H

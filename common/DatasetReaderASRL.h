@@ -62,8 +62,8 @@ protected: // protected methods
     /// \param[in] FileTimestampsWithPath File containing the timestamps, including the absolute path.
     /// \param[in] ListTimestamps         List of timestamps.
     ///////////////////////////////////////////////////////////////////////////////
-    uint64 ExtractTimestamps(const std::filesystem::path FileTimestampsWithPath,
-                                   ListUInt64&           ListTimestamps);
+    static uint64 ExtractTimestamps(const std::filesystem::path FileTimestampsWithPath,
+                                          ListUInt64&           ListTimestamps);
 };
 
 #endif // DATASETREADERASRL_H
