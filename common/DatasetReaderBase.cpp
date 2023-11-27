@@ -27,7 +27,11 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 DatasetReaderBase::DatasetReaderBase(const std::string& BaseDirectory,
                                      const std::string& SequenceName) : m_BaseDirectory{BaseDirectory},
-                                                                        m_SequenceName{SequenceName}
+                                                                        m_SequenceName{SequenceName},
+                                                                        m_NumberOfImagesStereoLeft{0U},
+                                                                        m_NumberOfImagesStereoRight{0U},
+                                                                        m_NumberOfTimestampsStereoLeft{0U},
+                                                                        m_NumberOfTimestampsStereoRight{0U}
 {
 
 }
