@@ -7,6 +7,8 @@
         "BUILDUSER",
         "BYCHANCE",
         "BYORDER",
+        "DATASETREADERASRL",
+        "DATASETREADERBASE",
         "DEFAULTARGUMENT",
         "DEFAULTCONSTRUCTOR",
         "FEATUREBUCKETER",
@@ -50,6 +52,7 @@
         "imwrite"
     ],
     "words": [
+        "ASRL",
         "Bernd",
         "bucketers",
         "Doxyfile",
@@ -58,6 +61,7 @@
         "Eigen",
         "Gcovr",
         "Kitt",
+        "Multiseason",
         "OpenCV",
         "swappable"
     ]
