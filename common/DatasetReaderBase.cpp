@@ -28,7 +28,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 DatasetReaderBase::DatasetReaderBase(const std::string BaseDirectory,
                                      const std::string SequenceName)
 {
-    // set internal attributes
+// set internal attributes
     m_BaseDirectory = BaseDirectory;
     m_SequenceName  = SequenceName;
 }
@@ -53,10 +53,10 @@ void DatasetReaderBase::ExtractFilesInDirectory(const std::filesystem::path     
     // get files in the directory (i.e. iterate over all files)
     std::filesystem::directory_iterator DirectoryIterator(Path);
 
-    for(auto& p: DirectoryIterator)
+    for(const auto& FilenameWithPath: DirectoryIterator)
     {
         // get filename of current file
-        const std::string Filename {p.path().filename()};
+        const std::string Filename {FilenameWithPath.path().filename()};
 
         // check whether the name of the current file starts with specified basename and ends with specified extension
         const boolean HasCorrectBasename  {Filename.find(FileBasename) == 0};
@@ -64,7 +64,7 @@ void DatasetReaderBase::ExtractFilesInDirectory(const std::filesystem::path     
 
         if(HasCorrectBasename && HasCorrectExtension)
         {
-            ListFilenamesWithPath.push_back(Path / p.path().filename());
+            ListFilenamesWithPath.push_back(Path / Filename);
         }
     }
 
