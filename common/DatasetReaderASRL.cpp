@@ -74,9 +74,9 @@ uint64 DatasetReaderASRL::ExtractTimestamps(const std::filesystem::path FileTime
 
     while(std::getline(infile, line))
     {
-        uint64 Vertex;
-        uint64 TimestampNanoseconds;
-        char   Delimiter;
+        uint64 Vertex               = 0U;
+        uint64 TimestampNanoseconds = 0U;
+        char   Delimiter            = ' ';
 
         std::istringstream iss(line);
 
