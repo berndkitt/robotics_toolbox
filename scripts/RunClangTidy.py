@@ -38,7 +38,7 @@ if __name__ == "__main__":
     # run Clang-Tidy
     output_file_with_path = args.output_path + "clang_tidy_results.txt"
 
-    os.system("clang-tidy " + string_list_of_files + " -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4 > " + output_file_with_path)
+    os.system("clang-tidy " + string_list_of_files + " --extra-arg=-std=c++17 -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4 > " + output_file_with_path)
 
     # open output file
     clang_tidy_results_file = open(output_file_with_path, "r")

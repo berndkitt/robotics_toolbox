@@ -6,7 +6,7 @@
             "detail": "Trigger Clang-Tidy checks for all C++ files",
             "type": "shell",
             "group": "test",
-            "command": "clang-tidy ./common/**/*.cpp ./modules/**/*.cpp -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4",
+            "command": "clang-tidy ./common/**/*.cpp ./modules/**/*.cpp --extra-arg=-std=c++17 -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
