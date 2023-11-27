@@ -47,8 +47,8 @@ public: // public methods
     /// \param[in] BaseDirectory Absolute path to the base directory of the dataset.
     /// \param[in] SequenceName  Relative path to the sequence (w.r.t. the base directory).
     ///////////////////////////////////////////////////////////////////////////////
-    DatasetReaderASRL(const std::string BaseDirectory,
-                      const std::string SequenceName);
+    DatasetReaderASRL(const std::string& BaseDirectory,
+                      const std::string& SequenceName);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
@@ -62,8 +62,8 @@ protected: // protected methods
     /// \param[in] FileTimestampsWithPath File containing the timestamps, including the absolute path.
     /// \param[in] ListTimestamps         List of timestamps.
     ///////////////////////////////////////////////////////////////////////////////
-    static uint64 ExtractTimestamps(const std::filesystem::path FileTimestampsWithPath,
-                                          ListUInt64&           ListTimestamps);
+    static uint64 ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
+                                          ListUInt64&            ListTimestamps);
 };
 
 #endif // DATASETREADERASRL_H

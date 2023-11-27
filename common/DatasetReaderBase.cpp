@@ -25,12 +25,11 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "DatasetReaderBase.h"
 
-DatasetReaderBase::DatasetReaderBase(const std::string BaseDirectory,
-                                     const std::string SequenceName)
+DatasetReaderBase::DatasetReaderBase(const std::string& BaseDirectory,
+                                     const std::string& SequenceName) : m_BaseDirectory{BaseDirectory},
+                                                                        m_SequenceName{SequenceName}
 {
-// set internal attributes
-    m_BaseDirectory = BaseDirectory;
-    m_SequenceName  = SequenceName;
+
 }
 
 DatasetReaderBase::~DatasetReaderBase()
@@ -38,9 +37,9 @@ DatasetReaderBase::~DatasetReaderBase()
 
 }
 
-void DatasetReaderBase::ExtractFilesInDirectory(const std::filesystem::path     Path,
-                                                const std::string               FileBasename,
-                                                const std::string               FileExtension,
+void DatasetReaderBase::ExtractFilesInDirectory(const std::filesystem::path&    Path,
+                                                const std::string&              FileBasename,
+                                                const std::string&              FileExtension,
                                                       std::vector<std::string>& ListFilenamesWithPath,
                                                       uint64&                   NumberOfFilesFound)
 {

@@ -27,8 +27,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "DatasetReaderASRL.h"
 
-DatasetReaderASRL::DatasetReaderASRL(const std::string BaseDirectory,
-                                     const std::string SequenceName) : DatasetReaderBase(BaseDirectory, SequenceName)
+DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
+                                     const std::string& SequenceName) : DatasetReaderBase(BaseDirectory, SequenceName)
 {
     // set information for the stereo camera information
     m_RelativePathImagesStereoLeft        = "images/left/";
@@ -60,8 +60,8 @@ DatasetReaderASRL::~DatasetReaderASRL()
 
 }
 
-uint64 DatasetReaderASRL::ExtractTimestamps(const std::filesystem::path FileTimestampsWithPath,
-                                                  ListUInt64&           ListTimestamps)
+uint64 DatasetReaderASRL::ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
+                                                  ListUInt64&            ListTimestamps)
 {
     // initialize number of timestamps found
     uint64 NumberOfTimestampsFound = 0;

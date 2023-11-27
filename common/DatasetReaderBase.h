@@ -68,8 +68,8 @@ public: // public methods
     /// \param[in] BaseDirectory Absolute path to the base directory of the dataset.
     /// \param[in] SequenceName  Relative path to the sequence (w.r.t. the base directory).
     ///////////////////////////////////////////////////////////////////////////////
-    DatasetReaderBase(const std::string BaseDirectory,
-                      const std::string SequenceName);
+    DatasetReaderBase(const std::string& BaseDirectory,
+                      const std::string& SequenceName);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
@@ -86,9 +86,9 @@ protected: // protected methods
     /// \param[out] ListFilenamesWithPath List of filenames found, including the absolute path.
     /// \param[out] NumberOfFilesFound    Number of files found.
     ///////////////////////////////////////////////////////////////////////////////
-    static void ExtractFilesInDirectory(const std::filesystem::path     Path,
-                                        const std::string               FileBasename,
-                                        const std::string               FileExtension,
+    static void ExtractFilesInDirectory(const std::filesystem::path&    Path,
+                                        const std::string&              FileBasename,
+                                        const std::string&              FileExtension,
                                               std::vector<std::string>& ListFilenamesWithPath,
                                               uint64&                   NumberOfFilesFound);
 };
