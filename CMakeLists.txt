@@ -59,7 +59,6 @@ if(NOT ${SIZE_UINT64} STREQUAL ${BYTES_64_BIT})
     message(FATAL_ERROR "Type 'unsigned long' is not of size ${BYTES_64_BIT} byte but of size ${SIZE_UINT64} byte.")
 endif()
 
-
 # define build options
 set(OPTION_BUILD_UNIT_TESTS ON CACHE BOOL "Build the unit tests of the modules.")
 
