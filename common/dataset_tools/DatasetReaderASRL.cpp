@@ -31,7 +31,7 @@ DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
                                      const std::string& SequenceName) : DatasetReaderBase(BaseDirectory, SequenceName)
 {
     // set information for the stereo camera information
-    m_RelativePathImagesStereoLeft        = "images/left/";
+    m_RelativePathImagesStereoLeft        = "images/left";
     m_RelativePathImagesStereoRight       = "images/right";
     m_FileBasenameImagesStereoLeft        = "";
     m_FileBasenameImagesStereoRight       = "";
