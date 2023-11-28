@@ -94,6 +94,13 @@ public: // public methods
     void GetImageInformationStereoRight(uint32            Index,
                                         ImageInformation& ImageInformation) const;
 
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief  Getter for the number of frames in the dataset.
+    ///
+    /// \return Number of frames in the dataset.
+    ///////////////////////////////////////////////////////////////////////////////
+    uint32 GetNumberOfFrames() const;
+
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief      Extracts the list of files in a directory.

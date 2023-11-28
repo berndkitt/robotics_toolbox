@@ -59,6 +59,14 @@ void DatasetReaderBase::GetImageInformationStereoRight(uint32            Index,
     ImageInformation.FilenameWithAbsolutePath = m_FilenamesWithPathImagesStereoRight[Index];
 }
 
+uint32 DatasetReaderBase::GetNumberOfFrames() const
+{
+    // get number of frames (based on the list of the left stereo camera images)
+    const uint32 NumberOfFrames {m_FilenamesWithPathImagesStereoLeft.size()};
+
+    return NumberOfFrames;
+}
+
 void DatasetReaderBase::ExtractFilesInDirectory(const std::filesystem::path&    Path,
                                                 const std::string&              FileBasename,
                                                 const std::string&              FileExtension,
