@@ -7,6 +7,7 @@
         "BUILDUSER",
         "BYCHANCE",
         "BYORDER",
+        "DATASETREADER",
         "DATASETREADERASRL",
         "DATASETREADERBASE",
         "DATASETREADERKITTI",
@@ -49,10 +50,12 @@
         "berndkitt",
         "bugprone",
         "cppcoreguidelines",
+        "imread",
         "imshow",
         "imwrite"
     ],
     "words": [
+        "Artisense",
         "ASRL",
         "Bernd",
         "bucketers",
