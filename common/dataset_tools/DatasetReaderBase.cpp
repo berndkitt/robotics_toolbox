@@ -41,7 +41,7 @@ DatasetReaderBase::~DatasetReaderBase()
 
 }
 
-void DatasetReaderBase::GetImageInformationStereoLeft(uint32            Index,
+void DatasetReaderBase::GetImageInformationStereoLeft(uint64            Index,
                                                       ImageInformation& ImageInformation) const
 {
     // collect image information
@@ -50,7 +50,7 @@ void DatasetReaderBase::GetImageInformationStereoLeft(uint32            Index,
     ImageInformation.FilenameWithAbsolutePath = m_FilenamesWithPathImagesStereoLeft[Index];
 }
 
-void DatasetReaderBase::GetImageInformationStereoRight(uint32            Index,
+void DatasetReaderBase::GetImageInformationStereoRight(uint64            Index,
                                                        ImageInformation& ImageInformation) const
 {
     // collect image information
@@ -59,10 +59,10 @@ void DatasetReaderBase::GetImageInformationStereoRight(uint32            Index,
     ImageInformation.FilenameWithAbsolutePath = m_FilenamesWithPathImagesStereoRight[Index];
 }
 
-uint32 DatasetReaderBase::GetNumberOfFrames() const
+uint64 DatasetReaderBase::GetNumberOfFrames() const
 {
     // get number of frames (based on the list of the left stereo camera images)
-    const uint32 NumberOfFrames {m_FilenamesWithPathImagesStereoLeft.size()};
+    uint64 NumberOfFrames {m_FilenamesWithPathImagesStereoLeft.size()};
 
     return NumberOfFrames;
 }

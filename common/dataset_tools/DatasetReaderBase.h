@@ -82,7 +82,7 @@ public: // public methods
     /// \param[in]  Index Index of the image.
     /// \param[out] Index Image information of the left stereo camera image.
     ///////////////////////////////////////////////////////////////////////////////
-    void GetImageInformationStereoLeft(uint32            Index,
+    void GetImageInformationStereoLeft(uint64            Index,
                                        ImageInformation& ImageInformation) const;
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ public: // public methods
     /// \param[in]  Index Index of the image.
     /// \param[out] Index Image information of the right stereo camera image.
     ///////////////////////////////////////////////////////////////////////////////
-    void GetImageInformationStereoRight(uint32            Index,
+    void GetImageInformationStereoRight(uint64            Index,
                                         ImageInformation& ImageInformation) const;
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ public: // public methods
     ///
     /// \return Number of frames in the dataset.
     ///////////////////////////////////////////////////////////////////////////////
-    uint32 GetNumberOfFrames() const;
+    uint64 GetNumberOfFrames() const;
 
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
