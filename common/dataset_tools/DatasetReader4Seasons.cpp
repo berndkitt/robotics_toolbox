@@ -98,4 +98,3 @@ uint64 DatasetReader4Seasons::ExtractTimestamps(const std::filesystem::path& Fil
 
     return NumberOfTimestampsFound;
 }
-
