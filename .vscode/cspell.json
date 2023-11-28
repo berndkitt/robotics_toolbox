@@ -9,6 +9,7 @@
         "BYORDER",
         "DATASETREADERASRL",
         "DATASETREADERBASE",
+        "DATASETREADERKITTI",
         "DEFAULTARGUMENT",
         "DEFAULTCONSTRUCTOR",
         "FEATUREBUCKETER",
@@ -61,7 +62,9 @@
         "Eigen",
         "Gcovr",
         "Kitt",
+        "KITTI",
         "Multiseason",
+        "Odometry",
         "OpenCV",
         "swappable"
     ]
