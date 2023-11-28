@@ -28,7 +28,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include <filesystem>
 
-#include "GlobalTypesDerived.h"
+#include "../GlobalTypesDerived.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \class DatasetReaderBase
@@ -75,6 +75,24 @@ public: // public methods
     /// \brief Destructor.
     ///////////////////////////////////////////////////////////////////////////////
     virtual ~DatasetReaderBase();
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief      Getter for the information of the left stereo camera image.
+    ///
+    /// \param[in]  Index Index of the image.
+    /// \param[out] Index Image information of the left stereo camera image.
+    ///////////////////////////////////////////////////////////////////////////////
+    void GetImageInformationStereoLeft(uint32            Index,
+                                       ImageInformation& ImageInformation) const;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief      Getter for the information of the right stereo camera image.
+    ///
+    /// \param[in]  Index Index of the image.
+    /// \param[out] Index Image information of the right stereo camera image.
+    ///////////////////////////////////////////////////////////////////////////////
+    void GetImageInformationStereoRight(uint32            Index,
+                                        ImageInformation& ImageInformation) const;
 
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////

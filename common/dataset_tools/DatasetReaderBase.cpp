@@ -41,6 +41,24 @@ DatasetReaderBase::~DatasetReaderBase()
 
 }
 
+void DatasetReaderBase::GetImageInformationStereoLeft(uint32            Index,
+                                                      ImageInformation& ImageInformation) const
+{
+    // collect image information
+    ImageInformation.IsValid                  = true;
+    ImageInformation.Timestamp                = m_TimestampsImagesStereoLeftNanoseconds[Index];
+    ImageInformation.FilenameWithAbsolutePath = m_FilenamesWithPathImagesStereoLeft[Index];
+}
+
+void DatasetReaderBase::GetImageInformationStereoRight(uint32            Index,
+                                                       ImageInformation& ImageInformation) const
+{
+    // collect image information
+    ImageInformation.IsValid                  = true;
+    ImageInformation.Timestamp                = m_TimestampsImagesStereoRightNanoseconds[Index];
+    ImageInformation.FilenameWithAbsolutePath = m_FilenamesWithPathImagesStereoRight[Index];
+}
+
 void DatasetReaderBase::ExtractFilesInDirectory(const std::filesystem::path&    Path,
                                                 const std::string&              FileBasename,
                                                 const std::string&              FileExtension,

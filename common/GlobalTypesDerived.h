@@ -86,4 +86,17 @@ using ListMatrixBoolean = std::vector< MatrixBoolean, Eigen::aligned_allocator<M
 // lists of matrices
 using ListMatrixFloat64_4d = std::vector< MatrixFloat64_4d, Eigen::aligned_allocator<MatrixFloat64_4d> >;   ///< Alias for lists containing 4x4 square matrices of 64-bit floating point values.
 
+// structs
+///////////////////////////////////////////////////////////////////////////////
+/// \struct ImageInformation
+///
+/// \brief  Container for the image information.
+///////////////////////////////////////////////////////////////////////////////
+struct ImageInformation
+{
+    boolean     IsValid;                    ///< Flag whether the information is valid or not.
+    uint64      Timestamp;                  ///< Timestamp of the image in nanoseconds.
+    std::string FilenameWithAbsolutePath;   ///< Filename of the image including its absolute path.
+};
+
 #endif // GLOBALTYPESDERIVED_H
