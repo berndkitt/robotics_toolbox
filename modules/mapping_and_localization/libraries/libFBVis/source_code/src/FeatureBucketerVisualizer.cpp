@@ -89,6 +89,9 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
                                                      const ListColumnVectorFloat64_2d& ImagePoints,
                                                            cv::Mat&                    BucketingImage) const
 {
+    // convert bucketing image to color image
+    cv::cvtColor(BucketingImage, BucketingImage, cv::COLOR_GRAY2BGR);
+
     // get selected and rejected indices
     const ListUInt64& SelectedIndices {Bucketer.GetSelectedIndices()};
     const ListUInt64& Rejectedindices {Bucketer.GetRejectedIndices()};
