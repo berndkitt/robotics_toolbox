@@ -28,7 +28,22 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include <filesystem>
 
+#include <opencv2/core/core.hpp>
+
 #include "../GlobalTypesDerived.h"
+
+///////////////////////////////////////////////////////////////////////////////
+/// \struct ImageInformation
+///
+/// \brief  Container for the image information.
+///////////////////////////////////////////////////////////////////////////////
+struct ImageInformation
+{
+    boolean     IsValid;                    ///< Flag whether the information is valid or not.
+    uint64      Timestamp;                  ///< Timestamp of the image in nanoseconds.
+    std::string FilenameWithAbsolutePath;   ///< Filename of the image including its absolute path.
+    cv::Mat     ImageGrayscale;             ///< Grayscale image.
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \class DatasetReaderBase

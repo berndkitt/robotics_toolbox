@@ -23,7 +23,6 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
 #include "DatasetReaderBase.h"
@@ -58,6 +57,7 @@ void DatasetReaderBase::GetImageInformationStereoLeft(uint64            Index,
     ImageInformation.IsValid                  = true;
     ImageInformation.Timestamp                = m_TimestampsImagesStereoLeftNanoseconds[Index];
     ImageInformation.FilenameWithAbsolutePath = m_FilenamesWithPathImagesStereoLeft[Index];
+    ImageInformation.ImageGrayscale           = cv::imread(ImageInformation.FilenameWithAbsolutePath, cv::IMREAD_GRAYSCALE);
 }
 
 void DatasetReaderBase::GetImageInformationStereoRight(uint64            Index,
@@ -67,6 +67,7 @@ void DatasetReaderBase::GetImageInformationStereoRight(uint64            Index,
     ImageInformation.IsValid                  = true;
     ImageInformation.Timestamp                = m_TimestampsImagesStereoRightNanoseconds[Index];
     ImageInformation.FilenameWithAbsolutePath = m_FilenamesWithPathImagesStereoRight[Index];
+    ImageInformation.ImageGrayscale           = cv::imread(ImageInformation.FilenameWithAbsolutePath, cv::IMREAD_GRAYSCALE);
 }
 
 uint32 DatasetReaderBase::GetImageWidthStereoImages() const
