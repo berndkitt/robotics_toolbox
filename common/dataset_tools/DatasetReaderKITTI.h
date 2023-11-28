@@ -60,6 +60,8 @@ protected: // protected methods
     ///
     /// \param[in] FileTimestampsWithPath File containing the timestamps, including the absolute path.
     /// \param[in] ListTimestamps         List of timestamps.
+    ///
+    /// \return    Number of timestamps found.
     ///////////////////////////////////////////////////////////////////////////////
     static uint64 ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
                                           ListUInt64&            ListTimestamps);
