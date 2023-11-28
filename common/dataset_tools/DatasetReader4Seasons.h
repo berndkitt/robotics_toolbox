@@ -34,7 +34,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 /// \brief Dataset reader for the 4Seasons datasets.
 ///
 /// This dataset reader can be used to read the information from the "4Seasons"
-/// datasets (see https://www.4seasons-dataset.com/).
+/// datasets provided by the Technical University of Munich and Artisense (see
+/// https://www.4seasons-dataset.com/).
 ///////////////////////////////////////////////////////////////////////////////
 class DatasetReader4Seasons : public DatasetReaderBase
 {

@@ -34,7 +34,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 /// \brief Dataset reader for the KITTI dataset.
 ///
 /// This dataset reader can be used to read the information from the KITTI
-/// Visual Odometry dataset (see
+/// Visual Odometry dataset provided by the Karlsruhe Institute of Technology
+/// and the Toyota Technological Institute (see
 /// https://www.cvlibs.net/datasets/kitti/eval_odometry.php).
 ///////////////////////////////////////////////////////////////////////////////
 class DatasetReaderKITTI : public DatasetReaderBase
