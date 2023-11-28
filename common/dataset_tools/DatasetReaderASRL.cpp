@@ -53,6 +53,9 @@ DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
     // extract timestamps of the stereo camera images
     m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(m_AbsolutePathTimestampsImagesStereoLeft,  m_TimestampsImagesStereoLeftNanoseconds);
     m_NumberOfTimestampsStereoRight = ExtractTimestamps(m_AbsolutePathTimestampsImagesStereoRight, m_TimestampsImagesStereoRightNanoseconds);
+
+    // extract image dimensions
+    DatasetReaderBase::ExtractImagesDimensions(m_FilenamesWithPathImagesStereoLeft[0], m_HeightImagesStereo, m_WidthImagesStereo);
 }
 
 DatasetReaderASRL::~DatasetReaderASRL()

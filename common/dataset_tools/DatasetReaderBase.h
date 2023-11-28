@@ -60,6 +60,8 @@ protected: // protected attributes
     ListUInt64               m_TimestampsImagesStereoRightNanoseconds;  ///< List of timestamps of the right stereo camera images (in nanoseconds).
     uint64                   m_NumberOfTimestampsStereoLeft;            ///< Number of left stereo camera images.
     uint64                   m_NumberOfTimestampsStereoRight;           ///< Number of right stereo camera images.
+    uint32                   m_HeightImagesStereo;                      ///< Height of the stereo camera images.
+    uint32                   m_WidthImagesStereo;                       ///< Width of the stereo camera images.
 
 public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
@@ -75,6 +77,13 @@ public: // public methods
     /// \brief Destructor.
     ///////////////////////////////////////////////////////////////////////////////
     virtual ~DatasetReaderBase();
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief  Getter for the height of the stereo camera images.
+    ///
+    /// \return Height of the stereo camera images.
+    ///////////////////////////////////////////////////////////////////////////////
+    uint32 GetImageHeightStereoImages() const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief      Getter for the information of the left stereo camera image.
@@ -93,6 +102,13 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     void GetImageInformationStereoRight(uint64            Index,
                                         ImageInformation& ImageInformation) const;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief  Getter for the width of the stereo camera images.
+    ///
+    /// \return Width of the stereo camera images.
+    ///////////////////////////////////////////////////////////////////////////////
+    uint32 GetImageWidthStereoImages() const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the number of frames in the dataset.
@@ -116,6 +132,17 @@ protected: // protected methods
                                         const std::string&              FileExtension,
                                               std::vector<std::string>& ListFilenamesWithPath,
                                               uint64&                   NumberOfFilesFound);
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief      Extracts the dimensions of the image.
+    ///
+    /// \param[in]  FilenameImage Filename of the image including its absolute path.
+    /// \param[out] ImageHeight   Height of the image.
+    /// \param[out] ImageWidth    Width of the image.
+    ///////////////////////////////////////////////////////////////////////////////
+    static void ExtractImagesDimensions(const std::string& FilenameImage,
+                                              uint32&      ImageHeight,
+                                              uint32&      ImageWidth);
 };
 
 #endif // DATASETREADERBASE_H

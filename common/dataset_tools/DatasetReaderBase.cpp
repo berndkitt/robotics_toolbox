@@ -23,6 +23,9 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
 #include "DatasetReaderBase.h"
 
 DatasetReaderBase::DatasetReaderBase(const std::string& BaseDirectory,
@@ -31,7 +34,9 @@ DatasetReaderBase::DatasetReaderBase(const std::string& BaseDirectory,
                                                                         m_NumberOfImagesStereoLeft{0U},
                                                                         m_NumberOfImagesStereoRight{0U},
                                                                         m_NumberOfTimestampsStereoLeft{0U},
-                                                                        m_NumberOfTimestampsStereoRight{0U}
+                                                                        m_NumberOfTimestampsStereoRight{0U},
+                                                                        m_HeightImagesStereo{0U},
+                                                                        m_WidthImagesStereo{0U}
 {
 
 }
@@ -39,6 +44,11 @@ DatasetReaderBase::DatasetReaderBase(const std::string& BaseDirectory,
 DatasetReaderBase::~DatasetReaderBase()
 {
 
+}
+
+uint32 DatasetReaderBase::GetImageHeightStereoImages() const
+{
+    return m_HeightImagesStereo;
 }
 
 void DatasetReaderBase::GetImageInformationStereoLeft(uint64            Index,
@@ -57,6 +67,11 @@ void DatasetReaderBase::GetImageInformationStereoRight(uint64            Index,
     ImageInformation.IsValid                  = true;
     ImageInformation.Timestamp                = m_TimestampsImagesStereoRightNanoseconds[Index];
     ImageInformation.FilenameWithAbsolutePath = m_FilenamesWithPathImagesStereoRight[Index];
+}
+
+uint32 DatasetReaderBase::GetImageWidthStereoImages() const
+{
+    return m_WidthImagesStereo;
 }
 
 uint64 DatasetReaderBase::GetNumberOfFrames() const
@@ -108,4 +123,16 @@ void DatasetReaderBase::ExtractFilesInDirectory(const std::filesystem::path&    
     {
         throw std::invalid_argument("Directory " + Path.string() + " does not contain files matching the conditions.");
     }
+}
+
+void DatasetReaderBase::ExtractImagesDimensions(const std::string& FilenameImage,
+                                                      uint32&      ImageHeight,
+                                                      uint32&      ImageWidth)
+{
+    // read first stereo camera image (left camera)
+    const cv::Mat Image {cv::imread(FilenameImage, cv::IMREAD_COLOR)};
+
+    // get image dimensions
+    ImageHeight = Image.rows;
+    ImageWidth  = Image.cols;
 }
