@@ -73,8 +73,8 @@ protected: // protected attributes
     std::filesystem::path    m_AbsolutePathTimestampsImagesStereoRight; ///< Absolute path to the file containing the timestamps of the right stereo camera images.
     ListUInt64               m_TimestampsImagesStereoLeftNanoseconds;   ///< List of timestamps of the left stereo camera images (in nanoseconds).
     ListUInt64               m_TimestampsImagesStereoRightNanoseconds;  ///< List of timestamps of the right stereo camera images (in nanoseconds).
-    uint64                   m_NumberOfTimestampsStereoLeft;            ///< Number of left stereo camera images.
-    uint64                   m_NumberOfTimestampsStereoRight;           ///< Number of right stereo camera images.
+    uint64                   m_NumberOfTimestampsStereoLeft;            ///< Number of timestamps for left stereo camera images.
+    uint64                   m_NumberOfTimestampsStereoRight;           ///< Number of timestamps for right stereo camera images.
     uint32                   m_HeightImagesStereo;                      ///< Height of the stereo camera images.
     uint32                   m_WidthImagesStereo;                       ///< Width of the stereo camera images.
 
