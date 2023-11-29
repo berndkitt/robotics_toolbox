@@ -30,25 +30,22 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
                                      const std::string& SequenceName) : DatasetReaderBase(BaseDirectory, SequenceName)
 {
-    // set information for the stereo camera information
-    m_RelativePathImagesStereoLeft        = "images/left";
-    m_RelativePathImagesStereoRight       = "images/right";
-    m_FileBasenameImagesStereoLeft        = "";
-    m_FileBasenameImagesStereoRight       = "";
-    m_FileExtensionImagesStereoLeft       = ".png";
-    m_FileExtensionImagesStereoRight      = ".png";
-    m_FilenameTimestampsImagesStereoLeft  = "timestamps_images.txt";
-    m_FilenameTimestampsImagesStereoRight = "timestamps_images.txt";
+    // set information which is specific for the dataset
+    const std::filesystem::path RelativePathImagesStereoLeft("images/left");
+    const std::filesystem::path RelativePathImagesStereoRight("images/right");
+    const std::filesystem::path FileBasenameImagesStereo("");
+    const std::filesystem::path FileExtensionImagesStereo(".png");
+    const std::filesystem::path FilenameTimestampsImagesStereo("timestamps_images.txt");
 
     // create absolute paths to stereo camera information
-    m_AbsolutePathImagesStereoLeft            = m_BaseDirectory / m_SequenceName / m_RelativePathImagesStereoLeft;
-    m_AbsolutePathImagesStereoRight           = m_BaseDirectory / m_SequenceName / m_RelativePathImagesStereoRight;
-    m_AbsolutePathTimestampsImagesStereoLeft  = m_BaseDirectory / m_SequenceName / m_FilenameTimestampsImagesStereoLeft;
-    m_AbsolutePathTimestampsImagesStereoRight = m_BaseDirectory / m_SequenceName / m_FilenameTimestampsImagesStereoRight;
+    m_AbsolutePathImagesStereoLeft            = m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft;
+    m_AbsolutePathImagesStereoRight           = m_BaseDirectory / m_SequenceName / RelativePathImagesStereoRight;
+    m_AbsolutePathTimestampsImagesStereoLeft  = m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo;
+    m_AbsolutePathTimestampsImagesStereoRight = m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo;
 
     // extract filenames of the stereo camera images
-    ExtractFilesInDirectory(m_AbsolutePathImagesStereoLeft,  m_FileBasenameImagesStereoLeft,  m_FileExtensionImagesStereoLeft,  m_FilenamesWithPathImagesStereoLeft,  m_NumberOfImagesStereoLeft);
-    ExtractFilesInDirectory(m_AbsolutePathImagesStereoRight, m_FileBasenameImagesStereoRight, m_FileExtensionImagesStereoRight, m_FilenamesWithPathImagesStereoRight, m_NumberOfImagesStereoRight);
+    ExtractFilesInDirectory(m_AbsolutePathImagesStereoLeft,  FileBasenameImagesStereo, FileExtensionImagesStereo, m_FilenamesWithPathImagesStereoLeft,  m_NumberOfImagesStereoLeft);
+    ExtractFilesInDirectory(m_AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo, m_FilenamesWithPathImagesStereoRight, m_NumberOfImagesStereoRight);
 
     // extract timestamps of the stereo camera images
     m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(m_AbsolutePathTimestampsImagesStereoLeft,  m_TimestampsImagesStereoLeftNanoseconds);
