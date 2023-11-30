@@ -83,49 +83,6 @@ uint64 DatasetReaderBase::GetNumberOfFrames() const
     return NumberOfFrames;
 }
 
-void DatasetReaderBase::ExtractFilesInDirectory(const std::filesystem::path&    Path,
-                                                const std::string&              FileBasename,
-                                                const std::string&              FileExtension,
-                                                      std::vector<std::string>& ListFilenamesWithPath,
-                                                      uint64&                   NumberOfFilesFound)
-{
-    // check whether the provided path exists or not
-    if(!exists(Path) || !is_directory(Path))
-    {
-        throw std::invalid_argument("Directory " + Path.string() + " does not exist.");
-    }
-
-    // get files in the directory (i.e. iterate over all files)
-    std::filesystem::directory_iterator DirectoryIterator(Path);
-
-    for(const auto& FilenameWithPath: DirectoryIterator)
-    {
-        // get filename of current file
-        const std::string Filename {FilenameWithPath.path().filename()};
-
-        // check whether the name of the current file starts with specified basename and ends with specified extension
-        const boolean HasCorrectBasename  {Filename.find(FileBasename) == 0};
-        const boolean HasCorrectExtension {Filename.find(FileExtension) == Filename.length() - FileExtension.length()};
-
-        if(HasCorrectBasename && HasCorrectExtension)
-        {
-            ListFilenamesWithPath.push_back(Path / Filename);
-        }
-    }
-
-    // sort filenames found
-    std::sort(ListFilenamesWithPath.begin(),ListFilenamesWithPath.end());
-
-    // get number of files found
-    NumberOfFilesFound = ListFilenamesWithPath.size();
-
-    // check whether files were found in the specified directory or not
-    if(NumberOfFilesFound == 0)
-    {
-        throw std::invalid_argument("Directory " + Path.string() + " does not contain files matching the conditions.");
-    }
-}
-
 void DatasetReaderBase::ExtractImagesDimensions(const std::string& FilenameImage,
                                                       uint32&      ImageHeight,
                                                       uint32&      ImageWidth)

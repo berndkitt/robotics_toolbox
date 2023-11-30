@@ -126,21 +126,6 @@ public: // public methods
 
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief      Extracts the list of files in a directory.
-    ///
-    /// \param[in]  Path                  Absolute path to the files.
-    /// \param[in]  FileBasename          Basename of the files to be extracted.
-    /// \param[in]  FileExtension         Extension of the files to be extracted.
-    /// \param[out] ListFilenamesWithPath List of filenames found, including the absolute path.
-    /// \param[out] NumberOfFilesFound    Number of files found.
-    ///////////////////////////////////////////////////////////////////////////////
-    static void ExtractFilesInDirectory(const std::filesystem::path&    Path,
-                                        const std::string&              FileBasename,
-                                        const std::string&              FileExtension,
-                                              std::vector<std::string>& ListFilenamesWithPath,
-                                              uint64&                   NumberOfFilesFound);
-
-    ///////////////////////////////////////////////////////////////////////////////
     /// \brief      Extracts the dimensions of the image.
     ///
     /// \param[in]  FilenameImage Filename of the image including its absolute path.

@@ -26,6 +26,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include <fstream>
 
 #include "DatasetReader4Seasons.h"
+#include "../FileInterface.h"
 
 DatasetReader4Seasons::DatasetReader4Seasons(const std::string& BaseDirectory,
                                              const std::string& SequenceName) : DatasetReaderBase(BaseDirectory, SequenceName)
@@ -44,8 +45,14 @@ DatasetReader4Seasons::DatasetReader4Seasons(const std::string& BaseDirectory,
     m_AbsolutePathTimestampsImagesStereoRight = m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo;
 
     // extract filenames of the stereo camera images
-    ExtractFilesInDirectory(m_AbsolutePathImagesStereoLeft,  FileBasenameImagesStereo, FileExtensionImagesStereo, m_FilenamesWithPathImagesStereoLeft,  m_NumberOfImagesStereoLeft);
-    ExtractFilesInDirectory(m_AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo, m_FilenamesWithPathImagesStereoRight, m_NumberOfImagesStereoRight);
+    FileInterface FileInterfaceImagesStereoLeft(m_AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
+    FileInterface FileInterfaceImagesStereoRight(m_AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo);
+
+    m_NumberOfImagesStereoLeft  = FileInterfaceImagesStereoLeft.GetNumberOfFiles();
+    m_NumberOfImagesStereoRight = FileInterfaceImagesStereoRight.GetNumberOfFiles();
+
+    m_FilenamesWithPathImagesStereoLeft  = FileInterfaceImagesStereoLeft.GetListOfFilenamesWithPath();
+    m_FilenamesWithPathImagesStereoRight = FileInterfaceImagesStereoRight.GetListOfFilenamesWithPath();
 
     // extract timestamps of the stereo camera images
     m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(m_AbsolutePathTimestampsImagesStereoLeft,  m_TimestampsImagesStereoLeftNanoseconds);
