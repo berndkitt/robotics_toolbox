@@ -47,7 +47,7 @@ CSVReader::CSVReader(const std::string& Filename,
 
     // read file row by row
     std::string               CurrentRow;
-    std::vector<std::string>* CurrentRowSplit = new std::vector<std::string>;
+    std::vector<std::string>* CurrentRowSplit = new std::vector<std::string>; // NOLINT(cppcoreguidelines-owning-memory)
 
     while(!File.eof())
     {
@@ -69,7 +69,7 @@ CSVReader::CSVReader(const std::string& Filename,
         {
             m_Entries.push_back(CurrentRowSplit);
 
-            CurrentRowSplit = new std::vector<std::string>;
+            CurrentRowSplit = new std::vector<std::string>; // NOLINT(cppcoreguidelines-owning-memory)
         }
     }
 }
@@ -79,7 +79,7 @@ CSVReader::~CSVReader()
     // delete storage data for entries row by row
     BOOST_FOREACH(std::vector<std::string>* CurrentRow, m_Entries)
     {
-        delete CurrentRow;
+        delete CurrentRow; // NOLINT(cppcoreguidelines-owning-memory)
     }
 }
 
