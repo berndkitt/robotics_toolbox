@@ -29,16 +29,18 @@ if __name__ == "__main__":
 
     # get list of files
     directories_to_check = ["common", "modules"]
+    list_of_files        = []
     string_list_of_files = ""
 
     for current_directory in directories_to_check:
         for path in Path(current_directory).rglob("*.cpp"):
+            list_of_files.append(str(path))
             string_list_of_files = string_list_of_files + " " + str(path)
 
     # run Clang-Tidy
     output_file_with_path = args.output_path + "clang_tidy_results.txt"
 
-    os.system("clang-tidy " + string_list_of_files + " -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4 > " + output_file_with_path)
+    os.system("clang-tidy " + string_list_of_files + " --extra-arg=-std=c++17 -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4 > " + output_file_with_path)
 
     # open output file
     clang_tidy_results_file = open(output_file_with_path, "r")
@@ -47,8 +49,9 @@ if __name__ == "__main__":
     number_of_warnings = 0
 
     for current_line in clang_tidy_results_file:
-        if not current_line.find(": warning:") == -1:
-            number_of_warnings = number_of_warnings + 1
+        for current_file in list_of_files:
+            if current_file in current_line and not current_line.find(": warning:") == -1:
+                number_of_warnings = number_of_warnings + 1
 
     # close output file
     clang_tidy_results_file.close()

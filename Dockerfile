@@ -55,4 +55,10 @@ RUN cd ${DIR_DEV_TOOLS} && \
     cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ -B ./build/ -S ./ && \
     cmake --build ./build/ -t install -j8
 
+RUN cd ${DIR_DEV_TOOLS} && \
+    git clone --recursive https://github.com/boostorg/boost.git && \
+    cd ${DIR_DEV_TOOLS}/boost/ && \
+    ./bootstrap.sh --prefix=/usr/local/ && \
+    ./b2 -j8 link=static install
+
 RUN rm -rf ${DIR_DEV_TOOLS}
