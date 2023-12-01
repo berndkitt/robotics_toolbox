@@ -69,6 +69,8 @@ protected: // protected attributes
     uint64                   m_NumberOfTimestampsStereoRight;           ///< Number of timestamps for right stereo camera images.
     uint32                   m_HeightImagesStereo;                      ///< Height of the stereo camera images.
     uint32                   m_WidthImagesStereo;                       ///< Width of the stereo camera images.
+    MatrixFloat64_3x4        m_ProjectionMatrixStereoLeft;              ///< Projection matrix of the left stereo camera.
+    MatrixFloat64_3x4        m_ProjectionMatrixStereoRight;             ///< Projection matrix of the right stereo camera.
 
 public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
@@ -123,6 +125,20 @@ public: // public methods
     /// \return Number of frames in the dataset.
     ///////////////////////////////////////////////////////////////////////////////
     uint64 GetNumberOfFrames() const;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief  Getter for the projection matrix of the left stereo camera.
+    ///
+    /// \return Projection matrix of the left stereo camera.
+    ///////////////////////////////////////////////////////////////////////////////
+    const MatrixFloat64_3x4& GetProjectionMatrixStereoLeft() const;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief  Getter for the projection matrix of the right stereo camera.
+    ///
+    /// \return Projection matrix of the right stereo camera.
+    ///////////////////////////////////////////////////////////////////////////////
+    const MatrixFloat64_3x4& GetProjectionMatrixStereoRight() const;
 
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////

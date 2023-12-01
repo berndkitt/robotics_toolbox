@@ -83,6 +83,16 @@ uint64 DatasetReaderBase::GetNumberOfFrames() const
     return NumberOfFrames;
 }
 
+const MatrixFloat64_3x4& DatasetReaderBase::GetProjectionMatrixStereoLeft() const
+{
+    return m_ProjectionMatrixStereoLeft;
+}
+
+const MatrixFloat64_3x4& DatasetReaderBase::GetProjectionMatrixStereoRight() const
+{
+    return m_ProjectionMatrixStereoRight;
+}
+
 void DatasetReaderBase::ExtractImagesDimensions(const std::string& FilenameImage,
                                                       uint32&      ImageHeight,
                                                       uint32&      ImageWidth)

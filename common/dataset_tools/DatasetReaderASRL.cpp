@@ -26,6 +26,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include <fstream>
 
 #include "DatasetReaderASRL.h"
+#include "../CSVReader.h"
 #include "../FileInterface.h"
 
 DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
@@ -37,6 +38,7 @@ DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
     const std::filesystem::path FileBasenameImagesStereo("");
     const std::filesystem::path FileExtensionImagesStereo(".png");
     const std::filesystem::path FilenameTimestampsImagesStereo("timestamps_images.txt");
+    const std::filesystem::path FilenameCalibrationStereo("camera_parameters.txt");
 
     // create absolute paths to stereo camera information
     m_AbsolutePathImagesStereoLeft            = m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft;
@@ -60,11 +62,54 @@ DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
 
     // extract image dimensions
     DatasetReaderBase::ExtractImagesDimensions(m_FilenamesWithPathImagesStereoLeft[0], m_HeightImagesStereo, m_WidthImagesStereo);
+
+    // extract projection matrices of the stereo cameras
+    std::filesystem::path AbsolutePathCalibrationStereo = m_BaseDirectory / FilenameCalibrationStereo;
+
+    ExtractProjectionMatrices(AbsolutePathCalibrationStereo, m_ProjectionMatrixStereoLeft, m_ProjectionMatrixStereoRight);
 }
 
 DatasetReaderASRL::~DatasetReaderASRL()
 {
 
+}
+
+void DatasetReaderASRL::ExtractProjectionMatrices(const std::string&       FilenameCalibration,
+                                                        MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
+                                                        MatrixFloat64_3x4& ProjectionMatrixStereoRight)
+{
+    CSVReader Reader(FilenameCalibration, " ");
+
+    const float64 FocalLength              = std::stod(Reader.GetValue(2, 2));
+    const float64 PrincipalPointHorizontal = std::stod(Reader.GetValue(3, 1));
+    const float64 PrincipalPointVertical   = std::stod(Reader.GetValue(4, 1));
+    const float64 Baseline                 = std::stod(Reader.GetValue(5, 1));
+
+    ProjectionMatrixStereoLeft(0, 0) = FocalLength;
+    ProjectionMatrixStereoLeft(0, 1) = 0.0;
+    ProjectionMatrixStereoLeft(0, 2) = PrincipalPointHorizontal;
+    ProjectionMatrixStereoLeft(0, 3) = 0.0;
+    ProjectionMatrixStereoLeft(1, 0) = 0.0;
+    ProjectionMatrixStereoLeft(1, 1) = FocalLength;
+    ProjectionMatrixStereoLeft(1, 2) = PrincipalPointVertical;
+    ProjectionMatrixStereoLeft(1, 3) = 0.0;
+    ProjectionMatrixStereoLeft(2, 0) = 0.0;
+    ProjectionMatrixStereoLeft(2, 1) = 0.0;
+    ProjectionMatrixStereoLeft(2, 2) = 1.0;
+    ProjectionMatrixStereoLeft(2, 3) = 0.0;
+
+    ProjectionMatrixStereoRight(0, 0) = FocalLength;
+    ProjectionMatrixStereoRight(0, 1) = 0.0;
+    ProjectionMatrixStereoRight(0, 2) = PrincipalPointHorizontal;
+    ProjectionMatrixStereoRight(0, 3) = -FocalLength * Baseline;
+    ProjectionMatrixStereoRight(1, 0) = 0.0;
+    ProjectionMatrixStereoRight(1, 1) = FocalLength;
+    ProjectionMatrixStereoRight(1, 2) = PrincipalPointVertical;
+    ProjectionMatrixStereoRight(1, 3) = 0.0;
+    ProjectionMatrixStereoRight(2, 0) = 0.0;
+    ProjectionMatrixStereoRight(2, 1) = 0.0;
+    ProjectionMatrixStereoRight(2, 2) = 1.0;
+    ProjectionMatrixStereoRight(2, 3) = 0.0;
 }
 
 uint64 DatasetReaderASRL::ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,

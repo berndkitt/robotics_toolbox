@@ -57,6 +57,17 @@ public: // public methods
 
 protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
+    /// \brief      Extracts the projection matrices from the provided file.
+    ///
+    /// \param[in]  FilenameCalibration         File containing calibration of the stereo camera.
+    /// \param[out] ProjectionMatrixStereoLeft  Projection matrix of the left stereo camera.
+    /// \param[out] ProjectionMatrixStereoRight Projection matrix of the left stereo camera.
+    ///////////////////////////////////////////////////////////////////////////////
+    static void ExtractProjectionMatrices(const std::string&       FilenameCalibration,
+                                                MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
+                                                MatrixFloat64_3x4& ProjectionMatrixStereoRight);
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Extracts the timestamps from the provided file.
     ///
     /// \param[in] FileTimestampsWithPath File containing the timestamps, including the absolute path.
