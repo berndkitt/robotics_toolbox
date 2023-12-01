@@ -27,7 +27,6 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define CSVREADER_H
 
 #include <string>
-#include <vector>
 
 #include <GlobalTypesBase.h>
 
