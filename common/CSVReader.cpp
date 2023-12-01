@@ -72,7 +72,7 @@ CSVReader::CSVReader(const std::string& Filename,
             CurrentRowSplit = new std::vector<std::string>; // NOLINT(cppcoreguidelines-owning-memory)
         }
     }
-}
+} // NOLINT(clang-analyzer-cplusplus.NewDeleteLeaks)
 
 CSVReader::~CSVReader()
 {
@@ -106,9 +106,9 @@ uint64 CSVReader::GetMinimumNumberOfColumns() const
 {
     uint64 MinColumns = std::numeric_limits<uint64>::max();
 
-    for(BOOST_AUTO(Row, m_Entries.begin()); Row != m_Entries.end(); ++Row)
+    for(uint64 i_Row {0U}; i_Row < m_Entries.size(); i_Row++)
     {
-        MinColumns = std::min(MinColumns, static_cast<uint64>((**Row).size()));
+        MinColumns = std::min(MinColumns, static_cast<uint64>(m_Entries[i_Row]->size()));
     }
 
     // return minimum number of columns
