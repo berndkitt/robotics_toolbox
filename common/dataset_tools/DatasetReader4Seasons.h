@@ -71,12 +71,12 @@ protected: // protected methods
                                                 MatrixFloat64_3x4& ProjectionMatrixStereoRight);
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Extracts the timestamps from the provided file.
+    /// \brief      Extracts the timestamps from the provided file.
     ///
-    /// \param[in] FileTimestampsWithPath File containing the timestamps, including the absolute path.
-    /// \param[in] ListTimestamps         List of timestamps.
+    /// \param[in]  FileTimestampsWithPath File containing the timestamps, including the absolute path.
+    /// \param[out] ListTimestamps         List of timestamps.
     ///
-    /// \return    Number of timestamps found.
+    /// \return     Number of timestamps found.
     ///////////////////////////////////////////////////////////////////////////////
     static uint64 ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
                                           ListUInt64&            ListTimestamps);
