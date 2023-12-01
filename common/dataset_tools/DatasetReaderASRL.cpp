@@ -78,38 +78,40 @@ void DatasetReaderASRL::ExtractProjectionMatrices(const std::string&       Filen
                                                         MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
                                                         MatrixFloat64_3x4& ProjectionMatrixStereoRight)
 {
+    // read file
     CSVReader Reader(FilenameCalibration, " ");
 
-    const float64 FocalLength              = std::stod(Reader.GetValue(2, 2));
-    const float64 PrincipalPointHorizontal = std::stod(Reader.GetValue(3, 1));
-    const float64 PrincipalPointVertical   = std::stod(Reader.GetValue(4, 1));
-    const float64 Baseline                 = std::stod(Reader.GetValue(5, 1));
+    // extract data
+    const uint64 ColumnIndexFocalLengthHorizontal    {2U};
+    const uint64 ColumnIndexPrincipalPointHorizontal {1U};
+    const uint64 ColumnIndexPrincipalPointVertical   {1U};
+    const uint64 ColumnIndexBaseline                 {1U};
+    const uint64 RowIndexFocalLengthHorizontal       {2U};
+    const uint64 RowIndexPrincipalPointHorizontal    {3U};
+    const uint64 RowIndexPrincipalPointVertical      {4U};
+    const uint64 RowIndexBaseline                    {5U};
 
-    ProjectionMatrixStereoLeft(0, 0) = FocalLength;
-    ProjectionMatrixStereoLeft(0, 1) = 0.0;
-    ProjectionMatrixStereoLeft(0, 2) = PrincipalPointHorizontal;
-    ProjectionMatrixStereoLeft(0, 3) = 0.0;
-    ProjectionMatrixStereoLeft(1, 0) = 0.0;
-    ProjectionMatrixStereoLeft(1, 1) = FocalLength;
-    ProjectionMatrixStereoLeft(1, 2) = PrincipalPointVertical;
-    ProjectionMatrixStereoLeft(1, 3) = 0.0;
-    ProjectionMatrixStereoLeft(2, 0) = 0.0;
-    ProjectionMatrixStereoLeft(2, 1) = 0.0;
-    ProjectionMatrixStereoLeft(2, 2) = 1.0;
-    ProjectionMatrixStereoLeft(2, 3) = 0.0;
+    const float64 FocalLength              = std::stod(Reader.GetValue(RowIndexFocalLengthHorizontal, ColumnIndexFocalLengthHorizontal));
+    const float64 PrincipalPointHorizontal = std::stod(Reader.GetValue(RowIndexPrincipalPointHorizontal, ColumnIndexPrincipalPointHorizontal));
+    const float64 PrincipalPointVertical   = std::stod(Reader.GetValue(RowIndexPrincipalPointVertical, ColumnIndexPrincipalPointVertical));
+    const float64 Baseline                 = std::stod(Reader.GetValue(RowIndexBaseline, ColumnIndexBaseline));
 
-    ProjectionMatrixStereoRight(0, 0) = FocalLength;
-    ProjectionMatrixStereoRight(0, 1) = 0.0;
-    ProjectionMatrixStereoRight(0, 2) = PrincipalPointHorizontal;
-    ProjectionMatrixStereoRight(0, 3) = -FocalLength * Baseline;
-    ProjectionMatrixStereoRight(1, 0) = 0.0;
-    ProjectionMatrixStereoRight(1, 1) = FocalLength;
-    ProjectionMatrixStereoRight(1, 2) = PrincipalPointVertical;
-    ProjectionMatrixStereoRight(1, 3) = 0.0;
-    ProjectionMatrixStereoRight(2, 0) = 0.0;
-    ProjectionMatrixStereoRight(2, 1) = 0.0;
-    ProjectionMatrixStereoRight(2, 2) = 1.0;
-    ProjectionMatrixStereoRight(2, 3) = 0.0;
+    // create projection matrices
+    ProjectionMatrixStereoLeft.setZero();
+    ProjectionMatrixStereoRight.setZero();
+
+    ProjectionMatrixStereoLeft(0U, 0U) = FocalLength;
+    ProjectionMatrixStereoLeft(0U, 2U) = PrincipalPointHorizontal;
+    ProjectionMatrixStereoLeft(1U, 1U) = FocalLength;
+    ProjectionMatrixStereoLeft(1U, 2U) = PrincipalPointVertical;
+    ProjectionMatrixStereoLeft(2U, 2U) = 1.0;
+
+    ProjectionMatrixStereoRight(0U, 0U) = FocalLength;
+    ProjectionMatrixStereoRight(0U, 2U) = PrincipalPointHorizontal;
+    ProjectionMatrixStereoRight(0U, 3U) = -FocalLength * Baseline;
+    ProjectionMatrixStereoRight(1U, 1U) = FocalLength;
+    ProjectionMatrixStereoRight(1U, 2U) = PrincipalPointVertical;
+    ProjectionMatrixStereoRight(2U, 2U) = 1.0;
 }
 
 uint64 DatasetReaderASRL::ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,

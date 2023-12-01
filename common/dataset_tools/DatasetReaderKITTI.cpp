@@ -78,33 +78,35 @@ void DatasetReaderKITTI::ExtractProjectionMatrices(const std::string&       File
                                                          MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
                                                          MatrixFloat64_3x4& ProjectionMatrixStereoRight)
 {
+    // read file
     CSVReader Reader(FilenameCalibration, " ");
 
-    ProjectionMatrixStereoLeft(0, 0) = std::stod(Reader.GetValue(0, 1));
-    ProjectionMatrixStereoLeft(0, 1) = std::stod(Reader.GetValue(0, 2));
-    ProjectionMatrixStereoLeft(0, 2) = std::stod(Reader.GetValue(0, 3));
-    ProjectionMatrixStereoLeft(0, 3) = std::stod(Reader.GetValue(0, 4));
-    ProjectionMatrixStereoLeft(1, 0) = std::stod(Reader.GetValue(0, 5));
-    ProjectionMatrixStereoLeft(1, 1) = std::stod(Reader.GetValue(0, 6));
-    ProjectionMatrixStereoLeft(1, 2) = std::stod(Reader.GetValue(0, 7));
-    ProjectionMatrixStereoLeft(1, 3) = std::stod(Reader.GetValue(0, 8));
-    ProjectionMatrixStereoLeft(2, 0) = std::stod(Reader.GetValue(0, 9));
-    ProjectionMatrixStereoLeft(2, 1) = std::stod(Reader.GetValue(0, 10));
-    ProjectionMatrixStereoLeft(2, 2) = std::stod(Reader.GetValue(0, 11));
-    ProjectionMatrixStereoLeft(2, 3) = std::stod(Reader.GetValue(0, 12));
+    // create projection matrices
+    ProjectionMatrixStereoLeft(0U, 0U) = std::stod(Reader.GetValue(0U, 1U));
+    ProjectionMatrixStereoLeft(0U, 1U) = std::stod(Reader.GetValue(0U, 2U));
+    ProjectionMatrixStereoLeft(0U, 2U) = std::stod(Reader.GetValue(0U, 3U));
+    ProjectionMatrixStereoLeft(0U, 3U) = std::stod(Reader.GetValue(0U, 4U));
+    ProjectionMatrixStereoLeft(1U, 0U) = std::stod(Reader.GetValue(0U, 5U));
+    ProjectionMatrixStereoLeft(1U, 1U) = std::stod(Reader.GetValue(0U, 6U));
+    ProjectionMatrixStereoLeft(1U, 2U) = std::stod(Reader.GetValue(0U, 7U));
+    ProjectionMatrixStereoLeft(1U, 3U) = std::stod(Reader.GetValue(0U, 8U));
+    ProjectionMatrixStereoLeft(2U, 0U) = std::stod(Reader.GetValue(0U, 9U));
+    ProjectionMatrixStereoLeft(2U, 1U) = std::stod(Reader.GetValue(0U, 10U));
+    ProjectionMatrixStereoLeft(2U, 2U) = std::stod(Reader.GetValue(0U, 11U));
+    ProjectionMatrixStereoLeft(2U, 3U) = std::stod(Reader.GetValue(0U, 12U));
 
-    ProjectionMatrixStereoRight(0, 0) = std::stod(Reader.GetValue(1, 1));
-    ProjectionMatrixStereoRight(0, 1) = std::stod(Reader.GetValue(1, 2));
-    ProjectionMatrixStereoRight(0, 2) = std::stod(Reader.GetValue(1, 3));
-    ProjectionMatrixStereoRight(0, 3) = std::stod(Reader.GetValue(1, 4));
-    ProjectionMatrixStereoRight(1, 0) = std::stod(Reader.GetValue(1, 5));
-    ProjectionMatrixStereoRight(1, 1) = std::stod(Reader.GetValue(1, 6));
-    ProjectionMatrixStereoRight(1, 2) = std::stod(Reader.GetValue(1, 7));
-    ProjectionMatrixStereoRight(1, 3) = std::stod(Reader.GetValue(1, 8));
-    ProjectionMatrixStereoRight(2, 0) = std::stod(Reader.GetValue(1, 9));
-    ProjectionMatrixStereoRight(2, 1) = std::stod(Reader.GetValue(1, 10));
-    ProjectionMatrixStereoRight(2, 2) = std::stod(Reader.GetValue(1, 11));
-    ProjectionMatrixStereoRight(2, 3) = std::stod(Reader.GetValue(1, 12));
+    ProjectionMatrixStereoRight(0U, 0U) = std::stod(Reader.GetValue(1U, 1U));
+    ProjectionMatrixStereoRight(0U, 1U) = std::stod(Reader.GetValue(1U, 2U));
+    ProjectionMatrixStereoRight(0U, 2U) = std::stod(Reader.GetValue(1U, 3U));
+    ProjectionMatrixStereoRight(0U, 3U) = std::stod(Reader.GetValue(1U, 4U));
+    ProjectionMatrixStereoRight(1U, 0U) = std::stod(Reader.GetValue(1U, 5U));
+    ProjectionMatrixStereoRight(1U, 1U) = std::stod(Reader.GetValue(1U, 6U));
+    ProjectionMatrixStereoRight(1U, 2U) = std::stod(Reader.GetValue(1U, 7U));
+    ProjectionMatrixStereoRight(1U, 3U) = std::stod(Reader.GetValue(1U, 8U));
+    ProjectionMatrixStereoRight(2U, 0U) = std::stod(Reader.GetValue(1U, 9U));
+    ProjectionMatrixStereoRight(2U, 1U) = std::stod(Reader.GetValue(1U, 10U));
+    ProjectionMatrixStereoRight(2U, 2U) = std::stod(Reader.GetValue(1U, 11U));
+    ProjectionMatrixStereoRight(2U, 3U) = std::stod(Reader.GetValue(1U, 12U));
 }
 
 uint64 DatasetReaderKITTI::ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,

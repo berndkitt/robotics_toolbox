@@ -85,45 +85,46 @@ void DatasetReader4Seasons::ExtractProjectionMatrices(const std::string&       F
                                                             MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
                                                             MatrixFloat64_3x4& ProjectionMatrixStereoRight)
 {
+    // read files
     CSVReader ReaderIntrinsicLeft(FilenameIntrinsicCalibrationLeft, " ");
     CSVReader ReaderIntrinsicRight(FilenameIntrinsicCalibrationRight, " ");
     CSVReader ReaderExtrinsic(FilenameExtrinsicCalibration, " ");
 
-    const float64 FocalLengthHorizontalLeft     = std::stod(ReaderIntrinsicLeft.GetValue(0, 1));
-    const float64 FocalLengthVerticalLeft       = std::stod(ReaderIntrinsicLeft.GetValue(0, 2));
-    const float64 PrincipalPointHorizontalLeft  = std::stod(ReaderIntrinsicLeft.GetValue(0, 3));
-    const float64 PrincipalPointVerticalLeft    = std::stod(ReaderIntrinsicLeft.GetValue(0, 4));
-    const float64 FocalLengthHorizontalRight    = std::stod(ReaderIntrinsicRight.GetValue(0, 1));
-    const float64 FocalLengthVerticalRight      = std::stod(ReaderIntrinsicRight.GetValue(0, 2));
-    const float64 PrincipalPointHorizontalRight = std::stod(ReaderIntrinsicRight.GetValue(0, 3));
-    const float64 PrincipalPointVerticalRight   = std::stod(ReaderIntrinsicRight.GetValue(0, 4));
-    const float64 Baseline                      = -std::stod(ReaderExtrinsic.GetValue(0, 3));
+    // extract data
+    const uint64 ColumnIndexFocalLengthHorizontal    {1U};
+    const uint64 ColumnIndexFocalLengthVertical      {2U};
+    const uint64 ColumnIndexPrincipalPointHorizontal {3U};
+    const uint64 ColumnIndexPrincipalPointVertical   {4U};
+    const uint64 ColumnIndexBaseline                 {3U};
 
-    ProjectionMatrixStereoLeft(0, 0) = FocalLengthHorizontalLeft;
-    ProjectionMatrixStereoLeft(0, 1) = 0.0;
-    ProjectionMatrixStereoLeft(0, 2) = PrincipalPointHorizontalLeft;
-    ProjectionMatrixStereoLeft(0, 3) = 0.0;
-    ProjectionMatrixStereoLeft(1, 0) = 0.0;
-    ProjectionMatrixStereoLeft(1, 1) = FocalLengthVerticalLeft;
-    ProjectionMatrixStereoLeft(1, 2) = PrincipalPointVerticalLeft;
-    ProjectionMatrixStereoLeft(1, 3) = 0.0;
-    ProjectionMatrixStereoLeft(2, 0) = 0.0;
-    ProjectionMatrixStereoLeft(2, 1) = 0.0;
-    ProjectionMatrixStereoLeft(2, 2) = 1.0;
-    ProjectionMatrixStereoLeft(2, 3) = 0.0;
+    const float64 FocalLengthHorizontalLeft    = std::stod(ReaderIntrinsicLeft.GetValue(0U, ColumnIndexFocalLengthHorizontal));
+    const float64 FocalLengthVerticalLeft      = std::stod(ReaderIntrinsicLeft.GetValue(0U, ColumnIndexFocalLengthVertical));
+    const float64 PrincipalPointHorizontalLeft = std::stod(ReaderIntrinsicLeft.GetValue(0U, ColumnIndexPrincipalPointHorizontal));
+    const float64 PrincipalPointVerticalLeft   = std::stod(ReaderIntrinsicLeft.GetValue(0U, ColumnIndexPrincipalPointVertical));
 
-    ProjectionMatrixStereoRight(0, 0) = FocalLengthHorizontalRight;
-    ProjectionMatrixStereoRight(0, 1) = 0.0;
-    ProjectionMatrixStereoRight(0, 2) = PrincipalPointHorizontalRight;
-    ProjectionMatrixStereoRight(0, 3) = -FocalLengthHorizontalRight * Baseline;
-    ProjectionMatrixStereoRight(1, 0) = 0.0;
-    ProjectionMatrixStereoRight(1, 1) = FocalLengthVerticalRight;
-    ProjectionMatrixStereoRight(1, 2) = PrincipalPointVerticalRight;
-    ProjectionMatrixStereoRight(1, 3) = 0.0;
-    ProjectionMatrixStereoRight(2, 0) = 0.0;
-    ProjectionMatrixStereoRight(2, 1) = 0.0;
-    ProjectionMatrixStereoRight(2, 2) = 1.0;
-    ProjectionMatrixStereoRight(2, 3) = 0.0;
+    const float64 FocalLengthHorizontalRight    = std::stod(ReaderIntrinsicRight.GetValue(0U, ColumnIndexFocalLengthHorizontal));
+    const float64 FocalLengthVerticalRight      = std::stod(ReaderIntrinsicRight.GetValue(0U, ColumnIndexFocalLengthVertical));
+    const float64 PrincipalPointHorizontalRight = std::stod(ReaderIntrinsicRight.GetValue(0U, ColumnIndexPrincipalPointHorizontal));
+    const float64 PrincipalPointVerticalRight   = std::stod(ReaderIntrinsicRight.GetValue(0U, ColumnIndexPrincipalPointVertical));
+
+    const float64 Baseline = -std::stod(ReaderExtrinsic.GetValue(0U, ColumnIndexBaseline));
+
+    // create projection matrices
+    ProjectionMatrixStereoLeft.setZero();
+    ProjectionMatrixStereoRight.setZero();
+
+    ProjectionMatrixStereoLeft(0U, 0U) = FocalLengthHorizontalLeft;
+    ProjectionMatrixStereoLeft(0U, 2U) = PrincipalPointHorizontalLeft;
+    ProjectionMatrixStereoLeft(1U, 1U) = FocalLengthVerticalLeft;
+    ProjectionMatrixStereoLeft(1U, 2U) = PrincipalPointVerticalLeft;
+    ProjectionMatrixStereoLeft(2U, 2U) = 1.0;
+
+    ProjectionMatrixStereoRight(0U, 0U) = FocalLengthHorizontalRight;
+    ProjectionMatrixStereoRight(0U, 2U) = PrincipalPointHorizontalRight;
+    ProjectionMatrixStereoRight(0U, 3U) = -FocalLengthHorizontalRight * Baseline;
+    ProjectionMatrixStereoRight(1U, 1U) = FocalLengthVerticalRight;
+    ProjectionMatrixStereoRight(1U, 2U) = PrincipalPointVerticalRight;
+    ProjectionMatrixStereoRight(2U, 2U) = 1.0;
 }
 
 uint64 DatasetReader4Seasons::ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
