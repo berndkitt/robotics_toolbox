@@ -46,8 +46,8 @@ CSVReader::CSVReader(const std::string& Filename,
     }
 
     // read file row by row
-    std::string               CurrentRow;
-    std::vector<std::string>* CurrentRowSplit = new std::vector<std::string>; // NOLINT(cppcoreguidelines-owning-memory)
+    std::string CurrentRow;
+    auto*       CurrentRowSplit = new std::vector<std::string>; // NOLINT(cppcoreguidelines-owning-memory)
 
     while(!File.eof())
     {
