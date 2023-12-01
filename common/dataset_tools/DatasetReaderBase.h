@@ -55,10 +55,6 @@ class DatasetReaderBase
 protected: // protected attributes
     std::filesystem::path    m_BaseDirectory;                           ///< Absolute path to the base directory of the dataset.
     std::filesystem::path    m_SequenceName;                            ///< Relative path to the sequence (w.r.t. the base directory).
-    std::filesystem::path    m_AbsolutePathImagesStereoLeft;            ///< Absolute path to the left stereo camera images.
-    std::filesystem::path    m_AbsolutePathImagesStereoRight;           ///< Absolute path to the right stereo camera images.
-    std::filesystem::path    m_AbsolutePathTimestampsImagesStereoLeft;  ///< Absolute path to the file containing the timestamps of the left stereo camera images.
-    std::filesystem::path    m_AbsolutePathTimestampsImagesStereoRight; ///< Absolute path to the file containing the timestamps of the right stereo camera images.
     std::vector<std::string> m_FilenamesWithPathImagesStereoLeft;       ///< List of filenames including the absolute path to the left stereo camera images.
     std::vector<std::string> m_FilenamesWithPathImagesStereoRight;      ///< List of filenames including the absolute path to the right stereo camera images.
     ListUInt64               m_TimestampsImagesStereoLeftNanoseconds;   ///< List of timestamps of the left stereo camera images (in nanoseconds).

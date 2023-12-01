@@ -41,14 +41,15 @@ DatasetReaderKITTI::DatasetReaderKITTI(const std::string& BaseDirectory,
     const std::filesystem::path FilenameCalibrationStereo("calib.txt");
 
     // create absolute paths to stereo camera information
-    m_AbsolutePathImagesStereoLeft            = m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft;
-    m_AbsolutePathImagesStereoRight           = m_BaseDirectory / m_SequenceName / RelativePathImagesStereoRight;
-    m_AbsolutePathTimestampsImagesStereoLeft  = m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo;
-    m_AbsolutePathTimestampsImagesStereoRight = m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo;
+    const std::filesystem::path AbsolutePathImagesStereoLeft            {m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft};
+    const std::filesystem::path AbsolutePathImagesStereoRight           {m_BaseDirectory / m_SequenceName / RelativePathImagesStereoRight};
+    const std::filesystem::path AbsolutePathTimestampsImagesStereoLeft  {m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
+    const std::filesystem::path AbsolutePathTimestampsImagesStereoRight {m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
+    const std::filesystem::path AbsolutePathCalibrationStereo           {m_BaseDirectory / m_SequenceName / FilenameCalibrationStereo};
 
     // extract filenames of the stereo camera images
-    FileInterface FileInterfaceImagesStereoLeft(m_AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
-    FileInterface FileInterfaceImagesStereoRight(m_AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo);
+    FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
+    FileInterface FileInterfaceImagesStereoRight(AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo);
 
     m_NumberOfImagesStereoLeft  = FileInterfaceImagesStereoLeft.GetNumberOfFiles();
     m_NumberOfImagesStereoRight = FileInterfaceImagesStereoRight.GetNumberOfFiles();
@@ -57,15 +58,13 @@ DatasetReaderKITTI::DatasetReaderKITTI(const std::string& BaseDirectory,
     m_FilenamesWithPathImagesStereoRight = FileInterfaceImagesStereoRight.GetListOfFilenamesWithPath();
 
     // extract timestamps of the stereo camera images
-    m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(m_AbsolutePathTimestampsImagesStereoLeft,  m_TimestampsImagesStereoLeftNanoseconds);
-    m_NumberOfTimestampsStereoRight = ExtractTimestamps(m_AbsolutePathTimestampsImagesStereoRight, m_TimestampsImagesStereoRightNanoseconds);
+    m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(AbsolutePathTimestampsImagesStereoLeft,  m_TimestampsImagesStereoLeftNanoseconds);
+    m_NumberOfTimestampsStereoRight = ExtractTimestamps(AbsolutePathTimestampsImagesStereoRight, m_TimestampsImagesStereoRightNanoseconds);
 
     // extract image dimensions
     DatasetReaderBase::ExtractImagesDimensions(m_FilenamesWithPathImagesStereoLeft[0], m_HeightImagesStereo, m_WidthImagesStereo);
 
     // extract projection matrices of the stereo cameras
-    std::filesystem::path AbsolutePathCalibrationStereo = m_BaseDirectory / m_SequenceName / FilenameCalibrationStereo;
-
     ExtractProjectionMatrices(AbsolutePathCalibrationStereo, m_ProjectionMatrixStereoLeft, m_ProjectionMatrixStereoRight);
 }
 
