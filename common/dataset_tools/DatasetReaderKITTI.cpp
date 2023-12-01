@@ -86,27 +86,27 @@ void DatasetReaderKITTI::ExtractProjectionMatrices(const std::string&       File
     ProjectionMatrixStereoLeft(0U, 1U) = std::stod(Reader.GetValue(0U, 2U));
     ProjectionMatrixStereoLeft(0U, 2U) = std::stod(Reader.GetValue(0U, 3U));
     ProjectionMatrixStereoLeft(0U, 3U) = std::stod(Reader.GetValue(0U, 4U));
-    ProjectionMatrixStereoLeft(1U, 0U) = std::stod(Reader.GetValue(0U, 5U));
-    ProjectionMatrixStereoLeft(1U, 1U) = std::stod(Reader.GetValue(0U, 6U));
-    ProjectionMatrixStereoLeft(1U, 2U) = std::stod(Reader.GetValue(0U, 7U));
-    ProjectionMatrixStereoLeft(1U, 3U) = std::stod(Reader.GetValue(0U, 8U));
-    ProjectionMatrixStereoLeft(2U, 0U) = std::stod(Reader.GetValue(0U, 9U));
-    ProjectionMatrixStereoLeft(2U, 1U) = std::stod(Reader.GetValue(0U, 10U));
-    ProjectionMatrixStereoLeft(2U, 2U) = std::stod(Reader.GetValue(0U, 11U));
-    ProjectionMatrixStereoLeft(2U, 3U) = std::stod(Reader.GetValue(0U, 12U));
+    ProjectionMatrixStereoLeft(1U, 0U) = std::stod(Reader.GetValue(0U, 5U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoLeft(1U, 1U) = std::stod(Reader.GetValue(0U, 6U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoLeft(1U, 2U) = std::stod(Reader.GetValue(0U, 7U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoLeft(1U, 3U) = std::stod(Reader.GetValue(0U, 8U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoLeft(2U, 0U) = std::stod(Reader.GetValue(0U, 9U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoLeft(2U, 1U) = std::stod(Reader.GetValue(0U, 10U)); // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoLeft(2U, 2U) = std::stod(Reader.GetValue(0U, 11U)); // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoLeft(2U, 3U) = std::stod(Reader.GetValue(0U, 12U)); // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
 
     ProjectionMatrixStereoRight(0U, 0U) = std::stod(Reader.GetValue(1U, 1U));
     ProjectionMatrixStereoRight(0U, 1U) = std::stod(Reader.GetValue(1U, 2U));
     ProjectionMatrixStereoRight(0U, 2U) = std::stod(Reader.GetValue(1U, 3U));
     ProjectionMatrixStereoRight(0U, 3U) = std::stod(Reader.GetValue(1U, 4U));
-    ProjectionMatrixStereoRight(1U, 0U) = std::stod(Reader.GetValue(1U, 5U));
-    ProjectionMatrixStereoRight(1U, 1U) = std::stod(Reader.GetValue(1U, 6U));
-    ProjectionMatrixStereoRight(1U, 2U) = std::stod(Reader.GetValue(1U, 7U));
-    ProjectionMatrixStereoRight(1U, 3U) = std::stod(Reader.GetValue(1U, 8U));
-    ProjectionMatrixStereoRight(2U, 0U) = std::stod(Reader.GetValue(1U, 9U));
-    ProjectionMatrixStereoRight(2U, 1U) = std::stod(Reader.GetValue(1U, 10U));
-    ProjectionMatrixStereoRight(2U, 2U) = std::stod(Reader.GetValue(1U, 11U));
-    ProjectionMatrixStereoRight(2U, 3U) = std::stod(Reader.GetValue(1U, 12U));
+    ProjectionMatrixStereoRight(1U, 0U) = std::stod(Reader.GetValue(1U, 5U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoRight(1U, 1U) = std::stod(Reader.GetValue(1U, 6U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoRight(1U, 2U) = std::stod(Reader.GetValue(1U, 7U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoRight(1U, 3U) = std::stod(Reader.GetValue(1U, 8U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoRight(2U, 0U) = std::stod(Reader.GetValue(1U, 9U));  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoRight(2U, 1U) = std::stod(Reader.GetValue(1U, 10U)); // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoRight(2U, 2U) = std::stod(Reader.GetValue(1U, 11U)); // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    ProjectionMatrixStereoRight(2U, 3U) = std::stod(Reader.GetValue(1U, 12U)); // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
 }
 
 uint64 DatasetReaderKITTI::ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
