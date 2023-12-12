@@ -15,6 +15,7 @@ The *Robotics Toolbox for C++* depends on the following external C++ tools:
 
 Additionally, the following Python packages are required:
 
+- Coverxygen (see [https://pypi.org/project/coverxygen/](https://pypi.org/project/coverxygen/))
 - Flake8 (see [https://pypi.org/project/flake8/](https://pypi.org/project/flake8/))
 - Gcovr (see [https://pypi.org/project/gcovr/](https://pypi.org/project/gcovr/))
 - GitPython (see [https://pypi.org/project/GitPython/](https://pypi.org/project/GitPython/))
