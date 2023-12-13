@@ -19,6 +19,7 @@ Args:
     threshold_function_coverage (float): Minimum percentage for the function coverage.
     threshold_line_coverage (float):     Minimum percentage for the line coverage.
 """
+
 import argparse
 import json
 

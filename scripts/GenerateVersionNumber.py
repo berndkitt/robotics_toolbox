@@ -25,6 +25,7 @@ Args:
     filename_version_doxyfile (str): Filename of the generated Doxygen version file.
     filename_version_header (str):   Filename of the generated C++ version header file.
 """
+
 import argparse
 from pathlib import Path
 
