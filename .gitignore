@@ -11,5 +11,6 @@ libs/
 *_DoxyfileVersion
 *_Fingerprints.txt
 *_Version.h
+coverxygen_*.json
 DoxygenWarnings.log
 Makefile
