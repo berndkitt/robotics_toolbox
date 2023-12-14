@@ -22,7 +22,8 @@ RUN apt install -y build-essential \
                    python3-setuptools
 
 # install useful Python packages
-RUN python3 -m pip install flake8 \
+RUN python3 -m pip install coverxygen \
+                           flake8 \
                            flake8-bugbear \
                            flake8-builtins \
                            flake8-comprehensions \
