@@ -1,0 +1,11 @@
+{
+    "Test":
+    {
+        "Error":       {"max_allowed_value": 0},
+        "Warning":     {"max_allowed_value": 100},
+        "Style":       {"max_allowed_value": 100},
+        "Performance": {"max_allowed_value": 100},
+        "Portability": {"max_allowed_value": 100},
+        "Information": {"max_allowed_value": 100}
+    }
+}
