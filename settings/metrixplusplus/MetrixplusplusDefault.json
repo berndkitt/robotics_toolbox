@@ -1,0 +1,10 @@
+{
+    "Test":
+    {
+        "Codelines (file)":         {"max_allowed_value": 1000},
+        "Codelines (function)":     {"max_allowed_value": 150},
+        "Complexity (cyclomatic)":  {"max_allowed_value": 15},
+        "Complexity (indentation)": {"max_allowed_value": 10},
+        "Maintainability Index":    {"max_allowed_value": 5}
+    }
+}
