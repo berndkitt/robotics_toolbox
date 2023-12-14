@@ -6,7 +6,8 @@ execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumbe
 
 # build libFM
 add_library(${PROJECT_NAME} STATIC
-    source_code/src/FeatureMatcher.cpp)
+    source_code/src/FeatureMatcher.cpp
+    source_code/src/LIBFMVersion.cpp)
 
 # define include directories for libFM
 target_include_directories(${PROJECT_NAME} PRIVATE
