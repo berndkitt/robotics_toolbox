@@ -135,6 +135,7 @@ pipeline
                         {
                             steps
                             {
+                                sleep(time: 1, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFB/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFB/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFB/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_details.html"
@@ -186,6 +187,7 @@ pipeline
                         {
                             steps
                             {
+                                sleep(time: 11, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_summary.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_details.html"
@@ -203,6 +205,51 @@ pipeline
                             steps
                             {
                                 sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
+                            }
+                        }
+                    }
+                }
+                stage("libFM")
+                {
+                    stages
+                    {
+                        stage("CMake Build")
+                        {
+                            steps
+                            {
+                                sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FM -j${env.NUMBER_OF_THREADS}"
+                            }
+                        }
+                        stage("GoogleTest")
+                        {
+                            steps
+                            {
+                                sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libFM -j${env.NUMBER_OF_THREADS}"
+                                sh "./bin/unit_tests_libFM --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/googletest_libFM.json"
+                            }
+                        }
+                        stage("Gcovr")
+                        {
+                            steps
+                            {
+                                sleep(time: 21, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
+                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_coverage.json"
+                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_summary.json"
+                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_details.html"
+                            }
+                        }
+                        stage("Doxygen")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFM --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/"
+                            }
+                        }
+                        stage("Doxygen Coverage")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFM --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/"
                             }
                         }
                     }

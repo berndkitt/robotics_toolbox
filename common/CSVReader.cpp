@@ -28,7 +28,6 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/foreach.hpp>
-#include <boost/typeof/std/utility.hpp>
 
 #include "CSVReader.h"
 

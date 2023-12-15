@@ -1,11 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file CSVReader.h
+/// \file  LIBFMVersion.h
+///
+/// \brief Header file containing the LIBFMVersion class.
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
 This file is part of the Robotics Toolbox.
 
-Copyright (C) 2023
+Copyright (C) 2021
 
 Authors: Bernd Kitt (b.kitt@berndkitt.de)
 
@@ -23,83 +25,84 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#ifndef CSVREADER_H
-#define CSVREADER_H
+#ifndef LIBFMVERSION_H
+#define LIBFMVERSION_H
 
 #include <string>
 
 #include <GlobalTypesBase.h>
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \class CSVReader
+/// \class LIBFMVersion
 ///
-/// \brief Class for reading CSV files.
+/// \brief Class containing the version information of libFM.
+///
+/// The release numbers of the library follow the Semantic Versioning scheme.
+/// Hence, a version number has the following format: MAJOR.MINOR.PATCH
+///
+/// Besides the actual version number, the class also contains the build
+/// information of the library.
+/// - Time when the library was built.
+/// - Git commit hash.
+/// - User who built the library.
 ///////////////////////////////////////////////////////////////////////////////
-class CSVReader
+class LIBFMVersion
 {
-protected: // protected attributes
-    std::vector< std::vector<std::string>* > m_Entries; ///< Entries of the CSV file (outer vector represents the rows, inner vector represents the columns).
-
 public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Constructor.
+    /// \brief  Getter for the time when the library was built.
     ///
-    /// \param[in] Filename          Filename including its absolute path.
-    /// \param[in] Separators        Characters used to separate the entries of a row (e.g. ",", ";",...).
-    /// \param[in] ExtractEmptyRows  Flag whether empty rows shall be extracted of not.
+    /// \return Time when the library was built.
     ///////////////////////////////////////////////////////////////////////////////
-    CSVReader(const std::string& Filename,
-              const std::string& Separators       = ";",
-                    boolean      ExtractEmptyRows = false);
+    static std::string GetBuildTime();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Destructor.
+    /// \brief  Getter for the user who built the library.
+    ///
+    /// \return User who built the library.
     ///////////////////////////////////////////////////////////////////////////////
-    ~CSVReader();
+    static std::string GetBuildUser();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Getter for the value at a defined position.
+    /// \brief Getter for the Git commit hash.
     ///
-    /// \param[in] RowIndex    Index of the row.
-    /// \param[in] ColumnIndex Index of the column.
-    ///
-    /// \return    Value at a defined position.
+    /// \return Git commit hash.
     ///////////////////////////////////////////////////////////////////////////////
-    std::string GetValue(uint64 RowIndex,
-                         uint64 ColumnIndex) const;
+    static std::string GetGitCommitHash();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the minimum number of columns.
+    /// \brief  Getter for the major version number of the library.
     ///
-    /// \return Minimum number of columns.
+    /// \return Major version number of the library.
     ///////////////////////////////////////////////////////////////////////////////
-    uint64 GetMinimumNumberOfColumns() const;
+    static uint64 GetVersionMajor();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Getter for the number of columns in the defined row.
+    /// \brief  Getter for the minor version number of the library.
     ///
-    /// \param[in] RowIndex Index of the row.
-    ///
-    /// \return    Number of columns in the defined row.
+    /// \return Minor version number of the library.
     ///////////////////////////////////////////////////////////////////////////////
-    uint64 GetNumberOfColumns(uint64 RowIndex) const;
+    static uint64 GetVersionMinor();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the number of rows.
+    /// \brief  Getter for the patch version number of the library.
     ///
-    /// \return Number of rows.
+    /// \return Patch version number of the library.
     ///////////////////////////////////////////////////////////////////////////////
-    uint64 GetNumberOfRows() const;
+    static uint64 GetVersionPatch();
 
-protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Removes the last character of a string.
+    /// \brief     Getter for the library version as string.
     ///
-    /// \param[in,out] String   String which shall be trimmed.
-    /// \param[in]     TrimList List of characters to be removed.
+    /// Returns the complete version number of the library as string. The
+    /// additional parameter can be used to add the name of the library in front of
+    /// the version number.
+    ///
+    /// \param[in] AddLibraryName Add the name of the library in front of the version.
+    ///
+    /// \return    Library version as string.
     ///////////////////////////////////////////////////////////////////////////////
-    static void Trim(      std::string& String,
-                     const std::string& TrimList = " \t\f\v\n\r");
+    static std::string GetVersionString(const boolean AddLibraryName = true);
 };
 
-#endif // CSVREADER_H
+#endif // LIBFMVERSION_H
