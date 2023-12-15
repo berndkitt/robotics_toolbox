@@ -17,3 +17,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 # link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Eigen3::Eigen)
+
+# link libraries (for code coverage only)
+if(OPTION_BUILD_UNIT_TESTS)
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    --coverage
+    gcov)
+endif(OPTION_BUILD_UNIT_TESTS)
