@@ -205,15 +205,6 @@ pipeline
                                 sh "./bin/unit_tests_libFM --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/googletest_libFM.json"
                             }
                         }
-                        stage("Gcovr")
-                        {
-                            steps
-                            {
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_coverage.json"
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_summary.json"
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_details.html"
-                            }
-                        }
                         stage("Doxygen")
                         {
                             steps
