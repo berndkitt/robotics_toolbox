@@ -97,6 +97,13 @@ pipeline
                                 sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/environment_modeling/libraries/ --entity libWPG --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/"
                             }
                         }
+                        stage("Doxygen Coverage")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/environment_modeling/libraries/ --entity libWPG --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/"
+                            }
+                        }
                     }
                 }
             }
@@ -148,6 +155,13 @@ pipeline
                                 sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFB --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/"
                             }
                         }
+                        stage("Doxygen Coverage")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFB --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/"
+                            }
+                        }
                     }
                 }
                 stage("libFBVis")
@@ -184,6 +198,13 @@ pipeline
                             steps
                             {
                                 sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
+                            }
+                        }
+                        stage("Doxygen Coverage")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
                             }
                         }
                     }
