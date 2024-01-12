@@ -12,12 +12,15 @@ The script outputs the following information:
 - Fingerprint file containing the overall fingerprint as well as the individual fingerprints for
   all files in the provided list.
 - C++ version header file containing the version number as well as additional build information
-  (i.e. build user, build time, and Git commit hash), which can be compiled into a binary.
+  (i.e. build user, build time, Git commit hash, compiler identifier, and compiler version), which
+  can be compiled into a binary.
 - Doxygen version file which serves as input file for the documentation generation, adding the
   version number and the Git commit hash to the documentation.
 
 Args:
     base_path (str):                 Base path used as reference for the files in file_list_with_path.
+    compiler_identifier (str):       Identifier of the compiler.
+    compiler_version (str):          Version of the compiler.
     output_path (str):               Output path for the generated files.
     filename_file_list (str):        Name of the file which contains the list of files.
     filename_version_list (str):     Name of the file which contains the fingerprints and their associated version numbers.
@@ -41,6 +44,16 @@ if __name__ == "__main__":
                                  "--base_path",
                                  type=str,
                                  help="Base path used as reference for the files in file_list_with_path.",
+                                 required=True)
+    argument_parser.add_argument("-ci",
+                                 "--compiler_identifier",
+                                 type=str,
+                                 help="Identifier of the compiler.",
+                                 required=True)
+    argument_parser.add_argument("-cv",
+                                 "--compiler_version",
+                                 type=str,
+                                 help="Version of the compiler.",
                                  required=True)
     argument_parser.add_argument("-o",
                                  "--output_path",
@@ -88,4 +101,4 @@ if __name__ == "__main__":
     VG.write_doxygen_version_file(Path(args.output_path, args.filename_version_doxyfile))
 
     # write C++ version header file
-    VG.write_version_header_file(Path(args.output_path, args.filename_version_header))
+    VG.write_version_header_file(args.compiler_identifier, args.compiler_version, Path(args.output_path, args.filename_version_header))
