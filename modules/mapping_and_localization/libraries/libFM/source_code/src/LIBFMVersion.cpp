@@ -38,6 +38,16 @@ std::string LIBFMVersion::GetBuildUser()
     return BuildUser;
 }
 
+std::string LIBFMVersion::GetCompilerIdentifier()
+{
+    return CompilerIdentifier;
+}
+
+std::string LIBFMVersion::GetCompilerVersion()
+{
+    return CompilerVersion;
+}
+
 std::string LIBFMVersion::GetGitCommitHash()
 {
     return GitCommitHash;

@@ -38,6 +38,16 @@ std::string LIBWPGVersion::GetBuildUser()
     return BuildUser;
 }
 
+std::string LIBWPGVersion::GetCompilerIdentifier()
+{
+    return CompilerIdentifier;
+}
+
+std::string LIBWPGVersion::GetCompilerVersion()
+{
+    return CompilerVersion;
+}
+
 std::string LIBWPGVersion::GetGitCommitHash()
 {
     return GitCommitHash;
