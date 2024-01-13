@@ -33,6 +33,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 // definition of macros for the unit tests
 #define TEST_BUILDTIME_ISMATCHING                                    TEST   ///< Define to get a unique test name.
 #define TEST_BUILDUSER_ISMATCHING                                    TEST   ///< Define to get a unique test name.
+#define TEST_COMPILERIDENTIFER_ISMATCHING                            TEST   ///< Define to get a unique test name.
+#define TEST_COMPILERVERSION_ISMATCHING                              TEST   ///< Define to get a unique test name.
 #define TEST_GITCOMMITHASH_ISMATCHING                                TEST   ///< Define to get a unique test name.
 #define TEST_VERSIONMAJOR_ISMATCHING                                 TEST   ///< Define to get a unique test name.
 #define TEST_VERSIONMINOR_ISMATCHING                                 TEST   ///< Define to get a unique test name.
@@ -61,6 +63,28 @@ TEST_BUILDTIME_ISMATCHING(LIBFBVersion, Test_BuildTime_IsMatching)
 TEST_BUILDUSER_ISMATCHING(LIBFBVersion, Test_BuildUser_IsMatching)
 {
     ASSERT_EQ(LIBFBVersion::GetBuildUser(), BuildUser);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the compiler identifier.
+///
+/// Tests whether the provided compiler identifier does match the expected
+/// compiler identifier or not.
+///////////////////////////////////////////////////////////////////////////////
+TEST_COMPILERIDENTIFER_ISMATCHING(LIBFBVersion, Test_CompilerIdentifier_IsMatching)
+{
+    ASSERT_EQ(LIBFBVersion::GetCompilerIdentifier(), CompilerIdentifier);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the compiler version.
+///
+/// Tests whether the provided compiler version does match the expected
+/// compiler version or not.
+///////////////////////////////////////////////////////////////////////////////
+TEST_COMPILERVERSION_ISMATCHING(LIBFBVersion, Test_CompilerVersion_IsMatching)
+{
+    ASSERT_EQ(LIBFBVersion::GetCompilerVersion(), CompilerVersion);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
