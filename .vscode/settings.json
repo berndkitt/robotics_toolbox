@@ -9,6 +9,7 @@
         ".clang-tidy": "yaml",
         "LICENSE": "plaintext"
     },
+    "files.insertFinalNewline": true,
     "files.trimFinalNewlines": false,
     "files.trimTrailingWhitespace": true,
     "files.watcherExclude": {

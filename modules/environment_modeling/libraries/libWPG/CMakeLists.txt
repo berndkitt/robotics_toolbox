@@ -2,7 +2,7 @@
 project(WPG)
 
 # generate version number
-execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumber.py -b ${CMAKE_SOURCE_DIR}/modules/environment_modeling/libraries/libWPG/ -o ${CMAKE_SOURCE_DIR}/modules/environment_modeling/libraries/libWPG/versioning/ -if list_files.xml -iv list_versions.xml -of libWPG_Fingerprints.txt -od libWPG_DoxyfileVersion -oh libWPG_Version.h)
+execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumber.py -b ${CMAKE_SOURCE_DIR}/modules/environment_modeling/libraries/libWPG/ -ci ${CMAKE_CXX_COMPILER_ID} -cv ${CMAKE_CXX_COMPILER_VERSION} -o ${CMAKE_SOURCE_DIR}/modules/environment_modeling/libraries/libWPG/versioning/ -if list_files.xml -iv list_versions.xml -of libWPG_Fingerprints.txt -od libWPG_DoxyfileVersion -oh libWPG_Version.h)
 
 # build libWPG
 add_library(${PROJECT_NAME} STATIC

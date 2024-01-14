@@ -7,6 +7,8 @@
         "BUILDUSER",
         "BYCHANCE",
         "BYORDER",
+        "COMPILERIDENTIFER",
+        "COMPILERVERSION",
         "DATASETREADER",
         "DATASETREADERASRL",
         "DATASETREADERBASE",
