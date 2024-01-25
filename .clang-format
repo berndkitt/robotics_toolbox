@@ -1,0 +1,32 @@
+---
+Language: Cpp
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+ColumnLimit: 0
+
+AccessModifierOffset: -4
+
+PointerAlignment: Left
+ReferenceAlignment: Left
+
+BreakBeforeBraces: Allman
+
+AlignConsecutiveDeclarations: Consecutive
+
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: False
+AllowShortEnumsOnASingleLine: False
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: None
+AllowShortLoopsOnASingleLine: False
+
+SpaceBeforeAssignmentOperators: True
+SpaceBeforeCaseColon: False
+SpaceBeforeCtorInitializerColon: True
+SpaceBeforeInheritanceColon: True
+SpaceBeforeParens: Never
+...
