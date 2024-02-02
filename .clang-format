@@ -13,8 +13,13 @@ PointerAlignment: Left
 ReferenceAlignment: Left
 
 BreakBeforeBraces: Allman
+BreakConstructorInitializers: AfterColon
 
+IndentCaseLabels: True
+
+AlignConsecutiveAssignments: Consecutive
 AlignConsecutiveDeclarations: Consecutive
+AlignConsecutiveMacros: Consecutive
 
 AllowShortBlocksOnASingleLine: Never
 AllowShortCaseLabelsOnASingleLine: False
@@ -23,6 +28,8 @@ AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: None
 AllowShortLoopsOnASingleLine: False
+
+PackConstructorInitializers: Never
 
 SpaceBeforeAssignmentOperators: True
 SpaceBeforeCaseColon: False
