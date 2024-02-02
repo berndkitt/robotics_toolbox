@@ -41,7 +41,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class FeatureBucketerByOrder : public FeatureBucketerBase
 {
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
@@ -80,7 +80,7 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     virtual ~FeatureBucketerByOrder();
 
-protected: // protected methods
+protected:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Core method to bucket a set of given features.
     ///
@@ -89,4 +89,4 @@ protected: // protected methods
     virtual void BucketFeaturesWithScheme();
 };
 
-#endif //FEATUREBUCKETERBYORDER_H
+#endif // FEATUREBUCKETERBYORDER_H

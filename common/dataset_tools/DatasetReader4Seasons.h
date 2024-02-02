@@ -39,7 +39,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class DatasetReader4Seasons : public DatasetReaderBase
 {
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
@@ -54,7 +54,7 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     ~DatasetReader4Seasons();
 
-protected: // protected methods
+protected:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief      Extracts the projection matrices from the provided files.
     ///
@@ -64,11 +64,11 @@ protected: // protected methods
     /// \param[out] ProjectionMatrixStereoLeft        Projection matrix of the left stereo camera.
     /// \param[out] ProjectionMatrixStereoRight       Projection matrix of the left stereo camera.
     ///////////////////////////////////////////////////////////////////////////////
-    static void ExtractProjectionMatrices(const std::string&       FilenameIntrinsicCalibrationLeft,
-                                          const std::string&       FilenameIntrinsicCalibrationRight,
-                                          const std::string&       FilenameExtrinsicCalibration,
-                                                MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
-                                                MatrixFloat64_3x4& ProjectionMatrixStereoRight);
+    static void ExtractProjectionMatrices(const std::string& FilenameIntrinsicCalibrationLeft,
+                                          const std::string& FilenameIntrinsicCalibrationRight,
+                                          const std::string& FilenameExtrinsicCalibration,
+                                          MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
+                                          MatrixFloat64_3x4& ProjectionMatrixStereoRight);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief      Extracts the timestamps from the provided file.
@@ -79,7 +79,7 @@ protected: // protected methods
     /// \return     Number of timestamps found.
     ///////////////////////////////////////////////////////////////////////////////
     static uint64 ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
-                                          ListUInt64&            ListTimestamps);
+                                    ListUInt64&                  ListTimestamps);
 };
 
 #endif // DATASETREADER4SEASONS_H

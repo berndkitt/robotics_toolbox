@@ -33,7 +33,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 CSVReader::CSVReader(const std::string& Filename,
                      const std::string& Separators,
-                           boolean      ExtractEmptyRows)
+                     boolean            ExtractEmptyRows)
 {
     // read file
     std::ifstream File(Filename.c_str());
@@ -105,7 +105,7 @@ uint64 CSVReader::GetMinimumNumberOfColumns() const
 {
     uint64 MinColumns = std::numeric_limits<uint64>::max();
 
-    for(uint64 i_Row {0U}; i_Row < m_Entries.size(); i_Row++)
+    for(uint64 i_Row{0U}; i_Row < m_Entries.size(); i_Row++)
     {
         MinColumns = std::min(MinColumns, static_cast<uint64>(m_Entries[i_Row]->size()));
     }
@@ -131,11 +131,11 @@ uint64 CSVReader::GetNumberOfRows() const
     return m_Entries.size();
 }
 
-void CSVReader::Trim(      std::string& String,
+void CSVReader::Trim(std::string&       String,
                      const std::string& TrimList)
 {
     // find index of last character which is not part of the trim list
-    const uint64 IndexFound {String.find_last_not_of(TrimList)};
+    const uint64 IndexFound{String.find_last_not_of(TrimList)};
 
     // remove last character of the string
     if(IndexFound != std::string::npos)

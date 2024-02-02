@@ -32,8 +32,9 @@ FeatureBucketerByChance::FeatureBucketerByChance(const uint64 NumberOfPixelsHori
                                                  const uint8  NumberOfBucketsHorizontal,
                                                  const uint8  NumberOfBucketsVertical,
                                                  const uint8  MaximumNumberOfFeaturesPerBucket,
-                                                 const uint64 SeedValue) : FeatureBucketerBase(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket),
-                                                                           m_SeedValue{SeedValue}
+                                                 const uint64 SeedValue) :
+    FeatureBucketerBase(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical, MaximumNumberOfFeaturesPerBucket),
+    m_SeedValue{SeedValue}
 {
     // initialize random number generator
     m_RandomNumberEngine.seed(m_SeedValue);
@@ -42,8 +43,9 @@ FeatureBucketerByChance::FeatureBucketerByChance(const uint64 NumberOfPixelsHori
 FeatureBucketerByChance::FeatureBucketerByChance(const uint64       NumberOfPixelsHorizontal,
                                                  const uint64       NumberOfPixelsVertical,
                                                  const MatrixUInt8& FeatureMask,
-                                                 const uint64       SeedValue) : FeatureBucketerBase(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask),
-                                                                                 m_SeedValue{SeedValue}
+                                                 const uint64       SeedValue) :
+    FeatureBucketerBase(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask),
+    m_SeedValue{SeedValue}
 {
     // initialize random number generator
     m_RandomNumberEngine.seed(m_SeedValue);
@@ -51,7 +53,6 @@ FeatureBucketerByChance::FeatureBucketerByChance(const uint64       NumberOfPixe
 
 FeatureBucketerByChance::~FeatureBucketerByChance()
 {
-
 }
 
 void FeatureBucketerByChance::BucketFeaturesWithScheme()
@@ -60,10 +61,10 @@ void FeatureBucketerByChance::BucketFeaturesWithScheme()
     for(uint16 i_Bucket = 0; i_Bucket < m_NumberOfBuckets; i_Bucket++)
     {
         // get maximum number of features in current bucket
-        const uint8 MaximumNumberOfFeaturesInCurrentBucket {m_FeatureMask(i_Bucket)};
+        const uint8 MaximumNumberOfFeaturesInCurrentBucket{m_FeatureMask(i_Bucket)};
 
         // get number of features in current bucket
-        const uint64 NumberOfFeaturesInCurrentBucket {m_FeatureIndices[i_Bucket].size()};
+        const uint64 NumberOfFeaturesInCurrentBucket{m_FeatureIndices[i_Bucket].size()};
 
         // select features
         if(NumberOfFeaturesInCurrentBucket <= MaximumNumberOfFeaturesInCurrentBucket)
@@ -85,8 +86,8 @@ void FeatureBucketerByChance::BucketFeaturesWithScheme()
             while(FeatureCounter < MaximumNumberOfFeaturesInCurrentBucket)
             {
                 // randomly chose index
-                const uint64 RandomNumber {UniformDistribution(m_RandomNumberEngine)};
-                const uint64 ChosenIndex  {m_FeatureIndices[i_Bucket][RandomNumber]};
+                const uint64 RandomNumber{UniformDistribution(m_RandomNumberEngine)};
+                const uint64 ChosenIndex{m_FeatureIndices[i_Bucket][RandomNumber]};
 
                 // check whether the chosen index is already an entity of the list
                 if(!Tools::IsMember(ChosenIndices, ChosenIndex))
@@ -97,9 +98,9 @@ void FeatureBucketerByChance::BucketFeaturesWithScheme()
             }
 
             // store selected and rejected indices
-            for(uint64 i_Feature {0U}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
+            for(uint64 i_Feature{0U}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
             {
-                const uint64 CurrentIndex {m_FeatureIndices[i_Bucket][i_Feature]};
+                const uint64 CurrentIndex{m_FeatureIndices[i_Bucket][i_Feature]};
 
                 if(Tools::IsMember(ChosenIndices, CurrentIndex))
                 {

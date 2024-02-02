@@ -29,15 +29,15 @@ boolean Tools::IsMember(const ListUInt64& ValueList,
                         const uint64      ValueToCheck)
 {
     // create output variable
-    boolean ValueIsMember {false};
+    boolean ValueIsMember{false};
 
     // get number of entries in the list
-    const uint64 NumberOfEntries {ValueList.size()};
+    const uint64 NumberOfEntries{ValueList.size()};
 
     // check whether the value is already a member of the list or not
-    for(uint64 i_Value {0U}; i_Value < NumberOfEntries; i_Value++)
+    for(uint64 i_Value{0U}; i_Value < NumberOfEntries; i_Value++)
     {
-        const uint64 CurrentValue {ValueList[i_Value]};
+        const uint64 CurrentValue{ValueList[i_Value]};
 
         if(CurrentValue == ValueToCheck)
         {

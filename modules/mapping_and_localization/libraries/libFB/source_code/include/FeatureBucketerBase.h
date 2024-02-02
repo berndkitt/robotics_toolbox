@@ -42,22 +42,22 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class FeatureBucketerBase
 {
-protected: // protected attributes
-    const uint64                  m_NumberOfPixelsHorizontal;   ///< Number of pixels in horizontal direction.
-    const uint64                  m_NumberOfPixelsVertical;     ///< Number of pixels in vertical direction.
-          uint8                   m_NumberOfBucketsHorizontal;  ///< Number of buckets in horizontal direction.
-          uint8                   m_NumberOfBucketsVertical;    ///< Number of buckets in vertical direction.
-          uint16                  m_NumberOfBuckets;            ///< Total number of buckets.
-          MatrixUInt8             m_FeatureMask;                ///< Mask defining the buckets and the number of features in each bucket.
-          float64                 m_BucketSizeHorizontal;       ///< Size of each bucket in horizontal direction.
-          float64                 m_BucketSizeVertical;         ///< Size of each bucket in vertical direction.
-          ListUInt64              m_SelectedIndices;            ///< List containing the indices of the selected features.
-          ListUInt64              m_RejectedIndices;            ///< List containing the indices of the rejected features.
-          ListUInt16              m_BucketIDs;                  ///< List containing the bucket IDs for all provided features.
-          ListBoolean             m_BucketIDIsValid;            ///< List defining whether the bucket ID is valid or not.
-          std::vector<ListUInt64> m_FeatureIndices;             ///< List containing the feature indices for all buckets (contains one entry more than buckets; last entry used for invalid features).
+protected:
+    const uint64            m_NumberOfPixelsHorizontal;  ///< Number of pixels in horizontal direction.
+    const uint64            m_NumberOfPixelsVertical;    ///< Number of pixels in vertical direction.
+    uint8                   m_NumberOfBucketsHorizontal; ///< Number of buckets in horizontal direction.
+    uint8                   m_NumberOfBucketsVertical;   ///< Number of buckets in vertical direction.
+    uint16                  m_NumberOfBuckets;           ///< Total number of buckets.
+    MatrixUInt8             m_FeatureMask;               ///< Mask defining the buckets and the number of features in each bucket.
+    float64                 m_BucketSizeHorizontal;      ///< Size of each bucket in horizontal direction.
+    float64                 m_BucketSizeVertical;        ///< Size of each bucket in vertical direction.
+    ListUInt64              m_SelectedIndices;           ///< List containing the indices of the selected features.
+    ListUInt64              m_RejectedIndices;           ///< List containing the indices of the rejected features.
+    ListUInt16              m_BucketIDs;                 ///< List containing the bucket IDs for all provided features.
+    ListBoolean             m_BucketIDIsValid;           ///< List defining whether the bucket ID is valid or not.
+    std::vector<ListUInt64> m_FeatureIndices;            ///< List containing the feature indices for all buckets (contains one entry more than buckets; last entry used for invalid features).
 
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
@@ -152,7 +152,7 @@ public: // public methods
     /// \param[out] ImagePointsRejected List containing the image points which have been rejected.
     ///////////////////////////////////////////////////////////////////////////////
     void GetRejectedFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
-                                   ListColumnVectorFloat64_2d& ImagePointsRejected) const;
+                             ListColumnVectorFloat64_2d&       ImagePointsRejected) const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the list of indices of the rejected features.
@@ -168,7 +168,7 @@ public: // public methods
     /// \param[out] ImagePointsSelected List containing the image points which have been selected.
     ///////////////////////////////////////////////////////////////////////////////
     void GetSelectedFeatures(const ListColumnVectorFloat64_2d& ImagePoints,
-                                   ListColumnVectorFloat64_2d& ImagePointsSelected) const;
+                             ListColumnVectorFloat64_2d&       ImagePointsSelected) const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the list of indices of the selected features.
@@ -177,7 +177,7 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     const ListUInt64& GetSelectedIndices() const;
 
-protected: // protected methods
+protected:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Core method to bucket a set of given features.
     ///
@@ -196,7 +196,7 @@ protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
     boolean ComputeBucketID(const float64 CoordinateImagePointHorizontal,
                             const float64 CoordinateImagePointVertical,
-                                  uint16& BucketID) const;
+                            uint16&       BucketID) const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Computes the bucket IDs for all features.

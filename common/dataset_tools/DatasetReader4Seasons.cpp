@@ -25,12 +25,13 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include <fstream>
 
-#include "DatasetReader4Seasons.h"
 #include "../CSVReader.h"
 #include "../FileInterface.h"
+#include "DatasetReader4Seasons.h"
 
 DatasetReader4Seasons::DatasetReader4Seasons(const std::string& BaseDirectory,
-                                             const std::string& SequenceName) : DatasetReaderBase(BaseDirectory, SequenceName)
+                                             const std::string& SequenceName) :
+    DatasetReaderBase(BaseDirectory, SequenceName)
 {
     // set information which is specific for the dataset
     const std::filesystem::path RelativePathImagesStereoLeft("undistorted_images/cam0");
@@ -44,13 +45,13 @@ DatasetReader4Seasons::DatasetReader4Seasons(const std::string& BaseDirectory,
     const std::filesystem::path FilenameExtrinsicCalibration("undistorted_calib_stereo.txt");
 
     // create absolute paths to stereo camera information
-    const std::filesystem::path AbsolutePathImagesStereoLeft                {m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft};
-    const std::filesystem::path AbsolutePathImagesStereoRight               {m_BaseDirectory / m_SequenceName / RelativePathImagesStereoRight};
-    const std::filesystem::path AbsolutePathTimestampsImagesStereoLeft      {m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
-    const std::filesystem::path AbsolutePathTimestampsImagesStereoRight     {m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
-    const std::filesystem::path AbsolutePathIntrinsicCalibrationStereoLeft  {m_BaseDirectory / RelativePathCalibration / FilenameIntrinsicCalibrationLeft};
-    const std::filesystem::path AbsolutePathIntrinsicCalibrationStereoRight {m_BaseDirectory / RelativePathCalibration / FilenameIntrinsicCalibrationRight};
-    const std::filesystem::path AbsolutePathExtrinsicCalibrationStereo      {m_BaseDirectory / RelativePathCalibration / FilenameExtrinsicCalibration};
+    const std::filesystem::path AbsolutePathImagesStereoLeft{m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft};
+    const std::filesystem::path AbsolutePathImagesStereoRight{m_BaseDirectory / m_SequenceName / RelativePathImagesStereoRight};
+    const std::filesystem::path AbsolutePathTimestampsImagesStereoLeft{m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
+    const std::filesystem::path AbsolutePathTimestampsImagesStereoRight{m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
+    const std::filesystem::path AbsolutePathIntrinsicCalibrationStereoLeft{m_BaseDirectory / RelativePathCalibration / FilenameIntrinsicCalibrationLeft};
+    const std::filesystem::path AbsolutePathIntrinsicCalibrationStereoRight{m_BaseDirectory / RelativePathCalibration / FilenameIntrinsicCalibrationRight};
+    const std::filesystem::path AbsolutePathExtrinsicCalibrationStereo{m_BaseDirectory / RelativePathCalibration / FilenameExtrinsicCalibration};
 
     // extract filenames of the stereo camera images
     FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
@@ -63,7 +64,7 @@ DatasetReader4Seasons::DatasetReader4Seasons(const std::string& BaseDirectory,
     m_FilenamesWithPathImagesStereoRight = FileInterfaceImagesStereoRight.GetListOfFilenamesWithPath();
 
     // extract timestamps of the stereo camera images
-    m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(AbsolutePathTimestampsImagesStereoLeft,  m_TimestampsImagesStereoLeftNanoseconds);
+    m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(AbsolutePathTimestampsImagesStereoLeft, m_TimestampsImagesStereoLeftNanoseconds);
     m_NumberOfTimestampsStereoRight = ExtractTimestamps(AbsolutePathTimestampsImagesStereoRight, m_TimestampsImagesStereoRightNanoseconds);
 
     // extract image dimensions
@@ -75,14 +76,13 @@ DatasetReader4Seasons::DatasetReader4Seasons(const std::string& BaseDirectory,
 
 DatasetReader4Seasons::~DatasetReader4Seasons()
 {
-
 }
 
-void DatasetReader4Seasons::ExtractProjectionMatrices(const std::string&       FilenameIntrinsicCalibrationLeft,
-                                                      const std::string&       FilenameIntrinsicCalibrationRight,
-                                                      const std::string&       FilenameExtrinsicCalibration,
-                                                            MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
-                                                            MatrixFloat64_3x4& ProjectionMatrixStereoRight)
+void DatasetReader4Seasons::ExtractProjectionMatrices(const std::string& FilenameIntrinsicCalibrationLeft,
+                                                      const std::string& FilenameIntrinsicCalibrationRight,
+                                                      const std::string& FilenameExtrinsicCalibration,
+                                                      MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
+                                                      MatrixFloat64_3x4& ProjectionMatrixStereoRight)
 {
     // read files
     CSVReader ReaderIntrinsicLeft(FilenameIntrinsicCalibrationLeft, " ");
@@ -90,11 +90,11 @@ void DatasetReader4Seasons::ExtractProjectionMatrices(const std::string&       F
     CSVReader ReaderExtrinsic(FilenameExtrinsicCalibration, " ");
 
     // extract data
-    const uint64 ColumnIndexFocalLengthHorizontal    {1U};
-    const uint64 ColumnIndexFocalLengthVertical      {2U};
-    const uint64 ColumnIndexPrincipalPointHorizontal {3U};
-    const uint64 ColumnIndexPrincipalPointVertical   {4U};
-    const uint64 ColumnIndexBaseline                 {3U};
+    const uint64 ColumnIndexFocalLengthHorizontal{1U};
+    const uint64 ColumnIndexFocalLengthVertical{2U};
+    const uint64 ColumnIndexPrincipalPointHorizontal{3U};
+    const uint64 ColumnIndexPrincipalPointVertical{4U};
+    const uint64 ColumnIndexBaseline{3U};
 
     const float64 FocalLengthHorizontalLeft    = std::stod(ReaderIntrinsicLeft.GetValue(0U, ColumnIndexFocalLengthHorizontal));
     const float64 FocalLengthVerticalLeft      = std::stod(ReaderIntrinsicLeft.GetValue(0U, ColumnIndexFocalLengthVertical));
@@ -127,7 +127,7 @@ void DatasetReader4Seasons::ExtractProjectionMatrices(const std::string&       F
 }
 
 uint64 DatasetReader4Seasons::ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
-                                                      ListUInt64&            ListTimestamps)
+                                                ListUInt64&                  ListTimestamps)
 {
     // initialize number of timestamps found
     uint64 NumberOfTimestampsFound = 0;

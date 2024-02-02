@@ -40,15 +40,15 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorCuboid : public WorldPointGeneratorBase
 {
-protected: // protected attributes
-    const float64 m_MinX;   ///< Smallest value of the 3d world points inside the cuboid in X-direction.
-    const float64 m_MaxX;   ///< Largest value of the 3d world points inside the cuboid in X-direction.
-    const float64 m_MinY;   ///< Smallest value of the 3d world points inside the cuboid in Y-direction.
-    const float64 m_MaxY;   ///< Largest value of the 3d world points inside the cuboid in Y-direction.
-    const float64 m_MinZ;   ///< Smallest value of the 3d world points inside the cuboid in Z-direction.
-    const float64 m_MaxZ;   ///< Largest value of the 3d world points inside the cuboid in Z-direction.
+protected:
+    const float64 m_MinX; ///< Smallest value of the 3d world points inside the cuboid in X-direction.
+    const float64 m_MaxX; ///< Largest value of the 3d world points inside the cuboid in X-direction.
+    const float64 m_MinY; ///< Smallest value of the 3d world points inside the cuboid in Y-direction.
+    const float64 m_MaxY; ///< Largest value of the 3d world points inside the cuboid in Y-direction.
+    const float64 m_MinZ; ///< Smallest value of the 3d world points inside the cuboid in Z-direction.
+    const float64 m_MaxZ; ///< Largest value of the 3d world points inside the cuboid in Z-direction.
 
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///

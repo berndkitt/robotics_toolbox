@@ -27,22 +27,23 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "../include/FeatureMatcher.h"
 
-FeatureMatcher::FeatureMatcher(const float64 RatioDistance) : m_DescriptorMatcher{new cv::BFMatcher},
-                                                              m_RatioDistance{RatioDistance},
-                                                              m_ParametersSetInternally{true}
+FeatureMatcher::FeatureMatcher(const float64 RatioDistance) :
+    m_DescriptorMatcher{new cv::BFMatcher},
+    m_RatioDistance{RatioDistance},
+    m_ParametersSetInternally{true}
 {
     // set internal attributes
     m_FeatureDetector = cv::ORB::create();
 }
 
 FeatureMatcher::FeatureMatcher(const cv::Ptr<cv::Feature2D>& FeatureDetector,
-                                     cv::DescriptorMatcher*  DescriptorMatcher,
-                               const float64                 RatioDistance) : m_FeatureDetector{FeatureDetector},
-                                                                              m_DescriptorMatcher{DescriptorMatcher},
-                                                                              m_RatioDistance{RatioDistance},
-                                                                              m_ParametersSetInternally{false}
+                               cv::DescriptorMatcher*        DescriptorMatcher,
+                               const float64                 RatioDistance) :
+    m_FeatureDetector{FeatureDetector},
+    m_DescriptorMatcher{DescriptorMatcher},
+    m_RatioDistance{RatioDistance},
+    m_ParametersSetInternally{false}
 {
-
 }
 
 FeatureMatcher::~FeatureMatcher()
@@ -53,21 +54,21 @@ FeatureMatcher::~FeatureMatcher()
     }
 }
 
-uint64 FeatureMatcher::FindCorrespondences(const std::vector<cv::Mat>&                    Images,
-                                                 std::vector<ListColumnVectorFloat64_2d>& FeatureCorrespondences)
+uint64 FeatureMatcher::FindCorrespondences(const std::vector<cv::Mat>&              Images,
+                                           std::vector<ListColumnVectorFloat64_2d>& FeatureCorrespondences)
 {
     // get number of images
-    const uint64 NumberOfImages {Images.size()};
+    const uint64 NumberOfImages{Images.size()};
 
     // extract features and calculate descriptors for all images
-    std::vector< std::vector<cv::KeyPoint> > ExtractedFeatures;
-    std::vector<cv::Mat>                     FeatureDescriptors;
+    std::vector<std::vector<cv::KeyPoint>> ExtractedFeatures;
+    std::vector<cv::Mat>                   FeatureDescriptors;
 
     // pre-allocate memory
     ExtractedFeatures.resize(NumberOfImages);
     FeatureDescriptors.resize(NumberOfImages);
 
-    for(uint64 i_Image {0U}; i_Image < NumberOfImages; i_Image++)
+    for(uint64 i_Image{0U}; i_Image < NumberOfImages; i_Image++)
     {
         // extract features
         m_FeatureDetector->detect(Images[i_Image], ExtractedFeatures[i_Image]);
@@ -77,32 +78,32 @@ uint64 FeatureMatcher::FindCorrespondences(const std::vector<cv::Mat>&          
     }
 
     // get number of extracted features in first image
-    const uint64 NumberOfExtractedFeatures {ExtractedFeatures[0].size()};
+    const uint64 NumberOfExtractedFeatures{ExtractedFeatures[0].size()};
 
     // find feature correspondences
-    uint64 NumberOfCorrespondencesFound {0U};
+    uint64 NumberOfCorrespondencesFound{0U};
 
-    std::vector< std::vector< std::vector<cv::DMatch> > > FeatureCorrespondencesInternal;
+    std::vector<std::vector<std::vector<cv::DMatch>>> FeatureCorrespondencesInternal;
 
     FeatureCorrespondencesInternal.resize(NumberOfImages);
 
-    for(uint64 i_Image {0U}; i_Image < NumberOfImages; i_Image++)
+    for(uint64 i_Image{0U}; i_Image < NumberOfImages; i_Image++)
     {
-        const uint64 FirstIndex  {i_Image % NumberOfImages};
-        const uint64 SecondIndex {(i_Image + 1U) % NumberOfImages};
+        const uint64 FirstIndex{i_Image % NumberOfImages};
+        const uint64 SecondIndex{(i_Image + 1U) % NumberOfImages};
 
         m_DescriptorMatcher->knnMatch(FeatureDescriptors[FirstIndex], FeatureDescriptors[SecondIndex], FeatureCorrespondencesInternal[i_Image], 2);
     }
 
-    for(uint64 i_Feature {0U}; i_Feature < NumberOfExtractedFeatures; i_Feature++)
+    for(uint64 i_Feature{0U}; i_Feature < NumberOfExtractedFeatures; i_Feature++)
     {
-        uint64  FeatureIndex {0U};
-        boolean IsGoodMatch  {true};
+        uint64  FeatureIndex{0U};
+        boolean IsGoodMatch{true};
 
         std::vector<uint64> IndexList;
         IndexList.resize(NumberOfImages);
 
-        for(uint64 i_Image {0U}; i_Image < NumberOfImages; i_Image++)
+        for(uint64 i_Image{0U}; i_Image < NumberOfImages; i_Image++)
         {
             if(i_Image == 0U)
             {
@@ -115,8 +116,8 @@ uint64 FeatureMatcher::FindCorrespondences(const std::vector<cv::Mat>&          
 
             IndexList[i_Image] = FeatureCorrespondencesInternal[i_Image][FeatureIndex][0].trainIdx;
 
-            const float64 DistanceBest       {FeatureCorrespondencesInternal[i_Image][FeatureIndex][0].distance};
-            const float64 DistanceSecondBest {FeatureCorrespondencesInternal[i_Image][FeatureIndex][1].distance};
+            const float64 DistanceBest{FeatureCorrespondencesInternal[i_Image][FeatureIndex][0].distance};
+            const float64 DistanceSecondBest{FeatureCorrespondencesInternal[i_Image][FeatureIndex][1].distance};
 
             if(DistanceBest < (m_RatioDistance * DistanceSecondBest))
             {
@@ -131,7 +132,7 @@ uint64 FeatureMatcher::FindCorrespondences(const std::vector<cv::Mat>&          
         // check if current feature correspondence is a good correspondence (i.e. "loop" over all images is closed)
         if((i_Feature == IndexList[NumberOfImages - 1U]) && IsGoodMatch)
         {
-            for(uint64 i_Image {0U}; i_Image < NumberOfImages; i_Image++)
+            for(uint64 i_Image{0U}; i_Image < NumberOfImages; i_Image++)
             {
                 if(i_Image == 0U)
                 {

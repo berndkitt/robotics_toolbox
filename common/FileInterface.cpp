@@ -32,10 +32,11 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 FileInterface::FileInterface(const std::string& Path,
                              const std::string& FileBasename,
                              const std::string& FileExtension,
-                                   boolean      ShowListOfFiles) : m_Path{Path},
-                                                                   m_FileBasename{FileBasename},
-                                                                   m_FileExtension{FileExtension},
-                                                                   m_NumberOfFiles{0U}
+                             boolean            ShowListOfFiles) :
+    m_Path{Path},
+    m_FileBasename{FileBasename},
+    m_FileExtension{FileExtension},
+    m_NumberOfFiles{0U}
 {
     // check if defined path is available
     if(!exists(m_Path) || !is_directory(m_Path))
@@ -46,14 +47,14 @@ FileInterface::FileInterface(const std::string& Path,
     // get filenames (i.e. iterate through all files in the directory)
     std::filesystem::directory_iterator DirectoryIterator(m_Path);
 
-    for(const auto& FilenameWithPath: DirectoryIterator)
+    for(const auto& FilenameWithPath : DirectoryIterator)
     {
         // get filename of current file
-        const std::string Filename {FilenameWithPath.path().filename()};
+        const std::string Filename{FilenameWithPath.path().filename()};
 
         // check whether the name of the current file starts with specified basename and ends with specified extension
-        const boolean HasCorrectBasename  {Filename.find(FileBasename) == 0};
-        const boolean HasCorrectExtension {Filename.find(FileExtension) == Filename.length() - FileExtension.length()};
+        const boolean HasCorrectBasename{Filename.find(FileBasename) == 0};
+        const boolean HasCorrectExtension{Filename.find(FileExtension) == Filename.length() - FileExtension.length()};
 
         if(HasCorrectBasename && HasCorrectExtension)
         {
@@ -76,7 +77,7 @@ FileInterface::FileInterface(const std::string& Path,
     // show list of files found in the specified directory
     if(ShowListOfFiles)
     {
-        for(uint64 i_File {0U}; i_File < m_NumberOfFiles; i_File++)
+        for(uint64 i_File{0U}; i_File < m_NumberOfFiles; i_File++)
         {
             // print filename
             std::cout << "Found file: " << m_ListFilenamesWithPath[i_File] << std::endl;
@@ -86,7 +87,6 @@ FileInterface::FileInterface(const std::string& Path,
 
 FileInterface::~FileInterface()
 {
-
 }
 
 std::string FileInterface::GetFilename(uint64 Index) const

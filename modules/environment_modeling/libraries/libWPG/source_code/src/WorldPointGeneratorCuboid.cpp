@@ -34,13 +34,14 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorld
                                                      const float64 MaxY,
                                                      const float64 MinZ,
                                                      const float64 MaxZ,
-                                                     const uint64  SeedValue) : WorldPointGeneratorBase(NumberOfWorldPoints, SeedValue),
-                                                                                m_MinX{MinX},
-                                                                                m_MaxX{MaxX},
-                                                                                m_MinY{MinY},
-                                                                                m_MaxY{MaxY},
-                                                                                m_MinZ{MinZ},
-                                                                                m_MaxZ{MaxZ}
+                                                     const uint64  SeedValue) :
+    WorldPointGeneratorBase(NumberOfWorldPoints, SeedValue),
+    m_MinX{MinX},
+    m_MaxX{MaxX},
+    m_MinY{MinY},
+    m_MaxY{MaxY},
+    m_MinZ{MinZ},
+    m_MaxZ{MaxZ}
 {
     // create uniform distributions
     std::uniform_real_distribution<float64> UniformDistributionX(m_MinX, m_MaxX);
@@ -50,12 +51,12 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorld
     // randomly generate the 3d world points
     ColumnVectorFloat64_3d CurrentWorldPoint;
 
-    for(uint64 i_WorldPoint {0U}; i_WorldPoint < m_NumberOfWorldPoints; i_WorldPoint++)
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < m_NumberOfWorldPoints; i_WorldPoint++)
     {
         // randomly generate the coordinates of the current 3d world point
-        const float64 CurrentCoordinateX {UniformDistributionX(m_RandomNumberEngine)};
-        const float64 CurrentCoordinateY {UniformDistributionY(m_RandomNumberEngine)};
-        const float64 CurrentCoordinateZ {UniformDistributionZ(m_RandomNumberEngine)};
+        const float64 CurrentCoordinateX{UniformDistributionX(m_RandomNumberEngine)};
+        const float64 CurrentCoordinateY{UniformDistributionY(m_RandomNumberEngine)};
+        const float64 CurrentCoordinateZ{UniformDistributionZ(m_RandomNumberEngine)};
 
         // add the current 3d world point
         CurrentWorldPoint(0) = CurrentCoordinateX;
@@ -68,5 +69,4 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorld
 
 WorldPointGeneratorCuboid::~WorldPointGeneratorCuboid()
 {
-
 }

@@ -38,14 +38,14 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class FileInterface
 {
-protected: // protected attributes
-    std::filesystem::path    m_Path;                    ///< Path of the directory containing the files.
-    std::filesystem::path    m_FileBasename;            ///< Basename of the files.
-    std::filesystem::path    m_FileExtension;           ///< Extension of the files.
-    std::vector<std::string> m_ListFilenamesWithPath;   ///< List containing the filenames including their paths.
-    uint64                   m_NumberOfFiles;           ///< Number of files.
+protected:
+    std::filesystem::path    m_Path;                  ///< Path of the directory containing the files.
+    std::filesystem::path    m_FileBasename;          ///< Basename of the files.
+    std::filesystem::path    m_FileExtension;         ///< Extension of the files.
+    std::vector<std::string> m_ListFilenamesWithPath; ///< List containing the filenames including their paths.
+    uint64                   m_NumberOfFiles;         ///< Number of files.
 
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
@@ -57,7 +57,7 @@ public: // public methods
     FileInterface(const std::string& Path,
                   const std::string& FileBasename,
                   const std::string& FileExtension,
-                        boolean      ShowListOfFiles = false);
+                  boolean            ShowListOfFiles = false);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.

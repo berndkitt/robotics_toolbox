@@ -35,23 +35,23 @@ FeatureBucketerVisualizer::FeatureBucketerVisualizer(const FeatureColorMode Colo
                                                      const sint32           PointRadius,
                                                      const sint32           PointThickness,
                                                      const sint32           LineThickness,
-                                                     const sint32           Delay) : m_ColorMode{ColorMode},
-                                                                                     m_DrawGrid{DrawGrid},
-                                                                                     m_PointRadius{PointRadius},
-                                                                                     m_PointThickness{PointThickness},
-                                                                                     m_LineThickness{LineThickness},
-                                                                                     m_Delay{Delay}
+                                                     const sint32           Delay) :
+    m_ColorMode{ColorMode},
+    m_DrawGrid{DrawGrid},
+    m_PointRadius{PointRadius},
+    m_PointThickness{PointThickness},
+    m_LineThickness{LineThickness},
+    m_Delay{Delay}
 {
     // set default drawing colors
-    m_ColorGrid     = cv::Scalar(0,   255, 255); // BGR -> yellow // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
-    m_ColorSelected = cv::Scalar(0,   255, 0);   // BGR -> green  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
-    m_ColorRejected = cv::Scalar(0,   0,   255); // BGR -> red    // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
-    m_ColorAll      = cv::Scalar(255, 255, 0);   // BGR -> cyan   // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorGrid     = cv::Scalar(0, 255, 255); // BGR -> yellow // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorSelected = cv::Scalar(0, 255, 0);   // BGR -> green  // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorRejected = cv::Scalar(0, 0, 255);   // BGR -> red    // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+    m_ColorAll      = cv::Scalar(255, 255, 0); // BGR -> cyan   // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
 }
 
 FeatureBucketerVisualizer::~FeatureBucketerVisualizer()
 {
-
 }
 
 void FeatureBucketerVisualizer::SaveBucketingResult(const FeatureBucketerBase&        Bucketer,
@@ -89,18 +89,18 @@ void FeatureBucketerVisualizer::VisualizeBucketingResult(const FeatureBucketerBa
 void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase&        Bucketer,
                                                      const cv::Mat&                    BackgroundImage,
                                                      const ListColumnVectorFloat64_2d& ImagePoints,
-                                                           cv::Mat&                    BucketingImage) const
+                                                     cv::Mat&                          BucketingImage) const
 {
     // convert bucketing image to color image
     cv::cvtColor(BucketingImage, BucketingImage, cv::COLOR_GRAY2BGR);
 
     // get selected and rejected indices
-    const ListUInt64& SelectedIndices {Bucketer.GetSelectedIndices()};
-    const ListUInt64& Rejectedindices {Bucketer.GetRejectedIndices()};
+    const ListUInt64& SelectedIndices{Bucketer.GetSelectedIndices()};
+    const ListUInt64& Rejectedindices{Bucketer.GetRejectedIndices()};
 
     // get number of selected and rejected indices
-    const uint64 NumberOfSelectedIndices {SelectedIndices.size()};
-    const uint64 NumberOfRejectedIndices {Rejectedindices.size()};
+    const uint64 NumberOfSelectedIndices{SelectedIndices.size()};
+    const uint64 NumberOfRejectedIndices{Rejectedindices.size()};
 
     // get selected and rejected image points
     ListColumnVectorFloat64_2d ImagePointsRejected;
@@ -110,19 +110,19 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
     Bucketer.GetSelectedFeatures(ImagePoints, ImagePointsSelected);
 
     // get number of provided features
-    const uint64 NumberOfFeatures {ImagePoints.size()};
+    const uint64 NumberOfFeatures{ImagePoints.size()};
 
     // get image dimensions
-    const uint64 ImageWidth  {static_cast<uint64>(BackgroundImage.cols)};
-    const uint64 ImageHeight {static_cast<uint64>(BackgroundImage.rows)};
+    const uint64 ImageWidth{static_cast<uint64>(BackgroundImage.cols)};
+    const uint64 ImageHeight{static_cast<uint64>(BackgroundImage.rows)};
 
     // get used image dimensions during feature bucketing
-    const uint64 ImageWidthBucketing  {Bucketer.GetNumberOfPixelsHorizontal()};
-    const uint64 ImageHeightBucketing {Bucketer.GetNumberOfPixelsVertical()};
+    const uint64 ImageWidthBucketing{Bucketer.GetNumberOfPixelsHorizontal()};
+    const uint64 ImageHeightBucketing{Bucketer.GetNumberOfPixelsVertical()};
 
     // check plausibility
-    const boolean FeaturesPlausible  {(NumberOfFeatures == (NumberOfSelectedIndices + NumberOfRejectedIndices))};
-    const boolean ImageSizePlausible {((ImageWidth == ImageWidthBucketing) && (ImageHeight == ImageHeightBucketing))};
+    const boolean FeaturesPlausible{(NumberOfFeatures == (NumberOfSelectedIndices + NumberOfRejectedIndices))};
+    const boolean ImageSizePlausible{((ImageWidth == ImageWidthBucketing) && (ImageHeight == ImageHeightBucketing))};
 
     // create bucketing image
     if(FeaturesPlausible && ImageSizePlausible)
@@ -161,17 +161,16 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
                 // do nothing
                 break;
             }
-            // no default needed as all options are covered
         }
 
         // draw grid
         if(m_DrawGrid)
         {
             // get bucket information
-            const uint8   NumberOfBucketsHorizontal {Bucketer.GetNumberOfBucketsHorizontal()};
-            const uint8   NumberOfBucketsVertical   {Bucketer.GetNumberOfBucketsVertical()};
-            const float64 BucketSizeHorizontal      {Bucketer.GetBucketSizeHorizontal()};
-            const float64 BucketSizeVertical        {Bucketer.GetBucketSizeVertical()};
+            const uint8   NumberOfBucketsHorizontal{Bucketer.GetNumberOfBucketsHorizontal()};
+            const uint8   NumberOfBucketsVertical{Bucketer.GetNumberOfBucketsVertical()};
+            const float64 BucketSizeHorizontal{Bucketer.GetBucketSizeHorizontal()};
+            const float64 BucketSizeVertical{Bucketer.GetBucketSizeVertical()};
 
             DrawGrid(NumberOfBucketsHorizontal, NumberOfBucketsVertical, BucketSizeHorizontal, BucketSizeVertical, BucketingImage);
         }
@@ -180,17 +179,17 @@ void FeatureBucketerVisualizer::CreateBucketingImage(const FeatureBucketerBase& 
 
 void FeatureBucketerVisualizer::DrawFeatures(const ListColumnVectorFloat64_2d& ImagePointsToDraw,
                                              const cv::Scalar&                 FeatureColor,
-                                                   cv::Mat&                    BucketingImage) const
+                                             cv::Mat&                          BucketingImage) const
 {
     // get number of features to draw
-    const uint64 NumberOfFeaturesToDraw {ImagePointsToDraw.size()};
+    const uint64 NumberOfFeaturesToDraw{ImagePointsToDraw.size()};
 
     // draw features
-    for(uint64 i_Feature {0U}; i_Feature < NumberOfFeaturesToDraw; i_Feature++)
+    for(uint64 i_Feature{0U}; i_Feature < NumberOfFeaturesToDraw; i_Feature++)
     {
         // get coordinates of current feature
-        const float64 CoordinateHorizontal {ImagePointsToDraw[i_Feature](0)};
-        const float64 CoordinateVertical   {ImagePointsToDraw[i_Feature](1)};
+        const float64 CoordinateHorizontal{ImagePointsToDraw[i_Feature](0)};
+        const float64 CoordinateVertical{ImagePointsToDraw[i_Feature](1)};
 
         // draw point
         const cv::Point2d CurrentPoint(CoordinateHorizontal, CoordinateVertical);
@@ -206,17 +205,17 @@ void FeatureBucketerVisualizer::DrawGrid(uint8    NumberOfBucketsHorizontal,
                                          cv::Mat& BucketingImage) const
 {
     // get image dimensions
-    const uint64 ImageWidth  {static_cast<uint64>(BucketingImage.cols)};
-    const uint64 ImageHeight {static_cast<uint64>(BucketingImage.rows)};
+    const uint64 ImageWidth{static_cast<uint64>(BucketingImage.cols)};
+    const uint64 ImageHeight{static_cast<uint64>(BucketingImage.rows)};
 
     // compute offset
-    const float64 Offset {static_cast<float64>(m_LineThickness) * 0.5};
+    const float64 Offset{static_cast<float64>(m_LineThickness) * 0.5};
 
     // plot horizontal lines
-    for(uint8 i_Line {0U}; i_Line < (NumberOfBucketsVertical + 1U); i_Line++)
+    for(uint8 i_Line{0U}; i_Line < (NumberOfBucketsVertical + 1U); i_Line++)
     {
         // get vertical coordinate of the line
-        float64 CoordinateVertical {static_cast<float64>(i_Line) * BucketSizeVertical};
+        float64 CoordinateVertical{static_cast<float64>(i_Line) * BucketSizeVertical};
 
         if(i_Line == 0U)
         {
@@ -240,10 +239,10 @@ void FeatureBucketerVisualizer::DrawGrid(uint8    NumberOfBucketsHorizontal,
     }
 
     // plot vertical lines
-    for(uint8 i_Line {0U}; i_Line < (NumberOfBucketsHorizontal + 1U); i_Line++)
+    for(uint8 i_Line{0U}; i_Line < (NumberOfBucketsHorizontal + 1U); i_Line++)
     {
         // get horizontal coordinate of the line
-        float64 CoordinateHorizontal {static_cast<float64>(i_Line) * BucketSizeHorizontal};
+        float64 CoordinateHorizontal{static_cast<float64>(i_Line) * BucketSizeHorizontal};
 
         if(i_Line == 0U)
         {

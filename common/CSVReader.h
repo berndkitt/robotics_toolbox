@@ -37,10 +37,10 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class CSVReader
 {
-protected: // protected attributes
-    std::vector< std::vector<std::string>* > m_Entries; ///< Entries of the CSV file (outer vector represents the rows, inner vector represents the columns).
+protected:
+    std::vector<std::vector<std::string>*> m_Entries; ///< Entries of the CSV file (outer vector represents the rows, inner vector represents the columns).
 
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
@@ -50,7 +50,7 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     CSVReader(const std::string& Filename,
               const std::string& Separators       = ";",
-                    boolean      ExtractEmptyRows = false);
+              boolean            ExtractEmptyRows = false);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
@@ -91,14 +91,14 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     uint64 GetNumberOfRows() const;
 
-protected: // protected methods
+protected:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Removes the last character of a string.
     ///
     /// \param[in,out] String   String which shall be trimmed.
     /// \param[in]     TrimList List of characters to be removed.
     ///////////////////////////////////////////////////////////////////////////////
-    static void Trim(      std::string& String,
+    static void Trim(std::string&       String,
                      const std::string& TrimList = " \t\f\v\n\r");
 };
 

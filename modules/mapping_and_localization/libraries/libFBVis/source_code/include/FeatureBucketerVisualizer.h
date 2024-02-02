@@ -55,19 +55,19 @@ enum FeatureColorMode
 ///////////////////////////////////////////////////////////////////////////////
 class FeatureBucketerVisualizer
 {
-protected: // protected attributes
-    const FeatureColorMode m_ColorMode;         ///< Color mode used to visualize the features.
-    const boolean          m_DrawGrid;          ///< Flag whether the grid is drawn or not.
-    const sint32           m_PointRadius;       ///< Radius of the drawn points.
-    const sint32           m_PointThickness;    ///< Thickness of the drawn points (negative means filled circle).
-    const sint32           m_LineThickness;     ///< Thickness of the lines of the grid.
-    const sint32           m_Delay;             ///< Delay how long the image is shown on the screen.
-          cv::Scalar       m_ColorGrid;         ///< Color of the lines of the grid.
-          cv::Scalar       m_ColorSelected;     ///< Color of the selected features.
-          cv::Scalar       m_ColorRejected;     ///< Color of the rejected features.
-          cv::Scalar       m_ColorAll;          ///< Color of all features.
+protected:
+    const FeatureColorMode m_ColorMode;      ///< Color mode used to visualize the features.
+    const boolean          m_DrawGrid;       ///< Flag whether the grid is drawn or not.
+    const sint32           m_PointRadius;    ///< Radius of the drawn points.
+    const sint32           m_PointThickness; ///< Thickness of the drawn points (negative means filled circle).
+    const sint32           m_LineThickness;  ///< Thickness of the lines of the grid.
+    const sint32           m_Delay;          ///< Delay how long the image is shown on the screen.
+    cv::Scalar             m_ColorGrid;      ///< Color of the lines of the grid.
+    cv::Scalar             m_ColorSelected;  ///< Color of the selected features.
+    cv::Scalar             m_ColorRejected;  ///< Color of the rejected features.
+    cv::Scalar             m_ColorAll;       ///< Color of all features.
 
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
@@ -114,7 +114,7 @@ public: // public methods
                                   const cv::Mat&                    BackgroundImage,
                                   const ListColumnVectorFloat64_2d& ImagePoints) const;
 
-protected: // protected methods
+protected:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief         Create image showing the bucketing result.
     // /
@@ -126,7 +126,7 @@ protected: // protected methods
     void CreateBucketingImage(const FeatureBucketerBase&        Bucketer,
                               const cv::Mat&                    BackgroundImage,
                               const ListColumnVectorFloat64_2d& ImagePoints,
-                                    cv::Mat&                    BucketingImage) const;
+                              cv::Mat&                          BucketingImage) const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief         Draw features into the bucketing image.
@@ -137,7 +137,7 @@ protected: // protected methods
     ///////////////////////////////////////////////////////////////////////////////
     void DrawFeatures(const ListColumnVectorFloat64_2d& ImagePointsToDraw,
                       const cv::Scalar&                 FeatureColor,
-                            cv::Mat&                    BucketingImage) const;
+                      cv::Mat&                          BucketingImage) const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief         Draw grid into the bucketing image.
@@ -148,11 +148,11 @@ protected: // protected methods
     /// \param[in]     BucketSizeVertical        Size of each bucket in vertical direction.
     /// \param[in,out] BucketingImage            Image showing the bucketing result.
     ///////////////////////////////////////////////////////////////////////////////
-    void DrawGrid(const uint8    NumberOfBucketsHorizontal,
-                  const uint8    NumberOfBucketsVertical,
-                  const float64  BucketSizeHorizontal,
-                  const float64  BucketSizeVertical,
-                        cv::Mat& BucketingImage) const;
+    void DrawGrid(const uint8   NumberOfBucketsHorizontal,
+                  const uint8   NumberOfBucketsVertical,
+                  const float64 BucketSizeHorizontal,
+                  const float64 BucketSizeVertical,
+                  cv::Mat&      BucketingImage) const;
 };
 
 #endif // FEATUREBUCKETERVISUALIZER_H
