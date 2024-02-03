@@ -1,0 +1,6 @@
+{
+    "directories": ["common/", "modules/"],
+    "extensions": [".cpp", ".h"],
+    "files_excluded": [],
+    "files_included": []
+}
