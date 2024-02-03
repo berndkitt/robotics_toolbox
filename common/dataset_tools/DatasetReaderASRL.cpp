@@ -25,12 +25,13 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include <fstream>
 
-#include "DatasetReaderASRL.h"
 #include "../CSVReader.h"
 #include "../FileInterface.h"
+#include "DatasetReaderASRL.h"
 
 DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
-                                     const std::string& SequenceName) : DatasetReaderBase(BaseDirectory, SequenceName)
+                                     const std::string& SequenceName) :
+    DatasetReaderBase(BaseDirectory, SequenceName)
 {
     // set information which is specific for the dataset
     const std::filesystem::path RelativePathImagesStereoLeft("images/left");
@@ -41,11 +42,11 @@ DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
     const std::filesystem::path FilenameCalibrationStereo("camera_parameters.txt");
 
     // create absolute paths to stereo camera information
-    const std::filesystem::path AbsolutePathImagesStereoLeft            {m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft};
-    const std::filesystem::path AbsolutePathImagesStereoRight           {m_BaseDirectory / m_SequenceName / RelativePathImagesStereoRight};
-    const std::filesystem::path AbsolutePathTimestampsImagesStereoLeft  {m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
-    const std::filesystem::path AbsolutePathTimestampsImagesStereoRight {m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
-    const std::filesystem::path AbsolutePathCalibrationStereo           {m_BaseDirectory / FilenameCalibrationStereo};
+    const std::filesystem::path AbsolutePathImagesStereoLeft{m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft};
+    const std::filesystem::path AbsolutePathImagesStereoRight{m_BaseDirectory / m_SequenceName / RelativePathImagesStereoRight};
+    const std::filesystem::path AbsolutePathTimestampsImagesStereoLeft{m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
+    const std::filesystem::path AbsolutePathTimestampsImagesStereoRight{m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
+    const std::filesystem::path AbsolutePathCalibrationStereo{m_BaseDirectory / FilenameCalibrationStereo};
 
     // extract filenames of the stereo camera images
     FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
@@ -58,7 +59,7 @@ DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
     m_FilenamesWithPathImagesStereoRight = FileInterfaceImagesStereoRight.GetListOfFilenamesWithPath();
 
     // extract timestamps of the stereo camera images
-    m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(AbsolutePathTimestampsImagesStereoLeft,  m_TimestampsImagesStereoLeftNanoseconds);
+    m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(AbsolutePathTimestampsImagesStereoLeft, m_TimestampsImagesStereoLeftNanoseconds);
     m_NumberOfTimestampsStereoRight = ExtractTimestamps(AbsolutePathTimestampsImagesStereoRight, m_TimestampsImagesStereoRightNanoseconds);
 
     // extract image dimensions
@@ -70,25 +71,24 @@ DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
 
 DatasetReaderASRL::~DatasetReaderASRL()
 {
-
 }
 
-void DatasetReaderASRL::ExtractProjectionMatrices(const std::string&       FilenameCalibration,
-                                                        MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
-                                                        MatrixFloat64_3x4& ProjectionMatrixStereoRight)
+void DatasetReaderASRL::ExtractProjectionMatrices(const std::string& FilenameCalibration,
+                                                  MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
+                                                  MatrixFloat64_3x4& ProjectionMatrixStereoRight)
 {
     // read file
     CSVReader Reader(FilenameCalibration, " ");
 
     // extract data
-    const uint64 ColumnIndexFocalLengthHorizontal    {2U};
-    const uint64 ColumnIndexPrincipalPointHorizontal {1U};
-    const uint64 ColumnIndexPrincipalPointVertical   {1U};
-    const uint64 ColumnIndexBaseline                 {1U};
-    const uint64 RowIndexFocalLengthHorizontal       {2U};
-    const uint64 RowIndexPrincipalPointHorizontal    {3U};
-    const uint64 RowIndexPrincipalPointVertical      {4U};
-    const uint64 RowIndexBaseline                    {5U};
+    const uint64 ColumnIndexFocalLengthHorizontal{2U};
+    const uint64 ColumnIndexPrincipalPointHorizontal{1U};
+    const uint64 ColumnIndexPrincipalPointVertical{1U};
+    const uint64 ColumnIndexBaseline{1U};
+    const uint64 RowIndexFocalLengthHorizontal{2U};
+    const uint64 RowIndexPrincipalPointHorizontal{3U};
+    const uint64 RowIndexPrincipalPointVertical{4U};
+    const uint64 RowIndexBaseline{5U};
 
     const float64 FocalLength              = std::stod(Reader.GetValue(RowIndexFocalLengthHorizontal, ColumnIndexFocalLengthHorizontal));
     const float64 PrincipalPointHorizontal = std::stod(Reader.GetValue(RowIndexPrincipalPointHorizontal, ColumnIndexPrincipalPointHorizontal));
@@ -114,7 +114,7 @@ void DatasetReaderASRL::ExtractProjectionMatrices(const std::string&       Filen
 }
 
 uint64 DatasetReaderASRL::ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
-                                                  ListUInt64&            ListTimestamps)
+                                            ListUInt64&                  ListTimestamps)
 {
     // initialize number of timestamps found
     uint64 NumberOfTimestampsFound = 0;

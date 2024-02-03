@@ -28,21 +28,20 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "DatasetReaderBase.h"
 
 DatasetReaderBase::DatasetReaderBase(const std::string& BaseDirectory,
-                                     const std::string& SequenceName) : m_BaseDirectory{BaseDirectory},
-                                                                        m_SequenceName{SequenceName},
-                                                                        m_NumberOfImagesStereoLeft{0U},
-                                                                        m_NumberOfImagesStereoRight{0U},
-                                                                        m_NumberOfTimestampsStereoLeft{0U},
-                                                                        m_NumberOfTimestampsStereoRight{0U},
-                                                                        m_HeightImagesStereo{0U},
-                                                                        m_WidthImagesStereo{0U}
+                                     const std::string& SequenceName) :
+    m_BaseDirectory{BaseDirectory},
+    m_SequenceName{SequenceName},
+    m_NumberOfImagesStereoLeft{0U},
+    m_NumberOfImagesStereoRight{0U},
+    m_NumberOfTimestampsStereoLeft{0U},
+    m_NumberOfTimestampsStereoRight{0U},
+    m_HeightImagesStereo{0U},
+    m_WidthImagesStereo{0U}
 {
-
 }
 
 DatasetReaderBase::~DatasetReaderBase()
 {
-
 }
 
 uint32 DatasetReaderBase::GetImageHeightStereoImages() const
@@ -78,7 +77,7 @@ uint32 DatasetReaderBase::GetImageWidthStereoImages() const
 uint64 DatasetReaderBase::GetNumberOfFrames() const
 {
     // get number of frames (based on the list of the left stereo camera images)
-    uint64 NumberOfFrames {m_FilenamesWithPathImagesStereoLeft.size()};
+    uint64 NumberOfFrames{m_FilenamesWithPathImagesStereoLeft.size()};
 
     return NumberOfFrames;
 }
@@ -94,11 +93,11 @@ const MatrixFloat64_3x4& DatasetReaderBase::GetProjectionMatrixStereoRight() con
 }
 
 void DatasetReaderBase::ExtractImagesDimensions(const std::string& FilenameImage,
-                                                      uint32&      ImageHeight,
-                                                      uint32&      ImageWidth)
+                                                uint32&            ImageHeight,
+                                                uint32&            ImageWidth)
 {
     // read first stereo camera image (left camera)
-    const cv::Mat Image {cv::imread(FilenameImage, cv::IMREAD_COLOR)};
+    const cv::Mat Image{cv::imread(FilenameImage, cv::IMREAD_COLOR)};
 
     // get image dimensions
     ImageHeight = Image.rows;

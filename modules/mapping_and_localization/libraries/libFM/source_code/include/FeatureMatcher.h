@@ -40,13 +40,13 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class FeatureMatcher
 {
-protected: // protected attributes
-    cv::Ptr<cv::Feature2D> m_FeatureDetector;           ///< Detector for the features and extractor for the descriptors.
-    cv::DescriptorMatcher* m_DescriptorMatcher;         ///< Matcher for the feature descriptors.
-    float64                m_RatioDistance;             ///< Ratio between first and second best distance to consider a match to be a good one.
-    boolean                m_ParametersSetInternally;   ///< Flag defining whether the class members have been set internally or not.
+protected:
+    cv::Ptr<cv::Feature2D> m_FeatureDetector;         ///< Detector for the features and extractor for the descriptors.
+    cv::DescriptorMatcher* m_DescriptorMatcher;       ///< Matcher for the feature descriptors.
+    float64                m_RatioDistance;           ///< Ratio between first and second best distance to consider a match to be a good one.
+    boolean                m_ParametersSetInternally; ///< Flag defining whether the class members have been set internally or not.
 
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
@@ -62,8 +62,8 @@ public: // public methods
     /// \param[in] RatioDistance     Ratio between first and second best distance to consider a match to be a good one.
     ///////////////////////////////////////////////////////////////////////////////
     FeatureMatcher(const cv::Ptr<cv::Feature2D>& FeatureDetector,
-                         cv::DescriptorMatcher*  DescriptorMatcher,
-                   const float64                 RatioDistance     = 0.7);
+                   cv::DescriptorMatcher*        DescriptorMatcher,
+                   const float64                 RatioDistance = 0.7);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
@@ -78,8 +78,8 @@ public: // public methods
     ///
     /// \return     Number of feature correspondences found.
     ///////////////////////////////////////////////////////////////////////////////
-    uint64 FindCorrespondences(const std::vector<cv::Mat>&                    Images,
-                                     std::vector<ListColumnVectorFloat64_2d>& FeatureCorrespondences);
+    uint64 FindCorrespondences(const std::vector<cv::Mat>&              Images,
+                               std::vector<ListColumnVectorFloat64_2d>& FeatureCorrespondences);
 };
 
 #endif // FEATUREMATCHER_H

@@ -39,13 +39,13 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorBase
 {
-protected: // protected attributes
-    const uint64                     m_NumberOfWorldPoints; ///< Number of 3d world points.
-          ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the 3d world points.
-          std::mt19937               m_RandomNumberEngine;  ///< Random number engine used to generate the 3d world points.
-    const uint64                     m_SeedValue;           ///< Seed value used to initialize the random number engine.
+protected:
+    const uint64               m_NumberOfWorldPoints; ///< Number of 3d world points.
+    ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the 3d world points.
+    std::mt19937               m_RandomNumberEngine;  ///< Random number engine used to generate the 3d world points.
+    const uint64               m_SeedValue;           ///< Seed value used to initialize the random number engine.
 
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
     ///////////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     const ListColumnVectorFloat64_3d& GetWorldPoints() const;
 
-protected: // protected methods
+protected:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///

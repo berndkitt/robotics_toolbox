@@ -62,6 +62,7 @@
         "imwrite"
     ],
     "words": [
+        "Allman",
         "Artisense",
         "ASRL",
         "Bernd",
@@ -81,6 +82,7 @@
         "Multiseason",
         "Odometry",
         "OpenCV",
+        "parens",
         "swappable"
     ]
 }

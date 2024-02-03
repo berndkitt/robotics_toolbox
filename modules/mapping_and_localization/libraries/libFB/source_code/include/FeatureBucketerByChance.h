@@ -43,11 +43,11 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class FeatureBucketerByChance : public FeatureBucketerBase
 {
-protected: // protected attributes
-          std::mt19937 m_RandomNumberEngine;    ///< Random number engine used to select the image points.
-    const uint64       m_SeedValue;             ///< Seed value used to initialize the random number engine.
+protected:
+    std::mt19937 m_RandomNumberEngine; ///< Random number engine used to select the image points.
+    const uint64 m_SeedValue;          ///< Seed value used to initialize the random number engine.
 
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
@@ -83,14 +83,14 @@ public: // public methods
     FeatureBucketerByChance(const uint64       NumberOfPixelsHorizontal,
                             const uint64       NumberOfPixelsVertical,
                             const MatrixUInt8& FeatureMask,
-                            const uint64       SeedValue                = 0U);
+                            const uint64       SeedValue = 0U);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
     ///////////////////////////////////////////////////////////////////////////////
     virtual ~FeatureBucketerByChance();
 
-protected: // protected methods
+protected:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Core method to bucket a set of given features.
     ///
@@ -99,4 +99,4 @@ protected: // protected methods
     virtual void BucketFeaturesWithScheme();
 };
 
-#endif //FEATUREBUCKETERBYCHANCE_H
+#endif // FEATUREBUCKETERBYCHANCE_H

@@ -25,12 +25,13 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include <fstream>
 
-#include "DatasetReaderKITTI.h"
 #include "../CSVReader.h"
 #include "../FileInterface.h"
+#include "DatasetReaderKITTI.h"
 
 DatasetReaderKITTI::DatasetReaderKITTI(const std::string& BaseDirectory,
-                                       const std::string& SequenceName) : DatasetReaderBase(BaseDirectory, SequenceName)
+                                       const std::string& SequenceName) :
+    DatasetReaderBase(BaseDirectory, SequenceName)
 {
     // set information which is specific for the dataset
     const std::filesystem::path RelativePathImagesStereoLeft("image_0");
@@ -41,11 +42,11 @@ DatasetReaderKITTI::DatasetReaderKITTI(const std::string& BaseDirectory,
     const std::filesystem::path FilenameCalibrationStereo("calib.txt");
 
     // create absolute paths to stereo camera information
-    const std::filesystem::path AbsolutePathImagesStereoLeft            {m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft};
-    const std::filesystem::path AbsolutePathImagesStereoRight           {m_BaseDirectory / m_SequenceName / RelativePathImagesStereoRight};
-    const std::filesystem::path AbsolutePathTimestampsImagesStereoLeft  {m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
-    const std::filesystem::path AbsolutePathTimestampsImagesStereoRight {m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
-    const std::filesystem::path AbsolutePathCalibrationStereo           {m_BaseDirectory / m_SequenceName / FilenameCalibrationStereo};
+    const std::filesystem::path AbsolutePathImagesStereoLeft{m_BaseDirectory / m_SequenceName / RelativePathImagesStereoLeft};
+    const std::filesystem::path AbsolutePathImagesStereoRight{m_BaseDirectory / m_SequenceName / RelativePathImagesStereoRight};
+    const std::filesystem::path AbsolutePathTimestampsImagesStereoLeft{m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
+    const std::filesystem::path AbsolutePathTimestampsImagesStereoRight{m_BaseDirectory / m_SequenceName / FilenameTimestampsImagesStereo};
+    const std::filesystem::path AbsolutePathCalibrationStereo{m_BaseDirectory / m_SequenceName / FilenameCalibrationStereo};
 
     // extract filenames of the stereo camera images
     FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
@@ -58,7 +59,7 @@ DatasetReaderKITTI::DatasetReaderKITTI(const std::string& BaseDirectory,
     m_FilenamesWithPathImagesStereoRight = FileInterfaceImagesStereoRight.GetListOfFilenamesWithPath();
 
     // extract timestamps of the stereo camera images
-    m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(AbsolutePathTimestampsImagesStereoLeft,  m_TimestampsImagesStereoLeftNanoseconds);
+    m_NumberOfTimestampsStereoLeft  = ExtractTimestamps(AbsolutePathTimestampsImagesStereoLeft, m_TimestampsImagesStereoLeftNanoseconds);
     m_NumberOfTimestampsStereoRight = ExtractTimestamps(AbsolutePathTimestampsImagesStereoRight, m_TimestampsImagesStereoRightNanoseconds);
 
     // extract image dimensions
@@ -70,12 +71,11 @@ DatasetReaderKITTI::DatasetReaderKITTI(const std::string& BaseDirectory,
 
 DatasetReaderKITTI::~DatasetReaderKITTI()
 {
-
 }
 
-void DatasetReaderKITTI::ExtractProjectionMatrices(const std::string&       FilenameCalibration,
-                                                         MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
-                                                         MatrixFloat64_3x4& ProjectionMatrixStereoRight)
+void DatasetReaderKITTI::ExtractProjectionMatrices(const std::string& FilenameCalibration,
+                                                   MatrixFloat64_3x4& ProjectionMatrixStereoLeft,
+                                                   MatrixFloat64_3x4& ProjectionMatrixStereoRight)
 {
     // read file
     CSVReader Reader(FilenameCalibration, " ");
@@ -109,7 +109,7 @@ void DatasetReaderKITTI::ExtractProjectionMatrices(const std::string&       File
 }
 
 uint64 DatasetReaderKITTI::ExtractTimestamps(const std::filesystem::path& FileTimestampsWithPath,
-                                                   ListUInt64&            ListTimestamps)
+                                             ListUInt64&                  ListTimestamps)
 {
     // initialize number of timestamps found
     uint64 NumberOfTimestampsFound = 0;

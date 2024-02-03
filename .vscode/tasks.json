@@ -2,6 +2,42 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Clang-Format (all files)",
+            "detail": "Trigger Clang-Format checks for all files",
+            "type": "shell",
+            "group": "test",
+            "command": "python3 ./scripts/RunClangFormat.py --base_directory ./ --configuration_json ./settings/clang_format/file_configuration_all.json",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true
+            },
+            "args": [],
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        },
+        {
+            "label": "Clang-Format (current file)",
+            "detail": "Trigger Clang-Format checks for the current file",
+            "type": "shell",
+            "group": "test",
+            "command": "clang-format -i ${file}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true
+            },
+            "args": [],
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        },
+        {
             "label": "Clang-Tidy (all C++ files)",
             "detail": "Trigger Clang-Tidy checks for all C++ files",
             "type": "shell",

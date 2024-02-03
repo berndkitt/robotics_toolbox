@@ -31,17 +31,17 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../../../versioning/libWPG_Version.h"
 
 // definition of macros for the unit tests
-#define TEST_BUILDTIME_ISMATCHING                                    TEST   ///< Define to get a unique test name.
-#define TEST_BUILDUSER_ISMATCHING                                    TEST   ///< Define to get a unique test name.
-#define TEST_COMPILERIDENTIFER_ISMATCHING                            TEST   ///< Define to get a unique test name.
-#define TEST_COMPILERVERSION_ISMATCHING                              TEST   ///< Define to get a unique test name.
-#define TEST_GITCOMMITHASH_ISMATCHING                                TEST   ///< Define to get a unique test name.
-#define TEST_VERSIONMAJOR_ISMATCHING                                 TEST   ///< Define to get a unique test name.
-#define TEST_VERSIONMINOR_ISMATCHING                                 TEST   ///< Define to get a unique test name.
-#define TEST_VERSIONPATCH_ISMATCHING                                 TEST   ///< Define to get a unique test name.
-#define TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING TEST   ///< Define to get a unique test name.
-#define TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING                 TEST   ///< Define to get a unique test name.
-#define TEST_VERSIONSTRINGWITHOUTLIBRARYNAME_ISMATCHING              TEST   ///< Define to get a unique test name.
+#define TEST_BUILDTIME_ISMATCHING                                    TEST ///< Define to get a unique test name.
+#define TEST_BUILDUSER_ISMATCHING                                    TEST ///< Define to get a unique test name.
+#define TEST_COMPILERIDENTIFER_ISMATCHING                            TEST ///< Define to get a unique test name.
+#define TEST_COMPILERVERSION_ISMATCHING                              TEST ///< Define to get a unique test name.
+#define TEST_GITCOMMITHASH_ISMATCHING                                TEST ///< Define to get a unique test name.
+#define TEST_VERSIONMAJOR_ISMATCHING                                 TEST ///< Define to get a unique test name.
+#define TEST_VERSIONMINOR_ISMATCHING                                 TEST ///< Define to get a unique test name.
+#define TEST_VERSIONPATCH_ISMATCHING                                 TEST ///< Define to get a unique test name.
+#define TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING TEST ///< Define to get a unique test name.
+#define TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING                 TEST ///< Define to get a unique test name.
+#define TEST_VERSIONSTRINGWITHOUTLIBRARYNAME_ISMATCHING              TEST ///< Define to get a unique test name.
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the build time.
@@ -140,7 +140,7 @@ TEST_VERSIONPATCH_ISMATCHING(LIBWPGVersion, Test_VersionPatch_IsMatching)
 ///////////////////////////////////////////////////////////////////////////////
 TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING(LIBWPGVersion, Test_VersionStringWithLibraryName_DefaultArgument_IsMatching)
 {
-    std::string VersionStringExpected {"libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
+    std::string VersionStringExpected{"libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     ASSERT_EQ(LIBWPGVersion::GetVersionString(), VersionStringExpected);
 }
@@ -154,7 +154,7 @@ TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING(LIBWPGVersion, Test
 ///////////////////////////////////////////////////////////////////////////////
 TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING(LIBWPGVersion, Test_VersionStringWithLibraryName_IsMatching)
 {
-    std::string VersionStringExpected {"libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
+    std::string VersionStringExpected{"libWPG v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     ASSERT_EQ(LIBWPGVersion::GetVersionString(true), VersionStringExpected);
 }
@@ -168,7 +168,7 @@ TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING(LIBWPGVersion, Test_VersionStringWi
 ///////////////////////////////////////////////////////////////////////////////
 TEST_VERSIONSTRINGWITHOUTLIBRARYNAME_ISMATCHING(LIBWPGVersion, Test_VersionStringWithoutLibraryName_IsMatching)
 {
-    std::string VersionStringExpected {"v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
+    std::string VersionStringExpected{"v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     ASSERT_EQ(LIBWPGVersion::GetVersionString(false), VersionStringExpected);
 }

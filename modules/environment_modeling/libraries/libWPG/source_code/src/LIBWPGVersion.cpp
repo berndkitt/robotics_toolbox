@@ -70,7 +70,7 @@ uint64 LIBWPGVersion::GetVersionPatch()
 
 std::string LIBWPGVersion::GetVersionString(const boolean AddLibraryName)
 {
-    std::string VersionString {"v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
+    std::string VersionString{"v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     if(AddLibraryName)
     {

@@ -39,10 +39,10 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 struct ImageInformation
 {
-    boolean     IsValid;                    ///< Flag whether the information is valid or not.
-    uint64      Timestamp;                  ///< Timestamp of the image in nanoseconds.
-    std::string FilenameWithAbsolutePath;   ///< Filename of the image including its absolute path.
-    cv::Mat     ImageGrayscale;             ///< Grayscale image.
+    boolean     IsValid;                  ///< Flag whether the information is valid or not.
+    uint64      Timestamp;                ///< Timestamp of the image in nanoseconds.
+    std::string FilenameWithAbsolutePath; ///< Filename of the image including its absolute path.
+    cv::Mat     ImageGrayscale;           ///< Grayscale image.
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -52,23 +52,23 @@ struct ImageInformation
 ///////////////////////////////////////////////////////////////////////////////
 class DatasetReaderBase
 {
-protected: // protected attributes
-    std::filesystem::path    m_BaseDirectory;                           ///< Absolute path to the base directory of the dataset.
-    std::filesystem::path    m_SequenceName;                            ///< Relative path to the sequence (w.r.t. the base directory).
-    std::vector<std::string> m_FilenamesWithPathImagesStereoLeft;       ///< List of filenames including the absolute path to the left stereo camera images.
-    std::vector<std::string> m_FilenamesWithPathImagesStereoRight;      ///< List of filenames including the absolute path to the right stereo camera images.
-    ListUInt64               m_TimestampsImagesStereoLeftNanoseconds;   ///< List of timestamps of the left stereo camera images (in nanoseconds).
-    ListUInt64               m_TimestampsImagesStereoRightNanoseconds;  ///< List of timestamps of the right stereo camera images (in nanoseconds).
-    uint64                   m_NumberOfImagesStereoLeft;                ///< Number of left stereo camera images.
-    uint64                   m_NumberOfImagesStereoRight;               ///< Number of right stereo camera images.
-    uint64                   m_NumberOfTimestampsStereoLeft;            ///< Number of timestamps for left stereo camera images.
-    uint64                   m_NumberOfTimestampsStereoRight;           ///< Number of timestamps for right stereo camera images.
-    uint32                   m_HeightImagesStereo;                      ///< Height of the stereo camera images.
-    uint32                   m_WidthImagesStereo;                       ///< Width of the stereo camera images.
-    MatrixFloat64_3x4        m_ProjectionMatrixStereoLeft;              ///< Projection matrix of the left stereo camera.
-    MatrixFloat64_3x4        m_ProjectionMatrixStereoRight;             ///< Projection matrix of the right stereo camera.
+protected:
+    std::filesystem::path    m_BaseDirectory;                          ///< Absolute path to the base directory of the dataset.
+    std::filesystem::path    m_SequenceName;                           ///< Relative path to the sequence (w.r.t. the base directory).
+    std::vector<std::string> m_FilenamesWithPathImagesStereoLeft;      ///< List of filenames including the absolute path to the left stereo camera images.
+    std::vector<std::string> m_FilenamesWithPathImagesStereoRight;     ///< List of filenames including the absolute path to the right stereo camera images.
+    ListUInt64               m_TimestampsImagesStereoLeftNanoseconds;  ///< List of timestamps of the left stereo camera images (in nanoseconds).
+    ListUInt64               m_TimestampsImagesStereoRightNanoseconds; ///< List of timestamps of the right stereo camera images (in nanoseconds).
+    uint64                   m_NumberOfImagesStereoLeft;               ///< Number of left stereo camera images.
+    uint64                   m_NumberOfImagesStereoRight;              ///< Number of right stereo camera images.
+    uint64                   m_NumberOfTimestampsStereoLeft;           ///< Number of timestamps for left stereo camera images.
+    uint64                   m_NumberOfTimestampsStereoRight;          ///< Number of timestamps for right stereo camera images.
+    uint32                   m_HeightImagesStereo;                     ///< Height of the stereo camera images.
+    uint32                   m_WidthImagesStereo;                      ///< Width of the stereo camera images.
+    MatrixFloat64_3x4        m_ProjectionMatrixStereoLeft;             ///< Projection matrix of the left stereo camera.
+    MatrixFloat64_3x4        m_ProjectionMatrixStereoRight;            ///< Projection matrix of the right stereo camera.
 
-public: // public methods
+public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
@@ -136,7 +136,7 @@ public: // public methods
     ///////////////////////////////////////////////////////////////////////////////
     const MatrixFloat64_3x4& GetProjectionMatrixStereoRight() const;
 
-protected: // protected methods
+protected:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief      Extracts the dimensions of the image.
     ///
@@ -145,8 +145,8 @@ protected: // protected methods
     /// \param[out] ImageWidth    Width of the image.
     ///////////////////////////////////////////////////////////////////////////////
     static void ExtractImagesDimensions(const std::string& FilenameImage,
-                                              uint32&      ImageHeight,
-                                              uint32&      ImageWidth);
+                                        uint32&            ImageHeight,
+                                        uint32&            ImageWidth);
 };
 
 #endif // DATASETREADERBASE_H

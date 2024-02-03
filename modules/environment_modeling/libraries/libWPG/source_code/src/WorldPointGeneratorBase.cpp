@@ -29,7 +29,6 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 WorldPointGeneratorBase::~WorldPointGeneratorBase()
 {
-
 }
 
 uint64 WorldPointGeneratorBase::GetNumberOfWorldPoints() const
@@ -43,8 +42,9 @@ const ListColumnVectorFloat64_3d& WorldPointGeneratorBase::GetWorldPoints() cons
 }
 
 WorldPointGeneratorBase::WorldPointGeneratorBase(const uint64 NumberOfWorldPoints,
-                                                 const uint64 SeedValue) : m_NumberOfWorldPoints{NumberOfWorldPoints},
-                                                                           m_SeedValue{SeedValue}
+                                                 const uint64 SeedValue) :
+    m_NumberOfWorldPoints{NumberOfWorldPoints},
+    m_SeedValue{SeedValue}
 {
     // pre-allocate memory
     m_ListOfWorldPoints.resize(m_NumberOfWorldPoints);
