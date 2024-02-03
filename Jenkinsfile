@@ -35,6 +35,13 @@ pipeline
         {
             parallel
             {
+                stage("Clang-Format")
+                {
+                    steps
+                    {
+                        sh "python3 ./scripts/RunClangFormat.py --base_directory ./ --configuration_json ./settings/clang_format/file_configuration_all.json --dry_run"
+                    }
+                }
                 stage("Clang-Tidy")
                 {
                     steps
