@@ -46,7 +46,7 @@ if __name__ == "__main__":
     list_of_files = files.get_list_of_files_as_string()
 
     if args.dry_run:
-        clang_format_call = f"clang-format -- dry-run -Werror {list_of_files}"
+        clang_format_call = f"clang-format --dry-run --Werror {list_of_files}"
     else:
         clang_format_call = f"clang-format -i {list_of_files}"
 
