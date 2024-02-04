@@ -15,8 +15,6 @@ pipeline
 
     options
     {
-        disableConcurrentBuilds()
-
         buildDiscarder(
             logRotator(
                 artifactDaysToKeepStr: "${env.BUILD_ARTIFACTS_DAYS_TO_KEEP}",
@@ -25,6 +23,7 @@ pipeline
                 numToKeepStr:          "${env.BUILD_LOGS_NUMBER_TO_KEEP}"
             )
         )
+        disableConcurrentBuilds()
     }
 
     stages
