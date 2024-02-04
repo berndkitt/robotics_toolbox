@@ -22,7 +22,7 @@ pipeline
                 artifactDaysToKeepStr: ${env.BUILD_ARTIFACTS_DAYS_TO_KEEP},
                 artifactNumToKeepStr:  ${env.BUILD_ARTIFACTS_NUMBER_TO_KEEP},
                 daysToKeepStr:         ${env.BUILD_LOGS_DAYS_TO_KEEP},
-                numToKeepStr:          ${env.BUILD_LOGS_NUMBER_TO_KEE}P
+                numToKeepStr:          ${env.BUILD_LOGS_NUMBER_TO_KEEP}
             )
         )
     }
