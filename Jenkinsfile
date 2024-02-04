@@ -4,6 +4,10 @@ pipeline
 
     environment
     {
+        BUILD_ARTIFACTS_DAYS_TO_KEEP      = "30"
+        BUILD_ARTIFACTS_NUMBER_TO_KEEP    = "10"
+        BUILD_LOGS_DAYS_TO_KEEP           = "30"
+        BUILD_LOGS_NUMBER_TO_KEEP         = "10"
         CMAKE_BUILD_DIRECTORY             = "build"
         JENKINS_BUILD_ARTIFACTS_DIRECTORY = "jenkins_build_artifacts"
         NUMBER_OF_THREADS                 = "8"
@@ -12,6 +16,15 @@ pipeline
     options
     {
         disableConcurrentBuilds()
+
+        buildDiscarder(
+            logRotator(
+                artifactDaysToKeepStr: BUILD_ARTIFACTS_DAYS_TO_KEEP,
+                artifactNumToKeepStr:  BUILD_ARTIFACTS_NUMBER_TO_KEEP,
+                daysToKeepStr:         BUILD_LOGS_DAYS_TO_KEEP,
+                numToKeepStr:          BUILD_LOGS_NUMBER_TO_KEEP
+            )
+        )
     }
 
     stages
