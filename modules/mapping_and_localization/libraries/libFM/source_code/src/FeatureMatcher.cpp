@@ -60,6 +60,12 @@ uint64 FeatureMatcher::FindCorrespondences(const std::vector<cv::Mat>&          
     // get number of images
     const uint64 NumberOfImages{Images.size()};
 
+    // clean input correspondences
+    for(uint64 i_Image{0U}; i_Image < NumberOfImages; i_Image++)
+    {
+        FeatureCorrespondences[i_Image].clear();
+    }
+
     // extract features and calculate descriptors for all images
     std::vector<std::vector<cv::KeyPoint>> ExtractedFeatures;
     std::vector<cv::Mat>                   FeatureDescriptors;
