@@ -19,10 +19,10 @@ pipeline
 
         buildDiscarder(
             logRotator(
-                artifactDaysToKeepStr: BUILD_ARTIFACTS_DAYS_TO_KEEP,
-                artifactNumToKeepStr:  BUILD_ARTIFACTS_NUMBER_TO_KEEP,
-                daysToKeepStr:         BUILD_LOGS_DAYS_TO_KEEP,
-                numToKeepStr:          BUILD_LOGS_NUMBER_TO_KEEP
+                artifactDaysToKeepStr: ${env.BUILD_ARTIFACTS_DAYS_TO_KEEP},
+                artifactNumToKeepStr:  ${env.BUILD_ARTIFACTS_NUMBER_TO_KEEP},
+                daysToKeepStr:         ${env.BUILD_LOGS_DAYS_TO_KEEP},
+                numToKeepStr:          ${env.BUILD_LOGS_NUMBER_TO_KEE}P
             )
         )
     }
