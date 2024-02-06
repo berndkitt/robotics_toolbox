@@ -16,3 +16,4 @@ DoxygenWarnings.log
 LIB*Version.cpp
 LIB*Version.h
 Makefile
+Test_LIB*Version.cpp
