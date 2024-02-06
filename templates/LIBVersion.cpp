@@ -25,8 +25,8 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#include "../../versioning/lib$LIB_ABBREVIATION$_Version.h"
 #include "../include/LIB$LIB_ABBREVIATION_UPPERCASE$Version.h"
+#include "../../versioning/lib$LIB_ABBREVIATION$_Version.h"
 
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildTime()
 {
