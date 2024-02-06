@@ -1,5 +1,5 @@
 {
-    "directories": ["common/", "modules/"],
+    "directories": ["common/", "modules/", "templates/"],
     "extensions": [".cpp", ".h"],
     "files_excluded": [],
     "files_included": []
