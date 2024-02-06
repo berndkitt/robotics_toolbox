@@ -11,21 +11,21 @@ import shutil
 
 def replace_library_name(filename_with_path: str,
                          search_string:      str,
-                         replace_str:        str) -> None:
+                         replace_string:     str) -> None:
     """
     Replace a string by another string in a given file.
 
     Args:
         filename_with_path (str): Filename including its path.
         search_string (str):      String to search.
-        replace_str (str):        New string.
+        replace_string (str):     New string.
     """
     # read input file
     with open(filename_with_path, "r") as file_input:
         file_data = file_input.read()
 
         # update content
-        file_data_updated = file_data.replace(search_string, replace_str)
+        file_data_updated = file_data.replace(search_string, replace_string)
 
     # write output file with updated content
     with open(filename_with_path, "w") as file_output:
