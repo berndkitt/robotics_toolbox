@@ -51,8 +51,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # define variables
-    search_string_library_abbreviation           = "${LIB_ABBREVIATION}"
-    search_string_library_abbreviation_uppercase = "${LIB_ABBREVIATION_UPPERCASE}"
+    search_string_library_abbreviation           = "${LIB_ABBREVIATION}$"
+    search_string_library_abbreviation_uppercase = "${LIB_ABBREVIATION_UPPERCASE}$"
     filename_source_header                       = "LIBVersion.h"
     filename_source_source                       = "LIBVersion.cpp"
     filename_source_unit_tests                   = "Test_LIBVersion.cpp"

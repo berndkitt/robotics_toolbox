@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file  LIB${LIB_ABBREVIATION_UPPERCASE}Version.h
+/// \file  LIB${LIB_ABBREVIATION_UPPERCASE}$Version.h
 ///
-/// \brief Header file containing the LIB${LIB_ABBREVIATION_UPPERCASE}Version class.
+/// \brief Header file containing the LIB${LIB_ABBREVIATION_UPPERCASE}$Version class.
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
@@ -25,17 +25,17 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#ifndef LIB${LIB_ABBREVIATION_UPPERCASE}VERSION_H
-#define LIB${LIB_ABBREVIATION_UPPERCASE}VERSION_H
+#ifndef LIB${LIB_ABBREVIATION_UPPERCASE}$VERSION_H
+#define LIB${LIB_ABBREVIATION_UPPERCASE}$VERSION_H
 
 #include <string>
 
 #include <GlobalTypesBase.h>
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \class LIB${LIB_ABBREVIATION_UPPERCASE}Version
+/// \class LIB${LIB_ABBREVIATION_UPPERCASE}$Version
 ///
-/// \brief Class containing the version information of lib${LIB_ABBREVIATION}.
+/// \brief Class containing the version information of lib${LIB_ABBREVIATION}$.
 ///
 /// The release numbers of the library follow the Semantic Versioning scheme.
 /// Hence, a version number has the following format: MAJOR.MINOR.PATCH
@@ -46,7 +46,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 /// - Git commit hash.
 /// - User who built the library.
 ///////////////////////////////////////////////////////////////////////////////
-class LIB${LIB_ABBREVIATION_UPPERCASE}Version
+class LIB${LIB_ABBREVIATION_UPPERCASE}$Version
 {
 public:
     ///////////////////////////////////////////////////////////////////////////////
@@ -119,4 +119,4 @@ public:
     static std::string GetVersionString(const boolean AddLibraryName = true);
 };
 
-#endif // LIB${LIB_ABBREVIATION_UPPERCASE}VERSION_H
+#endif // LIB${LIB_ABBREVIATION_UPPERCASE}$VERSION_H
