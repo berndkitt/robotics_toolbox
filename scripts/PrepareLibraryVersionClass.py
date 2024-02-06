@@ -1,3 +1,10 @@
+"""
+Script to prepare the version class for a library.
+
+The script copies the templates for the version class into the library's directory and replaces the
+placeholders by proper values.
+"""
+
 import argparse
 import shutil
 
@@ -5,6 +12,14 @@ import shutil
 def replace_library_name(filename_with_path: str,
                          search_string:      str,
                          replace_str:        str) -> None:
+    """
+    Replace a string by another string in a given file.
+
+    Args:
+        filename_with_path (str): Filename including its path.
+        search_string (str):      String to search.
+        replace_str (str):        New string.
+    """
     # read input file
     with open(filename_with_path, "r") as file_input:
         file_data = file_input.read()
