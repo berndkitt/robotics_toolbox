@@ -13,4 +13,6 @@ libs/
 *_Version.h
 coverxygen_*.json
 DoxygenWarnings.log
+LIB*Version.cpp
+LIB*Version.h
 Makefile
