@@ -1,7 +1,8 @@
 # define project name
 project(FBVis)
 
-# generate version number
+# prepare library
+execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/PrepareLibraryVersionClass.py --directory_template_files ${CMAKE_SOURCE_DIR}/templates/ --directory_library ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/ --library_abbreviation FBVis)
 execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumber.py -b ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/ -ci ${CMAKE_CXX_COMPILER_ID} -cv ${CMAKE_CXX_COMPILER_VERSION} -o ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/versioning/ -if list_files.xml -iv list_versions.xml -of libFBVis_Fingerprints.txt -od libFBVis_DoxyfileVersion -oh libFBVis_Version.h)
 
 # build libFBVis
