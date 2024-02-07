@@ -1,8 +1,6 @@
 # directories (auto generated)
 __pycache__
-**/documentation/html/
-**/documentation/latex/
-**/documentation/xml/
+**/documentation/
 bin/
 build/
 libs/
