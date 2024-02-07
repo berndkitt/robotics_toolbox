@@ -1,7 +1,8 @@
 # define project name
 project(FM)
 
-# generate version number
+# prepare library
+execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/PrepareLibraryVersionClass.py --directory_template_files ${CMAKE_SOURCE_DIR}/templates/ --directory_library ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/ --library_abbreviation FM)
 execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumber.py -b ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/ -ci ${CMAKE_CXX_COMPILER_ID} -cv ${CMAKE_CXX_COMPILER_VERSION} -o ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/versioning/ -if list_files.xml -iv list_versions.xml -of libFM_Fingerprints.txt -od libFM_DoxyfileVersion -oh libFM_Version.h)
 
 # build libFM

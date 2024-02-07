@@ -1,13 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file  LIBFBVISVersion.h
+/// \file  LIB$LIB_ABBREVIATION_UPPERCASE$Version.h
 ///
-/// \brief Header file containing the LIBFBVISVersion class.
+/// \brief Header file containing the LIB$LIB_ABBREVIATION_UPPERCASE$Version class.
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
 This file is part of the Robotics Toolbox.
 
-Copyright (C) 2021
+Copyright (C) 2024
 
 Authors: Bernd Kitt (b.kitt@berndkitt.de)
 
@@ -25,17 +25,17 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#ifndef LIBFBVISVERSION_H
-#define LIBFBVISVERSION_H
+#ifndef LIB$LIB_ABBREVIATION_UPPERCASE$VERSION_H
+#define LIB$LIB_ABBREVIATION_UPPERCASE$VERSION_H
 
 #include <string>
 
 #include <GlobalTypesBase.h>
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \class LIBFBVISVersion
+/// \class LIB$LIB_ABBREVIATION_UPPERCASE$Version
 ///
-/// \brief Class containing the version information of libFBVis.
+/// \brief Class containing the version information of lib$LIB_ABBREVIATION$.
 ///
 /// The release numbers of the library follow the Semantic Versioning scheme.
 /// Hence, a version number has the following format: MAJOR.MINOR.PATCH
@@ -46,7 +46,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 /// - Git commit hash.
 /// - User who built the library.
 ///////////////////////////////////////////////////////////////////////////////
-class LIBFBVISVersion
+class LIB$LIB_ABBREVIATION_UPPERCASE$Version
 {
 public:
     ///////////////////////////////////////////////////////////////////////////////
@@ -119,4 +119,4 @@ public:
     static std::string GetVersionString(const boolean AddLibraryName = true);
 };
 
-#endif // LIBFBVISVERSION_H
+#endif // LIB$LIB_ABBREVIATION_UPPERCASE$VERSION_H
