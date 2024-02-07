@@ -108,7 +108,7 @@ if __name__ == "__main__":
                         help="Path to the directory containing the template files.")
     parser.add_argument("--directory_library",
                         required=True,
-                        help="Base directory of the library")
+                        help="Base directory of the library.")
     parser.add_argument("--library_abbreviation",
                         required=True,
                         help="Abbreviation of the library.")
