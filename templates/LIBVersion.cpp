@@ -1,13 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file  LIBWPGVersion.cpp
+/// \file  LIB$LIB_ABBREVIATION_UPPERCASE$Version.cpp
 ///
-/// \brief Source file containing the LIBWPGVersion class.
+/// \brief Source file containing the LIB$LIB_ABBREVIATION_UPPERCASE$Version class.
 ///////////////////////////////////////////////////////////////////////////////
 
 /*
 This file is part of the Robotics Toolbox.
 
-Copyright (C) 2021
+Copyright (C) 2024
 
 Authors: Bernd Kitt (b.kitt@berndkitt.de)
 
@@ -25,56 +25,56 @@ You should have received a copy of the GNU General Public License along with
 the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
-#include "../include/LIBWPGVersion.h"
-#include "../../versioning/libWPG_Version.h"
+#include "../include/LIB$LIB_ABBREVIATION_UPPERCASE$Version.h"
+#include "../../versioning/lib$LIB_ABBREVIATION$_Version.h"
 
-std::string LIBWPGVersion::GetBuildTime()
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildTime()
 {
     return BuildTime;
 }
 
-std::string LIBWPGVersion::GetBuildUser()
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildUser()
 {
     return BuildUser;
 }
 
-std::string LIBWPGVersion::GetCompilerIdentifier()
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerIdentifier()
 {
     return CompilerIdentifier;
 }
 
-std::string LIBWPGVersion::GetCompilerVersion()
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerVersion()
 {
     return CompilerVersion;
 }
 
-std::string LIBWPGVersion::GetGitCommitHash()
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetGitCommitHash()
 {
     return GitCommitHash;
 }
 
-uint64 LIBWPGVersion::GetVersionMajor()
+uint64 LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionMajor()
 {
     return VersionMajor;
 }
 
-uint64 LIBWPGVersion::GetVersionMinor()
+uint64 LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionMinor()
 {
     return VersionMinor;
 }
 
-uint64 LIBWPGVersion::GetVersionPatch()
+uint64 LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionPatch()
 {
     return VersionPatch;
 }
 
-std::string LIBWPGVersion::GetVersionString(const boolean AddLibraryName)
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionString(const boolean AddLibraryName)
 {
     std::string VersionString{"v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     if(AddLibraryName)
     {
-        VersionString = "libWPG " + VersionString;
+        VersionString = "lib$LIB_ABBREVIATION$ " + VersionString;
     }
 
     return VersionString;
