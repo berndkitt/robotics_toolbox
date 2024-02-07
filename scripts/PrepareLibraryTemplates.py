@@ -6,6 +6,7 @@ Doxyfile into the library's directory and replaces the placeholders by proper va
 """
 
 import argparse
+import os
 import shutil
 
 # define global variables
@@ -58,10 +59,12 @@ def prepare_library_doxyfile(directory_template_files: str,
     filename_with_path_source_doxyfile = f"{directory_template_files}/{filename_source_doxyfile}"
 
     # create target filename
+    directory_target_doxyfile          = f"{directory_library}/documentation"
     filename_target_doxyfile           = f"lib{library_abbreviation}_Doxyfile"
-    filename_with_path_target_doxyfile = f"{directory_library}/documentation/{filename_target_doxyfile}"
+    filename_with_path_target_doxyfile = f"{directory_target_doxyfile}/{filename_target_doxyfile}"
 
     # copy template
+    os.makedirs(directory_target_doxyfile, exist_ok=True)
     shutil.copy2(filename_with_path_source_doxyfile, filename_with_path_target_doxyfile)
 
     # replace information in target file
