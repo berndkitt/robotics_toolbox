@@ -1,8 +1,8 @@
 """
-Script to prepare the version class for a library.
+Script to prepare the library.
 
-The script copies the templates for the version class as well as the corresponding unit test file
-into the library's directory and replaces the placeholders by proper values.
+The script copies the templates for the version class, corresponding unit test file as well as the
+Doxyfile into the library's directory and replaces the placeholders by proper values.
 """
 
 import argparse
@@ -130,7 +130,7 @@ def prepare_library_version_class_unit_tests(directory_template_files: str,
 # run script
 if __name__ == "__main__":
     # parse command line arguments
-    parser = argparse.ArgumentParser(description="Script to prepare the version class of a library.")
+    parser = argparse.ArgumentParser(description="Script to prepare the library.")
 
     parser.add_argument("--directory_template_files",
                         required=False,
