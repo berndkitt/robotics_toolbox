@@ -2,7 +2,7 @@
 project(WPG)
 
 # prepare library
-execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/PrepareLibraryVersionClass.py --directory_template_files ${CMAKE_SOURCE_DIR}/templates/ --directory_library ${CMAKE_SOURCE_DIR}/modules/environment_modeling/libraries/libWPG/ --library_abbreviation WPG)
+execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/PrepareLibraryTemplates.py --directory_template_files ${CMAKE_SOURCE_DIR}/templates/ --directory_library ${CMAKE_SOURCE_DIR}/modules/environment_modeling/libraries/libWPG/ --library_name WorldPointGeneration --library_abbreviation WPG)
 execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumber.py -b ${CMAKE_SOURCE_DIR}/modules/environment_modeling/libraries/libWPG/ -ci ${CMAKE_CXX_COMPILER_ID} -cv ${CMAKE_CXX_COMPILER_VERSION} -o ${CMAKE_SOURCE_DIR}/modules/environment_modeling/libraries/libWPG/versioning/ -if list_files.xml -iv list_versions.xml -of libWPG_Fingerprints.txt -od libWPG_DoxyfileVersion -oh libWPG_Version.h)
 
 # build libWPG
