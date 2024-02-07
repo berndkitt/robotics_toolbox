@@ -11,6 +11,8 @@ import shutil
 # define global variables
 search_string_library_abbreviation           = "$LIB_ABBREVIATION$"
 search_string_library_abbreviation_uppercase = "$LIB_ABBREVIATION_UPPERCASE$"
+search_string_library_name                   = "$LIB_NAME$"
+filename_source_doxyfile                     = "Doxyfile"
 filename_source_header                       = "LIBVersion.h"
 filename_source_source                       = "LIBVersion.cpp"
 filename_source_unit_tests                   = "Test_LIBVersion.cpp"
@@ -37,6 +39,34 @@ def replace_library_name(filename_with_path: str,
     # write output file with updated content
     with open(filename_with_path, "w") as file_output:
         file_output.write(file_data_updated)
+
+
+def prepare_library_doxyfile(directory_template_files: str,
+                             directory_library:        str,
+                             library_name:             str,
+                             library_abbreviation:     str) -> None:
+    """
+    Prepare the library Doxyfile.
+
+    Args:
+        directory_template_files (str): Path to the directory containing the template files.
+        directory_library (str):        Base directory of the library.
+        library_name (str):             Name of the library.
+        library_abbreviation (str):     Abbreviation of the library.
+    """
+    # create source filename
+    filename_with_path_source_doxyfile = f"{directory_template_files}/{filename_source_doxyfile}"
+
+    # create target filename
+    filename_target_doxyfile           = f"lib{library_abbreviation}_Doxyfile"
+    filename_with_path_target_doxyfile = f"{directory_library}/documentation/{filename_target_doxyfile}"
+
+    # copy template
+    shutil.copy2(filename_with_path_source_doxyfile, filename_with_path_target_doxyfile)
+
+    # replace information in target file
+    replace_library_name(filename_with_path_target_doxyfile, search_string_library_abbreviation, library_abbreviation)
+    replace_library_name(filename_with_path_target_doxyfile, search_string_library_name, library_name)
 
 
 def prepare_library_version_class(directory_template_files: str,
@@ -109,6 +139,9 @@ if __name__ == "__main__":
     parser.add_argument("--directory_library",
                         required=True,
                         help="Base directory of the library.")
+    parser.add_argument("--library_name",
+                        required=True,
+                        help="Name of the library.")
     parser.add_argument("--library_abbreviation",
                         required=True,
                         help="Abbreviation of the library.")
@@ -120,3 +153,6 @@ if __name__ == "__main__":
 
     # prepare library version class unit tests
     prepare_library_version_class_unit_tests(args.directory_template_files, args.directory_library, args.library_abbreviation)
+
+    # prepare library Doxyfile
+    prepare_library_doxyfile(args.directory_template_files, args.directory_library, args.library_name, args.library_abbreviation)
