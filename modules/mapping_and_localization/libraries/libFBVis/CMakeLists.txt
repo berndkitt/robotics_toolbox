@@ -2,8 +2,8 @@
 project(FBVis)
 
 # prepare library
-execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/PrepareLibraryVersionClass.py --directory_template_files ${CMAKE_SOURCE_DIR}/templates/ --directory_library ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/ --library_abbreviation FBVis)
-execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumber.py -b ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/ -ci ${CMAKE_CXX_COMPILER_ID} -cv ${CMAKE_CXX_COMPILER_VERSION} -o ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/versioning/ -if list_files.xml -iv list_versions.xml -of libFBVis_Fingerprints.txt -od libFBVis_DoxyfileVersion -oh libFBVis_Version.h)
+execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/PrepareLibraryTemplates.py --directory_template_files ${CMAKE_SOURCE_DIR}/templates/ --directory_library ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/ --library_name FeatureBucketingVisualization --library_abbreviation FBVis)
+execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumber.py -b ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/ -ci ${CMAKE_CXX_COMPILER_ID} -cv ${CMAKE_CXX_COMPILER_VERSION} -o ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/versioning/ -if list_files.xml -iv list_versions.xml -of libFBVis_Fingerprints.txt -oh libFBVis_Version.h -od ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFBVis/documentation/libFBVis_Doxyfile)
 
 # build libFBVis
 add_library(${PROJECT_NAME} STATIC
