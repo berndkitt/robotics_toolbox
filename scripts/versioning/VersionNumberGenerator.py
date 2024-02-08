@@ -6,6 +6,33 @@ import xml.etree.ElementTree as ET
 
 import git
 
+# define global variables
+search_string_git_commit_hash = "$GIT_COMMIT_HASH$"
+search_string_library_version = "$LIB_VERSION$"
+
+
+def replace_string_in_file(filename_with_path: str,
+                           search_string:      str,
+                           replace_string:     str) -> None:
+    """
+    Replace a string by another string in a given file.
+
+    Args:
+        filename_with_path (str): Filename including its path.
+        search_string (str):      String to search.
+        replace_string (str):     New string.
+    """
+    # read input file
+    with open(filename_with_path, "r") as file_input:
+        file_data = file_input.read()
+
+        # update content
+        file_data_updated = file_data.replace(search_string, replace_string)
+
+    # write output file with updated content
+    with open(filename_with_path, "w") as file_output:
+        file_output.write(file_data_updated)
+
 
 class VersionNumberGenerator:
     """
@@ -49,22 +76,20 @@ class VersionNumberGenerator:
         if repository_is_dirty:
             self._git_commit_hash = self._git_commit_hash + "-dirty"
 
-    def write_doxygen_version_file(self,
-                                   filename_version_doxyfile_with_path: str) -> None:
+    def update_doxyfile(self,
+                        filename_doxyfile_with_path: str) -> None:
         """
-        Write the version information to a Doxygen file.
+        Update the version number and Git commit hash in the Doxyfile.
 
         Args:
-            filename_version_doxyfile_with_path (str): Filename (including its path) of the generated Doxygen version file.
+            filename_doxyfile_with_path (str): Filename (including its path) of the Doxyfile.
         """
-        # open file
-        doxygen_version_file = open(filename_version_doxyfile_with_path, "w")
+        # create version number
+        version_number = f"{self._version_major}.{self._version_minor}.{self._version_patch}"
 
-        # write version
-        doxygen_version_file.write("PROJECT_NUMBER         = " + self._version_major + "." + self._version_minor + "." + self._version_patch + " - " + self._git_commit_hash + "\n")
-
-        # close file
-        doxygen_version_file.close()
+        # replace information in target file
+        replace_string_in_file(filename_doxyfile_with_path, search_string_git_commit_hash, self._git_commit_hash)
+        replace_string_in_file(filename_doxyfile_with_path, search_string_library_version, version_number)
 
     def write_version_header_file(self,
                                   compiler_identifier: str,

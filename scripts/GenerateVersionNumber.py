@@ -14,19 +14,18 @@ The script outputs the following information:
 - C++ version header file containing the version number as well as additional build information
   (i.e. build user, build time, Git commit hash, compiler identifier, and compiler version), which
   can be compiled into a binary.
-- Doxygen version file which serves as input file for the documentation generation, adding the
-  version number and the Git commit hash to the documentation.
+- Update Doxyfile with version information and Git commit hash.
 
 Args:
-    base_path (str):                 Base path used as reference for the files in file_list_with_path.
-    compiler_identifier (str):       Identifier of the compiler.
-    compiler_version (str):          Version of the compiler.
-    output_path (str):               Output path for the generated files.
-    filename_file_list (str):        Name of the file which contains the list of files.
-    filename_version_list (str):     Name of the file which contains the fingerprints and their associated version numbers.
-    filename_fingerprint_list (str): Filename of the generated fingerprint list.
-    filename_version_doxyfile (str): Filename of the generated Doxygen version file.
-    filename_version_header (str):   Filename of the generated C++ version header file.
+    base_path (str):                   Base path used as reference for the files in file_list_with_path.
+    compiler_identifier (str):         Identifier of the compiler.
+    compiler_version (str):            Version of the compiler.
+    output_path (str):                 Output path for the generated files.
+    filename_file_list (str):          Name of the file which contains the list of files.
+    filename_version_list (str):       Name of the file which contains the fingerprints and their associated version numbers.
+    filename_fingerprint_list (str):   Filename of the generated fingerprint list.
+    filename_version_header (str):     Filename of the generated C++ version header file.
+    filename_doxyfile_with_path (str): Filename of the Doxyfile including its path.
 """
 
 import argparse
@@ -75,15 +74,15 @@ if __name__ == "__main__":
                                  type=str,
                                  help="Filename of the generated fingerprint list.",
                                  required=True)
-    argument_parser.add_argument("-od",
-                                 "--filename_version_doxyfile",
-                                 type=str,
-                                 help="Filename of the generated Doxygen version file.",
-                                 required=True)
     argument_parser.add_argument("-oh",
                                  "--filename_version_header",
                                  type=str,
                                  help="Filename of the generated C++ version header file.",
+                                 required=True)
+    argument_parser.add_argument("-od",
+                                 "--filename_doxyfile_with_path",
+                                 type=str,
+                                 help="Filename of the Doxyfile including its path.",
                                  required=True)
 
     args = argument_parser.parse_args()
@@ -97,8 +96,8 @@ if __name__ == "__main__":
     # initialize version number generator and generate version number
     VG = VersionNumberGenerator.VersionNumberGenerator(Path(args.output_path, args.filename_version_list), FG.get_overall_fingerprint())
 
-    # write Doxygen version file
-    VG.write_doxygen_version_file(Path(args.output_path, args.filename_version_doxyfile))
+    # update Doxyfile
+    VG.update_doxyfile(args.filename_doxyfile_with_path)
 
     # write C++ version header file
     VG.write_version_header_file(args.compiler_identifier, args.compiler_version, Path(args.output_path, args.filename_version_header))
