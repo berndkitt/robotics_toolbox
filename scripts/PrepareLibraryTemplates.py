@@ -19,9 +19,9 @@ filename_source_source                       = "LIBVersion.cpp"
 filename_source_unit_tests                   = "Test_LIBVersion.cpp"
 
 
-def replace_library_name(filename_with_path: str,
-                         search_string:      str,
-                         replace_string:     str) -> None:
+def replace_string_in_file(filename_with_path: str,
+                           search_string:      str,
+                           replace_string:     str) -> None:
     """
     Replace a string by another string in a given file.
 
@@ -68,8 +68,8 @@ def prepare_library_doxyfile(directory_template_files: str,
     shutil.copy2(filename_with_path_source_doxyfile, filename_with_path_target_doxyfile)
 
     # replace information in target file
-    replace_library_name(filename_with_path_target_doxyfile, search_string_library_abbreviation, library_abbreviation)
-    replace_library_name(filename_with_path_target_doxyfile, search_string_library_name, library_name)
+    replace_string_in_file(filename_with_path_target_doxyfile, search_string_library_abbreviation, library_abbreviation)
+    replace_string_in_file(filename_with_path_target_doxyfile, search_string_library_name, library_name)
 
 
 def prepare_library_version_class(directory_template_files: str,
@@ -98,10 +98,10 @@ def prepare_library_version_class(directory_template_files: str,
     shutil.copy2(filename_with_path_source_source, filename_with_path_target_source)
 
     # replace information in target files
-    replace_library_name(filename_with_path_target_header, search_string_library_abbreviation, library_abbreviation)
-    replace_library_name(filename_with_path_target_header, search_string_library_abbreviation_uppercase, library_abbreviation.upper())
-    replace_library_name(filename_with_path_target_source, search_string_library_abbreviation, library_abbreviation)
-    replace_library_name(filename_with_path_target_source, search_string_library_abbreviation_uppercase, library_abbreviation.upper())
+    replace_string_in_file(filename_with_path_target_header, search_string_library_abbreviation, library_abbreviation)
+    replace_string_in_file(filename_with_path_target_header, search_string_library_abbreviation_uppercase, library_abbreviation.upper())
+    replace_string_in_file(filename_with_path_target_source, search_string_library_abbreviation, library_abbreviation)
+    replace_string_in_file(filename_with_path_target_source, search_string_library_abbreviation_uppercase, library_abbreviation.upper())
 
 
 def prepare_library_version_class_unit_tests(directory_template_files: str,
@@ -126,8 +126,8 @@ def prepare_library_version_class_unit_tests(directory_template_files: str,
     shutil.copy2(filename_with_path_source_unit_tests, filename_with_path_target_unit_tests)
 
     # replace information in target file
-    replace_library_name(filename_with_path_target_unit_tests, search_string_library_abbreviation, library_abbreviation)
-    replace_library_name(filename_with_path_target_unit_tests, search_string_library_abbreviation_uppercase, library_abbreviation.upper())
+    replace_string_in_file(filename_with_path_target_unit_tests, search_string_library_abbreviation, library_abbreviation)
+    replace_string_in_file(filename_with_path_target_unit_tests, search_string_library_abbreviation_uppercase, library_abbreviation.upper())
 
 
 # run script
