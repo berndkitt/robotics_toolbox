@@ -26,6 +26,33 @@
 
 DOXYFILE_ENCODING      = UTF-8
 
+# The PROJECT_NAME tag is a single word (or a sequence of words surrounded by
+# double-quotes, unless you are using Doxywizard) that should identify the
+# project for which the documentation is generated. This name is used in the
+# title of most generated pages and in a few other places.
+# The default value is: My Project.
+
+PROJECT_NAME           = "lib$LIB_NAME$ (lib$LIB_ABBREVIATION$)"
+
+# The PROJECT_NUMBER tag can be used to enter a project or revision number. This
+# could be handy for archiving the generated documentation or if some version
+# control system is used.
+
+PROJECT_NUMBER         = "$LIB_VERSION$ - $GIT_COMMIT_HASH$"
+
+# Using the PROJECT_BRIEF tag one can provide an optional one line description
+# for a project that appears at the top of each page and should give viewer a
+# quick idea about the purpose of the project. Keep the description short.
+
+PROJECT_BRIEF          =
+
+# With the PROJECT_LOGO tag one can specify a logo or an icon that is included
+# in the documentation. The maximum height of the logo should not exceed 55
+# pixels and the maximum width should not exceed 200 pixels. Doxygen will copy
+# the logo to the output directory.
+
+PROJECT_LOGO           =
+
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
 # entered, it will be relative to the location where doxygen was started. If
@@ -567,7 +594,7 @@ INTERNAL_DOCS          = NO
 # YES.
 # The default value is: system dependent.
 
-CASE_SENSE_NAMES       = NO
+CASE_SENSE_NAMES       = YES
 
 # If the HIDE_SCOPE_NAMES tag is set to NO then doxygen will show members with
 # their full class and namespace scopes in the documentation. If set to YES, the
@@ -2131,10 +2158,6 @@ DOCBOOK_PROGRAMLISTING = NO
 # The default value is: NO.
 
 GENERATE_AUTOGEN_DEF   = NO
-
-#---------------------------------------------------------------------------
-# Configuration options related to Sqlite3 output
-#---------------------------------------------------------------------------
 
 #---------------------------------------------------------------------------
 # Configuration options related to the Perl module output
