@@ -275,7 +275,7 @@ pipeline
         {
             when
             {
-                expression{${env.GIT_BRANCH} == "main"}
+                expression{env.GIT_BRANCH == "main"}
             }
             steps
             {
