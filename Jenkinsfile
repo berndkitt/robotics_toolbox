@@ -271,6 +271,13 @@ pipeline
                 }
             }
         }
+        stage("Docker")
+        {
+            steps
+            {
+                sh "docker build -t robotics_toolbox ."
+            }
+        }
     }
 
     post
