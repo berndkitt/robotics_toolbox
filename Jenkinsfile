@@ -279,6 +279,8 @@ pipeline
             }
             steps
             {
+                // this requires that the jenkins user is part of the docker group
+                // run "sudo usermod -a -G docker jenkins" and restart Jenkins "sudo systemctl restart jenkins"
                 sh "docker build -t robotics_toolbox ."
             }
         }
