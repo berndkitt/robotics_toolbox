@@ -4,10 +4,6 @@ pipeline
 
     environment
     {
-        BUILD_ARTIFACTS_DAYS_TO_KEEP      = "30"
-        BUILD_ARTIFACTS_NUMBER_TO_KEEP    = "5"
-        BUILD_LOGS_DAYS_TO_KEEP           = "30"
-        BUILD_LOGS_NUMBER_TO_KEEP         = "5"
         CMAKE_BUILD_DIRECTORY             = "build"
         JENKINS_BUILD_ARTIFACTS_DIRECTORY = "jenkins_build_artifacts"
         NUMBER_OF_THREADS                 = "8"
@@ -17,10 +13,10 @@ pipeline
     {
         buildDiscarder(
             logRotator(
-                artifactDaysToKeepStr: "${env.BUILD_ARTIFACTS_DAYS_TO_KEEP}",
-                artifactNumToKeepStr:  "${env.BUILD_ARTIFACTS_NUMBER_TO_KEEP}",
-                daysToKeepStr:         "${env.BUILD_LOGS_DAYS_TO_KEEP}",
-                numToKeepStr:          "${env.BUILD_LOGS_NUMBER_TO_KEEP}"
+                artifactDaysToKeepStr: "30",
+                artifactNumToKeepStr:  "5",
+                daysToKeepStr:         "30",
+                numToKeepStr:          "5"
             )
         )
         disableConcurrentBuilds()
