@@ -273,6 +273,10 @@ pipeline
         }
         stage("Docker")
         {
+            when
+            {
+                expression{${env.GIT_BRANCH} == "main"}
+            }
             steps
             {
                 sh "docker build -t robotics_toolbox ."
