@@ -64,59 +64,27 @@ public:
     static std::string GetBuildUser();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the compiler identifier.
+    /// \brief  Getter for the compiler information.
     ///
-    /// \return Compiler identifier.
+    /// \return Compiler information.
     ///////////////////////////////////////////////////////////////////////////////
-    static std::string GetCompilerIdentifier();
+    static std::string GetCompilerInformation();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the compiler version.
-    ///
-    /// \return Compiler version.
-    ///////////////////////////////////////////////////////////////////////////////
-    static std::string GetCompilerVersion();
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Getter for the Git commit hash.
+    /// \brief  Getter for the Git commit hash.
     ///
     /// \return Git commit hash.
     ///////////////////////////////////////////////////////////////////////////////
     static std::string GetGitCommitHash();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the major version number of the library.
+    /// \brief  Getter for the library version as string.
     ///
-    /// \return Major version number of the library.
-    ///////////////////////////////////////////////////////////////////////////////
-    static uint64 GetVersionMajor();
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the minor version number of the library.
+    /// Returns the library version as string.
     ///
-    /// \return Minor version number of the library.
+    /// \return Library version as string.
     ///////////////////////////////////////////////////////////////////////////////
-    static uint64 GetVersionMinor();
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the patch version number of the library.
-    ///
-    /// \return Patch version number of the library.
-    ///////////////////////////////////////////////////////////////////////////////
-    static uint64 GetVersionPatch();
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Getter for the library version as string.
-    ///
-    /// Returns the complete version number of the library as string. The
-    /// additional parameter can be used to add the name of the library in front of
-    /// the version number.
-    ///
-    /// \param[in] AddLibraryName Add the name of the library in front of the version.
-    ///
-    /// \return    Library version as string.
-    ///////////////////////////////////////////////////////////////////////////////
-    static std::string GetVersionString(const boolean AddLibraryName = true);
+    static std::string GetVersionString();
 };
 
 #endif // LIB$LIB_ABBREVIATION_UPPERCASE$VERSION_H
