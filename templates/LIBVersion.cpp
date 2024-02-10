@@ -38,14 +38,11 @@ std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildUser()
     return BuildUser;
 }
 
-std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerIdentifier()
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerInformation()
 {
-    return CompilerIdentifier;
-}
+    std::string CompilerInformation{CompilerIdentifier + " " + CompilerVersion};
 
-std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerVersion()
-{
-    return CompilerVersion;
+    return CompilerInformation;
 }
 
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetGitCommitHash()
@@ -53,29 +50,9 @@ std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetGitCommitHash()
     return GitCommitHash;
 }
 
-uint64 LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionMajor()
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionString()
 {
-    return VersionMajor;
-}
-
-uint64 LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionMinor()
-{
-    return VersionMinor;
-}
-
-uint64 LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionPatch()
-{
-    return VersionPatch;
-}
-
-std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionString(const boolean AddLibraryName)
-{
-    std::string VersionString{"v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
-
-    if(AddLibraryName)
-    {
-        VersionString = "lib$LIB_ABBREVIATION$ " + VersionString;
-    }
+    std::string VersionString{"lib$LIB_ABBREVIATION$ v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     return VersionString;
 }

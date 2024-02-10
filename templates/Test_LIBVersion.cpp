@@ -31,17 +31,11 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../../../versioning/lib$LIB_ABBREVIATION$_Version.h"
 
 // definition of macros for the unit tests
-#define TEST_BUILDTIME_ISMATCHING                                    TEST ///< Define to get a unique test name.
-#define TEST_BUILDUSER_ISMATCHING                                    TEST ///< Define to get a unique test name.
-#define TEST_COMPILERIDENTIFER_ISMATCHING                            TEST ///< Define to get a unique test name.
-#define TEST_COMPILERVERSION_ISMATCHING                              TEST ///< Define to get a unique test name.
-#define TEST_GITCOMMITHASH_ISMATCHING                                TEST ///< Define to get a unique test name.
-#define TEST_VERSIONMAJOR_ISMATCHING                                 TEST ///< Define to get a unique test name.
-#define TEST_VERSIONMINOR_ISMATCHING                                 TEST ///< Define to get a unique test name.
-#define TEST_VERSIONPATCH_ISMATCHING                                 TEST ///< Define to get a unique test name.
-#define TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING TEST ///< Define to get a unique test name.
-#define TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING                 TEST ///< Define to get a unique test name.
-#define TEST_VERSIONSTRINGWITHOUTLIBRARYNAME_ISMATCHING              TEST ///< Define to get a unique test name.
+#define TEST_BUILDTIME_ISMATCHING           TEST ///< Define to get a unique test name.
+#define TEST_BUILDUSER_ISMATCHING           TEST ///< Define to get a unique test name.
+#define TEST_COMPILERINFORMATION_ISMATCHING TEST ///< Define to get a unique test name.
+#define TEST_GITCOMMITHASH_ISMATCHING       TEST ///< Define to get a unique test name.
+#define TEST_VERSIONSTRING_ISMATCHING       TEST ///< Define to get a unique test name.
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the build time.
@@ -66,25 +60,16 @@ TEST_BUILDUSER_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_BuildUser
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the compiler identifier.
+/// \brief Test for the compiler information.
 ///
-/// Tests whether the provided compiler identifier does match the expected
-/// compiler identifier or not.
+/// Tests whether the provided compiler information does match the expected
+/// compiler information or not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_COMPILERIDENTIFER_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_CompilerIdentifier_IsMatching)
+TEST_COMPILERINFORMATION_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_CompilerInformation_IsMatching)
 {
-    ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerIdentifier(), CompilerIdentifier);
-}
+    std::string CompilerInformationExpected{CompilerIdentifier + " " + CompilerVersion};
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the compiler version.
-///
-/// Tests whether the provided compiler version does match the expected
-/// compiler version or not.
-///////////////////////////////////////////////////////////////////////////////
-TEST_COMPILERVERSION_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_CompilerVersion_IsMatching)
-{
-    ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerVersion(), CompilerVersion);
+    ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerInformation(), CompilerInformationExpected);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -99,76 +84,14 @@ TEST_GITCOMMITHASH_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_GitCo
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the major version number.
+/// \brief Test for the version string.
 ///
-/// Tests whether the provided major version number does match the expected
-/// major version number or not.
+/// Tests whether the provided version string does match the expected version
+/// string or not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_VERSIONMAJOR_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_VersionMajor_IsMatching)
-{
-    ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionMajor(), VersionMajor);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the minor version number.
-///
-/// Tests whether the provided minor version number does match the expected
-/// minor version number or not.
-///////////////////////////////////////////////////////////////////////////////
-TEST_VERSIONMINOR_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_VersionMinor_IsMatching)
-{
-    ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionMinor(), VersionMinor);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the patch version number.
-///
-/// Tests whether the provided patch version number does match the expected
-/// patch version number or not.
-///////////////////////////////////////////////////////////////////////////////
-TEST_VERSIONPATCH_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_VersionPatch_IsMatching)
-{
-    ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionPatch(), VersionPatch);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the version number.
-///
-/// Tests whether the provided version number does match the expected version
-/// number or not. The default argument is used. Hence, the name of the library
-/// is expected to be in front of the version number.
-///////////////////////////////////////////////////////////////////////////////
-TEST_VERSIONSTRINGWITHLIBRARYNAME_DEFAULTARGUMENT_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_VersionStringWithLibraryName_DefaultArgument_IsMatching)
+TEST_VERSIONSTRING_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_VersionString_IsMatching)
 {
     std::string VersionStringExpected{"lib$LIB_ABBREVIATION$ v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionString(), VersionStringExpected);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the version number.
-///
-/// Tests whether the provided version number does match the expected version
-/// number or not. The argument is set to "true". Hence, the name of the
-/// library is expected to be in front of the version number.
-///////////////////////////////////////////////////////////////////////////////
-TEST_VERSIONSTRINGWITHLIBRARYNAME_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_VersionStringWithLibraryName_IsMatching)
-{
-    std::string VersionStringExpected{"lib$LIB_ABBREVIATION$ v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
-
-    ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionString(true), VersionStringExpected);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the version number.
-///
-/// Tests whether the provided version number does match the expected version
-/// number or not. The argument is set to "false". Hence, the name of the
-/// library is not expected to be in front of the version number.
-///////////////////////////////////////////////////////////////////////////////
-TEST_VERSIONSTRINGWITHOUTLIBRARYNAME_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_VersionStringWithoutLibraryName_IsMatching)
-{
-    std::string VersionStringExpected{"v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
-
-    ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionString(false), VersionStringExpected);
 }
