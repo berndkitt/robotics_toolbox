@@ -1,3 +1,4 @@
+"""Class to run parse the Metrix++ results."""
 import csv
 import os
 
@@ -17,9 +18,18 @@ COLUMN_ID_CODELINES_FILE         = 8
 COLUMN_ID_CODELINES_FUNCTION     = 9
 COLUMN_ID_MAINTAINABILITY_INDEX  = 10
 
+
 class MetrixPlusPlusResultsParser:
+    """Class to run parse the Metrix++ results."""
+
     def __init__(self,
                  base_directory: str) -> None:
+        """
+        Initialize Metrix++ results parser.
+
+        Args:
+            base_directory (str): Base directory.
+        """
         # set attributes
         self._base_directory             = base_directory
         self._entity_name                = os.path.basename(os.path.normpath(self._base_directory))
@@ -28,9 +38,16 @@ class MetrixPlusPlusResultsParser:
         self._message_list               = MetrixPlusPlusMessageList.MetrixPlusPlusMessageList()
 
     def get_message_list(self) -> MetrixPlusPlusMessageList.MetrixPlusPlusMessageList:
+        """
+        Getter for the Metrix++ message list.
+
+        Returns:
+            MetrixPlusPlusMessageList.MetrixPlusPlusMessageList: Metrix++ message list.
+        """
         return self._message_list
 
     def parse_results(self) -> None:
+        """Parse Metrix++ results."""
         with open(self._filename_results_with_path) as csv_file:
             metrixplusplus_results = csv.reader(csv_file, delimiter=",")
 

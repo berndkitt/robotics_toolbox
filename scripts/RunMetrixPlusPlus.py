@@ -1,3 +1,12 @@
+"""
+Script to run Metrix++.
+
+The script runs Metrix++ on a list of files and parses the analysis results.
+
+Args:
+    base_directory (str):     Base directory.
+    configuration_json (str): Filename of the configuration including its path.
+"""
 import argparse
 
 from metrixplusplus import MetrixPlusPlusAnalyzer

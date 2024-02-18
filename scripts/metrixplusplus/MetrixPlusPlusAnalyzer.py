@@ -1,12 +1,22 @@
+"""Class to run the Metrix++ analysis."""
 import os
 
 from file_collector import FileCollector
 
 
 class MetrixPlusPlusAnalyzer:
+    """Class to run the Metrix++ analysis."""
+
     def __init__(self,
                  base_directory:     str,
                  configuration_json: str) -> None:
+        """
+        Initialize Metrix++ analyzer.
+
+        Args:
+            base_directory (str):     Base directory.
+            configuration_json (str): Filename of the configuration including its path.
+        """
         # set attributes
         self._base_directory              = base_directory
         self._entity_name                 = os.path.basename(os.path.normpath(self._base_directory))
@@ -20,6 +30,7 @@ class MetrixPlusPlusAnalyzer:
 
     # function to perform the analysis
     def analyze(self) -> None:
+        """Run Metrix++ analysis."""
         # create directory for the results
         os.makedirs(self._directory_results, exist_ok=True)
 
