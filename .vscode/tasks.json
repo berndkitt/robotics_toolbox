@@ -56,6 +56,24 @@
             }
         },
         {
+            "label": "Flake8 (current file)",
+            "detail": "Trigger Flake8 checks for the current file",
+            "type": "shell",
+            "group": "test",
+            "command": "python3 -m flake8 --statistics --count --show-source ${relativeFile}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true
+            },
+            "args": [],
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        },
+        {
             "label": "Flake8 (all Python files)",
             "detail": "Trigger Flake8 checks for all Python files",
             "type": "shell",
