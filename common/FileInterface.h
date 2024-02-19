@@ -28,6 +28,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include <filesystem>
 #include <string>
+#include <vector>
 
 #include <GlobalTypesBase.h>
 
