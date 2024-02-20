@@ -2,11 +2,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Clang-Format (all files)",
-            "detail": "Trigger Clang-Format checks for all files",
+            "label": "Clang-Format (current file)",
+            "detail": "Trigger Clang-Format checks for the current file",
             "type": "shell",
             "group": "test",
-            "command": "python3 ./scripts/RunClangFormat.py --base_directory ./ --configuration_json ./settings/clang_format/file_configuration_all.json",
+            "command": "clang-format -i ${file}",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -20,11 +20,11 @@
             }
         },
         {
-            "label": "Clang-Format (current file)",
-            "detail": "Trigger Clang-Format checks for the current file",
+            "label": "Clang-Format (all files)",
+            "detail": "Trigger Clang-Format checks for all files",
             "type": "shell",
             "group": "test",
-            "command": "clang-format -i ${file}",
+            "command": "python3 ./scripts/RunClangFormat.py --base_directory ./ --configuration_json ./settings/clang_format/file_configuration_all.json",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
