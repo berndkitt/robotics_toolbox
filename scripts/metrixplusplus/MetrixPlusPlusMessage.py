@@ -106,6 +106,6 @@ class MetrixPlusPlusMessage:
             pass
 
         if value_metric and value_metric > maximum_allowed_value_metric:
-            message_to_print = f"{self.__filename_with_path}:{self.__line_start} Metrix++: {metrixplusplus_metric_string} is {value_metric}."
+            message_to_print = f"{self.__filename_with_path}:{self.__line_start} Metrix++: {metrixplusplus_metric_string} is {value_metric}, maximum allowed value is {maximum_allowed_value_metric}."
 
             print(message_to_print)
