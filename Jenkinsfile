@@ -192,6 +192,13 @@ pipeline
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FM -j${env.NUMBER_OF_THREADS}"
                             }
                         }
+                        stage("Metrix++")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_json ./modules/mapping_and_localization/libraries/libFM/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json"
+                            }
+                        }
                         stage("GoogleTest")
                         {
                             steps
