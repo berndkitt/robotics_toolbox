@@ -223,6 +223,13 @@ pipeline
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t WPG -j${env.NUMBER_OF_THREADS}"
                             }
                         }
+                        stage("Metrix++")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_json ./modules/environment_modeling/libraries/libWPG/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json"
+                            }
+                        }
                         stage("GoogleTest")
                         {
                             steps
