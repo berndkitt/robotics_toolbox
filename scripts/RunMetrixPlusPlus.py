@@ -4,13 +4,16 @@ Script to run Metrix++.
 The script runs Metrix++ on a list of files and parses the analysis results.
 
 Args:
-    base_directory (str):     Base directory.
-    configuration_json (str): Filename of the configuration including its path.
+    base_directory (str):                    Base directory.
+    configuration_json (str):                Filename of the configuration including its path.
+    metrixplusplus_configuration_json (str): Filename of the Metrix++ configuration including its path.
 """
 import argparse
 
 from metrixplusplus import MetrixPlusPlusAnalyzer
 from metrixplusplus import MetrixPlusPlusResultsParser
+
+from test_report_generators import TestReportGeneratorMetrixPlusPlus
 
 
 # run script
@@ -26,6 +29,10 @@ if __name__ == "__main__":
                         required=False,
                         default="./configuration.json",
                         help="Filename of the configuration including its path.")
+    parser.add_argument("--metrixplusplus_configuration_json",
+                        required=False,
+                        default="./metrixplusplus_configuration.json",
+                        help="Filename of the Metrix++ configuration including its path.")
 
     args = parser.parse_args()
 
@@ -38,3 +45,12 @@ if __name__ == "__main__":
 
     # parse Metrix++ results
     metrixplusplus_results_parser.parse_results()
+
+    # create Metrix++ test report generator
+    test_report_generator_metrixplusplus = TestReportGeneratorMetrixPlusPlus.TestReportGeneratorMetrixPlusPlus(args.metrixplusplus_configuration_json, metrixplusplus_results_parser.get_message_list())
+
+    # print test report on console
+    test_report_generator_metrixplusplus.print_report_on_console(True)
+
+    # return number of failed tests as exit code
+    exit(test_report_generator_metrixplusplus.get_number_of_failed_tests())
