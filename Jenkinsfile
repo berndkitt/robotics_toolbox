@@ -140,6 +140,13 @@ pipeline
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FBVis -j${env.NUMBER_OF_THREADS}"
                             }
                         }
+                        stage("Metrix++")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_json ./modules/mapping_and_localization/libraries/libFBVis/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json"
+                            }
+                        }
                         stage("GoogleTest")
                         {
                             steps
