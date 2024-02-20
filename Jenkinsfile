@@ -159,7 +159,7 @@ pipeline
                         {
                             steps
                             {
-                                sleep(time: 2, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
+                                sleep(time: 4, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_summary.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_details.html"
@@ -211,7 +211,7 @@ pipeline
                         {
                             steps
                             {
-                                sleep(time: 4, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
+                                sleep(time: 8, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_summary.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_details.html"
@@ -263,7 +263,7 @@ pipeline
                         {
                             steps
                             {
-                                sleep(time: 6, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
+                                sleep(time: 12, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
                                 sh "cd build && gcovr --filter ../modules/environment_modeling/libraries/libWPG/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/environment_modeling/libraries/libWPG/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json"
                                 sh "cd build && gcovr --filter ../modules/environment_modeling/libraries/libWPG/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_details.html"
