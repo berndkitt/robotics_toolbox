@@ -61,8 +61,10 @@ class TestReportGeneratorBase(metaclass=ABCMeta):
         # print test report header
         self.__print_test_report_header()
 
+        # print report
         self._print_test_report_core(add_details)
 
+        # print number of failed tests
         print(f"Number of failed tests: {self.get_number_of_failed_tests()}")
 
     @abstractmethod
