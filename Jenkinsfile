@@ -81,13 +81,6 @@ pipeline
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FB -j${env.NUMBER_OF_THREADS}"
                             }
                         }
-                        stage("Metrix++")
-                        {
-                            steps
-                            {
-                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFB/ --configuration_json ./modules/mapping_and_localization/libraries/libFB/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/metrixplusplus_libFB.log"
-                            }
-                        }
                         stage("GoogleTest")
                         {
                             steps
@@ -127,6 +120,13 @@ pipeline
                                 sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFB --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/"
                             }
                         }
+                        stage("Metrix++")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFB/ --configuration_json ./modules/mapping_and_localization/libraries/libFB/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/metrixplusplus_libFB.log"
+                            }
+                        }
                     }
                 }
                 stage("libFBVis")
@@ -138,13 +138,6 @@ pipeline
                             steps
                             {
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FBVis -j${env.NUMBER_OF_THREADS}"
-                            }
-                        }
-                        stage("Metrix++")
-                        {
-                            steps
-                            {
-                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_json ./modules/mapping_and_localization/libraries/libFBVis/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/metrixplusplus_libFBVis.log"
                             }
                         }
                         stage("GoogleTest")
@@ -179,6 +172,13 @@ pipeline
                                 sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
                             }
                         }
+                        stage("Metrix++")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_json ./modules/mapping_and_localization/libraries/libFBVis/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/metrixplusplus_libFBVis.log"
+                            }
+                        }
                     }
                 }
                 stage("libFM")
@@ -190,13 +190,6 @@ pipeline
                             steps
                             {
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FM -j${env.NUMBER_OF_THREADS}"
-                            }
-                        }
-                        stage("Metrix++")
-                        {
-                            steps
-                            {
-                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_json ./modules/mapping_and_localization/libraries/libFM/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/metrixplusplus_libFM.log"
                             }
                         }
                         stage("GoogleTest")
@@ -231,6 +224,13 @@ pipeline
                                 sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFM --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/"
                             }
                         }
+                        stage("Metrix++")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_json ./modules/mapping_and_localization/libraries/libFM/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/metrixplusplus_libFM.log"
+                            }
+                        }
                     }
                 }
                 stage("libWPG")
@@ -242,13 +242,6 @@ pipeline
                             steps
                             {
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t WPG -j${env.NUMBER_OF_THREADS}"
-                            }
-                        }
-                        stage("Metrix++")
-                        {
-                            steps
-                            {
-                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_json ./modules/environment_modeling/libraries/libWPG/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/metrixplusplus_libWPG.log"
                             }
                         }
                         stage("GoogleTest")
@@ -288,6 +281,13 @@ pipeline
                             steps
                             {
                                 sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/environment_modeling/libraries/ --entity libWPG --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/"
+                            }
+                        }
+                        stage("Metrix++")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_json ./modules/environment_modeling/libraries/libWPG/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/metrixplusplus_libWPG.log"
                             }
                         }
                     }
