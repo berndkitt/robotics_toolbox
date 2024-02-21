@@ -33,6 +33,10 @@ if __name__ == "__main__":
                         required=False,
                         default="./metrixplusplus_configuration.json",
                         help="Filename of the Metrix++ configuration including its path.")
+    parser.add_argument("--filename_report",
+                        required=False,
+                        default="",
+                        help="Filename of the Metrix++ test report including its path.")
 
     args = parser.parse_args()
 
@@ -51,6 +55,10 @@ if __name__ == "__main__":
 
     # print test report on console
     test_report_generator_metrixplusplus.print_report_on_console(True)
+
+    # write test report to file
+    if args.filename_report:
+        test_report_generator_metrixplusplus.write_report_to_file(args.filename_report, True)
 
     # return number of failed tests as exit code
     exit(test_report_generator_metrixplusplus.get_number_of_failed_tests())

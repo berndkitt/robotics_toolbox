@@ -2,6 +2,7 @@
 import datetime
 import getpass
 import json
+import sys
 from abc import ABCMeta
 from abc import abstractmethod
 
@@ -66,6 +67,28 @@ class TestReportGeneratorBase(metaclass=ABCMeta):
 
         # print number of failed tests
         print(f"Number of failed tests: {self.get_number_of_failed_tests()}")
+
+    def write_report_to_file(self,
+                             filename_report_with_path: str,
+                             add_details:               bool = False) -> None:
+        """
+        Write test report to file.
+
+        Args:
+            filename_report_with_path (str): Filename of the test report including its path.
+            add_details (bool, optional):    Flag to add details. Defaults to False.
+        """
+        # redirect stdout to file
+        sys.stdout = open(filename_report_with_path, "w")
+
+        # print report
+        self.print_report_on_console(add_details)
+
+        # close file
+        sys.stdout.close()
+
+        # reset stdout to console
+        sys.stdout = sys.__stdout__
 
     @abstractmethod
     def _print_test_report_core(self,
