@@ -79,6 +79,8 @@
         "Gcovr",
         "Kitt",
         "KITTI",
+        "Metrix",
+        "MetrixPlusPlus",
         "Multiseason",
         "Odometry",
         "OpenCV",

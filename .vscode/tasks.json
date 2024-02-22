@@ -2,11 +2,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Clang-Format (all files)",
-            "detail": "Trigger Clang-Format checks for all files",
+            "label": "Clang-Format (current file)",
+            "detail": "Trigger Clang-Format checks for the current file",
             "type": "shell",
             "group": "test",
-            "command": "python3 ./scripts/RunClangFormat.py --base_directory ./ --configuration_json ./settings/clang_format/file_configuration_all.json",
+            "command": "clang-format -i ${file}",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -20,11 +20,11 @@
             }
         },
         {
-            "label": "Clang-Format (current file)",
-            "detail": "Trigger Clang-Format checks for the current file",
+            "label": "Clang-Format (all files)",
+            "detail": "Trigger Clang-Format checks for all files",
             "type": "shell",
             "group": "test",
-            "command": "clang-format -i ${file}",
+            "command": "python3 ./scripts/RunClangFormat.py --base_directory ./ --configuration_json ./settings/clang_format/file_configuration_all.json",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -56,6 +56,24 @@
             }
         },
         {
+            "label": "Flake8 (current file)",
+            "detail": "Trigger Flake8 checks for the current file",
+            "type": "shell",
+            "group": "test",
+            "command": "python3 -m flake8 --statistics --count --show-source ${relativeFile}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true
+            },
+            "args": [],
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        },
+        {
             "label": "Flake8 (all Python files)",
             "detail": "Trigger Flake8 checks for all Python files",
             "type": "shell",
@@ -72,6 +90,37 @@
                 "id": "beaker",
                 "color": "terminal.ansiMagenta"
             }
+        },
+        {
+            "label": "Metrix++",
+            "detail": "Trigger Metrix++ for a library",
+            "type": "shell",
+            "group": "test",
+            "command": "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ${input:selectLibrary} --configuration_json ${input:selectLibrary}testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true
+            },
+            "args": [],
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "selectLibrary",
+            "type": "pickString",
+            "description": "Select a library",
+            "options": [
+                "./modules/environment_modeling/libraries/libWPG/",
+                "./modules/mapping_and_localization/libraries/libFB/",
+                "./modules/mapping_and_localization/libraries/libFBVis/",
+                "./modules/mapping_and_localization/libraries/libFM/"
+            ]
         }
     ],
     "problemMatcher": [
@@ -96,6 +145,17 @@
                 "line": 2,
                 "column": 3,
                 "message": 4
+            },
+            "severity": "error"
+        },
+        {
+            "owner": "Metrix++",
+            "fileLocation": "relative",
+            "pattern": {
+                "regexp": "(.*):(\\d+) (.*)",
+                "file": 1,
+                "line": 2,
+                "message": 3
             },
             "severity": "error"
         }

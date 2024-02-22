@@ -1,6 +1,7 @@
 # directories (auto generated)
 __pycache__
 **/documentation/
+**/metrixplusplus/results/
 bin/
 build/
 libs/
