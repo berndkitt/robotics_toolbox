@@ -7,6 +7,7 @@ Args:
     base_directory (str):                    Base directory.
     configuration_json (str):                Filename of the configuration including its path.
     metrixplusplus_configuration_json (str): Filename of the Metrix++ configuration including its path.
+    filename_report (str):                   Filename of the Metrix++ test report including its path.
 """
 import argparse
 
