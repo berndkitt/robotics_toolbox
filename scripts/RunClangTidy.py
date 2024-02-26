@@ -11,53 +11,52 @@ Args:
 """
 
 import argparse
-import os
-from pathlib import Path
+import re
+import subprocess
+
+from file_collector import FileCollector
 
 # run script
 if __name__ == "__main__":
     # parse command line arguments
     argument_parser = argparse.ArgumentParser(description="Script to run Clang-Tidy.")
 
-    argument_parser.add_argument("-o",
-                                 "--output_path",
-                                 type=str,
-                                 help="Absolute output path for the results file.",
-                                 required=True)
+    argument_parser.add_argument("--base_directory",
+                                 required=False,
+                                 default="./",
+                                 help="Base directory.")
+    argument_parser.add_argument("--configuration_json",
+                                 required=False,
+                                 default="./configuration.json",
+                                 help="Filename of the configuration including its path.")
 
     args = argument_parser.parse_args()
 
-    # get list of files
-    directories_to_check = ["common", "modules"]
-    list_of_files        = []
-    string_list_of_files = ""
+    # get list of files to check
+    files = FileCollector.FileCollector(args.configuration_json, args.base_directory)
 
-    for current_directory in directories_to_check:
-        for path in Path(current_directory).rglob("*.cpp"):
-            list_of_files.append(str(path))
-            string_list_of_files = string_list_of_files + " " + str(path)
+    # run Clang-Tidy for all files
+    list_of_files         = files.get_list_of_files_as_string()
+    extra_arguments       = "--extra-arg=-std=c++17"
+    include_directories   = "-I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4"
 
-    # run Clang-Tidy
-    output_file_with_path = args.output_path + "clang_tidy_results.txt"
+    clang_format_call = f"clang-tidy {list_of_files} {extra_arguments} -- {include_directories}"
 
-    os.system("clang-tidy " + string_list_of_files + " --extra-arg=-std=c++17 -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4 > " + output_file_with_path)
+    output = subprocess.run(clang_format_call, shell=True, capture_output=True, text=True)
 
-    # open output file
-    clang_tidy_results_file = open(output_file_with_path, "r")
-
-    # parse output file and collect information
+    # parse results file and collect information
     number_of_warnings = 0
 
-    for current_line in clang_tidy_results_file:
-        for current_file in list_of_files:
-            if current_file in current_line and not current_line.find(": warning:") == -1:
-                number_of_warnings = number_of_warnings + 1
+    for current_line in output.stdout.split("\n"):
+        for current_file in files.get_list_of_files():
+            current_file_until_slash = re.sub(r"^.*?/", "/", current_file)  # removes all characters until the first "/"
 
-    # close output file
-    clang_tidy_results_file.close()
+            if current_file_until_slash in current_line:
+                print(current_line)  # needed for Visual Studio Code Problem Matcher
 
-    # print number of found warnings
-    print("Analyzed file: " + output_file_with_path)
+                if not current_line.find(": warning:") == -1:
+                    number_of_warnings = number_of_warnings + 1
+
     print("Number of warnings found: " + str(number_of_warnings))
 
     # return number of found warnings as exit code
