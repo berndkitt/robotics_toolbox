@@ -41,6 +41,15 @@ class FileCollector():
             # extract the list of files
             self._list_of_files = self._extract_files()
 
+    def get_list_of_files(self) -> List[str]:
+        """
+        Return the list of files.
+
+        Returns:
+            List[str]: List of files.
+        """
+        return self._list_of_files
+
     def get_list_of_files_as_string(self) -> str:
         """
         Return the list of files as string (separated by blanks).
