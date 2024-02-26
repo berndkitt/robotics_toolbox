@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     output = subprocess.run(clang_format_call, shell=True, capture_output=True, text=True)
 
-    # parse results file and collect information
+    # parse results and collect information
     number_of_warnings = 0
 
     for current_line in output.stdout.split("\n"):
@@ -54,7 +54,7 @@ if __name__ == "__main__":
             if current_file_until_slash in current_line:
                 print(current_line)  # needed for Visual Studio Code Problem Matcher
 
-                if not current_line.find(": warning:") == -1:
+                if not current_line.find(": warning:") == -1:  # only count warnings
                     number_of_warnings = number_of_warnings + 1
 
     print("Number of warnings found: " + str(number_of_warnings))
