@@ -1,13 +1,12 @@
 """
 Script to run Clang-Tidy.
 
-The script runs Clang-Tidy and writes the warnings into a file.
-
-The warning file from Clang-Tidy is also checked for warnings. The number of warnings found is
-returned.
+The script runs Clang-Tidy and writes the warnings into the console. The return code of the script
+is th number of warnings found.
 
 Args:
-    output_path (str): Absolute output path for the results file.
+    base_directory (str):     Base directory.
+    configuration_json (str): Filename of the configuration including its path.
 """
 
 import argparse
