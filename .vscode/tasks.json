@@ -38,11 +38,29 @@
             }
         },
         {
+            "label": "Clang-Tidy (current file)",
+            "detail": "Trigger Clang-Tidy checks for the current file",
+            "type": "shell",
+            "group": "test",
+            "command": "python3 ./scripts/RunClangTidy.py --base_directory ./ --file ./${relativeFile}",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true
+            },
+            "args": [],
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        },
+        {
             "label": "Clang-Tidy (all C++ files)",
             "detail": "Trigger Clang-Tidy checks for all C++ files",
             "type": "shell",
             "group": "test",
-            "command": "clang-tidy ./common/**/*.cpp ./modules/**/*.cpp --extra-arg=-std=c++17 -- -I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4",
+            "command": "python3 ./scripts/RunClangTidy.py --base_directory ./ --configuration_json ./settings/clang_tidy/file_configuration_all.json",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
