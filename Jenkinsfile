@@ -308,7 +308,7 @@ pipeline
                     axis
                     {
                         name "CXX_COMPILER"
-                        values "/usr/bin/clang++-14", "/usr/bin/g++-11"
+                        values "clang++-14", "g++-11"
                     }
                 }
                 stages
@@ -317,14 +317,14 @@ pipeline
                     {
                         steps
                         {
-                            sh "cmake -D CMAKE_BUILD_TYPE=${BUILD_TYPE} -D CMAKE_CXX_COMPILER=${CXX_COMPILER} -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
+                            sh "cmake -D CMAKE_BUILD_TYPE=${BUILD_TYPE} -D CMAKE_CXX_COMPILER=/usr/bin/${CXX_COMPILER} -B ./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/ -S ./"
                         }
                     }
                     stage("CMake Build")
                     {
                         steps
                         {
-                            sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t all -j${env.NUMBER_OF_THREADS}"
+                            sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/ -t all -j${env.NUMBER_OF_THREADS}"
                         }
                     }
                 }
