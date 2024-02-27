@@ -31,11 +31,11 @@ pipeline
                 sh "mkdir ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}"
             }
         }
-        stage("CMake (Release)")
+        stage("CMake (Release, GCC 11)")
         {
             steps
             {
-                sh "cmake -D CMAKE_BUILD_TYPE=Release -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
+                sh "cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
             }
 
         }
