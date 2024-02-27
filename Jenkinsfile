@@ -296,33 +296,36 @@ pipeline
         }
         stage("Compile Checks")
         {
-            axes
+            matrix
             {
-                axis
+                axes
                 {
-                    name "BUILD_TYPE"
-                    values "Debug", "Release"
-                }
-                axis
-                {
-                    name "CXX_COMPILER"
-                    values "/usr/bin/clang++-14", "/usr/bin/g++-11"
-                }
-            }
-            stages
-            {
-                stage("CMake")
-                {
-                    steps
+                    axis
                     {
-                        sh "cmake -D CMAKE_BUILD_TYPE=${BUILD_TYPE} -D CMAKE_CXX_COMPILER=${CXX_COMPILER} -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
+                        name "BUILD_TYPE"
+                        values "Debug", "Release"
+                    }
+                    axis
+                    {
+                        name "CXX_COMPILER"
+                        values "/usr/bin/clang++-14", "/usr/bin/g++-11"
                     }
                 }
-                stage("CMake Build")
+                stages
                 {
-                    steps
+                    stage("CMake")
                     {
-                        sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t all -j${env.NUMBER_OF_THREADS}"
+                        steps
+                        {
+                            sh "cmake -D CMAKE_BUILD_TYPE=${BUILD_TYPE} -D CMAKE_CXX_COMPILER=${CXX_COMPILER} -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
+                        }
+                    }
+                    stage("CMake Build")
+                    {
+                        steps
+                        {
+                            sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t all -j${env.NUMBER_OF_THREADS}"
+                        }
                     }
                 }
             }
