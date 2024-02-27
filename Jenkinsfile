@@ -54,7 +54,7 @@ pipeline
                 {
                     steps
                     {
-                        sh "python3 ./scripts/RunClangTidy.py --base_directory ./ --configuration_json ./settings/clang_tidy/file_configuration_all.json"
+                        sh "python3 ./scripts/RunClangTidy.py --base_directory ./ --configuration_json ./settings/clang_tidy/file_configuration_all.json --filename_output ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/clang_tidy_results.txt"
                     }
                 }
                 stage("Flake8")
