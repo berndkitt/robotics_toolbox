@@ -7,8 +7,11 @@ is th number of warnings found.
 Either a single file can be analyzed using the --file argument or a list of files defined by a
 configuration file provided by the --configuration_json argument can be analyzed.
 
+The output of Clang-Tidy can be written to a file using the --filename_output argument.
+
 Args:
     base_directory (str):     Base directory.
+    filename_output (str):    Filename of the Clang-Tidy output including its path.
     file (str):               Filename of a single file including its path.
     configuration_json (str): Filename of the configuration including its path.
 """
@@ -16,6 +19,7 @@ Args:
 import argparse
 import re
 import subprocess
+import sys
 
 from file_collector import FileCollector
 
@@ -29,6 +33,10 @@ if __name__ == "__main__":
                                  required=False,
                                  default="./",
                                  help="Base directory.")
+    argument_parser.add_argument("--filename_output",
+                                 required=False,
+                                 default="",
+                                 help="Filename of the Clang-Tidy output including its path.")
     group.add_argument("--file",
                        required=False,
                        default="",
@@ -72,6 +80,15 @@ if __name__ == "__main__":
                     number_of_warnings = number_of_warnings + 1
 
     print("Number of warnings found: " + str(number_of_warnings))
+
+    # write output to file
+    if args.filename_output:
+        stdout_storage = sys.stdout
+
+        with open(args.filename_output, "w") as output_file:
+            sys.stdout = output_file
+            print(output.stdout)
+            sys.stdout = stdout_storage
 
     # return number of found warnings as exit code
     exit(number_of_warnings)
