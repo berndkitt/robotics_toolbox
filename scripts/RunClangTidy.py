@@ -50,8 +50,6 @@ if __name__ == "__main__":
         list_of_files           = files.get_list_of_files()
         list_of_files_as_string = files.get_list_of_files_as_string()
 
-    print(list_of_files_as_string)
-
     # run Clang-Tidy for all files
     extra_arguments     = "--extra-arg=-std=c++17"
     include_directories = "-I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4"
