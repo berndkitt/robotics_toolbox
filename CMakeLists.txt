@@ -60,7 +60,8 @@ if(NOT ${SIZE_UINT64} STREQUAL ${BYTES_64_BIT})
 endif()
 
 # define build options
-set(OPTION_BUILD_UNIT_TESTS ON CACHE BOOL "Build the unit tests of the modules.")
+set(OPTION_BUILD_UNIT_TESTS           ON CACHE BOOL "Build the unit tests of the modules.")
+set(OPTION_COPY_TO_TARGET_DIRECTORIES ON CACHE BOOL "Copy the exectuables and libraries to the target directories.")
 
 # search for 3rd party packages
 find_package(Eigen3 REQUIRED)
@@ -76,12 +77,12 @@ if(OPTION_BUILD_UNIT_TESTS)
     add_compile_options(-fprofile-arcs -ftest-coverage)
 endif(OPTION_BUILD_UNIT_TESTS)
 
-# define output directories for the libraries
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/libs)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/libs)
-
-# define output directory for the executables
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+# define output directories for the executables and libraries
+if(OPTION_COPY_TO_TARGET_DIRECTORIES)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/libs)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/libs)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+endif(OPTION_COPY_TO_TARGET_DIRECTORIES)
 
 # add the subdirectories of the modules
 add_subdirectory(modules)
