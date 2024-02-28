@@ -327,6 +327,16 @@ pipeline
                             sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/ -t all -j${env.NUMBER_OF_THREADS}"
                         }
                     }
+                    stage("GoogleTest")
+                    {
+                        steps
+                        {
+                            sh "./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/modules/mapping_and_localization/libraries/libFB/testing/google_test/unit_tests_libFB"
+                            sh "./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/modules/mapping_and_localization/libraries/libFBVis/testing/google_test/unit_tests_libFBVis"
+                            sh "./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/modules/mapping_and_localization/libraries/libFM/testing/google_test/unit_tests_libFM"
+                            sh "./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/modules/environment_modeling/libraries/libWPG/testing/google_test/unit_tests_libWPG"
+                        }
+                    }
                 }
             }
         }
