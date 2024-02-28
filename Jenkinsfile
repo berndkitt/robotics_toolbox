@@ -317,7 +317,7 @@ pipeline
                     {
                         steps
                         {
-                            sh "cmake -D CMAKE_BUILD_TYPE=${BUILD_TYPE} -D CMAKE_CXX_COMPILER=/usr/bin/${CXX_COMPILER} -B ./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/ -S ./"
+                            sh "cmake -D CMAKE_BUILD_TYPE=${BUILD_TYPE} -D CMAKE_CXX_COMPILER=/usr/bin/${CXX_COMPILER} -D OPTION_COPY_TO_TARGET_DIRECTORIES=OFF -B ./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/ -S ./"
                         }
                     }
                     stage("CMake Build")
