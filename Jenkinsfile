@@ -294,7 +294,7 @@ pipeline
                 }
             }
         }
-        stage("Compile Checks")
+        stage("Compiler Checks")
         {
             matrix
             {
