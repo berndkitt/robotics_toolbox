@@ -31,11 +31,11 @@ pipeline
                 sh "mkdir ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}"
             }
         }
-        stage("CMake (Release)")
+        stage("CMake (Release, GCC 11)")
         {
             steps
             {
-                sh "cmake -D CMAKE_BUILD_TYPE=Release -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
+                sh "cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
             }
 
         }
@@ -289,6 +289,56 @@ pipeline
                             {
                                 sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_json ./modules/environment_modeling/libraries/libWPG/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/metrixplusplus_libWPG.log"
                             }
+                        }
+                    }
+                }
+            }
+        }
+        stage("Compiler Checks")
+        {
+            when
+            {
+                expression{env.GIT_BRANCH == "main"}
+            }
+            matrix
+            {
+                axes
+                {
+                    axis
+                    {
+                        name "BUILD_TYPE"
+                        values "Debug", "Release"
+                    }
+                    axis
+                    {
+                        name "CXX_COMPILER"
+                        values "clang++-14", "g++-11"
+                    }
+                }
+                stages
+                {
+                    stage("CMake")
+                    {
+                        steps
+                        {
+                            sh "cmake -D CMAKE_BUILD_TYPE=${BUILD_TYPE} -D CMAKE_CXX_COMPILER=/usr/bin/${CXX_COMPILER} -D OPTION_COPY_TO_TARGET_DIRECTORIES=OFF -B ./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/ -S ./"
+                        }
+                    }
+                    stage("CMake Build")
+                    {
+                        steps
+                        {
+                            sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/ -t all -j${env.NUMBER_OF_THREADS}"
+                        }
+                    }
+                    stage("GoogleTest")
+                    {
+                        steps
+                        {
+                            sh "./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/modules/mapping_and_localization/libraries/libFB/testing/google_test/unit_tests_libFB"
+                            sh "./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/modules/mapping_and_localization/libraries/libFBVis/testing/google_test/unit_tests_libFBVis"
+                            sh "./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/modules/mapping_and_localization/libraries/libFM/testing/google_test/unit_tests_libFM"
+                            sh "./${env.CMAKE_BUILD_DIRECTORY}_${CXX_COMPILER}_${BUILD_TYPE}/modules/environment_modeling/libraries/libWPG/testing/google_test/unit_tests_libWPG"
                         }
                     }
                 }
