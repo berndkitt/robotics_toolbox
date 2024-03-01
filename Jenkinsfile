@@ -107,11 +107,7 @@ pipeline
                         {
                             steps
                             {
-                                // create Doxygen documentation
-                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFB --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/"
-
-                                // check documentation coverage
-                                sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFB --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/"
+                                Doxygen("./modules/mapping_and_localization/libraries/", "libFB")
                             }
                         }
                         stage("Metrix++")
@@ -153,11 +149,7 @@ pipeline
                         {
                             steps
                             {
-                                // create Doxygen documentation
-                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
-
-                                // check documentation coverage
-                                sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
+                                Doxygen("./modules/mapping_and_localization/libraries/", "libFBVis")
                             }
                         }
                         stage("Metrix++")
@@ -199,11 +191,7 @@ pipeline
                         {
                             steps
                             {
-                                // create Doxygen documentation
-                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFM --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/"
-
-                                // check documentation coverage
-                                sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFM --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/"
+                                Doxygen("./modules/mapping_and_localization/libraries/", "libFM")
                             }
                         }
                         stage("Metrix++")
@@ -252,11 +240,7 @@ pipeline
                         {
                             steps
                             {
-                                // create Doxygen documentation
-                                sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/environment_modeling/libraries/ --entity libWPG --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/"
-
-                                // check documentation coverage
-                                sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/environment_modeling/libraries/ --entity libWPG --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/"
+                                Doxygen("./modules/environment_modeling/libraries/", "libWPG")
                             }
                         }
                         stage("Metrix++")
@@ -347,4 +331,13 @@ pipeline
             cleanWs()
         }
     }
+}
+
+def Doxygen(base_path, entity)
+{
+    // create Doxygen documentation
+    sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ${base_path} --entity ${entity} --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/"
+
+    // check documentation coverage
+    sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ${base_path} --entity ${entity} --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/"
 }
