@@ -106,17 +106,11 @@ pipeline
                                 sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 25.1 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
-                        stage("Doxygen")
+                        stage("Doxygen & Coverage")
                         {
                             steps
                             {
                                 sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFB --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/"
-                            }
-                        }
-                        stage("Doxygen Coverage")
-                        {
-                            steps
-                            {
                                 sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFB --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/"
                             }
                         }
@@ -158,17 +152,11 @@ pipeline
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_details.html"
                             }
                         }
-                        stage("Doxygen")
+                        stage("Doxygen & Coverage")
                         {
                             steps
                             {
                                 sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
-                            }
-                        }
-                        stage("Doxygen Coverage")
-                        {
-                            steps
-                            {
                                 sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFBVis --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/"
                             }
                         }
@@ -210,17 +198,11 @@ pipeline
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_details.html"
                             }
                         }
-                        stage("Doxygen")
+                        stage("Doxygen & Coverage")
                         {
                             steps
                             {
                                 sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFM --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/"
-                            }
-                        }
-                        stage("Doxygen Coverage")
-                        {
-                            steps
-                            {
                                 sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/mapping_and_localization/libraries/ --entity libFM --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/"
                             }
                         }
@@ -269,17 +251,11 @@ pipeline
                                 sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 18.8 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
-                        stage("Doxygen")
+                        stage("Doxygen & Coverage")
                         {
                             steps
                             {
                                 sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ./modules/environment_modeling/libraries/ --entity libWPG --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/"
-                            }
-                        }
-                        stage("Doxygen Coverage")
-                        {
-                            steps
-                            {
                                 sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ./modules/environment_modeling/libraries/ --entity libWPG --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/"
                             }
                         }
