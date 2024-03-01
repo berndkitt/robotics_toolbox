@@ -301,6 +301,9 @@ pipeline
     }
 }
 
+// Function to run Doxygen and Coverxygen
+// - base_path (str): Base path to the libraries directory.
+// - entity (str):    Entity to check.
 def Doxygen(base_path, entity)
 {
     // create Doxygen documentation
@@ -310,6 +313,11 @@ def Doxygen(base_path, entity)
     sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ${base_path} --entity ${entity} --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/"
 }
 
+// Function to run GoogleTest and Gcovr
+// - base_path (str):  Base path to the libraries directory.
+// - entity (str):     Entity to check.
+// - binary (str):     Name of the unit test binary.
+// - sleep time (int): Time (seconds) to wait before running Gcovr.
 def GoogleTest(base_path, entity, binary, sleep_time)
 {
     // run unit tests
