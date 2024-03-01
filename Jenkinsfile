@@ -85,15 +85,7 @@ pipeline
                         {
                             steps
                             {
-                                // run unit tests
-                                sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libFB -j${env.NUMBER_OF_THREADS}"
-                                sh "./bin/unit_tests_libFB --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/googletest_libFB.json"
-
-                                // determine code coverage
-                                sleep(time: 0, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFB/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_coverage.json"
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFB/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json"
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFB/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_details.html"
+                                GoogleTest("../modules/mapping_and_localization/libraries/", "libFB", "unit_tests_libFB", 0)
                             }
                         }
                         stage("Code Coverage")
@@ -134,15 +126,7 @@ pipeline
                         {
                             steps
                             {
-                                // run unit tests
-                                sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libFBVis -j${env.NUMBER_OF_THREADS}"
-                                sh "./bin/unit_tests_libFBVis --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/googletest_libFBVis.json"
-
-                                // determine code coverage
-                                sleep(time: 4, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_coverage.json"
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_summary.json"
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_details.html"
+                                GoogleTest("../modules/mapping_and_localization/libraries/", "libFBVis", "unit_tests_libFBVis", 4)
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -176,15 +160,7 @@ pipeline
                         {
                             steps
                             {
-                                // run unit tests
-                                sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libFM -j${env.NUMBER_OF_THREADS}"
-                                sh "./bin/unit_tests_libFM --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/googletest_libFM.json"
-
-                                // determine code coverage
-                                sleep(time: 8, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_coverage.json"
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_summary.json"
-                                sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_details.html"
+                                GoogleTest("../modules/mapping_and_localization/libraries/", "libFM", "unit_tests_libFM", 8)
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -218,15 +194,7 @@ pipeline
                         {
                             steps
                             {
-                                // run unit tests
-                                sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libWPG -j${env.NUMBER_OF_THREADS}"
-                                sh "./bin/unit_tests_libWPG --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/googletest_libWPG.json"
-
-                                // determine code coverage
-                                sleep(time: 12, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
-                                sh "cd build && gcovr --filter ../modules/environment_modeling/libraries/libWPG/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_coverage.json"
-                                sh "cd build && gcovr --filter ../modules/environment_modeling/libraries/libWPG/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json"
-                                sh "cd build && gcovr --filter ../modules/environment_modeling/libraries/libWPG/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_details.html"
+                                GoogleTest("../modules/environment_modeling/libraries/", "libWPG", "unit_tests_libWPG", 12)
                             }
                         }
                         stage("Code Coverage")
@@ -340,4 +308,17 @@ def Doxygen(base_path, entity)
 
     // check documentation coverage
     sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ${base_path} --entity ${entity} --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/"
+}
+
+def GoogleTest(base_path, entity, binary, sleep_time)
+{
+    // run unit tests
+    sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t ${binary} -j${env.NUMBER_OF_THREADS}"
+    sh "./bin/${binary} --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/googletest_${entity}.json"
+
+    // determine code coverage
+    sleep(time: ${sleep_time}, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
+    sh "cd build && gcovr --filter ${base_path}${entity}/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_coverage.json"
+    sh "cd build && gcovr --filter ${base_path}${entity}/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_summary.json"
+    sh "cd build && gcovr --filter ${base_path}${entity}/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_details.html"
 }
