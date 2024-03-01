@@ -81,18 +81,12 @@ pipeline
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FB -j${env.NUMBER_OF_THREADS}"
                             }
                         }
-                        stage("GoogleTest")
+                        stage("GoogleTest & Gcovr")
                         {
                             steps
                             {
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libFB -j${env.NUMBER_OF_THREADS}"
                                 sh "./bin/unit_tests_libFB --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/googletest_libFB.json"
-                            }
-                        }
-                        stage("Gcovr")
-                        {
-                            steps
-                            {
                                 sleep(time: 0, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFB/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFB/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json"
@@ -134,18 +128,12 @@ pipeline
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FBVis -j${env.NUMBER_OF_THREADS}"
                             }
                         }
-                        stage("GoogleTest")
+                        stage("GoogleTest & Gcovr")
                         {
                             steps
                             {
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libFBVis -j${env.NUMBER_OF_THREADS}"
                                 sh "./bin/unit_tests_libFBVis --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/googletest_libFBVis.json"
-                            }
-                        }
-                        stage("Gcovr")
-                        {
-                            steps
-                            {
                                 sleep(time: 4, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFBVis/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_summary.json"
@@ -180,18 +168,12 @@ pipeline
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t FM -j${env.NUMBER_OF_THREADS}"
                             }
                         }
-                        stage("GoogleTest")
+                        stage("GoogleTest & Gcovr")
                         {
                             steps
                             {
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libFM -j${env.NUMBER_OF_THREADS}"
                                 sh "./bin/unit_tests_libFM --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/googletest_libFM.json"
-                            }
-                        }
-                        stage("Gcovr")
-                        {
-                            steps
-                            {
                                 sleep(time: 8, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/mapping_and_localization/libraries/libFM/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_summary.json"
@@ -226,18 +208,12 @@ pipeline
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t WPG -j${env.NUMBER_OF_THREADS}"
                             }
                         }
-                        stage("GoogleTest")
+                        stage("GoogleTest & Gcovr")
                         {
                             steps
                             {
                                 sh "cmake --build ./${env.CMAKE_BUILD_DIRECTORY}/ -t unit_tests_libWPG -j${env.NUMBER_OF_THREADS}"
                                 sh "./bin/unit_tests_libWPG --gtest_output=json:${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/googletest_libWPG.json"
-                            }
-                        }
-                        stage("Gcovr")
-                        {
-                            steps
-                            {
                                 sleep(time: 12, unit: 'SECONDS') // avoid running multiple instances of Gcovr in parallel
                                 sh "cd build && gcovr --filter ../modules/environment_modeling/libraries/libWPG/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_coverage.json"
                                 sh "cd build && gcovr --filter ../modules/environment_modeling/libraries/libWPG/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json"
