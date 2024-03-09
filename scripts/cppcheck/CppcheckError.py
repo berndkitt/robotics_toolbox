@@ -53,7 +53,15 @@ class CppcheckError:
         message_to_print = ""
 
         if self.__error_file:
-            message_to_print = f"{self.__error_file}:{self.__line}:{self.__column} Cppcheck: {self.__message}"
+            # map severity level for Visual Studio Code problem matcher (all severity levels but ERROR and WARNING will be mapped to "info")
+            if self.__severity == CppcheckSeverity.CppcheckSeverity.ERROR:
+                problem_matcher_severity = "error"
+            elif self.__severity == CppcheckSeverity.CppcheckSeverity.WARNING:
+                problem_matcher_severity = "warning"
+            else:
+                problem_matcher_severity = "info"
+
+            message_to_print = f"{self.__error_file}:{self.__line}:{self.__column}:{problem_matcher_severity} Cppcheck: {self.__message} ({CppcheckSeverity.CppcheckSeverity.get_severity_as_string(self.__severity)})"
         else:
             message_to_print = f"Cppcheck: {self.__message}"
 
