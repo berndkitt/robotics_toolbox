@@ -1,5 +1,7 @@
 # directories (auto generated)
 __pycache__
+**/cppcheck/build/
+**/cppcheck/results/
 **/documentation/
 **/metrixplusplus/results/
 bin/

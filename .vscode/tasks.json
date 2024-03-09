@@ -110,6 +110,24 @@
             }
         },
         {
+            "label": "Cppcheck",
+            "detail": "Trigger Cppcheck for a library",
+            "type": "shell",
+            "group": "test",
+            "command": "python3 ./scripts/RunCppcheck.py --base_directory ${input:selectLibrary} --configuration_xml ${input:selectLibrary}testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true
+            },
+            "args": [],
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        },
+        {
             "label": "Metrix++",
             "detail": "Trigger Metrix++ for a library",
             "type": "shell",
@@ -165,6 +183,18 @@
                 "message": 4
             },
             "severity": "error"
+        },
+        {
+            "owner": "Cppcheck",
+            "fileLocation": "relative",
+            "pattern": {
+                "regexp": "(.*):(\\d+):(\\d+):([a-zA-Z]+) (.*)",
+                "file": 1,
+                "line": 2,
+                "column": 3,
+                "severity": 4,
+                "message": 5
+            }
         },
         {
             "owner": "Metrix++",

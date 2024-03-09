@@ -102,6 +102,13 @@ pipeline
                                 Doxygen("./modules/mapping_and_localization/libraries/", "libFB")
                             }
                         }
+                        stage("Cppcheck")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFB/ --configuration_xml ./modules/mapping_and_localization/libraries/libFB/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/cppcheck_libFB.log"
+                            }
+                        }
                         stage("Metrix++")
                         {
                             steps
@@ -136,6 +143,13 @@ pipeline
                                 Doxygen("./modules/mapping_and_localization/libraries/", "libFBVis")
                             }
                         }
+                        stage("Cppcheck")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_xml ./modules/mapping_and_localization/libraries/libFBVis/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/cppcheck_libFBVis.log"
+                            }
+                        }
                         stage("Metrix++")
                         {
                             steps
@@ -168,6 +182,13 @@ pipeline
                             steps
                             {
                                 Doxygen("./modules/mapping_and_localization/libraries/", "libFM")
+                            }
+                        }
+                        stage("Cppcheck")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_xml ./modules/mapping_and_localization/libraries/libFM/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/cppcheck_libFM.log"
                             }
                         }
                         stage("Metrix++")
@@ -209,6 +230,13 @@ pipeline
                             steps
                             {
                                 Doxygen("./modules/environment_modeling/libraries/", "libWPG")
+                            }
+                        }
+                        stage("Cppcheck")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_xml ./modules/environment_modeling/libraries/libWPG/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/cppcheck_libWPG.log"
                             }
                         }
                         stage("Metrix++")

@@ -70,6 +70,7 @@
         "bucketers",
         "Codelines",
         "Coverxygen",
+        "Cppcheck",
         "CSVREADER",
         "cyclomatic",
         "Doxyfile",

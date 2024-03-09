@@ -14,7 +14,7 @@ class MetrixPlusPlusMetric(Enum):
     MAINTAINABILITY_INDEX  = 5
 
     @staticmethod
-    def get_metric_as_string(metrixplusplus_metric: MetrixPlusPlusMetric) -> None:
+    def get_metric_as_string(metrixplusplus_metric: MetrixPlusPlusMetric) -> str:
         """
         Getter for the Metrix++ metric as string.
 
