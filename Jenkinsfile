@@ -170,6 +170,13 @@ pipeline
                                 Doxygen("./modules/mapping_and_localization/libraries/", "libFM")
                             }
                         }
+                        stage("Cppcheck")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_xml ./modules/mapping_and_localization/libraries/libFM/testing/cppcheck/libFM.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/cppcheck_libFM.log"
+                            }
+                        }
                         stage("Metrix++")
                         {
                             steps
