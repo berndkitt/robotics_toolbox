@@ -106,7 +106,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFB/ --configuration_xml ./modules/mapping_and_localization/libraries/libFB/testing/cppcheck/libFB.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/cppcheck_libFB.log"
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFB/ --configuration_xml ./modules/mapping_and_localization/libraries/libFB/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/cppcheck_libFB.log"
                             }
                         }
                         stage("Metrix++")
@@ -147,7 +147,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_xml ./modules/mapping_and_localization/libraries/libFBVis/testing/cppcheck/libFBVis.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/cppcheck_libFBVis.log"
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_xml ./modules/mapping_and_localization/libraries/libFBVis/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/cppcheck_libFBVis.log"
                             }
                         }
                         stage("Metrix++")
@@ -188,7 +188,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_xml ./modules/mapping_and_localization/libraries/libFM/testing/cppcheck/libFM.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/cppcheck_libFM.log"
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_xml ./modules/mapping_and_localization/libraries/libFM/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/cppcheck_libFM.log"
                             }
                         }
                         stage("Metrix++")
@@ -236,7 +236,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_xml ./modules/environment_modeling/libraries/libWPG/testing/cppcheck/libWPG.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/cppcheck_libWPG.log"
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_xml ./modules/environment_modeling/libraries/libWPG/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/cppcheck_libWPG.log"
                             }
                         }
                         stage("Metrix++")
