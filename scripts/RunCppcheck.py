@@ -1,7 +1,7 @@
 """
 Script to run Cppcheck.
 
-The script runs Cppcheck on a list of files.
+The script runs Cppcheck on a list of files and parses the analysis results.
 
 Args:
     base_directory (str):       Base directory.
@@ -11,6 +11,7 @@ Args:
 import argparse
 
 from cppcheck import CppcheckAnalyzer
+from cppcheck import CppcheckResultsParser
 
 
 # run script
@@ -34,8 +35,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # create Cppcheck analyzer
-    cppcheck_analyzer = CppcheckAnalyzer.CppcheckAnalyzer(args.base_directory, args.configuration_xml, args.check_configuration)
+    # create Cppcheck analyzer and Cppcheck results parser
+    cppcheck_analyzer       = CppcheckAnalyzer.CppcheckAnalyzer(args.base_directory, args.configuration_xml, args.check_configuration)
+    cppcheck_results_parser = CppcheckResultsParser.CppcheckResultsParser(args.base_directory)
 
     # run Cppcheck analysis
     cppcheck_analyzer.analyze()
+
+    # parse Cppcheck results
+    cppcheck_results_parser.parse_results()
