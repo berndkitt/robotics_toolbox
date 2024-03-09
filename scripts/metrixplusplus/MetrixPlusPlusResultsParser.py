@@ -82,6 +82,7 @@ class MetrixPlusPlusResultsParser:
 
     @staticmethod
     def __convert_string_to_int(string: str) -> int:
+        """Convert string to integer."""
         return_value = None
 
         if string:
