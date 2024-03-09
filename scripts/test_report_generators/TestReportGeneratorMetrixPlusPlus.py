@@ -44,8 +44,8 @@ class TestReportGeneratorMetrixPlusPlus(TestReportGeneratorBase.TestReportGenera
         Args:
             add_details (bool, optional): Flag to add details. Defaults to False.
         """
-        for current_metric in MetrixPlusPlusMetric.MetrixPlusPlusMetric:
-            if add_details:
+        if add_details:
+            for current_metric in MetrixPlusPlusMetric.MetrixPlusPlusMetric:
                 maximum_allowed_value = self.__get_maximum_value_from_settings(current_metric)
                 self.__metrixplusplus_message_list.print_messages(current_metric, maximum_allowed_value)
 
@@ -57,7 +57,7 @@ class TestReportGeneratorMetrixPlusPlus(TestReportGeneratorBase.TestReportGenera
             maximum_allowed_value = self.__get_maximum_value_from_settings(current_metric)
             maximum_value         = self.__metrixplusplus_message_list.get_maximum_value_for_metric(current_metric)
 
-            if maximum_allowed_value <= maximum_value:
+            if maximum_value > maximum_allowed_value:
                 self._number_of_failed_tests += 1
 
             self._print_results_line(MetrixPlusPlusMetric.MetrixPlusPlusMetric.get_metric_as_string(current_metric), maximum_value, maximum_allowed_value)
