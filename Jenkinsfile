@@ -211,6 +211,13 @@ pipeline
                                 Doxygen("./modules/environment_modeling/libraries/", "libWPG")
                             }
                         }
+                        stage("Cppcheck")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_xml ./modules/environment_modeling/libraries/libWPG/testing/cppcheck/libWPG.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/cppcheck_libWPG.log"
+                            }
+                        }
                         stage("Metrix++")
                         {
                             steps
