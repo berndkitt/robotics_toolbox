@@ -143,6 +143,13 @@ pipeline
                                 Doxygen("./modules/mapping_and_localization/libraries/", "libFBVis")
                             }
                         }
+                        stage("Cppcheck")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_xml ./modules/mapping_and_localization/libraries/libFBVis/testing/cppcheck/libFBVis.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/cppcheck_libFBVis.log"
+                            }
+                        }
                         stage("Metrix++")
                         {
                             steps
