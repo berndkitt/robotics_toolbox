@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<cppcheck>
+    <source_code_directory>./source_code/</source_code_directory>
+    <include_directory>../../../../common/</include_directory>
+</cppcheck>
