@@ -86,7 +86,7 @@ public:
     ///
     /// \param[out] WorldPoint Randomly created 3d world point.
     ///////////////////////////////////////////////////////////////////////////////
-    virtual void CreateWorldPoint(ColumnVectorFloat64_3d& WorldPoint);
+    virtual void CreateWorldPoint(ColumnVectorFloat64_3d& WorldPoint) override;
 };
 
 #endif // WORLDPOINTGENERATORCUBOID_H
