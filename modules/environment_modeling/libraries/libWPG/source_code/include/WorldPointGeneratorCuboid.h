@@ -40,13 +40,16 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorCuboid : public WorldPointGeneratorBase
 {
-protected:
-    const float64 m_MinX; ///< Smallest value of the 3d world points inside the cuboid in X-direction.
-    const float64 m_MaxX; ///< Largest value of the 3d world points inside the cuboid in X-direction.
-    const float64 m_MinY; ///< Smallest value of the 3d world points inside the cuboid in Y-direction.
-    const float64 m_MaxY; ///< Largest value of the 3d world points inside the cuboid in Y-direction.
-    const float64 m_MinZ; ///< Smallest value of the 3d world points inside the cuboid in Z-direction.
-    const float64 m_MaxZ; ///< Largest value of the 3d world points inside the cuboid in Z-direction.
+private:
+    const float64                           m_MinX;                 ///< Smallest value of the 3d world points inside the cuboid in X-direction.
+    const float64                           m_MaxX;                 ///< Largest value of the 3d world points inside the cuboid in X-direction.
+    const float64                           m_MinY;                 ///< Smallest value of the 3d world points inside the cuboid in Y-direction.
+    const float64                           m_MaxY;                 ///< Largest value of the 3d world points inside the cuboid in Y-direction.
+    const float64                           m_MinZ;                 ///< Smallest value of the 3d world points inside the cuboid in Z-direction.
+    const float64                           m_MaxZ;                 ///< Largest value of the 3d world points inside the cuboid in Z-direction.
+    std::uniform_real_distribution<float64> m_UniformDistributionX; ///< Uniform distribution for X-coordinate of the 3d world points.
+    std::uniform_real_distribution<float64> m_UniformDistributionY; ///< Uniform distribution for Y-coordinate of the 3d world points.
+    std::uniform_real_distribution<float64> m_UniformDistributionZ; ///< Uniform distribution for Z-coordinate of the 3d world points.
 
 public:
     ///////////////////////////////////////////////////////////////////////////////
@@ -74,6 +77,16 @@ public:
     /// \brief Destructor.
     ///////////////////////////////////////////////////////////////////////////////
     virtual ~WorldPointGeneratorCuboid();
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Create a single world point.
+    ///
+    /// This function randomly creates a single 3d world point inside the defined
+    /// cuboid.
+    ///
+    /// \param[out] WorldPoint Randomly created 3d world point.
+    ///////////////////////////////////////////////////////////////////////////////
+    virtual void CreateWorldPoint(ColumnVectorFloat64_3d& WorldPoint);
 };
 
 #endif // WORLDPOINTGENERATORCUBOID_H

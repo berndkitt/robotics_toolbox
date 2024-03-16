@@ -41,32 +41,24 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorld
     m_MinY{MinY},
     m_MaxY{MaxY},
     m_MinZ{MinZ},
-    m_MaxZ{MaxZ}
+    m_MaxZ{MaxZ},
+    m_UniformDistributionX(m_MinX, m_MaxX),
+    m_UniformDistributionY(m_MinY, m_MaxY),
+    m_UniformDistributionZ(m_MinZ, m_MaxZ)
 {
-    // create uniform distributions
-    std::uniform_real_distribution<float64> UniformDistributionX(m_MinX, m_MaxX);
-    std::uniform_real_distribution<float64> UniformDistributionY(m_MinY, m_MaxY);
-    std::uniform_real_distribution<float64> UniformDistributionZ(m_MinZ, m_MaxZ);
-
-    // randomly generate the 3d world points
-    ColumnVectorFloat64_3d CurrentWorldPoint;
-
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < m_NumberOfWorldPoints; i_WorldPoint++)
-    {
-        // randomly generate the coordinates of the current 3d world point
-        const float64 CurrentCoordinateX{UniformDistributionX(m_RandomNumberEngine)};
-        const float64 CurrentCoordinateY{UniformDistributionY(m_RandomNumberEngine)};
-        const float64 CurrentCoordinateZ{UniformDistributionZ(m_RandomNumberEngine)};
-
-        // add the current 3d world point
-        CurrentWorldPoint(0) = CurrentCoordinateX;
-        CurrentWorldPoint(1) = CurrentCoordinateY;
-        CurrentWorldPoint(2) = CurrentCoordinateZ;
-
-        m_ListOfWorldPoints[i_WorldPoint] = CurrentWorldPoint;
-    }
 }
 
 WorldPointGeneratorCuboid::~WorldPointGeneratorCuboid()
 {
+}
+
+void WorldPointGeneratorCuboid::CreateWorldPoint(ColumnVectorFloat64_3d& WorldPoint)
+{
+    const float64 CurrentCoordinateX{m_UniformDistributionX(m_RandomNumberEngine)};
+    const float64 CurrentCoordinateY{m_UniformDistributionY(m_RandomNumberEngine)};
+    const float64 CurrentCoordinateZ{m_UniformDistributionZ(m_RandomNumberEngine)};
+
+    WorldPoint(0) = CurrentCoordinateX;
+    WorldPoint(1) = CurrentCoordinateY;
+    WorldPoint(2) = CurrentCoordinateZ;
 }

@@ -27,8 +27,27 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "../include/WorldPointGeneratorBase.h"
 
+WorldPointGeneratorBase::WorldPointGeneratorBase(const uint64 NumberOfWorldPointsToCreate,
+                                                 const uint64 SeedValue) :
+    m_NumberOfWorldPointsToCreate{NumberOfWorldPointsToCreate},
+    m_NumberOfWorldPoints{0},
+    m_SeedValue{SeedValue}
+{
+    m_ListOfWorldPoints.resize(m_NumberOfWorldPointsToCreate);
+    m_RandomNumberEngine.seed(m_SeedValue);
+}
+
 WorldPointGeneratorBase::~WorldPointGeneratorBase()
 {
+}
+
+void WorldPointGeneratorBase::GeneratePointCloud()
+{
+    for(auto& CurrentWorldPoint : m_ListOfWorldPoints)
+    {
+        CreateWorldPoint(CurrentWorldPoint);
+        m_NumberOfWorldPoints++;
+    }
 }
 
 uint64 WorldPointGeneratorBase::GetNumberOfWorldPoints() const
@@ -39,16 +58,4 @@ uint64 WorldPointGeneratorBase::GetNumberOfWorldPoints() const
 const ListColumnVectorFloat64_3d& WorldPointGeneratorBase::GetWorldPoints() const
 {
     return m_ListOfWorldPoints;
-}
-
-WorldPointGeneratorBase::WorldPointGeneratorBase(const uint64 NumberOfWorldPoints,
-                                                 const uint64 SeedValue) :
-    m_NumberOfWorldPoints{NumberOfWorldPoints},
-    m_SeedValue{SeedValue}
-{
-    // pre-allocate memory
-    m_ListOfWorldPoints.resize(m_NumberOfWorldPoints);
-
-    // initialize random number generator
-    m_RandomNumberEngine.seed(m_SeedValue);
 }
