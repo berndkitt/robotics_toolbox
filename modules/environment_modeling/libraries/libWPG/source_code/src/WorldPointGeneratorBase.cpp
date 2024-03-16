@@ -41,6 +41,7 @@ WorldPointGeneratorBase::~WorldPointGeneratorBase()
 {
 }
 
+// cppcheck-suppress[unusedFunction]
 void WorldPointGeneratorBase::GeneratePointCloud()
 {
     for(auto& CurrentWorldPoint : m_ListOfWorldPoints)
@@ -50,11 +51,13 @@ void WorldPointGeneratorBase::GeneratePointCloud()
     }
 }
 
+// cppcheck-suppress[unusedFunction]
 uint64 WorldPointGeneratorBase::GetNumberOfWorldPoints() const
 {
     return m_NumberOfWorldPoints;
 }
 
+// cppcheck-suppress[unusedFunction]
 const ListColumnVectorFloat64_3d& WorldPointGeneratorBase::GetWorldPoints() const
 {
     return m_ListOfWorldPoints;
