@@ -59,7 +59,8 @@
         "cppcoreguidelines",
         "imread",
         "imshow",
-        "imwrite"
+        "imwrite",
+        "suppr"
     ],
     "words": [
         "Allman",
