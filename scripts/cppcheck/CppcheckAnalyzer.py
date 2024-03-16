@@ -43,7 +43,7 @@ class CppcheckAnalyzer:
 
     def __create_cppcheck_command(self) -> str:
         # create Cppcheck command
-        command = f"cppcheck {self._source_directory} --cppcheck-build-dir={self._directory_cppcheck_build} --enable=all --xml --output-file={self._filename_results_with_path}"
+        command = f"cppcheck {self._source_directory} --inline-suppr --cppcheck-build-dir={self._directory_cppcheck_build} --enable=all --xml --output-file={self._filename_results_with_path}"
 
         for current_include_directory in self._list_of_include_directories:
             command = command + " -I " + current_include_directory
