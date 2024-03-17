@@ -78,6 +78,7 @@
         "Doxygen",
         "Doxywizard",
         "Eigen",
+        "enduml",
         "Gcovr",
         "Kitt",
         "KITTI",
@@ -87,6 +88,7 @@
         "Odometry",
         "OpenCV",
         "parens",
+        "startuml",
         "swappable"
     ]
 }
