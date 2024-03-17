@@ -48,12 +48,12 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
 {
-    const uint64 NumberOfWorldPoints{1000U};
+    const uint64 NumberOfWorldPointsToCreate{1000U};
 
     WorldPointGeneratorCuboid WPG;
     WPG.GeneratePointCloud();
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPoints);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -64,12 +64,12 @@ TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
 {
-    const uint64 NumberOfWorldPoints{50U};
+    const uint64 NumberOfWorldPointsToCreate{50U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPoints);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
     WPG.GeneratePointCloud();
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPoints);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -80,12 +80,12 @@ TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfW
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
 {
-    const uint64 NumberOfWorldPoints{100U};
+    const uint64 NumberOfWorldPointsToCreate{100U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPoints);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
     WPG.GeneratePointCloud();
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPoints);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
 {
-    const uint64  NumberOfWorldPoints{1000U};
+    const uint64  NumberOfWorldPointsToCreate{1000U};
     const float64 MinX{-5.0};
     const float64 MaxX{5.0};
     const float64 MinY{-2.0};
@@ -152,7 +152,7 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
     const float64 MaxZ{30.0};
     const uint64  Seed{10U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPoints, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
     WPG.GeneratePointCloud();
 
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[0]};
@@ -175,7 +175,7 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
 {
-    const uint64  NumberOfWorldPoints{1000U};
+    const uint64  NumberOfWorldPointsToCreate{1000U};
     const float64 MinX{-5.0};
     const float64 MaxX{5.0};
     const float64 MinY{-2.0};
@@ -184,7 +184,7 @@ TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
     const float64 MaxZ{30.0};
     const uint64  Seed{10U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPoints, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
     WPG.GeneratePointCloud();
 
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[4]};
@@ -208,7 +208,7 @@ TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
 {
-    const uint64  NumberOfWorldPoints{1000U};
+    const uint64  NumberOfWorldPointsToCreate{1000U};
     const float64 MinX{-5.0};
     const float64 MaxX{5.0};
     const float64 MinY{-2.0};
@@ -216,14 +216,14 @@ TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
     const float64 MinZ{3.0};
     const float64 MaxZ{30.0};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPoints, MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
     WPG.GeneratePointCloud();
 
     const ListColumnVectorFloat64_3d& WorldPoints{WPG.GetWorldPoints()};
 
-    uint64 NumberOfPointsOutOfRange = NumberOfWorldPoints;
+    uint64 NumberOfPointsOutOfRange = NumberOfWorldPointsToCreate;
 
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPoints; i_WorldPoint++)
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate; i_WorldPoint++)
     {
         const ColumnVectorFloat64_3d& CurrentWorldPoint{WorldPoints[i_WorldPoint]};
 
