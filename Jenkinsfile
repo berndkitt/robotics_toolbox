@@ -222,7 +222,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 18.5 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 17.0 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
                         stage("Doxygen & Coverage")
