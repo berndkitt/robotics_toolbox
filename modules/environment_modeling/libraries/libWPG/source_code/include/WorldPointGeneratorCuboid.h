@@ -59,6 +59,10 @@ public:
     /// Initializes the member variables of the class and creates uniform
     /// distributions in X-, Y-, and Z-direction which will be used to create the
     /// 3d world points inside the cuboid.
+    /// After creating the object of the class, the function GeneratePointCloud
+    /// needs to be called. Otherwise, the number of 3d world points will be 0 and
+    /// the list of 3d world points will only contain points with the coordinates
+    /// (0.0, 0.0, 0.0).
     ///
     /// \startuml
     /// start
