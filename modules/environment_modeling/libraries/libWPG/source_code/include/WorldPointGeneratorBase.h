@@ -57,6 +57,19 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
+    /// Initializes the member variables of the class and allocates memory for the
+    /// 3d world points.
+    ///
+    /// \startuml
+    /// start
+    /// :Initialize m_NumberOfWorldPointsToCreate with NumberOfWorldPointsToCreate;
+    /// :Initialize m_NumberOfWorldPoints with 0;
+    /// :Initialize m_SeedValue with SeedValue;
+    /// :Allocate memory for m_ListOfWorldPoints;
+    /// :Initialize m_RandomNumberEngine with m_SeedValue;
+    /// stop
+    /// \enduml
+    ///
     /// \param[in] NumberOfWorldPointsToCreate Number of 3d world points to create.
     /// \param[in] SeedValue                   Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
@@ -69,7 +82,20 @@ public:
     virtual ~WorldPointGeneratorBase();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Generate the point cloud.
+    /// \brief Generates the point cloud.
+    ///
+    /// The function loops over the list of 3d world points and randomly creates a
+    /// point by calling the CreateWorldPoint method. This method needs to be
+    /// implemented in the derived class.
+    ///
+    /// \startuml
+    /// start
+    /// repeat :For all points in m_ListOfWorldPoints;
+    ///     :Create and store world point;
+    ///     :Increment m_NumberOfWorldPoints;
+    /// repeat while (Next point)
+    /// stop
+    /// \enduml
     ///////////////////////////////////////////////////////////////////////////////
     void GeneratePointCloud();
 
@@ -88,9 +114,9 @@ public:
     const ListColumnVectorFloat64_3d& GetWorldPoints() const;
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Create a single world point.
+    /// \brief Creates a single world point.
     ///
-    /// This function randomly creates a single 3d world point based on the
+    /// The function randomly creates a single 3d world point based on the
     /// underlying shape of the point cloud. The function needs to be implemented
     /// in the derived class.
     ///

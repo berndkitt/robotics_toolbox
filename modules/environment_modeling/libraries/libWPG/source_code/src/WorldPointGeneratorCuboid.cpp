@@ -27,7 +27,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "../include/WorldPointGeneratorCuboid.h"
 
-WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorldPoints,
+WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorldPointsToCreate,
                                                      const float64 MinX,
                                                      const float64 MaxX,
                                                      const float64 MinY,
@@ -35,7 +35,7 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorld
                                                      const float64 MinZ,
                                                      const float64 MaxZ,
                                                      const uint64  SeedValue) :
-    WorldPointGeneratorBase(NumberOfWorldPoints, SeedValue),
+    WorldPointGeneratorBase(NumberOfWorldPointsToCreate, SeedValue),
     m_MinX{MinX},
     m_MaxX{MaxX},
     m_MinY{MinY},

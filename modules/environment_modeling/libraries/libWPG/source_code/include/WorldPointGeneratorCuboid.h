@@ -33,10 +33,11 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 /// \class WorldPointGeneratorCuboid
 ///
-/// \brief Generator for 3d world points inside a cuboid.
+/// \brief Class to create 3d world points inside a cuboid.
 ///
-/// Generator which randomly generates a given number of 3d world points inside
-/// a cuboid of predefined extend.
+/// The world point generator can be used to create a point cloud containing a
+/// predefined amount of randomly created 3d world points. The 3d world points
+/// created will be located inside a cuboid of predefined extend.
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorCuboid : public WorldPointGeneratorBase
 {
@@ -55,23 +56,42 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief     Constructor.
     ///
-    /// \param[in] NumberOfWorldPoints Number of 3d world points.
-    /// \param[in] MinX                Smallest value of the 3d world points inside the cuboid in X-direction.
-    /// \param[in] MaxX                Largest value of the 3d world points inside the cuboid in X-direction.
-    /// \param[in] MinY                Smallest value of the 3d world points inside the cuboid in Y-direction.
-    /// \param[in] MaxY                Largest value of the 3d world points inside the cuboid in Y-direction.
-    /// \param[in] MinZ                Smallest value of the 3d world points inside the cuboid in Z-direction.
-    /// \param[in] MaxZ                Largest value of the 3d world points inside the cuboid in Z-direction.
-    /// \param[in] SeedValue           Seed value used to initialize the random number engine.
+    /// Initializes the member variables of the class and creates uniform
+    /// distributions in X-, Y-, and Z-direction which will be used to create the
+    /// 3d world points inside the cuboid.
+    ///
+    /// \startuml
+    /// start
+    /// :Initialize WorldPointGeneratorBase class;
+    /// :Initialize m_MinX with MinX;
+    /// :Initialize m_MaxX with MaxX;
+    /// :Initialize m_MinY with MinY;
+    /// :Initialize m_MaxY with MaxY;
+    /// :Initialize m_MinZ with MinZ;
+    /// :Initialize m_MaxZ with MaxZ;
+    /// :Create uniform distribution m_UniformDistributionX in the range [m_MinX, m_MaxX];
+    /// :Create uniform distribution m_UniformDistributionY in the range [m_MinY, m_MaxY];
+    /// :Create uniform distribution m_UniformDistributionZ in the range [m_MinZ, m_MaxZ];
+    /// stop
+    /// \enduml
+    ///
+    /// \param[in] NumberOfWorldPointsToCreate Number of 3d world points.
+    /// \param[in] MinX                        Smallest value of the 3d world points inside the cuboid in X-direction.
+    /// \param[in] MaxX                        Largest value of the 3d world points inside the cuboid in X-direction.
+    /// \param[in] MinY                        Smallest value of the 3d world points inside the cuboid in Y-direction.
+    /// \param[in] MaxY                        Largest value of the 3d world points inside the cuboid in Y-direction.
+    /// \param[in] MinZ                        Smallest value of the 3d world points inside the cuboid in Z-direction.
+    /// \param[in] MaxZ                        Largest value of the 3d world points inside the cuboid in Z-direction.
+    /// \param[in] SeedValue                   Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
-    WorldPointGeneratorCuboid(const uint64  NumberOfWorldPoints = 1000U,
-                              const float64 MinX                = -5.0,
-                              const float64 MaxX                = 5.0,
-                              const float64 MinY                = -2.0,
-                              const float64 MaxY                = 2.0,
-                              const float64 MinZ                = 3.0,
-                              const float64 MaxZ                = 30.0,
-                              const uint64  SeedValue           = 0U);
+    WorldPointGeneratorCuboid(const uint64  NumberOfWorldPointsToCreate = 1000U,
+                              const float64 MinX                        = -5.0,
+                              const float64 MaxX                        = 5.0,
+                              const float64 MinY                        = -2.0,
+                              const float64 MaxY                        = 2.0,
+                              const float64 MinZ                        = 3.0,
+                              const float64 MaxZ                        = 30.0,
+                              const uint64  SeedValue                   = 0U);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Destructor.
@@ -79,10 +99,10 @@ public:
     virtual ~WorldPointGeneratorCuboid();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Create a single world point.
+    /// \brief Creates a single world point.
     ///
-    /// This function randomly creates a single 3d world point inside the defined
-    /// cuboid.
+    /// The function randomly creates a single 3d world point inside a cuboid of
+    /// predefined extend.
     ///
     /// \param[out] WorldPoint Randomly created 3d world point.
     ///////////////////////////////////////////////////////////////////////////////
