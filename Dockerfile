@@ -17,6 +17,7 @@ RUN apt install -y build-essential \
                    gdb \
                    git \
                    graphviz \
+                   plantuml \
                    python3-dev \
                    python3-pip \
                    python3-setuptools
