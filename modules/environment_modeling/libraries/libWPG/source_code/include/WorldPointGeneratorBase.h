@@ -45,10 +45,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 class WorldPointGeneratorBase
 {
 private:
-    const uint64               m_NumberOfWorldPointsToCreate; ///< Number of 3d world points to create.
-    uint64                     m_NumberOfWorldPoints;         ///< Number of created 3d world points.
-    ListColumnVectorFloat64_3d m_ListOfWorldPoints;           ///< List containing the created 3d world points.
-    const uint64               m_SeedValue;                   ///< Seed value used to initialize the random number engine.
+    uint64                     m_NumberOfWorldPoints; ///< Number of created 3d world points.
+    ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the created 3d world points.
 
 protected:
     std::mt19937 m_RandomNumberEngine; ///< Random number engine used to generate the 3d world points.
@@ -62,11 +60,9 @@ public:
     ///
     /// \startuml
     /// start
-    /// :Initialize m_NumberOfWorldPointsToCreate with NumberOfWorldPointsToCreate;
     /// :Initialize m_NumberOfWorldPoints with 0;
     /// :Allocate memory for m_ListOfWorldPoints and set all points to (0.0, 0.0, 0.0);
-    /// :Initialize m_SeedValue with SeedValue;
-    /// :Initialize m_RandomNumberEngine with m_SeedValue;
+    /// :Initialize m_RandomNumberEngine with SeedValue;
     /// stop
     /// \enduml
     ///

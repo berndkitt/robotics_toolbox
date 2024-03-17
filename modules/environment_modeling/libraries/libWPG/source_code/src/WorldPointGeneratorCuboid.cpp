@@ -36,15 +36,9 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorld
                                                      const float64 MaxZ,
                                                      const uint64  SeedValue) :
     WorldPointGeneratorBase(NumberOfWorldPointsToCreate, SeedValue),
-    m_MinX{MinX},
-    m_MaxX{MaxX},
-    m_MinY{MinY},
-    m_MaxY{MaxY},
-    m_MinZ{MinZ},
-    m_MaxZ{MaxZ},
-    m_UniformDistributionX(m_MinX, m_MaxX),
-    m_UniformDistributionY(m_MinY, m_MaxY),
-    m_UniformDistributionZ(m_MinZ, m_MaxZ)
+    m_UniformDistributionX(MinX, MaxX),
+    m_UniformDistributionY(MinY, MaxY),
+    m_UniformDistributionZ(MinZ, MaxZ)
 {
 }
 

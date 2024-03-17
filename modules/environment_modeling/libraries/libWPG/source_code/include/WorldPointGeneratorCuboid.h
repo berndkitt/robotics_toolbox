@@ -42,12 +42,6 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 class WorldPointGeneratorCuboid : public WorldPointGeneratorBase
 {
 private:
-    const float64                           m_MinX;                 ///< Smallest value of the 3d world points inside the cuboid in X-direction.
-    const float64                           m_MaxX;                 ///< Largest value of the 3d world points inside the cuboid in X-direction.
-    const float64                           m_MinY;                 ///< Smallest value of the 3d world points inside the cuboid in Y-direction.
-    const float64                           m_MaxY;                 ///< Largest value of the 3d world points inside the cuboid in Y-direction.
-    const float64                           m_MinZ;                 ///< Smallest value of the 3d world points inside the cuboid in Z-direction.
-    const float64                           m_MaxZ;                 ///< Largest value of the 3d world points inside the cuboid in Z-direction.
     std::uniform_real_distribution<float64> m_UniformDistributionX; ///< Uniform distribution for X-coordinate of the 3d world points.
     std::uniform_real_distribution<float64> m_UniformDistributionY; ///< Uniform distribution for Y-coordinate of the 3d world points.
     std::uniform_real_distribution<float64> m_UniformDistributionZ; ///< Uniform distribution for Z-coordinate of the 3d world points.
@@ -67,15 +61,9 @@ public:
     /// \startuml
     /// start
     /// :Initialize WorldPointGeneratorBase class;
-    /// :Initialize m_MinX with MinX;
-    /// :Initialize m_MaxX with MaxX;
-    /// :Initialize m_MinY with MinY;
-    /// :Initialize m_MaxY with MaxY;
-    /// :Initialize m_MinZ with MinZ;
-    /// :Initialize m_MaxZ with MaxZ;
-    /// :Create uniform distribution m_UniformDistributionX in the range [m_MinX, m_MaxX];
-    /// :Create uniform distribution m_UniformDistributionY in the range [m_MinY, m_MaxY];
-    /// :Create uniform distribution m_UniformDistributionZ in the range [m_MinZ, m_MaxZ];
+    /// :Create uniform distribution m_UniformDistributionX in the range [MinX, MaxX];
+    /// :Create uniform distribution m_UniformDistributionY in the range [MinY, MaxY];
+    /// :Create uniform distribution m_UniformDistributionZ in the range [MinZ, MaxZ];
     /// stop
     /// \enduml
     ///

@@ -29,12 +29,10 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 WorldPointGeneratorBase::WorldPointGeneratorBase(const uint64 NumberOfWorldPointsToCreate,
                                                  const uint64 SeedValue) :
-    m_NumberOfWorldPointsToCreate{NumberOfWorldPointsToCreate},
     m_NumberOfWorldPoints{0},
-    m_ListOfWorldPoints(m_NumberOfWorldPointsToCreate, ColumnVectorFloat64_3d::Zero()),
-    m_SeedValue{SeedValue}
+    m_ListOfWorldPoints(NumberOfWorldPointsToCreate, ColumnVectorFloat64_3d::Zero())
 {
-    m_RandomNumberEngine.seed(m_SeedValue);
+    m_RandomNumberEngine.seed(SeedValue);
 }
 
 WorldPointGeneratorBase::~WorldPointGeneratorBase()
