@@ -31,9 +31,9 @@ WorldPointGeneratorBase::WorldPointGeneratorBase(const uint64 NumberOfWorldPoint
                                                  const uint64 SeedValue) :
     m_NumberOfWorldPointsToCreate{NumberOfWorldPointsToCreate},
     m_NumberOfWorldPoints{0},
+    m_ListOfWorldPoints(m_NumberOfWorldPointsToCreate, ColumnVectorFloat64_3d::Zero()),
     m_SeedValue{SeedValue}
 {
-    m_ListOfWorldPoints.resize(m_NumberOfWorldPointsToCreate);
     m_RandomNumberEngine.seed(m_SeedValue);
 }
 

@@ -64,8 +64,8 @@ public:
     /// start
     /// :Initialize m_NumberOfWorldPointsToCreate with NumberOfWorldPointsToCreate;
     /// :Initialize m_NumberOfWorldPoints with 0;
+    /// :Allocate memory for m_ListOfWorldPoints and set all points to (0.0, 0.0, 0.0);
     /// :Initialize m_SeedValue with SeedValue;
-    /// :Allocate memory for m_ListOfWorldPoints;
     /// :Initialize m_RandomNumberEngine with m_SeedValue;
     /// stop
     /// \enduml
