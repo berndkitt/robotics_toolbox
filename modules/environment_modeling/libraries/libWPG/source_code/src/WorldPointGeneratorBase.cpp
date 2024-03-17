@@ -35,10 +35,6 @@ WorldPointGeneratorBase::WorldPointGeneratorBase(const uint64 NumberOfWorldPoint
     m_RandomNumberEngine.seed(SeedValue);
 }
 
-WorldPointGeneratorBase::~WorldPointGeneratorBase()
-{
-}
-
 // cppcheck-suppress[unusedFunction]
 void WorldPointGeneratorBase::GeneratePointCloud()
 {

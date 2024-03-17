@@ -42,10 +42,6 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorld
 {
 }
 
-WorldPointGeneratorCuboid::~WorldPointGeneratorCuboid()
-{
-}
-
 void WorldPointGeneratorCuboid::CreateWorldPoint(ColumnVectorFloat64_3d& WorldPoint)
 {
     const float64 CurrentCoordinateX{m_UniformDistributionX(m_RandomNumberEngine)};
