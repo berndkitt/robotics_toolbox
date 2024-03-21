@@ -44,12 +44,12 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorBase
 {
+protected:
+    std::mt19937 m_RandomNumberEngine; ///< Random number engine used to generate the 3d world points.
+
 private:
     uint64                     m_NumberOfWorldPoints; ///< Number of created 3d world points.
     ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the created 3d world points.
-
-protected:
-    std::mt19937 m_RandomNumberEngine; ///< Random number engine used to generate the 3d world points.
 
 public:
     ///////////////////////////////////////////////////////////////////////////////
@@ -104,6 +104,7 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     const ListColumnVectorFloat64_3d& GetWorldPoints() const;
 
+private:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Creates a single world point.
     ///

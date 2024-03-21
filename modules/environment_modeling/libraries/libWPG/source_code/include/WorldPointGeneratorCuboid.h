@@ -85,6 +85,7 @@ public:
                               const float64 MaxZ                        = 30.0,
                               const uint64  SeedValue                   = 0U);
 
+private:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Creates a single world point.
     ///
