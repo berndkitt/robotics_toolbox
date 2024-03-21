@@ -6,6 +6,7 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
     "files.associations": {
+        ".clang-format": "yaml",
         ".clang-tidy": "yaml",
         "LICENSE": "plaintext"
     },
