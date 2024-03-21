@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file  WorldPointGeneratorBase.h
+/// \file WorldPointGeneratorBase.h
 ///
 /// \brief Header file containing the WorldPointGeneratorBase class.
 ///////////////////////////////////////////////////////////////////////////////
@@ -53,7 +53,7 @@ private:
 
 public:
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Constructor.
+    /// \brief Constructor.
     ///
     /// Initializes the member variables of the class and allocates memory for the
     /// 3d world points.
@@ -91,14 +91,14 @@ public:
     void GeneratePointCloud();
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the number of 3d world points.
+    /// \brief Getter for the number of 3d world points.
     ///
     /// \return Number of 3d world points.
     ///////////////////////////////////////////////////////////////////////////////
     uint64 GetNumberOfWorldPoints() const;
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the list containing the 3d world points.
+    /// \brief Getter for the list containing the 3d world points.
     ///
     /// \return List containing the 3d world points.
     ///////////////////////////////////////////////////////////////////////////////

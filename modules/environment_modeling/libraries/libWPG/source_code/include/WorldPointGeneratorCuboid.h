@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// \file  WorldPointGeneratorCuboid.h
+/// \file WorldPointGeneratorCuboid.h
 ///
 /// \brief Header file containing the WorldPointGeneratorCuboid class.
 ///////////////////////////////////////////////////////////////////////////////
@@ -48,7 +48,7 @@ private:
 
 public:
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Constructor.
+    /// \brief Constructor.
     ///
     /// Initializes the member variables of the class and creates uniform
     /// distributions in X-, Y-, and Z-direction which will be used to create the
