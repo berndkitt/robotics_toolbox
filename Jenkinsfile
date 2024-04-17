@@ -136,6 +136,13 @@ pipeline
                                 GoogleTest("../modules/mapping_and_localization/libraries/", "libFBVis", "unit_tests_libFBVis", 4)
                             }
                         }
+                        stage("Code Coverage")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_summary.json --threshold_branch_coverage 5.9 --threshold_function_coverage 41.7 --threshold_line_coverage 10.6"
+                            }
+                        }
                         stage("Doxygen & Coverage")
                         {
                             steps
