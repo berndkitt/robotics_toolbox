@@ -74,4 +74,12 @@ if __name__ == "__main__":
         print("Function coverage: " + str(function_coverage) + " %")
         print("Line coverage: "     + str(line_coverage) + " %")
 
+        # print information to increase the threshold if the threshold is below the actual value
+        if branch_coverage > args.threshold_branch_coverage:
+            print(f"Actual branch coverage is above threshold. Please increase the threshold to {branch_coverage} %.")
+        if function_coverage > args.threshold_function_coverage:
+            print(f"Actual function coverage is above threshold. Please increase the threshold to {function_coverage} %.")
+        if line_coverage > args.threshold_line_coverage:
+            print(f"Actual line coverage is above threshold. Please increase the threshold to {line_coverage} %.")
+
     exit(return_value)
