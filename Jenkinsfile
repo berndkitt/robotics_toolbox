@@ -184,6 +184,13 @@ pipeline
                                 GoogleTest("../modules/mapping_and_localization/libraries/", "libFM", "unit_tests_libFM", 8)
                             }
                         }
+                        stage("Code Coverage")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_summary.json --threshold_branch_coverage 10.3 --threshold_function_coverage 55.6 --threshold_line_coverage 16.0"
+                            }
+                        }
                         stage("Doxygen & Coverage")
                         {
                             steps
