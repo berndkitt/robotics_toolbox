@@ -31,11 +31,11 @@ pipeline
                 sh "mkdir ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}"
             }
         }
-        stage("CMake (Release, GCC 11)")
+        stage("CMake (Debug, GCC 11)")
         {
             steps
             {
-                sh "cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
+                sh "cmake -D CMAKE_BUILD_TYPE=Debug -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
             }
 
         }
@@ -92,7 +92,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 25.1 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 91.2 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -136,6 +136,13 @@ pipeline
                                 GoogleTest("../modules/mapping_and_localization/libraries/", "libFBVis", "unit_tests_libFBVis", 4)
                             }
                         }
+                        stage("Code Coverage")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_summary.json --threshold_branch_coverage 5.9 --threshold_function_coverage 41.7 --threshold_line_coverage 10.6"
+                            }
+                        }
                         stage("Doxygen & Coverage")
                         {
                             steps
@@ -175,6 +182,13 @@ pipeline
                             steps
                             {
                                 GoogleTest("../modules/mapping_and_localization/libraries/", "libFM", "unit_tests_libFM", 8)
+                            }
+                        }
+                        stage("Code Coverage")
+                        {
+                            steps
+                            {
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_summary.json --threshold_branch_coverage 10.3 --threshold_function_coverage 55.6 --threshold_line_coverage 16.0"
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -222,7 +236,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 17.0 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 100.0 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -354,7 +368,7 @@ def GoogleTest(base_path, entity, binary, sleep_time)
 
     // determine code coverage
     sleep(time: sleep_time, unit: "SECONDS") // avoid running multiple instances of Gcovr in parallel
-    sh "cd build && gcovr --filter ${base_path}${entity}/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_coverage.json"
-    sh "cd build && gcovr --filter ${base_path}${entity}/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_summary.json"
-    sh "cd build && gcovr --filter ${base_path}${entity}/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_details.html"
+    sh "cd build && gcovr -exclude-unreachable-branches --exclude-throw-branches --filter ${base_path}${entity}/source_code/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_coverage.json"
+    sh "cd build && gcovr -exclude-unreachable-branches --exclude-throw-branches --filter ${base_path}${entity}/source_code/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_summary.json"
+    sh "cd build && gcovr -exclude-unreachable-branches --exclude-throw-branches --filter ${base_path}${entity}/source_code/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_details.html"
 }
