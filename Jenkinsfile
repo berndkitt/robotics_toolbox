@@ -354,7 +354,7 @@ def GoogleTest(base_path, entity, binary, sleep_time)
 
     // determine code coverage
     sleep(time: sleep_time, unit: "SECONDS") // avoid running multiple instances of Gcovr in parallel
-    sh "cd build && gcovr -exclude-unreachable-branches --exclude-throw-branches --filter ${base_path}${entity}/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_coverage.json"
-    sh "cd build && gcovr -exclude-unreachable-branches --exclude-throw-branches --filter ${base_path}${entity}/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_summary.json"
-    sh "cd build && gcovr -exclude-unreachable-branches --exclude-throw-branches --filter ${base_path}${entity}/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_details.html"
+    sh "cd build && gcovr -exclude-unreachable-branches --exclude-throw-branches --filter ${base_path}${entity}/source_code/ --json-pretty --json ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_coverage.json"
+    sh "cd build && gcovr -exclude-unreachable-branches --exclude-throw-branches --filter ${base_path}${entity}/source_code/ --json-summary-pretty --json-summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_summary.json"
+    sh "cd build && gcovr -exclude-unreachable-branches --exclude-throw-branches --filter ${base_path}${entity}/source_code/ --html-details ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/gcovr_${entity}_details.html"
 }
