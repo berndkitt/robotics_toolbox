@@ -92,7 +92,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 25.1 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 91.2 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
                         stage("Doxygen & Coverage")
