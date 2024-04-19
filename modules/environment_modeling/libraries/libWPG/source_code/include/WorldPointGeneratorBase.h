@@ -48,7 +48,7 @@ protected:
     std::mt19937 m_RandomNumberEngine; ///< Random number engine used to generate the 3d world points.
 
 private:
-    uint64                     m_NumberOfWorldPoints; ///< Number of created 3d world points.
+    uint32                     m_NumberOfWorldPoints; ///< Number of created 3d world points.
     ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the created 3d world points.
 
 public:
@@ -69,8 +69,8 @@ public:
     /// \param[in] NumberOfWorldPointsToCreate Number of 3d world points to create.
     /// \param[in] SeedValue                   Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
-    WorldPointGeneratorBase(const uint64 NumberOfWorldPointsToCreate = 1000U,
-                            const uint64 SeedValue                   = 0U);
+    WorldPointGeneratorBase(const uint32 NumberOfWorldPointsToCreate = 1000U,
+                            const uint32 SeedValue                   = 0U);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Generates the point cloud.
@@ -95,7 +95,7 @@ public:
     ///
     /// \return Number of 3d world points.
     ///////////////////////////////////////////////////////////////////////////////
-    uint64 GetNumberOfWorldPoints() const;
+    uint32 GetNumberOfWorldPoints() const;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Getter for the list containing the 3d world points.

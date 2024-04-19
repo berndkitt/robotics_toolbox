@@ -27,8 +27,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "../include/WorldPointGeneratorBase.h"
 
-WorldPointGeneratorBase::WorldPointGeneratorBase(const uint64 NumberOfWorldPointsToCreate, // NOLINT(cert-msc32-c, cert-msc51-cpp)
-                                                 const uint64 SeedValue) :
+WorldPointGeneratorBase::WorldPointGeneratorBase(const uint32 NumberOfWorldPointsToCreate, // NOLINT(cert-msc32-c, cert-msc51-cpp)
+                                                 const uint32 SeedValue) :
     m_NumberOfWorldPoints{0},
     m_ListOfWorldPoints(NumberOfWorldPointsToCreate, ColumnVectorFloat64_3d::Zero())
 {
@@ -46,7 +46,7 @@ void WorldPointGeneratorBase::GeneratePointCloud()
 }
 
 // cppcheck-suppress[unusedFunction]
-uint64 WorldPointGeneratorBase::GetNumberOfWorldPoints() const
+uint32 WorldPointGeneratorBase::GetNumberOfWorldPoints() const
 {
     return m_NumberOfWorldPoints;
 }

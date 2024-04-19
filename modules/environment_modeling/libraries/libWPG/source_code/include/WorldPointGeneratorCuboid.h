@@ -76,14 +76,14 @@ public:
     /// \param[in] MaxZ                        Largest value of the 3d world points inside the cuboid in Z-direction.
     /// \param[in] SeedValue                   Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
-    WorldPointGeneratorCuboid(const uint64  NumberOfWorldPointsToCreate = 1000U,
+    WorldPointGeneratorCuboid(const uint32  NumberOfWorldPointsToCreate = 1000U,
                               const float64 MinX                        = -5.0,
                               const float64 MaxX                        = 5.0,
                               const float64 MinY                        = -2.0,
                               const float64 MaxY                        = 2.0,
                               const float64 MinZ                        = 3.0,
                               const float64 MaxZ                        = 30.0,
-                              const uint64  SeedValue                   = 0U);
+                              const uint32  SeedValue                   = 0U);
 
 private:
     ///////////////////////////////////////////////////////////////////////////////
