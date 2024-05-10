@@ -282,7 +282,7 @@ pipeline
                     axis
                     {
                         name "CXX_COMPILER"
-                        values "clang++-14", "g++-11"
+                        values "clang++-11", "clang++-12", "clang++-13", "clang++-14", "clang++-15", "g++-9", "g++-10", "g++-11", "g++-12", "g++-13"
                     }
                 }
                 stages
