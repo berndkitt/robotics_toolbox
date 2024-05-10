@@ -4,6 +4,8 @@ pipeline
 
     environment
     {
+        BUILD_COMPILER                    = "g++-11"
+        BUILD_TYPE                        = "Debug"
         CMAKE_BUILD_DIRECTORY             = "build"
         JENKINS_BUILD_ARTIFACTS_DIRECTORY = "jenkins_build_artifacts"
         NUMBER_OF_THREADS                 = "8"
@@ -31,11 +33,11 @@ pipeline
                 sh "mkdir ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}"
             }
         }
-        stage("CMake (Debug, GCC 11)")
+        stage("CMake (${env.BUILD_TYPE}, ${env.BUILD_COMPILER})")
         {
             steps
             {
-                sh "cmake -D CMAKE_BUILD_TYPE=Debug -D CMAKE_CXX_COMPILER=/usr/bin/g++-11 -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
+                sh "cmake -D CMAKE_BUILD_TYPE=${env.BUILD_TYPE} -D CMAKE_CXX_COMPILER=/usr/bin/${env.BUILD_COMPILER} -B ./${env.CMAKE_BUILD_DIRECTORY}/ -S ./"
             }
 
         }
