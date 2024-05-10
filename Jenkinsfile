@@ -33,7 +33,7 @@ pipeline
                 sh "mkdir ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}"
             }
         }
-        stage("CMake (${env.BUILD_TYPE}, ${env.BUILD_COMPILER})")
+        stage("CMake (Debug, G++ 11)")
         {
             steps
             {
