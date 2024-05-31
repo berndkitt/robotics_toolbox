@@ -42,8 +42,10 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///
 /// Besides the actual version number, the class also contains the build
 /// information of the library.
-/// - Time when the library was built.
+/// - Build type.
+/// - Compiler information.
 /// - Git commit hash.
+/// - Time when the library was built.
 /// - User who built the library.
 ///////////////////////////////////////////////////////////////////////////////
 class LIB$LIB_ABBREVIATION_UPPERCASE$Version
@@ -55,6 +57,13 @@ public:
     /// \return Time when the library was built.
     ///////////////////////////////////////////////////////////////////////////////
     static std::string GetBuildTime();
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief  Getter for the build type.
+    ///
+    /// \return Build type.
+    ///////////////////////////////////////////////////////////////////////////////
+    static std::string GetBuildType();
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief  Getter for the user who built the library.

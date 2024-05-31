@@ -32,6 +32,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 // definition of macros for the unit tests
 #define TEST_BUILDTIME_ISMATCHING           TEST ///< Define to get a unique test name.
+#define TEST_BUILDTYPE_ISMATCHING           TEST ///< Define to get a unique test name.
 #define TEST_BUILDUSER_ISMATCHING           TEST ///< Define to get a unique test name.
 #define TEST_COMPILERINFORMATION_ISMATCHING TEST ///< Define to get a unique test name.
 #define TEST_GITCOMMITHASH_ISMATCHING       TEST ///< Define to get a unique test name.
@@ -46,6 +47,17 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 TEST_BUILDTIME_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_BuildTime_IsMatching)
 {
     ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildTime(), BuildTime);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the build type.
+///
+/// Tests whether the provided build type does match the expected build type or
+/// not.
+///////////////////////////////////////////////////////////////////////////////
+TEST_BUILDTYPE_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_BuildType_IsMatching)
+{
+    ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildType(), BuildType);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

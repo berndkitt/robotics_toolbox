@@ -33,6 +33,11 @@ std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildTime()
     return BuildTime;
 }
 
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildType()
+{
+    return BuildType;
+}
+
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildUser()
 {
     return BuildUser;

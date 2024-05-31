@@ -3,7 +3,7 @@ project(FM)
 
 # prepare library
 execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/PrepareLibraryTemplates.py --directory_template_files ${CMAKE_SOURCE_DIR}/templates/ --directory_library ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/ --library_name FeatureMatching --library_abbreviation FM)
-execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumber.py -b ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/ -ci ${CMAKE_CXX_COMPILER_ID} -cv ${CMAKE_CXX_COMPILER_VERSION} -o ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/versioning/ -if list_files.xml -iv list_versions.xml -of libFM_Fingerprints.txt -oh libFM_Version.h -od ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/documentation/libFM_Doxyfile)
+execute_process(COMMAND python3 ${CMAKE_SOURCE_DIR}/scripts/GenerateVersionNumber.py -b ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/ -ci ${CMAKE_CXX_COMPILER_ID} -cv ${CMAKE_CXX_COMPILER_VERSION} -bt ${CMAKE_BUILD_TYPE} -o ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/versioning/ -if list_files.xml -iv list_versions.xml -of libFM_Fingerprints.txt -oh libFM_Version.h -od ${CMAKE_SOURCE_DIR}/modules/mapping_and_localization/libraries/libFM/documentation/libFM_Doxyfile)
 
 # build libFM
 add_library(${PROJECT_NAME} STATIC

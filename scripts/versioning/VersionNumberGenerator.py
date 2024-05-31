@@ -94,6 +94,7 @@ class VersionNumberGenerator:
     def write_version_header_file(self,
                                   compiler_identifier: str,
                                   compiler_version: str,
+                                  build_type: str,
                                   filename_version_header_with_path: str) -> None:
         """
         Write the version information to a C++ version header file.
@@ -101,6 +102,7 @@ class VersionNumberGenerator:
         Args:
             compiler_identifier (str):               Identifier of the compiler.
             compiler_version (str):                  Version of the compiler.
+            build_type (str):                        Build type.
             filename_version_header_with_path (str): Filename (including its path) of the generated C++ version header file.
         """
         # open file
@@ -122,6 +124,9 @@ class VersionNumberGenerator:
         # write compiler information
         version_header_file.write("const std::string CompilerIdentifier{\"" + compiler_identifier + "\"};\n")
         version_header_file.write("const std::string CompilerVersion{\"" + compiler_version + "\"};\n\n")
+
+        # write build type
+        version_header_file.write("const std::string BuildType{\"" + build_type + "\"};\n\n")
 
         # write Git commit hash
         version_header_file.write("const std::string GitCommitHash{\"" + self._git_commit_hash + "\"};\n")
