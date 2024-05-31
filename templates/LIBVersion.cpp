@@ -35,6 +35,12 @@ std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildTime()
 }
 
 // cppcheck-suppress[unusedFunction]
+std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildType()
+{
+    return BuildType;
+}
+
+// cppcheck-suppress[unusedFunction]
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildUser()
 {
     return BuildUser;
