@@ -9,6 +9,11 @@ RUN apt update && apt upgrade -y
 
 # install useful Linux packages
 RUN apt install -y build-essential \
+                   clang-11 \
+                   clang-12 \
+                   clang-13 \
+                   clang-14 \
+                   clang-15 \
                    clang-format \
                    clang-tidy \
                    cmake \
