@@ -4,6 +4,9 @@ FROM ubuntu:22.04
 # define environment variables
 ENV DIR_DEV_TOOLS "/development_tools"
 
+# add repository
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test -y
+
 # upgrade installed Linux packages
 RUN apt update && apt upgrade -y
 
@@ -19,6 +22,16 @@ RUN apt install -y build-essential \
                    cmake \
                    cppcheck \
                    doxygen \
+                   g++-9 \
+                   gcc-9 \
+                   g++-10 \
+                   gcc-10 \
+                   g++-11 \
+                   gcc-11 \
+                   g++-12 \
+                   gcc-12 \
+                   g++-13 \
+                   gcc-13 \
                    gdb \
                    git \
                    graphviz \
