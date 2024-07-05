@@ -322,20 +322,6 @@ pipeline
                 }
             }
         }
-        stage("Docker")
-        {
-            when
-            {
-                expression{env.GIT_BRANCH == "main"}
-            }
-            steps
-            {
-                // this requires that the jenkins user is part of the docker group
-                // 1) add jenkins user to docker group: "sudo usermod -a -G docker jenkins"
-                // 2) restart Jenkins: "sudo systemctl restart jenkins"
-                sh "docker build -t robotics_toolbox ."
-            }
-        }
     }
 
     post
