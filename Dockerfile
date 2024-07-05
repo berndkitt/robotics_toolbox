@@ -16,10 +16,7 @@ RUN apt install -y build-essential \
                    doxygen \
                    gdb \
                    git \
-                   graphviz \
-                   python3-dev \
-                   python3-pip \
-                   python3-setuptools
+                   graphviz
 
 # install useful Python packages
 RUN python3 -m pip install coverxygen \
