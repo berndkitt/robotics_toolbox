@@ -24,7 +24,7 @@ RUN apt install -y build-essential \
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test -y
 
 # update Linux package repositories
-RUN apt update && apt upgrade -y
+RUN apt update
 
 # install Clang
 RUN apt install -y clang-11 \
