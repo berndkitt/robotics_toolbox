@@ -29,7 +29,8 @@ RUN python3 -m pip install coverxygen \
                            flake8-quotes \
                            flake8-variables-names \
                            gcovr \
-                           gitpython
+                           gitpython \
+                           metrixpp
 
 # install development tools
 RUN mkdir ${DIR_DEV_TOOLS}
