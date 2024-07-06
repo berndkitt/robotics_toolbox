@@ -274,6 +274,10 @@ pipeline
         }
         stage("Compiler Checks")
         {
+            when
+            {
+                expression{env.GIT_BRANCH == "main"}
+            }
             matrix
             {
                 axes
