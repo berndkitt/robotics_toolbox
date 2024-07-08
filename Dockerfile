@@ -17,9 +17,33 @@ RUN apt install -y build-essential \
                    gdb \
                    git \
                    graphviz \
-                   python3-dev \
                    python3-pip \
-                   python3-setuptools
+                   software-properties-common
+
+# add repository
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test -y
+
+# update Linux package repositories
+RUN apt update
+
+# install Clang
+RUN apt install -y clang-11 \
+                   clang-12 \
+                   clang-13 \
+                   clang-14 \
+                   clang-15
+
+# install GCC
+RUN apt install -y g++-9 \
+                   gcc-9 \
+                   g++-10 \
+                   gcc-10 \
+                   g++-11 \
+                   gcc-11 \
+                   g++-12 \
+                   gcc-12 \
+                   g++-13 \
+                   gcc-13
 
 # install useful Python packages
 RUN python3 -m pip install coverxygen \
@@ -32,7 +56,8 @@ RUN python3 -m pip install coverxygen \
                            flake8-quotes \
                            flake8-variables-names \
                            gcovr \
-                           gitpython
+                           gitpython \
+                           metrixpp
 
 # install development tools
 RUN mkdir ${DIR_DEV_TOOLS}
@@ -63,3 +88,7 @@ RUN cd ${DIR_DEV_TOOLS} && \
     ./b2 -j8 link=static install
 
 RUN rm -rf ${DIR_DEV_TOOLS}
+
+# create user
+RUN useradd -u 130 -s /bin/bash docker
+USER docker
