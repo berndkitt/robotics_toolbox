@@ -90,5 +90,5 @@ RUN cd ${DIR_DEV_TOOLS} && \
 RUN rm -rf ${DIR_DEV_TOOLS}
 
 # create user
-RUN useradd -u 130 -s /bin/bash docker
-USER docker
+RUN useradd jenkins
+USER jenkins
