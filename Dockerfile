@@ -2,7 +2,7 @@
 FROM ubuntu:22.04
 
 # define environment variables
-ENV DIR_DEV_TOOLS = "/development_tools"
+ENV DIR_DEV_TOOLS="/development_tools"
 
 # upgrade installed Linux packages
 RUN apt update && apt upgrade -y
