@@ -5,6 +5,7 @@ pipeline
         dockerfile
         {
             filename "Dockerfile"
+            args "-u root:root"
         }
     }
 
