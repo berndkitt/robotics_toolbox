@@ -1,3 +1,10 @@
+def USER_ID
+
+node
+{
+    USER_ID = sh(script: "id -u", returnStdout: true).trim()
+}
+
 pipeline
 {
     agent
@@ -5,14 +12,12 @@ pipeline
         dockerfile
         {
             filename "Dockerfile"
-            additionalBuildArgs "--build-arg USER_ID=$(id -u)"
+            additionalBuildArgs "--build-arg USER_ID=${USER_ID}"
         }
     }
 
     environment
     {
-        GID                               = sh(script: "id -g", returnStdout: true).trim()
-        UID                               = sh(script: "id -u", returnStdout: true).trim()
         BUILD_COMPILER                    = "g++-11"
         BUILD_TYPE                        = "Debug"
         CMAKE_BUILD_DIRECTORY             = "build"
