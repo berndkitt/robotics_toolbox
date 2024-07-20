@@ -88,3 +88,6 @@ RUN cd ${DIR_DEV_TOOLS} && \
     ./b2 -j8 link=static install
 
 RUN rm -rf ${DIR_DEV_TOOLS}
+
+# create user
+RUN useradd -u 200 -s /bin/bash jenkins
