@@ -5,7 +5,7 @@ pipeline
         dockerfile
         {
             filename "Dockerfile"
-            args "-u jenkins"
+            additionalBuildArgs "--build-arg USER_ID=$(id -u)"
         }
     }
 
