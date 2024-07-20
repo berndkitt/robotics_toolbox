@@ -1,6 +1,9 @@
 # define base image
 FROM ubuntu:22.04
 
+# define additional build arguments
+ARG USER_ID
+
 # define environment variables
 ENV DIR_DEV_TOOLS="/development_tools"
 
@@ -90,4 +93,4 @@ RUN cd ${DIR_DEV_TOOLS} && \
 RUN rm -rf ${DIR_DEV_TOOLS}
 
 # create user
-RUN useradd -u 134 -s /bin/bash jenkins
+RUN useradd -u "${USER_ID}" -s /bin/bash jenkins
