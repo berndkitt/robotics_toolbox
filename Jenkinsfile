@@ -1,3 +1,10 @@
+def USER_ID
+
+node
+{
+    USER_ID = sh(script: "id -u", returnStdout: true).trim()
+}
+
 pipeline
 {
     agent
@@ -5,6 +12,7 @@ pipeline
         dockerfile
         {
             filename "Dockerfile"
+            additionalBuildArgs "--build-arg USER_ID=${USER_ID}"
         }
     }
 
