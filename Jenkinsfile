@@ -1,6 +1,20 @@
+def USER_ID
+
+node
+{
+    USER_ID = sh(script: "id -u", returnStdout: true).trim()
+}
+
 pipeline
 {
-    agent any
+    agent
+    {
+        dockerfile
+        {
+            filename "Dockerfile"
+            additionalBuildArgs "--build-arg USER_ID=${USER_ID}"
+        }
+    }
 
     environment
     {
@@ -314,20 +328,6 @@ pipeline
                         }
                     }
                 }
-            }
-        }
-        stage("Docker")
-        {
-            when
-            {
-                expression{env.GIT_BRANCH == "main"}
-            }
-            steps
-            {
-                // this requires that the jenkins user is part of the docker group
-                // 1) add jenkins user to docker group: "sudo usermod -a -G docker jenkins"
-                // 2) restart Jenkins: "sudo systemctl restart jenkins"
-                sh "docker build -t robotics_toolbox ."
             }
         }
     }
