@@ -5,7 +5,7 @@ pipeline
         dockerfile
         {
             filename "Dockerfile"
-            args "-u root"
+            args "-u jenkins"
         }
     }
 
