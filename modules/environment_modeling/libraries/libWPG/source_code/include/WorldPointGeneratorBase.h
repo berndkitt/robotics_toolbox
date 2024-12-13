@@ -37,20 +37,13 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///
 /// \brief Base class for different kinds of world point generators.
 ///
-/// The world point generator can be used to create a point cloud containing a
-/// predefined amount of randomly created 3d world points. The shape of the
+/// The world point generator can be used to generate a point cloud containing
+/// a predefined amount of randomly generated 3d world points. The shape of the
 /// point cloud depends on the class derived from the base class (e.g., points
 /// inside a cuboid,...).
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorBase
 {
-protected:
-    std::mt19937 m_RandomNumberEngine; ///< Random number engine used to generate the 3d world points.
-
-private:
-    uint32                     m_NumberOfWorldPoints; ///< Number of created 3d world points.
-    ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the created 3d world points.
-
 public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Constructor.
@@ -58,37 +51,11 @@ public:
     /// Initializes the member variables of the class and allocates memory for the
     /// 3d world points.
     ///
-    /// \startuml
-    /// start
-    /// :Initialize m_NumberOfWorldPoints with 0;
-    /// :Allocate memory for m_ListOfWorldPoints and set all points to (0.0, 0.0, 0.0);
-    /// :Initialize m_RandomNumberEngine with SeedValue;
-    /// stop
-    /// \enduml
-    ///
-    /// \param[in] NumberOfWorldPointsToCreate Number of 3d world points to create.
-    /// \param[in] SeedValue                   Seed value used to initialize the random number engine.
+    /// \param[in] NumberOfWorldPointsToGenerate Number of 3d world points to generate.
+    /// \param[in] SeedValue                     Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
-    WorldPointGeneratorBase(const uint32 NumberOfWorldPointsToCreate = 1000U,
-                            const uint32 SeedValue                   = 0U);
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Generates the point cloud.
-    ///
-    /// The function loops over the list of 3d world points and randomly creates a
-    /// point by calling the CreateWorldPoint method. This method needs to be
-    /// implemented in the derived class.
-    ///
-    /// \startuml
-    /// start
-    /// repeat :For all points in m_ListOfWorldPoints;
-    ///     :Create and store world point;
-    ///     :Increment m_NumberOfWorldPoints;
-    /// repeat while (Next point)
-    /// stop
-    /// \enduml
-    ///////////////////////////////////////////////////////////////////////////////
-    void GeneratePointCloud();
+    WorldPointGeneratorBase(const uint32 NumberOfWorldPointsToGenerate = 1000U,
+                            const uint32 SeedValue                     = 0U);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Getter for the number of 3d world points.
@@ -104,17 +71,32 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     const ListColumnVectorFloat64_3d& GetWorldPoints() const;
 
-private:
+protected:
+    std::mt19937 m_RandomNumberEngine; ///< Random number engine used to generate the 3d world points.
+
     ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Creates a single world point.
+    /// \brief Generates the point cloud.
     ///
-    /// The function randomly creates a single 3d world point based on the
+    /// The function loops over the list of 3d world points and randomly generates
+    /// a point by calling the GenerateWorldPoint method.
+    ///
+    ///////////////////////////////////////////////////////////////////////////////
+    void GeneratePointCloud();
+
+private:
+    uint32                     m_NumberOfWorldPoints; ///< Number of generated 3d world points.
+    ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the generated 3d world points.
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Generates a single world point.
+    ///
+    /// The function randomly generates a single 3d world point based on the
     /// underlying shape of the point cloud. The function needs to be implemented
     /// in the derived class.
     ///
-    /// \param[out] WorldPoint Randomly created 3d world point.
+    /// \param[out] WorldPoint Randomly generated 3d world point.
     ///////////////////////////////////////////////////////////////////////////////
-    virtual void CreateWorldPoint(ColumnVectorFloat64_3d& WorldPoint) = 0;
+    virtual void GenerateWorldPoint(ColumnVectorFloat64_3d& WorldPoint) = 0;
 };
 
 #endif // WORLDPOINTGENERATORBASE_H

@@ -27,22 +27,12 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "../include/WorldPointGeneratorBase.h"
 
-WorldPointGeneratorBase::WorldPointGeneratorBase(const uint32 NumberOfWorldPointsToCreate, // NOLINT(cert-msc32-c, cert-msc51-cpp)
+WorldPointGeneratorBase::WorldPointGeneratorBase(const uint32 NumberOfWorldPointsToGenerate, // NOLINT(cert-msc32-c, cert-msc51-cpp)
                                                  const uint32 SeedValue) :
     m_NumberOfWorldPoints{0U},
-    m_ListOfWorldPoints(NumberOfWorldPointsToCreate, ColumnVectorFloat64_3d::Zero())
+    m_ListOfWorldPoints(NumberOfWorldPointsToGenerate, ColumnVectorFloat64_3d::Zero())
 {
     m_RandomNumberEngine.seed(SeedValue);
-}
-
-// cppcheck-suppress[unusedFunction]
-void WorldPointGeneratorBase::GeneratePointCloud()
-{
-    for(auto& CurrentWorldPoint : m_ListOfWorldPoints)
-    {
-        CreateWorldPoint(CurrentWorldPoint);
-        m_NumberOfWorldPoints++;
-    }
 }
 
 // cppcheck-suppress[unusedFunction]
@@ -55,4 +45,14 @@ uint32 WorldPointGeneratorBase::GetNumberOfWorldPoints() const
 const ListColumnVectorFloat64_3d& WorldPointGeneratorBase::GetWorldPoints() const
 {
     return m_ListOfWorldPoints;
+}
+
+// cppcheck-suppress[unusedFunction]
+void WorldPointGeneratorBase::GeneratePointCloud()
+{
+    for(auto& CurrentWorldPoint : m_ListOfWorldPoints)
+    {
+        GenerateWorldPoint(CurrentWorldPoint);
+        m_NumberOfWorldPoints++;
+    }
 }

@@ -27,7 +27,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "../include/WorldPointGeneratorCuboid.h"
 
-WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint32  NumberOfWorldPointsToCreate,
+WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint32  NumberOfWorldPointsToGenerate,
                                                      const float64 MinX,
                                                      const float64 MaxX,
                                                      const float64 MinY,
@@ -35,14 +35,15 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint32  NumberOfWorld
                                                      const float64 MinZ,
                                                      const float64 MaxZ,
                                                      const uint32  SeedValue) :
-    WorldPointGeneratorBase(NumberOfWorldPointsToCreate, SeedValue),
+    WorldPointGeneratorBase(NumberOfWorldPointsToGenerate, SeedValue),
     m_UniformDistributionX(MinX, MaxX),
     m_UniformDistributionY(MinY, MaxY),
     m_UniformDistributionZ(MinZ, MaxZ)
 {
+    GeneratePointCloud();
 }
 
-void WorldPointGeneratorCuboid::CreateWorldPoint(ColumnVectorFloat64_3d& WorldPoint)
+void WorldPointGeneratorCuboid::GenerateWorldPoint(ColumnVectorFloat64_3d& WorldPoint)
 {
     const float64 CurrentCoordinateX{m_UniformDistributionX(m_RandomNumberEngine)};
     const float64 CurrentCoordinateY{m_UniformDistributionY(m_RandomNumberEngine)};
