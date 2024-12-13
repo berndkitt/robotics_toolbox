@@ -30,84 +30,29 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../../../source_code/include/WorldPointGeneratorCuboid.h"
 
 // definition of macros for the unit tests
-#define TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_NOGENERATION_ISZERO TEST ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING          TEST ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_50_NOGENERATION_ISZERO                 TEST ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_100_NOGENERATION_ISZERO                TEST ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING                          TEST ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING                         TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_NOGENERATION_ISZERO        TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_999_DEFAULTCONSTRUCTOR_NOGENERATION_ISZERO      TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING                 TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING                 TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_0_SEED_10_ISMATCHING                            TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_4_SEED_10_ISMATCHING                            TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINTS_INRANGE                                        TEST ///< Define to get a unique test name.
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the number of world points (without generating them).
-///
-/// Tests whether or not the number of world points is 0 when only the default
-/// constructor is called but the actual generation of the point cloud did not
-/// happen. As no generation happened, the expectation is to get 0 world
-/// points.
-///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_NOGENERATION_ISZERO(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_NoGeneration_IsZero)
-{
-    WorldPointGeneratorCuboid WPG;
-
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), 0U);
-}
+#define TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING TEST ///< Define to get a unique test name.
+#define TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING                 TEST ///< Define to get a unique test name.
+#define TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING                TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING        TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING        TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_0_SEED_10_ISMATCHING                   TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_4_SEED_10_ISMATCHING                   TEST ///< Define to get a unique test name.
+#define TEST_WORLDPOINTS_INRANGE                               TEST ///< Define to get a unique test name.
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the number of world points.
 ///
 /// Tests whether the number of world points does match the expected number of
 /// world points or not. The default constructor is used. Hence, the
-/// expectation is to get the default number of world points.
+/// expectation is to get the default number of world points, which is 1000.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
 {
     const uint32 NumberOfWorldPointsToCreate{1000U};
 
     WorldPointGeneratorCuboid WPG;
-    WPG.GeneratePointCloud();
 
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the number of world points (without generating them).
-///
-/// Tests whether or not the number of world points is 0 when only the
-/// constructor is called but the actual generation of the point cloud did not
-/// happen. The number of world points to create is 50 but as no generation
-/// happened, the expectation is to get 0 world points.
-///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_50_NOGENERATION_ISZERO(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_NoGeneration_IsZero)
-{
-    const uint32 NumberOfWorldPointsToCreate{50};
-
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
-
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), 0U);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the number of world points (without generating them).
-///
-/// Tests whether or not the number of world points is 0 when only the
-/// constructor is called but the actual generation of the point cloud did not
-/// happen. The number of world points to create is 100 but as no generation
-/// happened, the expectation is to get 0 world points.
-///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_100_NOGENERATION_ISZERO(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_NoGeneration_IsZero)
-{
-    const uint32 NumberOfWorldPointsToCreate{100};
-
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
-
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), 0U);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -121,7 +66,6 @@ TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfW
     const uint32 NumberOfWorldPointsToCreate{50U};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
-    WPG.GeneratePointCloud();
 
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
 }
@@ -137,53 +81,8 @@ TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOf
     const uint32 NumberOfWorldPointsToCreate{100U};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
-    WPG.GeneratePointCloud();
 
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the coordinates of a world point (without generating them).
-///
-/// Tests whether or not the coordinates of the 0th world point are 0 when only
-/// the default constructor is called but the actual generation of the point
-/// cloud did not happen.
-///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_NOGENERATION_ISZERO(WorldPointGeneratorCuboid, Test_WorldPoint_0_DefaultConstructor_NoGeneration_IsZero)
-{
-    WorldPointGeneratorCuboid WPG;
-
-    const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[0]};
-
-    const float64 ValueX{WorldPoint(0)};
-    const float64 ValueY{WorldPoint(1)};
-    const float64 ValueZ{WorldPoint(2)};
-
-    ASSERT_DOUBLE_EQ(ValueX, 0.0);
-    ASSERT_DOUBLE_EQ(ValueY, 0.0);
-    ASSERT_DOUBLE_EQ(ValueZ, 0.0);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the coordinates of a world point (without generating them).
-///
-/// Tests whether or not the coordinates of the 999th world point are 0 when
-/// only the default constructor is called but the actual generation of the
-/// point cloud did not happen.
-///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_999_DEFAULTCONSTRUCTOR_NOGENERATION_ISZERO(WorldPointGeneratorCuboid, Test_WorldPoint_999_DefaultConstructor_NoGeneration_IsZero)
-{
-    WorldPointGeneratorCuboid WPG;
-
-    const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[999]};
-
-    const float64 ValueX{WorldPoint(0)};
-    const float64 ValueY{WorldPoint(1)};
-    const float64 ValueZ{WorldPoint(2)};
-
-    ASSERT_DOUBLE_EQ(ValueX, 0.0);
-    ASSERT_DOUBLE_EQ(ValueY, 0.0);
-    ASSERT_DOUBLE_EQ(ValueZ, 0.0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -196,7 +95,6 @@ TEST_WORLDPOINT_999_DEFAULTCONSTRUCTOR_NOGENERATION_ISZERO(WorldPointGeneratorCu
 TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_0_DefaultConstructor_IsMatching)
 {
     WorldPointGeneratorCuboid WPG;
-    WPG.GeneratePointCloud();
 
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[0]};
 
@@ -219,7 +117,6 @@ TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_
 TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_4_DefaultConstructor_IsMatching)
 {
     WorldPointGeneratorCuboid WPG;
-    WPG.GeneratePointCloud();
 
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[4]};
 
@@ -251,7 +148,6 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
     const uint32  Seed{10U};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
-    WPG.GeneratePointCloud();
 
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[0]};
 
@@ -283,7 +179,6 @@ TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
     const uint32  Seed{10U};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
-    WPG.GeneratePointCloud();
 
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[4]};
 
@@ -315,7 +210,6 @@ TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
     const float64 MaxZ{30.0};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
-    WPG.GeneratePointCloud();
 
     const ListColumnVectorFloat64_3d& WorldPoints{WPG.GetWorldPoints()};
 
