@@ -30,6 +30,12 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../../../source_code/include/WorldPointGeneratorCuboid.h"
 
 // definition of macros for the unit tests
+#define TEST_COPYCONSTRUCTOR                                   TEST ///< Define to get a unique test name.
+#define TEST_MOVECONSTRUCTOR                                   TEST ///< Define to get a unique test name.
+#define TEST_COPYASSIGNMENTOPERATOR                            TEST ///< Define to get a unique test name.
+#define TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT             TEST ///< Define to get a unique test name.
+#define TEST_MOVEASSIGNMENTOPERATOR                            TEST ///< Define to get a unique test name.
+#define TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT             TEST ///< Define to get a unique test name.
 #define TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING TEST ///< Define to get a unique test name.
 #define TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING                 TEST ///< Define to get a unique test name.
 #define TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING                TEST ///< Define to get a unique test name.
@@ -38,6 +44,200 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define TEST_WORLDPOINT_0_SEED_10_ISMATCHING                   TEST ///< Define to get a unique test name.
 #define TEST_WORLDPOINT_4_SEED_10_ISMATCHING                   TEST ///< Define to get a unique test name.
 #define TEST_WORLDPOINTS_INRANGE                               TEST ///< Define to get a unique test name.
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the copy constructor.
+///
+/// Tests whether or not the number of world points as well as the coordinates
+/// of the world points match in case the copy constructor is being called.
+///////////////////////////////////////////////////////////////////////////////
+TEST_COPYCONSTRUCTOR(WorldPointGeneratorCuboid, Test_CopyConstructor)
+{
+    const uint32 NumberOfWorldPointsToCreate1{10U};
+
+    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToCreate1);
+    WorldPointGeneratorCuboid WPG2(WPG1);
+
+    const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
+    const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
+
+    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), WPG1.GetNumberOfWorldPoints());
+
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate1; i_WorldPoint++)
+    {
+        const ColumnVectorFloat64_3d& CurrentWorldPoint1 = WorldPoints1[i_WorldPoint];
+        const ColumnVectorFloat64_3d& CurrentWorldPoint2 = WorldPoints2[i_WorldPoint];
+
+        ASSERT_EQ(CurrentWorldPoint2(0, 0), CurrentWorldPoint1(0, 0));
+        ASSERT_EQ(CurrentWorldPoint2(1, 0), CurrentWorldPoint1(1, 0));
+        ASSERT_EQ(CurrentWorldPoint2(2, 0), CurrentWorldPoint1(2, 0));
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the move constructor.
+///
+/// Tests whether or not the number of world points as well as the coordinates
+/// of the first and last world point match in case the move constructor is
+/// being called.
+///////////////////////////////////////////////////////////////////////////////
+TEST_MOVECONSTRUCTOR(WorldPointGeneratorCuboid, Test_MoveConstructor)
+{
+    const uint32 NumberOfWorldPointsToCreate{10U};
+
+    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToCreate);
+
+    const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
+
+    const ColumnVectorFloat64_3d WorldPoint1_First = WorldPoints1[0];
+    const ColumnVectorFloat64_3d WorldPoint1_Last  = WorldPoints1[NumberOfWorldPointsToCreate - 1U];
+
+    WorldPointGeneratorCuboid WPG2(std::move(WPG1));
+
+    const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
+
+    const ColumnVectorFloat64_3d WorldPoint2_First = WorldPoints2[0];
+    const ColumnVectorFloat64_3d WorldPoint2_Last  = WorldPoints2[NumberOfWorldPointsToCreate - 1U];
+
+    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
+
+    ASSERT_EQ(WorldPoint2_First(0, 0), WorldPoint1_First(0, 0));
+    ASSERT_EQ(WorldPoint2_First(1, 0), WorldPoint1_First(1, 0));
+    ASSERT_EQ(WorldPoint2_First(2, 0), WorldPoint1_First(2, 0));
+
+    ASSERT_EQ(WorldPoint2_Last(0, 0), WorldPoint1_Last(0, 0));
+    ASSERT_EQ(WorldPoint2_Last(1, 0), WorldPoint1_Last(1, 0));
+    ASSERT_EQ(WorldPoint2_Last(2, 0), WorldPoint1_Last(2, 0));
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the copy assignment operator.
+///
+/// Tests whether or not the number of world points as well as the coordinates
+/// of the world points match in case the copy assignment operator is being
+/// called.
+///////////////////////////////////////////////////////////////////////////////
+TEST_COPYASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_CopyAssignmentOperator)
+{
+    const uint32 NumberOfWorldPointsToCreate1{10U};
+    const uint32 NumberOfWorldPointsToCreate2{20U};
+
+    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToCreate1);
+    WorldPointGeneratorCuboid WPG2(NumberOfWorldPointsToCreate2);
+
+    WPG2 = WPG1;
+
+    const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
+    const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
+
+    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), WPG1.GetNumberOfWorldPoints());
+
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate1; i_WorldPoint++)
+    {
+        const ColumnVectorFloat64_3d& CurrentWorldPoint1 = WorldPoints1[i_WorldPoint];
+        const ColumnVectorFloat64_3d& CurrentWorldPoint2 = WorldPoints2[i_WorldPoint];
+
+        ASSERT_EQ(CurrentWorldPoint2(0, 0), CurrentWorldPoint1(0, 0));
+        ASSERT_EQ(CurrentWorldPoint2(1, 0), CurrentWorldPoint1(1, 0));
+        ASSERT_EQ(CurrentWorldPoint2(2, 0), CurrentWorldPoint1(2, 0));
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the copy assignment operator (self assignment).
+///
+/// Tests whether or not the number of world points as well as the coordinates
+/// of the world points match in case the copy assignment operator is being
+/// called.
+///////////////////////////////////////////////////////////////////////////////
+TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_CopyAssignmentOperator_SelfAssignment)
+{
+    const uint32 NumberOfWorldPointsToCreate{10U};
+
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
+
+    WPG = WPG;
+
+    const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints();
+
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
+
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate; i_WorldPoint++)
+    {
+        const ColumnVectorFloat64_3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
+
+        ASSERT_EQ(CurrentWorldPoint(0, 0), CurrentWorldPoint(0, 0));
+        ASSERT_EQ(CurrentWorldPoint(1, 0), CurrentWorldPoint(1, 0));
+        ASSERT_EQ(CurrentWorldPoint(2, 0), CurrentWorldPoint(2, 0));
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the move assignment operator.
+///
+/// Tests whether or not the number of world points as well as the coordinates
+/// of the first and last world point match in case the move assignment
+/// operator is being called.
+///////////////////////////////////////////////////////////////////////////////
+TEST_MOVEASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_MoveAssignmentOperator)
+{
+    const uint32 NumberOfWorldPointsToCreate1{10U};
+    const uint32 NumberOfWorldPointsToCreate2{20U};
+
+    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToCreate1);
+    WorldPointGeneratorCuboid WPG2(NumberOfWorldPointsToCreate2);
+
+    const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
+
+    const ColumnVectorFloat64_3d WorldPoint1_First = WorldPoints1[0];
+    const ColumnVectorFloat64_3d WorldPoint1_Last  = WorldPoints1[NumberOfWorldPointsToCreate1 - 1U];
+
+    WPG2 = std::move(WPG1);
+
+    const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
+
+    const ColumnVectorFloat64_3d WorldPoint2_First = WorldPoints2[0];
+    const ColumnVectorFloat64_3d WorldPoint2_Last  = WorldPoints2[NumberOfWorldPointsToCreate1 - 1U];
+
+    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate1);
+
+    ASSERT_EQ(WorldPoint2_First(0, 0), WorldPoint1_First(0, 0));
+    ASSERT_EQ(WorldPoint2_First(1, 0), WorldPoint1_First(1, 0));
+    ASSERT_EQ(WorldPoint2_First(2, 0), WorldPoint1_First(2, 0));
+
+    ASSERT_EQ(WorldPoint2_Last(0, 0), WorldPoint1_Last(0, 0));
+    ASSERT_EQ(WorldPoint2_Last(1, 0), WorldPoint1_Last(1, 0));
+    ASSERT_EQ(WorldPoint2_Last(2, 0), WorldPoint1_Last(2, 0));
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the move assignment operator (self assignment).
+///
+/// Tests whether or not the number of world points as well as the coordinates
+/// of the world points match in case the move assignment operator is being
+/// called.
+///////////////////////////////////////////////////////////////////////////////
+TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_MoveAssignmentOperator_SelfAssignment)
+{
+    const uint32 NumberOfWorldPointsToCreate{10U};
+
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
+
+    WPG = std::move(WPG);
+
+    const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints();
+
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
+
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate; i_WorldPoint++)
+    {
+        const ColumnVectorFloat64_3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
+
+        ASSERT_EQ(CurrentWorldPoint(0, 0), CurrentWorldPoint(0, 0));
+        ASSERT_EQ(CurrentWorldPoint(1, 0), CurrentWorldPoint(1, 0));
+        ASSERT_EQ(CurrentWorldPoint(2, 0), CurrentWorldPoint(2, 0));
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the number of world points.
