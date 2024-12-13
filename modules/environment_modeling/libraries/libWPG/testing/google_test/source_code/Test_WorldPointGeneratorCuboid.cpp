@@ -56,7 +56,8 @@ TEST_COPYCONSTRUCTOR(WorldPointGeneratorCuboid, Test_CopyConstructor)
     const uint32 NumberOfWorldPointsToGenerate1{10U};
 
     WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToGenerate1);
-    WorldPointGeneratorCuboid WPG2(WPG1);
+
+    const WorldPointGeneratorCuboid WPG2(WPG1); // NOLINT(performance-unnecessary-copy-initialization)
 
     const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
     const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
@@ -96,8 +97,8 @@ TEST_MOVECONSTRUCTOR(WorldPointGeneratorCuboid, Test_MoveConstructor)
 
     const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
 
-    const ColumnVectorFloat64_3d WorldPoint2_First = WorldPoints2[0];
-    const ColumnVectorFloat64_3d WorldPoint2_Last  = WorldPoints2[NumberOfWorldPointsToGenerate - 1U];
+    const ColumnVectorFloat64_3d WorldPoint2_First = WorldPoints2[0];                                  // NOLINT(performance-unnecessary-copy-initialization)
+    const ColumnVectorFloat64_3d WorldPoint2_Last  = WorldPoints2[NumberOfWorldPointsToGenerate - 1U]; // NOLINT(performance-unnecessary-copy-initialization)
 
     ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 
@@ -225,7 +226,7 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_MoveA
 
     WPG = std::move(WPG);
 
-    const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints();
+    const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints(); // NOLINT(bugprone-use-after-move)
 
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 
