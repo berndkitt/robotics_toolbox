@@ -45,11 +45,11 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define TEST_WORLDPOINT_4_SEED_10_ISMATCHING                   TEST_F ///< Define to get a unique test name.
 #define TEST_WORLDPOINTS_INRANGE                               TEST_F ///< Define to get a unique test name.
 
-class Test_WorldPointGeneratorCuboid : public testing::Test
+class TestWorldPointGeneratorCuboid : public testing::Test
 {
 public:
-    inline void CompareWorldPointGenerators(const WorldPointGeneratorCuboid& WorldPointGenerator1,
-                                            const WorldPointGeneratorCuboid& WorldPointGenerator2)
+    inline static void CompareWorldPointGenerators(const WorldPointGeneratorCuboid& WorldPointGenerator1,
+                                                   const WorldPointGeneratorCuboid& WorldPointGenerator2)
     {
         const ListColumnVectorFloat64_3d& WorldPoints1 = WorldPointGenerator1.GetWorldPoints();
         const ListColumnVectorFloat64_3d& WorldPoints2 = WorldPointGenerator2.GetWorldPoints();
@@ -74,7 +74,7 @@ public:
 /// Tests whether or not the number of world points as well as the coordinates
 /// of the world points match in case the copy constructor is being called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_COPYCONSTRUCTOR(Test_WorldPointGeneratorCuboid, Test_CopyConstructor)
+TEST_COPYCONSTRUCTOR(TestWorldPointGeneratorCuboid, Test_CopyConstructor)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate1{10U};
@@ -95,7 +95,7 @@ TEST_COPYCONSTRUCTOR(Test_WorldPointGeneratorCuboid, Test_CopyConstructor)
 /// of the first and last world point match in case the move constructor is
 /// being called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_MOVECONSTRUCTOR(Test_WorldPointGeneratorCuboid, Test_MoveConstructor)
+TEST_MOVECONSTRUCTOR(TestWorldPointGeneratorCuboid, Test_MoveConstructor)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
@@ -134,7 +134,7 @@ TEST_MOVECONSTRUCTOR(Test_WorldPointGeneratorCuboid, Test_MoveConstructor)
 /// of the world points match in case the copy assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_COPYASSIGNMENTOPERATOR(Test_WorldPointGeneratorCuboid, Test_CopyAssignmentOperator)
+TEST_COPYASSIGNMENTOPERATOR(TestWorldPointGeneratorCuboid, Test_CopyAssignmentOperator)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate1{10U};
@@ -157,7 +157,7 @@ TEST_COPYASSIGNMENTOPERATOR(Test_WorldPointGeneratorCuboid, Test_CopyAssignmentO
 /// of the world points match in case the copy assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorCuboid, Test_CopyAssignmentOperator_SelfAssignment)
+TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_CopyAssignmentOperator_SelfAssignment)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
@@ -178,7 +178,7 @@ TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorCuboid, Test_
 /// of the first and last world point match in case the move assignment
 /// operator is being called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_MOVEASSIGNMENTOPERATOR(Test_WorldPointGeneratorCuboid, Test_MoveAssignmentOperator)
+TEST_MOVEASSIGNMENTOPERATOR(TestWorldPointGeneratorCuboid, Test_MoveAssignmentOperator)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate1{10U};
@@ -219,7 +219,7 @@ TEST_MOVEASSIGNMENTOPERATOR(Test_WorldPointGeneratorCuboid, Test_MoveAssignmentO
 /// of the world points match in case the move assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorCuboid, Test_MoveAssignmentOperator_SelfAssignment)
+TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_MoveAssignmentOperator_SelfAssignment)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
@@ -230,7 +230,7 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorCuboid, Test_
     WPG = std::move(WPG);
 
     // run tests
-    CompareWorldPointGenerators(WPG, WPG);
+    CompareWorldPointGenerators(WPG, WPG); // NOLINT(bugprone-use-after-move)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -240,7 +240,7 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorCuboid, Test_
 /// world points or not. The default constructor is used. Hence, the
 /// expectation is to get the default number of world points, which is 1000.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
+TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(TestWorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate{1000U};
@@ -258,7 +258,7 @@ TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(Test_WorldPointGeneratorC
 /// Tests whether the number of world points does match the expected number of
 /// world points or not. The expectation is to get 50 world points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
+TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(TestWorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate{50U};
@@ -276,7 +276,7 @@ TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_Numb
 /// Tests whether the number of world points does match the expected number of
 /// world points or not. The expectation is to get 100 world points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
+TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(TestWorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate{100U};
@@ -295,7 +295,7 @@ TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_Num
 /// coordinates or not. The default constructor is used to generate the world
 /// points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldPoint_0_DefaultConstructor_IsMatching)
+TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(TestWorldPointGeneratorCuboid, Test_WorldPoint_0_DefaultConstructor_IsMatching)
 {
     // prepare test
     WorldPointGeneratorCuboid WPG;
@@ -320,7 +320,7 @@ TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(Test_WorldPointGeneratorCuboid, 
 /// coordinates or not. The default constructor is used to generate the world
 /// points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldPoint_4_DefaultConstructor_IsMatching)
+TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(TestWorldPointGeneratorCuboid, Test_WorldPoint_4_DefaultConstructor_IsMatching)
 {
     // prepare test
     WorldPointGeneratorCuboid WPG;
@@ -345,7 +345,7 @@ TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(Test_WorldPointGeneratorCuboid, 
 /// coordinates or not. The seed value 10 is used to initialize the generation
 /// of the world coordinates.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_0_SEED_10_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
+TEST_WORLDPOINT_0_SEED_10_ISMATCHING(TestWorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
 {
     // prepare test
     const uint32  NumberOfWorldPointsToGenerate{1000U};
@@ -379,7 +379,7 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldP
 /// coordinates or not. The seed value 10 is used to initialize the generation
 /// of the world coordinates.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_4_SEED_10_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
+TEST_WORLDPOINT_4_SEED_10_ISMATCHING(TestWorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
 {
     // prepare test
     const uint32  NumberOfWorldPointsToGenerate{1000U};
@@ -414,7 +414,7 @@ TEST_WORLDPOINT_4_SEED_10_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldP
 /// generated and the location of each world point is checked against the size
 /// of the cuboid.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINTS_INRANGE(Test_WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
+TEST_WORLDPOINTS_INRANGE(TestWorldPointGeneratorCuboid, Test_WorldPoints_InRange)
 {
     // prepare test
     const uint32  NumberOfWorldPointsToGenerate{1000U};

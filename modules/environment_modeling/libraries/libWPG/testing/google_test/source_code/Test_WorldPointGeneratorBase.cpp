@@ -143,11 +143,11 @@ public:
     }
 };
 
-class Test_WorldPointGeneratorBase : public testing::Test
+class TestWorldPointGeneratorBase : public testing::Test
 {
 public:
-    inline void CompareWorldPointGenerators(const WorldPointGeneratorBaseDummy& WorldPointGenerator1,
-                                            const WorldPointGeneratorBaseDummy& WorldPointGenerator2)
+    inline static void CompareWorldPointGenerators(const WorldPointGeneratorBaseDummy& WorldPointGenerator1,
+                                                   const WorldPointGeneratorBaseDummy& WorldPointGenerator2)
     {
         const ListColumnVectorFloat64_3d& WorldPoints1 = WorldPointGenerator1.GetWorldPoints();
         const ListColumnVectorFloat64_3d& WorldPoints2 = WorldPointGenerator2.GetWorldPoints();
@@ -173,7 +173,7 @@ public:
 /// of the world points match in case the copy assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorBase, Test_CopyAssignmentOperator_SelfAssignment)
+TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorBase, Test_CopyAssignmentOperator_SelfAssignment)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
@@ -194,7 +194,7 @@ TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorBase, Test_Co
 /// of the world points match in case the move assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorBase, Test_MoveAssignmentOperator_SelfAssignment)
+TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorBase, Test_MoveAssignmentOperator_SelfAssignment)
 {
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
@@ -205,5 +205,5 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorBase, Test_Mo
     WPG = std::move(WPG);
 
     // run tests
-    CompareWorldPointGenerators(WPG, WPG);
+    CompareWorldPointGenerators(WPG, WPG); // NOLINT(bugprone-use-after-move)
 }
