@@ -60,13 +60,13 @@ public:
     /// \param[in] SeedValue                     Seed value used to initialize the random number engine.
     ///////////////////////////////////////////////////////////////////////////////
     WorldPointGeneratorCuboid(const uint32  NumberOfWorldPointsToGenerate = 1000U,
-                              const float64 MinX                        = -5.0,
-                              const float64 MaxX                        = 5.0,
-                              const float64 MinY                        = -2.0,
-                              const float64 MaxY                        = 2.0,
-                              const float64 MinZ                        = 3.0,
-                              const float64 MaxZ                        = 30.0,
-                              const uint32  SeedValue                   = 0U);
+                              const float64 MinX                          = -5.0,
+                              const float64 MaxX                          = 5.0,
+                              const float64 MinY                          = -2.0,
+                              const float64 MaxY                          = 2.0,
+                              const float64 MinZ                          = 3.0,
+                              const float64 MaxZ                          = 30.0,
+                              const uint32  SeedValue                     = 0U);
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Copy constructor.
