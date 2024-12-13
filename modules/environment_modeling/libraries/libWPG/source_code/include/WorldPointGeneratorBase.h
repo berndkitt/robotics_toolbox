@@ -75,6 +75,51 @@ protected:
     std::mt19937 m_RandomNumberEngine; ///< Random number engine used to generate the 3d world points.
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Copy constructor.
+    ///
+    /// Copies a WorldPointGeneratorBase object.
+    ///
+    /// \param[in] Src Source object to copy.
+    ///////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorBase(const WorldPointGeneratorBase& Src);
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Move constructor.
+    ///
+    /// Moves a WorldPointGeneratorBase object.
+    ///
+    /// \param[in] Src Source object to move.
+    ///////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorBase(WorldPointGeneratorBase&& Src) noexcept;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Destructor.
+    ///////////////////////////////////////////////////////////////////////////////
+    virtual ~WorldPointGeneratorBase() = default;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Copy assignment operator.
+    ///
+    /// Copies a WorldPointGeneratorBase object by assigning it to a new object.
+    ///
+    /// \param[in] Rhs Source object to copy.
+    ///
+    /// \return Copied object.
+    ///////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorBase& operator=(const WorldPointGeneratorBase& Rhs);
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Move assignment operator.
+    ///
+    /// Moves a WorldPointGeneratorBase object by assigning it to a new object.
+    ///
+    /// \param[in] Rhs Source object to move.
+    ///
+    /// \return Moved object.
+    ///////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorBase& operator=(WorldPointGeneratorBase&& Rhs) noexcept;
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// \brief Generates the point cloud.
     ///
     /// The function loops over the list of 3d world points and randomly generates

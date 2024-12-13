@@ -47,6 +47,44 @@ const ListColumnVectorFloat64_3d& WorldPointGeneratorBase::GetWorldPoints() cons
     return m_ListOfWorldPoints;
 }
 
+WorldPointGeneratorBase::WorldPointGeneratorBase(const WorldPointGeneratorBase& Src) :
+    m_RandomNumberEngine{Src.m_RandomNumberEngine},
+    m_NumberOfWorldPoints{Src.m_NumberOfWorldPoints},
+    m_ListOfWorldPoints{Src.m_ListOfWorldPoints}
+{
+}
+
+WorldPointGeneratorBase::WorldPointGeneratorBase(WorldPointGeneratorBase&& Src) noexcept :
+    m_RandomNumberEngine{Src.m_RandomNumberEngine},
+    m_NumberOfWorldPoints{Src.m_NumberOfWorldPoints},
+    m_ListOfWorldPoints{std::move(Src.m_ListOfWorldPoints)}
+{
+}
+
+WorldPointGeneratorBase& WorldPointGeneratorBase::operator=(const WorldPointGeneratorBase& Rhs)
+{
+    if(this != &Rhs)
+    {
+        m_RandomNumberEngine  = Rhs.m_RandomNumberEngine;
+        m_NumberOfWorldPoints = Rhs.m_NumberOfWorldPoints;
+        m_ListOfWorldPoints   = Rhs.m_ListOfWorldPoints;
+    }
+
+    return *this;
+}
+
+WorldPointGeneratorBase& WorldPointGeneratorBase::operator=(WorldPointGeneratorBase&& Rhs) noexcept
+{
+    if(this != &Rhs)
+    {
+        m_RandomNumberEngine  = Rhs.m_RandomNumberEngine;
+        m_NumberOfWorldPoints = Rhs.m_NumberOfWorldPoints;
+        m_ListOfWorldPoints   = std::move(Rhs.m_ListOfWorldPoints);
+    }
+
+    return *this;
+}
+
 // cppcheck-suppress[unusedFunction]
 void WorldPointGeneratorBase::GeneratePointCloud()
 {

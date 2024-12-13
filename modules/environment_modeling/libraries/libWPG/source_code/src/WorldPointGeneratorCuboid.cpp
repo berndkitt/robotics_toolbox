@@ -43,6 +43,48 @@ WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint32  NumberOfWorld
     GeneratePointCloud();
 }
 
+WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const WorldPointGeneratorCuboid& Src) :
+    WorldPointGeneratorBase{Src},
+    m_UniformDistributionX{Src.m_UniformDistributionX},
+    m_UniformDistributionY{Src.m_UniformDistributionY},
+    m_UniformDistributionZ{Src.m_UniformDistributionZ}
+{
+}
+
+WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(WorldPointGeneratorCuboid&& Src) noexcept :
+    WorldPointGeneratorBase{std::move(Src)},
+    m_UniformDistributionX{Src.m_UniformDistributionX},
+    m_UniformDistributionY{Src.m_UniformDistributionY},
+    m_UniformDistributionZ{Src.m_UniformDistributionZ}
+{
+}
+
+WorldPointGeneratorCuboid& WorldPointGeneratorCuboid::operator=(const WorldPointGeneratorCuboid& Rhs)
+{
+    if(this != &Rhs)
+    {
+        WorldPointGeneratorBase::operator=(Rhs);
+        m_UniformDistributionX = Rhs.m_UniformDistributionX;
+        m_UniformDistributionY = Rhs.m_UniformDistributionY;
+        m_UniformDistributionZ = Rhs.m_UniformDistributionZ;
+    }
+
+    return *this;
+}
+
+WorldPointGeneratorCuboid& WorldPointGeneratorCuboid::operator=(WorldPointGeneratorCuboid&& Rhs) noexcept
+{
+    if(this != &Rhs)
+    {
+        WorldPointGeneratorBase::operator=(std::move(Rhs));
+        m_UniformDistributionX = Rhs.m_UniformDistributionX;
+        m_UniformDistributionY = Rhs.m_UniformDistributionY;
+        m_UniformDistributionZ = Rhs.m_UniformDistributionZ;
+    }
+
+    return *this;
+}
+
 void WorldPointGeneratorCuboid::GenerateWorldPoint(ColumnVectorFloat64_3d& WorldPoint)
 {
     const float64 CurrentCoordinateX{m_UniformDistributionX(m_RandomNumberEngine)};

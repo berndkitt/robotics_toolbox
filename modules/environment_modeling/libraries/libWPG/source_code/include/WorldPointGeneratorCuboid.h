@@ -68,6 +68,51 @@ public:
                               const float64 MaxZ                        = 30.0,
                               const uint32  SeedValue                   = 0U);
 
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Copy constructor.
+    ///
+    /// Copies a WorldPointGeneratorCuboid object.
+    ///
+    /// \param[in] Src Source object to copy.
+    ///////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorCuboid(const WorldPointGeneratorCuboid& Src);
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Move constructor.
+    ///
+    /// Moves a WorldPointGeneratorCuboid object.
+    ///
+    /// \param[in] Src Source object to move.
+    ///////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorCuboid(WorldPointGeneratorCuboid&& Src) noexcept;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Destructor.
+    ///////////////////////////////////////////////////////////////////////////////
+    virtual ~WorldPointGeneratorCuboid() = default;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Copy assignment operator.
+    ///
+    /// Copies a WorldPointGeneratorCuboid object by assigning it to a new object.
+    ///
+    /// \param[in] Rhs Source object to copy.
+    ///
+    /// \return Copied object.
+    ///////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorCuboid& operator=(const WorldPointGeneratorCuboid& Rhs);
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Move assignment operator.
+    ///
+    /// Moves a WorldPointGeneratorCuboid object by assigning it to a new object.
+    ///
+    /// \param[in] Rhs Source object to move.
+    ///
+    /// \return Moved object.
+    ///////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorCuboid& operator=(WorldPointGeneratorCuboid&& Rhs) noexcept;
+
 private:
     std::uniform_real_distribution<float64> m_UniformDistributionX; ///< Uniform distribution for X-coordinate of the 3d world points.
     std::uniform_real_distribution<float64> m_UniformDistributionY; ///< Uniform distribution for Y-coordinate of the 3d world points.
