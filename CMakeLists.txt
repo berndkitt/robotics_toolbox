@@ -1,8 +1,8 @@
-# define project name
-project(robotics_toolbox)
-
 # define minimum required version of CMake
 cmake_minimum_required(VERSION 3.5)
+
+# define project name
+project(robotics_toolbox)
 
 # include CMake modules
 INCLUDE(CheckTypeSize)
