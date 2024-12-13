@@ -29,8 +29,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../FileInterface.h"
 #include "DatasetReaderASRLDevonIsland.h"
 
-DatasetReaderASRLDevonIsland::DatasetReaderASRLDevonIsland(const std::string& BaseDirectory,
-                                                           const std::string& SequenceName,
+DatasetReaderASRLDevonIsland::DatasetReaderASRLDevonIsland(const std::string&  BaseDirectory,
+                                                           const std::string&  SequenceName,
                                                            const ASRLImageType ImageType) :
     DatasetReaderBase(BaseDirectory, SequenceName),
     m_ImageType{ImageType}
@@ -141,7 +141,7 @@ uint64 DatasetReaderASRLDevonIsland::ExtractTimestamps(const std::filesystem::pa
 
         std::vector<std::string> TimestampParts;
 
-        for ( ; iter != end; ++iter)
+        for(; iter != end; ++iter)
         {
             TimestampParts.push_back(*iter);
         }
