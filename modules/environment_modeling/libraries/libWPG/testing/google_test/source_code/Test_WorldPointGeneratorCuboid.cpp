@@ -30,20 +30,43 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../../../source_code/include/WorldPointGeneratorCuboid.h"
 
 // definition of macros for the unit tests
-#define TEST_COPYCONSTRUCTOR                                   TEST ///< Define to get a unique test name.
-#define TEST_MOVECONSTRUCTOR                                   TEST ///< Define to get a unique test name.
-#define TEST_COPYASSIGNMENTOPERATOR                            TEST ///< Define to get a unique test name.
-#define TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT             TEST ///< Define to get a unique test name.
-#define TEST_MOVEASSIGNMENTOPERATOR                            TEST ///< Define to get a unique test name.
-#define TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT             TEST ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING TEST ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING                 TEST ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING                TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING        TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING        TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_0_SEED_10_ISMATCHING                   TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_4_SEED_10_ISMATCHING                   TEST ///< Define to get a unique test name.
-#define TEST_WORLDPOINTS_INRANGE                               TEST ///< Define to get a unique test name.
+#define TEST_COPYCONSTRUCTOR                                   TEST_F ///< Define to get a unique test name.
+#define TEST_MOVECONSTRUCTOR                                   TEST_F ///< Define to get a unique test name.
+#define TEST_COPYASSIGNMENTOPERATOR                            TEST_F ///< Define to get a unique test name.
+#define TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT             TEST_F ///< Define to get a unique test name.
+#define TEST_MOVEASSIGNMENTOPERATOR                            TEST_F ///< Define to get a unique test name.
+#define TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT             TEST_F ///< Define to get a unique test name.
+#define TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING TEST_F ///< Define to get a unique test name.
+#define TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING                 TEST_F ///< Define to get a unique test name.
+#define TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING                TEST_F ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING        TEST_F ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING        TEST_F ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_0_SEED_10_ISMATCHING                   TEST_F ///< Define to get a unique test name.
+#define TEST_WORLDPOINT_4_SEED_10_ISMATCHING                   TEST_F ///< Define to get a unique test name.
+#define TEST_WORLDPOINTS_INRANGE                               TEST_F ///< Define to get a unique test name.
+
+class Test_WorldPointGeneratorCuboid : public testing::Test
+{
+public:
+    inline void CompareWorldPointGenerators(const WorldPointGeneratorCuboid& WorldPointGenerator1,
+                                            const WorldPointGeneratorCuboid& WorldPointGenerator2)
+    {
+        const ListColumnVectorFloat64_3d& WorldPoints1 = WorldPointGenerator1.GetWorldPoints();
+        const ListColumnVectorFloat64_3d& WorldPoints2 = WorldPointGenerator2.GetWorldPoints();
+
+        ASSERT_EQ(WorldPointGenerator1.GetNumberOfWorldPoints(), WorldPointGenerator2.GetNumberOfWorldPoints());
+
+        for(uint64 i_WorldPoint{0U}; i_WorldPoint < WorldPointGenerator1.GetNumberOfWorldPoints(); i_WorldPoint++)
+        {
+            const ColumnVectorFloat64_3d& CurrentWorldPoint1 = WorldPoints1[i_WorldPoint];
+            const ColumnVectorFloat64_3d& CurrentWorldPoint2 = WorldPoints2[i_WorldPoint];
+
+            ASSERT_EQ(CurrentWorldPoint1(0, 0), CurrentWorldPoint2(0, 0));
+            ASSERT_EQ(CurrentWorldPoint1(1, 0), CurrentWorldPoint2(1, 0));
+            ASSERT_EQ(CurrentWorldPoint1(2, 0), CurrentWorldPoint2(2, 0));
+        }
+    }
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the copy constructor.
@@ -51,28 +74,18 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 /// Tests whether or not the number of world points as well as the coordinates
 /// of the world points match in case the copy constructor is being called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_COPYCONSTRUCTOR(WorldPointGeneratorCuboid, Test_CopyConstructor)
+TEST_COPYCONSTRUCTOR(Test_WorldPointGeneratorCuboid, Test_CopyConstructor)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate1{10U};
 
     WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToGenerate1);
 
+    // call function under test
     const WorldPointGeneratorCuboid WPG2(WPG1); // NOLINT(performance-unnecessary-copy-initialization)
 
-    const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
-    const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
-
-    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), WPG1.GetNumberOfWorldPoints());
-
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate1; i_WorldPoint++)
-    {
-        const ColumnVectorFloat64_3d& CurrentWorldPoint1 = WorldPoints1[i_WorldPoint];
-        const ColumnVectorFloat64_3d& CurrentWorldPoint2 = WorldPoints2[i_WorldPoint];
-
-        ASSERT_EQ(CurrentWorldPoint2(0, 0), CurrentWorldPoint1(0, 0));
-        ASSERT_EQ(CurrentWorldPoint2(1, 0), CurrentWorldPoint1(1, 0));
-        ASSERT_EQ(CurrentWorldPoint2(2, 0), CurrentWorldPoint1(2, 0));
-    }
+    // run tests
+    CompareWorldPointGenerators(WPG1, WPG2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -82,8 +95,9 @@ TEST_COPYCONSTRUCTOR(WorldPointGeneratorCuboid, Test_CopyConstructor)
 /// of the first and last world point match in case the move constructor is
 /// being called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_MOVECONSTRUCTOR(WorldPointGeneratorCuboid, Test_MoveConstructor)
+TEST_MOVECONSTRUCTOR(Test_WorldPointGeneratorCuboid, Test_MoveConstructor)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
 
     WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToGenerate);
@@ -93,8 +107,10 @@ TEST_MOVECONSTRUCTOR(WorldPointGeneratorCuboid, Test_MoveConstructor)
     const ColumnVectorFloat64_3d WorldPoint1_First = WorldPoints1[0];
     const ColumnVectorFloat64_3d WorldPoint1_Last  = WorldPoints1[NumberOfWorldPointsToGenerate - 1U];
 
+    // call function under test
     WorldPointGeneratorCuboid WPG2(std::move(WPG1));
 
+    // run tests
     const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
 
     const ColumnVectorFloat64_3d WorldPoint2_First = WorldPoints2[0];                                  // NOLINT(performance-unnecessary-copy-initialization)
@@ -118,30 +134,20 @@ TEST_MOVECONSTRUCTOR(WorldPointGeneratorCuboid, Test_MoveConstructor)
 /// of the world points match in case the copy assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_COPYASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_CopyAssignmentOperator)
+TEST_COPYASSIGNMENTOPERATOR(Test_WorldPointGeneratorCuboid, Test_CopyAssignmentOperator)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate1{10U};
     const uint32 NumberOfWorldPointsToGenerate2{20U};
 
     WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToGenerate1);
     WorldPointGeneratorCuboid WPG2(NumberOfWorldPointsToGenerate2);
 
+    // call function under test
     WPG2 = WPG1;
 
-    const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
-    const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
-
-    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), WPG1.GetNumberOfWorldPoints());
-
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate1; i_WorldPoint++)
-    {
-        const ColumnVectorFloat64_3d& CurrentWorldPoint1 = WorldPoints1[i_WorldPoint];
-        const ColumnVectorFloat64_3d& CurrentWorldPoint2 = WorldPoints2[i_WorldPoint];
-
-        ASSERT_EQ(CurrentWorldPoint2(0, 0), CurrentWorldPoint1(0, 0));
-        ASSERT_EQ(CurrentWorldPoint2(1, 0), CurrentWorldPoint1(1, 0));
-        ASSERT_EQ(CurrentWorldPoint2(2, 0), CurrentWorldPoint1(2, 0));
-    }
+    // run tests
+    CompareWorldPointGenerators(WPG1, WPG2);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -151,26 +157,18 @@ TEST_COPYASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_CopyAssignmentOperat
 /// of the world points match in case the copy assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_CopyAssignmentOperator_SelfAssignment)
+TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorCuboid, Test_CopyAssignmentOperator_SelfAssignment)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
 
+    // call function under test
     WPG = WPG;
 
-    const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints();
-
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
-
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate; i_WorldPoint++)
-    {
-        const ColumnVectorFloat64_3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
-
-        ASSERT_EQ(CurrentWorldPoint(0, 0), CurrentWorldPoint(0, 0));
-        ASSERT_EQ(CurrentWorldPoint(1, 0), CurrentWorldPoint(1, 0));
-        ASSERT_EQ(CurrentWorldPoint(2, 0), CurrentWorldPoint(2, 0));
-    }
+    // run tests
+    CompareWorldPointGenerators(WPG, WPG);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -180,8 +178,9 @@ TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_CopyA
 /// of the first and last world point match in case the move assignment
 /// operator is being called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_MOVEASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_MoveAssignmentOperator)
+TEST_MOVEASSIGNMENTOPERATOR(Test_WorldPointGeneratorCuboid, Test_MoveAssignmentOperator)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate1{10U};
     const uint32 NumberOfWorldPointsToGenerate2{20U};
 
@@ -193,8 +192,10 @@ TEST_MOVEASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_MoveAssignmentOperat
     const ColumnVectorFloat64_3d WorldPoint1_First = WorldPoints1[0];
     const ColumnVectorFloat64_3d WorldPoint1_Last  = WorldPoints1[NumberOfWorldPointsToGenerate1 - 1U];
 
+    // call function under test
     WPG2 = std::move(WPG1);
 
+    // run tests
     const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
 
     const ColumnVectorFloat64_3d WorldPoint2_First = WorldPoints2[0];
@@ -218,26 +219,18 @@ TEST_MOVEASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_MoveAssignmentOperat
 /// of the world points match in case the move assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_MoveAssignmentOperator_SelfAssignment)
+TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorCuboid, Test_MoveAssignmentOperator_SelfAssignment)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
 
+    // call function under test
     WPG = std::move(WPG);
 
-    const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints(); // NOLINT(bugprone-use-after-move)
-
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
-
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate; i_WorldPoint++)
-    {
-        const ColumnVectorFloat64_3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
-
-        ASSERT_EQ(CurrentWorldPoint(0, 0), CurrentWorldPoint(0, 0));
-        ASSERT_EQ(CurrentWorldPoint(1, 0), CurrentWorldPoint(1, 0));
-        ASSERT_EQ(CurrentWorldPoint(2, 0), CurrentWorldPoint(2, 0));
-    }
+    // run tests
+    CompareWorldPointGenerators(WPG, WPG);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -247,12 +240,15 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_MoveA
 /// world points or not. The default constructor is used. Hence, the
 /// expectation is to get the default number of world points, which is 1000.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
+TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate{1000U};
 
+    // call function under test
     WorldPointGeneratorCuboid WPG;
 
+    // run tests
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 }
 
@@ -262,12 +258,15 @@ TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid
 /// Tests whether the number of world points does match the expected number of
 /// world points or not. The expectation is to get 50 world points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
+TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate{50U};
 
+    // call function under test
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
 
+    // run tests
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 }
 
@@ -277,12 +276,15 @@ TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfW
 /// Tests whether the number of world points does match the expected number of
 /// world points or not. The expectation is to get 100 world points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
+TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate{100U};
 
+    // call function under test
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
 
+    // run tests
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 }
 
@@ -293,12 +295,15 @@ TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOf
 /// coordinates or not. The default constructor is used to generate the world
 /// points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_0_DefaultConstructor_IsMatching)
+TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldPoint_0_DefaultConstructor_IsMatching)
 {
+    // prepare test
     WorldPointGeneratorCuboid WPG;
 
+    // call function under test
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[0]};
 
+    // run tests
     const float64 ValueX{WorldPoint(0)};
     const float64 ValueY{WorldPoint(1)};
     const float64 ValueZ{WorldPoint(2)};
@@ -315,12 +320,15 @@ TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_
 /// coordinates or not. The default constructor is used to generate the world
 /// points.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_4_DefaultConstructor_IsMatching)
+TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldPoint_4_DefaultConstructor_IsMatching)
 {
+    // prepare test
     WorldPointGeneratorCuboid WPG;
 
+    // call function under test
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[4]};
 
+    // run tests
     const float64 ValueX{WorldPoint(0)};
     const float64 ValueY{WorldPoint(1)};
     const float64 ValueZ{WorldPoint(2)};
@@ -337,8 +345,9 @@ TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_
 /// coordinates or not. The seed value 10 is used to initialize the generation
 /// of the world coordinates.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
+TEST_WORLDPOINT_0_SEED_10_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
 {
+    // prepare test
     const uint32  NumberOfWorldPointsToGenerate{1000U};
     const float64 MinX{-5.0};
     const float64 MaxX{5.0};
@@ -350,8 +359,10 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
 
+    // call function under test
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[0]};
 
+    // run tests
     const float64 ValueX{WorldPoint(0)};
     const float64 ValueY{WorldPoint(1)};
     const float64 ValueZ{WorldPoint(2)};
@@ -368,8 +379,9 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 /// coordinates or not. The seed value 10 is used to initialize the generation
 /// of the world coordinates.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
+TEST_WORLDPOINT_4_SEED_10_ISMATCHING(Test_WorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
 {
+    // prepare test
     const uint32  NumberOfWorldPointsToGenerate{1000U};
     const float64 MinX{-5.0};
     const float64 MaxX{5.0};
@@ -381,8 +393,10 @@ TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
 
+    // call function under test
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[4]};
 
+    // run tests
     const float64 ValueX{WorldPoint(0)};
     const float64 ValueY{WorldPoint(1)};
     const float64 ValueZ{WorldPoint(2)};
@@ -400,8 +414,9 @@ TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 /// generated and the location of each world point is checked against the size
 /// of the cuboid.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
+TEST_WORLDPOINTS_INRANGE(Test_WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
 {
+    // prepare test
     const uint32  NumberOfWorldPointsToGenerate{1000U};
     const float64 MinX{-5.0};
     const float64 MaxX{5.0};
@@ -412,8 +427,10 @@ TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
 
     WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
 
+    // call function under test
     const ListColumnVectorFloat64_3d& WorldPoints{WPG.GetWorldPoints()};
 
+    // run tests
     uint32 NumberOfPointsOutOfRange = NumberOfWorldPointsToGenerate;
 
     for(uint32 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate; i_WorldPoint++)

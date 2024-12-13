@@ -30,8 +30,8 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../../../source_code/include/WorldPointGeneratorBase.h"
 
 // definition of macros for the unit tests
-#define TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT TEST ///< Define to get a unique test name.
-#define TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT TEST ///< Define to get a unique test name.
+#define TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT TEST_F ///< Define to get a unique test name.
+#define TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT TEST_F ///< Define to get a unique test name.
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \class WorldPointGeneratorBaseDummy
@@ -143,6 +143,29 @@ public:
     }
 };
 
+class Test_WorldPointGeneratorBase : public testing::Test
+{
+public:
+    inline void CompareWorldPointGenerators(const WorldPointGeneratorBaseDummy& WorldPointGenerator1,
+                                            const WorldPointGeneratorBaseDummy& WorldPointGenerator2)
+    {
+        const ListColumnVectorFloat64_3d& WorldPoints1 = WorldPointGenerator1.GetWorldPoints();
+        const ListColumnVectorFloat64_3d& WorldPoints2 = WorldPointGenerator2.GetWorldPoints();
+
+        ASSERT_EQ(WorldPointGenerator1.GetNumberOfWorldPoints(), WorldPointGenerator2.GetNumberOfWorldPoints());
+
+        for(uint64 i_WorldPoint{0U}; i_WorldPoint < WorldPointGenerator1.GetNumberOfWorldPoints(); i_WorldPoint++)
+        {
+            const ColumnVectorFloat64_3d& CurrentWorldPoint1 = WorldPoints1[i_WorldPoint];
+            const ColumnVectorFloat64_3d& CurrentWorldPoint2 = WorldPoints2[i_WorldPoint];
+
+            ASSERT_EQ(CurrentWorldPoint1(0, 0), CurrentWorldPoint2(0, 0));
+            ASSERT_EQ(CurrentWorldPoint1(1, 0), CurrentWorldPoint2(1, 0));
+            ASSERT_EQ(CurrentWorldPoint1(2, 0), CurrentWorldPoint2(2, 0));
+        }
+    }
+};
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the copy assignment operator (self assignment).
 ///
@@ -150,26 +173,18 @@ public:
 /// of the world points match in case the copy assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorBase, Test_CopyAssignmentOperator_SelfAssignment)
+TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorBase, Test_CopyAssignmentOperator_SelfAssignment)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
 
     WorldPointGeneratorBaseDummy WPG(NumberOfWorldPointsToGenerate);
 
+    // call function under test
     WPG = WPG;
 
-    const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints();
-
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
-
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate; i_WorldPoint++)
-    {
-        const ColumnVectorFloat64_3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
-
-        ASSERT_EQ(CurrentWorldPoint(0, 0), CurrentWorldPoint(0, 0));
-        ASSERT_EQ(CurrentWorldPoint(1, 0), CurrentWorldPoint(1, 0));
-        ASSERT_EQ(CurrentWorldPoint(2, 0), CurrentWorldPoint(2, 0));
-    }
+    // run tests
+    CompareWorldPointGenerators(WPG, WPG);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -179,24 +194,16 @@ TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorBase, Test_CopyAss
 /// of the world points match in case the move assignment operator is being
 /// called.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorBase, Test_MoveAssignmentOperator_SelfAssignment)
+TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(Test_WorldPointGeneratorBase, Test_MoveAssignmentOperator_SelfAssignment)
 {
+    // prepare test
     const uint32 NumberOfWorldPointsToGenerate{10U};
 
     WorldPointGeneratorBaseDummy WPG(NumberOfWorldPointsToGenerate);
 
+    // call function under test
     WPG = std::move(WPG);
 
-    const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints(); // NOLINT(bugprone-use-after-move)
-
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
-
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate; i_WorldPoint++)
-    {
-        const ColumnVectorFloat64_3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
-
-        ASSERT_EQ(CurrentWorldPoint(0, 0), CurrentWorldPoint(0, 0));
-        ASSERT_EQ(CurrentWorldPoint(1, 0), CurrentWorldPoint(1, 0));
-        ASSERT_EQ(CurrentWorldPoint(2, 0), CurrentWorldPoint(2, 0));
-    }
+    // run tests
+    CompareWorldPointGenerators(WPG, WPG);
 }
