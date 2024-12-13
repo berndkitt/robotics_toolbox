@@ -53,9 +53,9 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 TEST_COPYCONSTRUCTOR(WorldPointGeneratorCuboid, Test_CopyConstructor)
 {
-    const uint32 NumberOfWorldPointsToCreate1{10U};
+    const uint32 NumberOfWorldPointsToGenerate1{10U};
 
-    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToCreate1);
+    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToGenerate1);
     WorldPointGeneratorCuboid WPG2(WPG1);
 
     const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
@@ -63,7 +63,7 @@ TEST_COPYCONSTRUCTOR(WorldPointGeneratorCuboid, Test_CopyConstructor)
 
     ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), WPG1.GetNumberOfWorldPoints());
 
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate1; i_WorldPoint++)
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate1; i_WorldPoint++)
     {
         const ColumnVectorFloat64_3d& CurrentWorldPoint1 = WorldPoints1[i_WorldPoint];
         const ColumnVectorFloat64_3d& CurrentWorldPoint2 = WorldPoints2[i_WorldPoint];
@@ -83,23 +83,23 @@ TEST_COPYCONSTRUCTOR(WorldPointGeneratorCuboid, Test_CopyConstructor)
 ///////////////////////////////////////////////////////////////////////////////
 TEST_MOVECONSTRUCTOR(WorldPointGeneratorCuboid, Test_MoveConstructor)
 {
-    const uint32 NumberOfWorldPointsToCreate{10U};
+    const uint32 NumberOfWorldPointsToGenerate{10U};
 
-    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToCreate);
+    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToGenerate);
 
     const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
 
     const ColumnVectorFloat64_3d WorldPoint1_First = WorldPoints1[0];
-    const ColumnVectorFloat64_3d WorldPoint1_Last  = WorldPoints1[NumberOfWorldPointsToCreate - 1U];
+    const ColumnVectorFloat64_3d WorldPoint1_Last  = WorldPoints1[NumberOfWorldPointsToGenerate - 1U];
 
     WorldPointGeneratorCuboid WPG2(std::move(WPG1));
 
     const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
 
     const ColumnVectorFloat64_3d WorldPoint2_First = WorldPoints2[0];
-    const ColumnVectorFloat64_3d WorldPoint2_Last  = WorldPoints2[NumberOfWorldPointsToCreate - 1U];
+    const ColumnVectorFloat64_3d WorldPoint2_Last  = WorldPoints2[NumberOfWorldPointsToGenerate - 1U];
 
-    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
+    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 
     ASSERT_EQ(WorldPoint2_First(0, 0), WorldPoint1_First(0, 0));
     ASSERT_EQ(WorldPoint2_First(1, 0), WorldPoint1_First(1, 0));
@@ -119,11 +119,11 @@ TEST_MOVECONSTRUCTOR(WorldPointGeneratorCuboid, Test_MoveConstructor)
 ///////////////////////////////////////////////////////////////////////////////
 TEST_COPYASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_CopyAssignmentOperator)
 {
-    const uint32 NumberOfWorldPointsToCreate1{10U};
-    const uint32 NumberOfWorldPointsToCreate2{20U};
+    const uint32 NumberOfWorldPointsToGenerate1{10U};
+    const uint32 NumberOfWorldPointsToGenerate2{20U};
 
-    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToCreate1);
-    WorldPointGeneratorCuboid WPG2(NumberOfWorldPointsToCreate2);
+    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToGenerate1);
+    WorldPointGeneratorCuboid WPG2(NumberOfWorldPointsToGenerate2);
 
     WPG2 = WPG1;
 
@@ -132,7 +132,7 @@ TEST_COPYASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_CopyAssignmentOperat
 
     ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), WPG1.GetNumberOfWorldPoints());
 
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate1; i_WorldPoint++)
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate1; i_WorldPoint++)
     {
         const ColumnVectorFloat64_3d& CurrentWorldPoint1 = WorldPoints1[i_WorldPoint];
         const ColumnVectorFloat64_3d& CurrentWorldPoint2 = WorldPoints2[i_WorldPoint];
@@ -152,17 +152,17 @@ TEST_COPYASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_CopyAssignmentOperat
 ///////////////////////////////////////////////////////////////////////////////
 TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_CopyAssignmentOperator_SelfAssignment)
 {
-    const uint32 NumberOfWorldPointsToCreate{10U};
+    const uint32 NumberOfWorldPointsToGenerate{10U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
 
     WPG = WPG;
 
     const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints();
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate; i_WorldPoint++)
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate; i_WorldPoint++)
     {
         const ColumnVectorFloat64_3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
 
@@ -181,25 +181,25 @@ TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_CopyA
 ///////////////////////////////////////////////////////////////////////////////
 TEST_MOVEASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_MoveAssignmentOperator)
 {
-    const uint32 NumberOfWorldPointsToCreate1{10U};
-    const uint32 NumberOfWorldPointsToCreate2{20U};
+    const uint32 NumberOfWorldPointsToGenerate1{10U};
+    const uint32 NumberOfWorldPointsToGenerate2{20U};
 
-    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToCreate1);
-    WorldPointGeneratorCuboid WPG2(NumberOfWorldPointsToCreate2);
+    WorldPointGeneratorCuboid WPG1(NumberOfWorldPointsToGenerate1);
+    WorldPointGeneratorCuboid WPG2(NumberOfWorldPointsToGenerate2);
 
     const ListColumnVectorFloat64_3d& WorldPoints1 = WPG1.GetWorldPoints();
 
     const ColumnVectorFloat64_3d WorldPoint1_First = WorldPoints1[0];
-    const ColumnVectorFloat64_3d WorldPoint1_Last  = WorldPoints1[NumberOfWorldPointsToCreate1 - 1U];
+    const ColumnVectorFloat64_3d WorldPoint1_Last  = WorldPoints1[NumberOfWorldPointsToGenerate1 - 1U];
 
     WPG2 = std::move(WPG1);
 
     const ListColumnVectorFloat64_3d& WorldPoints2 = WPG2.GetWorldPoints();
 
     const ColumnVectorFloat64_3d WorldPoint2_First = WorldPoints2[0];
-    const ColumnVectorFloat64_3d WorldPoint2_Last  = WorldPoints2[NumberOfWorldPointsToCreate1 - 1U];
+    const ColumnVectorFloat64_3d WorldPoint2_Last  = WorldPoints2[NumberOfWorldPointsToGenerate1 - 1U];
 
-    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate1);
+    ASSERT_EQ(WPG2.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate1);
 
     ASSERT_EQ(WorldPoint2_First(0, 0), WorldPoint1_First(0, 0));
     ASSERT_EQ(WorldPoint2_First(1, 0), WorldPoint1_First(1, 0));
@@ -219,17 +219,17 @@ TEST_MOVEASSIGNMENTOPERATOR(WorldPointGeneratorCuboid, Test_MoveAssignmentOperat
 ///////////////////////////////////////////////////////////////////////////////
 TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_MoveAssignmentOperator_SelfAssignment)
 {
-    const uint32 NumberOfWorldPointsToCreate{10U};
+    const uint32 NumberOfWorldPointsToGenerate{10U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
 
     WPG = std::move(WPG);
 
     const ListColumnVectorFloat64_3d& WorldPoints = WPG.GetWorldPoints();
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate; i_WorldPoint++)
+    for(uint64 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate; i_WorldPoint++)
     {
         const ColumnVectorFloat64_3d& CurrentWorldPoint = WorldPoints[i_WorldPoint];
 
@@ -248,11 +248,11 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(WorldPointGeneratorCuboid, Test_MoveA
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
 {
-    const uint32 NumberOfWorldPointsToCreate{1000U};
+    const uint32 NumberOfWorldPointsToGenerate{1000U};
 
     WorldPointGeneratorCuboid WPG;
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -263,11 +263,11 @@ TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
 {
-    const uint32 NumberOfWorldPointsToCreate{50U};
+    const uint32 NumberOfWorldPointsToGenerate{50U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -278,11 +278,11 @@ TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfW
 ///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(WorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
 {
-    const uint32 NumberOfWorldPointsToCreate{100U};
+    const uint32 NumberOfWorldPointsToGenerate{100U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
 
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToCreate);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -338,7 +338,7 @@ TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(WorldPointGeneratorCuboid, Test_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
 {
-    const uint32  NumberOfWorldPointsToCreate{1000U};
+    const uint32  NumberOfWorldPointsToGenerate{1000U};
     const float64 MinX{-5.0};
     const float64 MaxX{5.0};
     const float64 MinY{-2.0};
@@ -347,7 +347,7 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
     const float64 MaxZ{30.0};
     const uint32  Seed{10U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
 
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[0]};
 
@@ -369,7 +369,7 @@ TEST_WORLDPOINT_0_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
 {
-    const uint32  NumberOfWorldPointsToCreate{1000U};
+    const uint32  NumberOfWorldPointsToGenerate{1000U};
     const float64 MinX{-5.0};
     const float64 MaxX{5.0};
     const float64 MinY{-2.0};
@@ -378,7 +378,7 @@ TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
     const float64 MaxZ{30.0};
     const uint32  Seed{10U};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
 
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[4]};
 
@@ -401,7 +401,7 @@ TEST_WORLDPOINT_4_SEED_10_ISMATCHING(WorldPointGeneratorCuboid, Test_WorldPoint_
 ///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
 {
-    const uint32  NumberOfWorldPointsToCreate{1000U};
+    const uint32  NumberOfWorldPointsToGenerate{1000U};
     const float64 MinX{-5.0};
     const float64 MaxX{5.0};
     const float64 MinY{-2.0};
@@ -409,13 +409,13 @@ TEST_WORLDPOINTS_INRANGE(WorldPointGeneratorCuboid, Test_WorldPoints_InRange)
     const float64 MinZ{3.0};
     const float64 MaxZ{30.0};
 
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToCreate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
+    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ);
 
     const ListColumnVectorFloat64_3d& WorldPoints{WPG.GetWorldPoints()};
 
-    uint32 NumberOfPointsOutOfRange = NumberOfWorldPointsToCreate;
+    uint32 NumberOfPointsOutOfRange = NumberOfWorldPointsToGenerate;
 
-    for(uint32 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToCreate; i_WorldPoint++)
+    for(uint32 i_WorldPoint{0U}; i_WorldPoint < NumberOfWorldPointsToGenerate; i_WorldPoint++)
     {
         const ColumnVectorFloat64_3d& CurrentWorldPoint{WorldPoints[i_WorldPoint]};
 
