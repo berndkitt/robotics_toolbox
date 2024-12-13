@@ -77,7 +77,7 @@ WorldPointGeneratorCuboid& WorldPointGeneratorCuboid::operator=(WorldPointGenera
     if(this != &Rhs)
     {
         WorldPointGeneratorBase::operator=(std::move(Rhs));
-        m_UniformDistributionX = Rhs.m_UniformDistributionX;
+        m_UniformDistributionX = Rhs.m_UniformDistributionX; // NOLINT(bugprone-use-after-move)
         m_UniformDistributionY = Rhs.m_UniformDistributionY;
         m_UniformDistributionZ = Rhs.m_UniformDistributionZ;
     }
