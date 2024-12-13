@@ -58,10 +58,10 @@ DatasetReaderASRLDevonIsland::DatasetReaderASRLDevonIsland(const std::string&  B
     else
     {
         DirectoryIdentifier           = "grey-rectified-512x384";
-        SequenceDirectory             = "color-rectified-512x384-" + SequenceName;
+        SequenceDirectory             = "grey-rectified-512x384-" + SequenceName;
         FileBasenameImagesStereoLeft  = "grey-rectified-left-";
         FileBasenameImagesStereoRight = "grey-rectified-right-";
-        FileExtensionImagesStereo     = ".ppm";
+        FileExtensionImagesStereo     = ".pgm";
     }
 
     // create absolute paths to stereo camera information
