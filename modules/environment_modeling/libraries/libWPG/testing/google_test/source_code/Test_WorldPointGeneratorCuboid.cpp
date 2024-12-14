@@ -26,24 +26,20 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 */
 
 #include <gtest/gtest.h>
+#include <tuple>
 
 #include "../../../source_code/include/WorldPointGeneratorCuboid.h"
 
 // definition of macros for the unit tests
-#define TEST_COPYCONSTRUCTOR                                   TEST_F ///< Define to get a unique test name.
-#define TEST_MOVECONSTRUCTOR                                   TEST_F ///< Define to get a unique test name.
-#define TEST_COPYASSIGNMENTOPERATOR                            TEST_F ///< Define to get a unique test name.
-#define TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT             TEST_F ///< Define to get a unique test name.
-#define TEST_MOVEASSIGNMENTOPERATOR                            TEST_F ///< Define to get a unique test name.
-#define TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT             TEST_F ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING TEST_F ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING                 TEST_F ///< Define to get a unique test name.
-#define TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING                TEST_F ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING        TEST_F ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING        TEST_F ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_0_SEED_10_ISMATCHING                   TEST_F ///< Define to get a unique test name.
-#define TEST_WORLDPOINT_4_SEED_10_ISMATCHING                   TEST_F ///< Define to get a unique test name.
-#define TEST_WORLDPOINTS_INRANGE                               TEST_F ///< Define to get a unique test name.
+#define TEST_COPYCONSTRUCTOR                       TEST_F ///< Define to get a unique test name.
+#define TEST_MOVECONSTRUCTOR                       TEST_F ///< Define to get a unique test name.
+#define TEST_COPYASSIGNMENTOPERATOR                TEST_F ///< Define to get a unique test name.
+#define TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT TEST_F ///< Define to get a unique test name.
+#define TEST_MOVEASSIGNMENTOPERATOR                TEST_F ///< Define to get a unique test name.
+#define TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT TEST_F ///< Define to get a unique test name.
+#define TEST_NUMBEROFWORLDPOINTS_ISMATCHING        TEST_P ///< Define to get a unique test name.
+#define TEST_WORLDPOINTCOORDINATE_ISMATCHING       TEST_P ///< Define to get a unique test name.
+#define TEST_WORLDPOINTS_INRANGE                   TEST_F ///< Define to get a unique test name.
 
 class TestWorldPointGeneratorCuboid : public testing::Test
 {
@@ -66,6 +62,40 @@ public:
             ASSERT_EQ(CurrentWorldPoint1(2, 0), CurrentWorldPoint2(2, 0));
         }
     }
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// \class TestWorldPointGeneratorCuboidParameterizedWorldPointNumber
+///
+/// \brief Parameterized test class.
+///////////////////////////////////////////////////////////////////////////////
+class TestWorldPointGeneratorCuboidParameterizedWorldPointNumber : public testing::TestWithParam<uint32>
+{
+protected:
+    uint32 m_NumberOfWorldPointsToGenerate{0U}; ///< Number of 3d world points to generate.
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// \class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate
+///
+/// \brief Parameterized test class.
+///////////////////////////////////////////////////////////////////////////////
+class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate : public testing::TestWithParam< std::tuple<uint32, uint32, uint32, float64, float64, float64> >
+{
+protected:
+    uint32  m_NumberOfWorldPointsToGenerate{0U}; ///< Number of 3d world points to generate.
+    uint32  m_Seed{0U};                          ///< Seed value used to initialize the random number engine.
+    uint32  m_Index{0U};                         ///< Index of the 3d world point to test.
+    float64 m_ValueExpectedX{0.0};               ///< Expected X-coordinate of the 3d world point.
+    float64 m_ValueExpectedY{0.0};               ///< Expected Y-coordinate of the 3d world point.
+    float64 m_ValueExpectedZ{0.0};               ///< Expected Z-coordinate of the 3d world point.
+
+    const float64 m_MinX{-5.0}; ///< Smallest value of the 3d world points inside the cuboid in X-direction.
+    const float64 m_MaxX{5.0};  ///< Largest value of the 3d world points inside the cuboid in X-direction.
+    const float64 m_MinY{-2.0}; ///< Smallest value of the 3d world points inside the cuboid in Y-direction.
+    const float64 m_MaxY{2.0};  ///< Largest value of the 3d world points inside the cuboid in Y-direction.
+    const float64 m_MinZ{3.0};  ///< Smallest value of the 3d world points inside the cuboid in Z-direction.
+    const float64 m_MaxZ{30.0}; ///< Largest value of the 3d world points inside the cuboid in Z-direction.
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -236,174 +266,62 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_M
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the number of world points.
 ///
-/// Tests whether the number of world points does match the expected number of
-/// world points or not. The default constructor is used. Hence, the
-/// expectation is to get the default number of world points, which is 1000.
+/// This parameterized test checks for different configurations of the
+/// parameter "NumberOfWorldPointsToGenerate" whether the number of actually
+/// generated world points match the expected value or not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_DEFAULTCONSTRUCTOR_ISMATCHING(TestWorldPointGeneratorCuboid, Test_NumberOfWorldPoints_DefaultConstructor_IsMatching)
+INSTANTIATE_TEST_SUITE_P(TestWorldPointNumber,
+                         TestWorldPointGeneratorCuboidParameterizedWorldPointNumber,
+                         // List of parameters: NumberOfWorldPointsToGenerate
+                         testing::Values(1000U, // NumberOfWorldPointsToGenerate matches the value of the default constructor
+                                         50U,
+                                         100U));
+
+TEST_NUMBEROFWORLDPOINTS_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWorldPointNumber, Test_NumberOfWorldPoints_IsMatching)
 {
     // prepare test
-    const uint32 NumberOfWorldPointsToGenerate{1000U};
+    m_NumberOfWorldPointsToGenerate = GetParam();
 
     // call function under test
-    WorldPointGeneratorCuboid WPG;
+    WorldPointGeneratorCuboid WPG(m_NumberOfWorldPointsToGenerate);
 
     // run tests
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the number of world points.
-///
-/// Tests whether the number of world points does match the expected number of
-/// world points or not. The expectation is to get 50 world points.
-///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_50_ISMATCHING(TestWorldPointGeneratorCuboid, Test_NumberOfWorldPoints_50_IsMatching)
-{
-    // prepare test
-    const uint32 NumberOfWorldPointsToGenerate{50U};
-
-    // call function under test
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
-
-    // run tests
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the number of world points.
-///
-/// Tests whether the number of world points does match the expected number of
-/// world points or not. The expectation is to get 100 world points.
-///////////////////////////////////////////////////////////////////////////////
-TEST_NUMBEROFWORLDPOINTS_100_ISMATCHING(TestWorldPointGeneratorCuboid, Test_NumberOfWorldPoints_100_IsMatching)
-{
-    // prepare test
-    const uint32 NumberOfWorldPointsToGenerate{100U};
-
-    // call function under test
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate);
-
-    // run tests
-    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), NumberOfWorldPointsToGenerate);
+    ASSERT_EQ(WPG.GetNumberOfWorldPoints(), m_NumberOfWorldPointsToGenerate);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the coordinates of a world point.
 ///
-/// Tests whether the coordinates of the 0th world point match the expected
-/// coordinates or not. The default constructor is used to generate the world
-/// points.
+/// This parameterized test checks for different configurations of
+/// "NumberOfWorldPointsToGenerate", "Seed", and "Index" whether the
+/// coordinates of the generated world point match the expected values or not.
 ///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_0_DEFAULTCONSTRUCTOR_ISMATCHING(TestWorldPointGeneratorCuboid, Test_WorldPoint_0_DefaultConstructor_IsMatching)
+INSTANTIATE_TEST_SUITE_P(TestWorldPointCoordinate,
+                         TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate,
+                         // List of parameters: NumberOfWorldPointsToGenerate, Seed, Index, ValueExpectedX, ValueExpectedY, ValueExpectedZ
+                         testing::Values(std::tuple(1000U, 0U, 0U, 0.92844616516682632, 1.3770629770263931, 26.164531739725408), // NumberOfWorldPointsToGenerate and Seed match the values of the default constructor
+                                         std::tuple(1000U, 0U, 4U, -1.0721520670502338, 1.3443150761775642, 12.109696364476806), // NumberOfWorldPointsToGenerate and Seed match the values of the default constructor
+                                         std::tuple(1000U, 10U, 0U, -2.0123884133731003, -0.02164028676156704, 14.961403547811438),
+                                         std::tuple(1000U, 10U, 4U, -1.6392841678952141, 1.5632661213280561, 8.3492889972265729)));
+
+TEST_WORLDPOINTCOORDINATE_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate, Test_WorldPointCoordinate_IsMatching)
 {
     // prepare test
-    WorldPointGeneratorCuboid WPG;
+    std::tie(m_NumberOfWorldPointsToGenerate, m_Seed, m_Index, m_ValueExpectedX, m_ValueExpectedY, m_ValueExpectedZ) = GetParam();
+
+    WorldPointGeneratorCuboid WPG(m_NumberOfWorldPointsToGenerate, m_MinX, m_MaxX, m_MinY, m_MaxY, m_MinZ, m_MaxZ, m_Seed);
 
     // call function under test
-    const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[0]};
+    const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[m_Index]};
 
     // run tests
     const float64 ValueX{WorldPoint(0)};
     const float64 ValueY{WorldPoint(1)};
     const float64 ValueZ{WorldPoint(2)};
 
-    ASSERT_DOUBLE_EQ(ValueX, 0.92844616516682632);
-    ASSERT_DOUBLE_EQ(ValueY, 1.3770629770263931);
-    ASSERT_DOUBLE_EQ(ValueZ, 26.164531739725408);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the coordinates of a world point.
-///
-/// Tests whether the coordinates of the 4th world point match the expected
-/// coordinates or not. The default constructor is used to generate the world
-/// points.
-///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_4_DEFAULTCONSTRUCTOR_ISMATCHING(TestWorldPointGeneratorCuboid, Test_WorldPoint_4_DefaultConstructor_IsMatching)
-{
-    // prepare test
-    WorldPointGeneratorCuboid WPG;
-
-    // call function under test
-    const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[4]};
-
-    // run tests
-    const float64 ValueX{WorldPoint(0)};
-    const float64 ValueY{WorldPoint(1)};
-    const float64 ValueZ{WorldPoint(2)};
-
-    ASSERT_DOUBLE_EQ(ValueX, -1.0721520670502338);
-    ASSERT_DOUBLE_EQ(ValueY, 1.3443150761775642);
-    ASSERT_DOUBLE_EQ(ValueZ, 12.109696364476806);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the coordinates of a world point.
-///
-/// Tests whether the coordinates of the 0th world point match the expected
-/// coordinates or not. The seed value 10 is used to initialize the generation
-/// of the world coordinates.
-///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_0_SEED_10_ISMATCHING(TestWorldPointGeneratorCuboid, Test_WorldPoint_0_Seed_10_IsMatching)
-{
-    // prepare test
-    const uint32  NumberOfWorldPointsToGenerate{1000U};
-    const float64 MinX{-5.0};
-    const float64 MaxX{5.0};
-    const float64 MinY{-2.0};
-    const float64 MaxY{2.0};
-    const float64 MinZ{3.0};
-    const float64 MaxZ{30.0};
-    const uint32  Seed{10U};
-
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
-
-    // call function under test
-    const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[0]};
-
-    // run tests
-    const float64 ValueX{WorldPoint(0)};
-    const float64 ValueY{WorldPoint(1)};
-    const float64 ValueZ{WorldPoint(2)};
-
-    ASSERT_DOUBLE_EQ(ValueX, -2.0123884133731003);
-    ASSERT_DOUBLE_EQ(ValueY, -0.02164028676156704);
-    ASSERT_DOUBLE_EQ(ValueZ, 14.961403547811438);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the coordinates of a world point.
-///
-/// Tests whether the coordinates of the 4th world point match the expected
-/// coordinates or not. The seed value 10 is used to initialize the generation
-/// of the world coordinates.
-///////////////////////////////////////////////////////////////////////////////
-TEST_WORLDPOINT_4_SEED_10_ISMATCHING(TestWorldPointGeneratorCuboid, Test_WorldPoint_4_Seed_10_IsMatching)
-{
-    // prepare test
-    const uint32  NumberOfWorldPointsToGenerate{1000U};
-    const float64 MinX{-5.0};
-    const float64 MaxX{5.0};
-    const float64 MinY{-2.0};
-    const float64 MaxY{2.0};
-    const float64 MinZ{3.0};
-    const float64 MaxZ{30.0};
-    const uint32  Seed{10U};
-
-    WorldPointGeneratorCuboid WPG(NumberOfWorldPointsToGenerate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, Seed);
-
-    // call function under test
-    const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[4]};
-
-    // run tests
-    const float64 ValueX{WorldPoint(0)};
-    const float64 ValueY{WorldPoint(1)};
-    const float64 ValueZ{WorldPoint(2)};
-
-    ASSERT_DOUBLE_EQ(ValueX, -1.6392841678952141);
-    ASSERT_DOUBLE_EQ(ValueY, 1.5632661213280561);
-    ASSERT_DOUBLE_EQ(ValueZ, 8.3492889972265729);
+    ASSERT_DOUBLE_EQ(ValueX, m_ValueExpectedX);
+    ASSERT_DOUBLE_EQ(ValueY, m_ValueExpectedY);
+    ASSERT_DOUBLE_EQ(ValueZ, m_ValueExpectedZ);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
