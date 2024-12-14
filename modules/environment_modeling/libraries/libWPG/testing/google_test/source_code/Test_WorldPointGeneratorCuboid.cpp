@@ -80,7 +80,7 @@ protected:
 ///
 /// \brief Parameterized test class.
 ///////////////////////////////////////////////////////////////////////////////
-class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate : public testing::TestWithParam< std::tuple<uint32, uint32, uint32, float64, float64, float64> >
+class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate : public testing::TestWithParam<std::tuple<uint32, uint32, uint32, float64, float64, float64>>
 {
 protected:
     uint32  m_NumberOfWorldPointsToGenerate{0U}; ///< Number of 3d world points to generate.
