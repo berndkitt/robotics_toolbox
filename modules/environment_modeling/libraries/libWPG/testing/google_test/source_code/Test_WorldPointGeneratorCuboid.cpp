@@ -273,7 +273,8 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_M
 INSTANTIATE_TEST_SUITE_P(TestWorldPointNumber,
                          TestWorldPointGeneratorCuboidParameterizedWorldPointNumber,
                          // List of parameters: NumberOfWorldPointsToGenerate
-                         testing::Values(1000U, // NumberOfWorldPointsToGenerate matches the value of the default constructor
+                         // First configuration matches the default constructor
+                         testing::Values(1000U,
                                          50U,
                                          100U));
 
@@ -299,10 +300,11 @@ TEST_NUMBEROFWORLDPOINTS_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWo
 INSTANTIATE_TEST_SUITE_P(TestWorldPointCoordinate,
                          TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate,
                          // List of parameters: NumberOfWorldPointsToGenerate, Seed, Index, ValueExpectedX, ValueExpectedY, ValueExpectedZ
-                         testing::Values(std::tuple(1000U, 0U, 0U, 0.92844616516682632, 1.3770629770263931, 26.164531739725408), // NumberOfWorldPointsToGenerate and Seed match the values of the default constructor
-                                         std::tuple(1000U, 0U, 4U, -1.0721520670502338, 1.3443150761775642, 12.109696364476806), // NumberOfWorldPointsToGenerate and Seed match the values of the default constructor
-                                         std::tuple(1000U, 10U, 0U, -2.0123884133731003, -0.02164028676156704, 14.961403547811438),
-                                         std::tuple(1000U, 10U, 4U, -1.6392841678952141, 1.5632661213280561, 8.3492889972265729)));
+                         // First and second configuration match the default constructor
+                         testing::Values(std::tuple(1000U, 0U, 0U, 0.92844616516682632, 1.3770629770263931, 26.164531739725408),    // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+                                         std::tuple(1000U, 0U, 4U, -1.0721520670502338, 1.3443150761775642, 12.109696364476806),    // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+                                         std::tuple(1000U, 10U, 0U, -2.0123884133731003, -0.02164028676156704, 14.961403547811438), // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+                                         std::tuple(1000U, 10U, 4U, -1.6392841678952141, 1.5632661213280561, 8.3492889972265729))); // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
 
 TEST_WORLDPOINTCOORDINATE_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate, Test_WorldPointCoordinate_IsMatching)
 {
