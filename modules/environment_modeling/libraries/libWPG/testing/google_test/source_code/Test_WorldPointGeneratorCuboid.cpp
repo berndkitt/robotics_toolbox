@@ -86,9 +86,25 @@ public:
     }
 };
 
+///////////////////////////////////////////////////////////////////////////////
+/// \class TestWorldPointGeneratorCuboid
+///
+/// \brief Test class.
+///////////////////////////////////////////////////////////////////////////////
 class TestWorldPointGeneratorCuboid : public testing::Test
 {
 public:
+    ///////////////////////////////////////////////////////////////////////////////
+    /// \brief Compares two WorldPointGeneratorCuboidDummy objects.
+    ///
+    /// The function is used to compare two WorldPointGeneratorCuboidDummy objects.
+    /// It checks all member variables of the objects and checks whether they are
+    /// identical or not. In case they are not, the corresponding unit test is
+    /// considered failed.
+    ///
+    /// \param[in] WorldPointGenerator1 First WorldPointGeneratorCuboidDummy object.
+    /// \param[in] WorldPointGenerator2 Second WorldPointGeneratorCuboidDummy object.
+    ///////////////////////////////////////////////////////////////////////////////
     inline static void CompareWorldPointGenerators(const WorldPointGeneratorCuboidDummy& WorldPointGenerator1,
                                                    const WorldPointGeneratorCuboidDummy& WorldPointGenerator2)
     {
