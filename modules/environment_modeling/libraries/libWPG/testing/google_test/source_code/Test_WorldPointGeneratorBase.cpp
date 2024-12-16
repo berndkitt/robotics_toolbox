@@ -142,9 +142,13 @@ public:
     ////////////////////////////////////////////////////////////////////////////////////////////////
     inline void GenerateWorldPoint(ColumnVectorFloat64_3d& WorldPoint) override
     {
-        WorldPoint(0) = 0.0;
-        WorldPoint(1) = 1.0;
-        WorldPoint(2) = 2.0; // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+        float64 DummyValueX = 0.0;
+        float64 DummyValueY = 1.0;
+        float64 DummyValueZ = 2.0; // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
+
+        WorldPoint(0) = DummyValueX;
+        WorldPoint(1) = DummyValueY;
+        WorldPoint(2) = DummyValueZ;
     }
 };
 
