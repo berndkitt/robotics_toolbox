@@ -20,6 +20,7 @@ RUN apt install -y build-essential \
                    gdb \
                    git \
                    graphviz \
+                   plantuml \
                    python3-pip \
                    software-properties-common
 

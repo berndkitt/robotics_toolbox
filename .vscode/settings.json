@@ -4,8 +4,10 @@
     "cmake.parallelJobs": 8,
     "editor.detectIndentation": false,
     "editor.insertSpaces": true,
+    "editor.rulers": [100],
     "editor.tabSize": 4,
     "files.associations": {
+        ".clang-format": "yaml",
         ".clang-tidy": "yaml",
         "LICENSE": "plaintext"
     },

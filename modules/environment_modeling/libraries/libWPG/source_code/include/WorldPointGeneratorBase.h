@@ -1,8 +1,8 @@
-///////////////////////////////////////////////////////////////////////////////
-/// \file  WorldPointGeneratorBase.h
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// \file WorldPointGeneratorBase.h
 ///
 /// \brief Header file containing the WorldPointGeneratorBase class.
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
 This file is part of the Robotics Toolbox.
@@ -32,50 +32,113 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include <GlobalTypesDerived.h>
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \class WorldPointGeneratorBase
 ///
 /// \brief Base class for different kinds of world point generators.
-///////////////////////////////////////////////////////////////////////////////
+///
+/// The world point generator can be used to generate a point cloud containing a predefined amount
+/// of randomly generated 3d world points. The shape of the point cloud depends on the class derived
+/// from the base class (e.g., points inside a cuboid,...).
+////////////////////////////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorBase
 {
-protected:
-    const uint64               m_NumberOfWorldPoints; ///< Number of 3d world points.
-    ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the 3d world points.
-    std::mt19937               m_RandomNumberEngine;  ///< Random number engine used to generate the 3d world points.
-    const uint64               m_SeedValue;           ///< Seed value used to initialize the random number engine.
-
 public:
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief Destructor.
-    ///////////////////////////////////////////////////////////////////////////////
-    virtual ~WorldPointGeneratorBase();
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the number of 3d world points.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Constructor.
     ///
-    /// \return Number of 3d world points.
-    ///////////////////////////////////////////////////////////////////////////////
-    uint64 GetNumberOfWorldPoints() const;
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief  Getter for the list containing the 3d world points.
+    /// Initializes the member variables of the class and allocates memory for the 3d world points.
     ///
-    /// \return List containing the 3d world points.
-    ///////////////////////////////////////////////////////////////////////////////
+    /// \param[in] NumberOfWorldPointsToGenerate Number of 3d world points to generate.
+    /// \param[in] SeedValue                     Seed value used to initialize the random number engine.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorBase(const uint32 NumberOfWorldPointsToGenerate = 1000U,
+                            const uint32 SeedValue                     = 0U);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Getter for the number of generated 3d world points.
+    ///
+    /// \return Number of generated 3d world points.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    uint32 GetNumberOfWorldPoints() const;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Getter for the list containing the generated 3d world points.
+    ///
+    /// \return List containing the generated 3d world points.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     const ListColumnVectorFloat64_3d& GetWorldPoints() const;
 
 protected:
-    ///////////////////////////////////////////////////////////////////////////////
-    /// \brief     Constructor.
+    std::mt19937               m_RandomNumberEngine;  ///< Random number engine used to generate the 3d world points.
+    uint32                     m_NumberOfWorldPoints; ///< Number of generated 3d world points.
+    ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the generated 3d world points.
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Copy constructor.
     ///
-    /// \param[in] NumberOfWorldPoints Number of 3d world points.
-    /// \param[in] SeedValue           Seed value used to initialize the random number engine.
+    /// Copies a WorldPointGeneratorBase object.
     ///
-    /// \remark    Protected constructor to prevent creating objects of that class.
-    ///////////////////////////////////////////////////////////////////////////////
-    WorldPointGeneratorBase(const uint64 NumberOfWorldPoints = 1000U,
-                            const uint64 SeedValue           = 0U);
+    /// \param[in] Src Source object to copy.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorBase(const WorldPointGeneratorBase& Src);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Move constructor.
+    ///
+    /// Moves a WorldPointGeneratorBase object.
+    ///
+    /// \param[in] Src Source object to move.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorBase(WorldPointGeneratorBase&& Src) noexcept;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Destructor.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    virtual ~WorldPointGeneratorBase() = default;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Copy assignment operator.
+    ///
+    /// Copies a WorldPointGeneratorBase object by assigning it to a new object.
+    ///
+    /// \param[in] Rhs Source object to copy.
+    ///
+    /// \return Copied object.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorBase& operator=(const WorldPointGeneratorBase& Rhs);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Move assignment operator.
+    ///
+    /// Moves a WorldPointGeneratorBase object by assigning it to a new object.
+    ///
+    /// \param[in] Rhs Source object to move.
+    ///
+    /// \return Moved object.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    WorldPointGeneratorBase& operator=(WorldPointGeneratorBase&& Rhs) noexcept;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Generates the point cloud.
+    ///
+    /// Generates the list of 3d world points by looping over the list of 3d world points. The world
+    /// point is randomly generated by calling the GenerateWorldPoint() method.
+    ///
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    void GeneratePointCloud();
+
+private:
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Generates a single world point.
+    ///
+    /// Randomly generates a single 3d world point based on the underlying shape of the point cloud.
+    /// The shape of the point cloud depends on the class derived from the base class and needs to
+    /// be implemented there.
+    ///
+    /// \param[out] WorldPoint Randomly generated 3d world point.
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    virtual void GenerateWorldPoint(ColumnVectorFloat64_3d& WorldPoint) = 0;
 };
 
 #endif // WORLDPOINTGENERATORBASE_H

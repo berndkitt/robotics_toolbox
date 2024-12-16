@@ -28,21 +28,25 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #include "../include/LIB$LIB_ABBREVIATION_UPPERCASE$Version.h"
 #include "../../versioning/lib$LIB_ABBREVIATION$_Version.h"
 
+// cppcheck-suppress[unusedFunction]
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildTime()
 {
     return BuildTime;
 }
 
+// cppcheck-suppress[unusedFunction]
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildType()
 {
     return BuildType;
 }
 
+// cppcheck-suppress[unusedFunction]
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetBuildUser()
 {
     return BuildUser;
 }
 
+// cppcheck-suppress[unusedFunction]
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerInformation()
 {
     std::string CompilerInformation{CompilerIdentifier + " " + CompilerVersion};
@@ -50,11 +54,13 @@ std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerInformation()
     return CompilerInformation;
 }
 
+// cppcheck-suppress[unusedFunction]
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetGitCommitHash()
 {
     return GitCommitHash;
 }
 
+// cppcheck-suppress[unusedFunction]
 std::string LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionString()
 {
     std::string VersionString{"lib$LIB_ABBREVIATION$ v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
