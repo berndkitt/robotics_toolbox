@@ -140,7 +140,7 @@ class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate : public te
 {
 protected:
     uint32  m_NumberOfWorldPointsToGenerate{0U}; ///< Number of 3d world points to generate.
-    uint32  m_Seed{0U};                          ///< Seed value used to initialize the random number engine.
+    uint32  m_SeedValue{0U};                     ///< Seed value used to initialize the random number engine.
     uint32  m_Index{0U};                         ///< Index of the 3d world point to test.
     float64 m_ValueExpectedX{0.0};               ///< Expected X-coordinate of the 3d world point.
     float64 m_ValueExpectedY{0.0};               ///< Expected Y-coordinate of the 3d world point.
@@ -348,7 +348,7 @@ TEST_NUMBEROFWORLDPOINTS_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWo
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 INSTANTIATE_TEST_SUITE_P(TestWorldPointCoordinate,
                          TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate,
-                         // List of parameters: NumberOfWorldPointsToGenerate, Seed, Index, ValueExpectedX, ValueExpectedY, ValueExpectedZ
+                         // List of parameters: NumberOfWorldPointsToGenerate, SeedValue, Index, ValueExpectedX, ValueExpectedY, ValueExpectedZ
                          // First and second configuration match the default constructor
                          testing::Values(std::tuple(1000U, 0U, 0U, 0.92844616516682632, 1.3770629770263931, 26.164531739725408),    // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
                                          std::tuple(1000U, 0U, 4U, -1.0721520670502338, 1.3443150761775642, 12.109696364476806),    // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
@@ -364,9 +364,9 @@ INSTANTIATE_TEST_SUITE_P(TestWorldPointCoordinate,
 TEST_WORLDPOINTCOORDINATE_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate, Test_WorldPointCoordinate_IsMatching)
 {
     // prepare test
-    std::tie(m_NumberOfWorldPointsToGenerate, m_Seed, m_Index, m_ValueExpectedX, m_ValueExpectedY, m_ValueExpectedZ) = GetParam();
+    std::tie(m_NumberOfWorldPointsToGenerate, m_SeedValue, m_Index, m_ValueExpectedX, m_ValueExpectedY, m_ValueExpectedZ) = GetParam();
 
-    WorldPointGeneratorCuboidDummy WPG(m_NumberOfWorldPointsToGenerate, m_MinX, m_MaxX, m_MinY, m_MaxY, m_MinZ, m_MaxZ, m_Seed);
+    WorldPointGeneratorCuboidDummy WPG(m_NumberOfWorldPointsToGenerate, m_MinX, m_MaxX, m_MinY, m_MaxY, m_MinZ, m_MaxZ, m_SeedValue);
 
     // call function under test
     const ColumnVectorFloat64_3d WorldPoint{WPG.GetWorldPoints()[m_Index]};
