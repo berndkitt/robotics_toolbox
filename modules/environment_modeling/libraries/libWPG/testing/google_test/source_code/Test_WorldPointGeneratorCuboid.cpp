@@ -51,9 +51,9 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorCuboidDummy : public WorldPointGeneratorCuboid
 {
-    friend class TestWorldPointGeneratorCuboid;
-    friend class TestWorldPointGeneratorCuboidParameterizedWorldPointNumber;
-    friend class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate;
+    friend class TestWorldPointGeneratorCuboid;                                  ///< Friend class to allow for access to non-public members.
+    friend class TestWorldPointGeneratorCuboidParameterizedWorldPointNumber;     ///< Friend class to allow for access to non-public members.
+    friend class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate; ///< Friend class to allow for access to non-public members.
 
 public:
     ///////////////////////////////////////////////////////////////////////////////

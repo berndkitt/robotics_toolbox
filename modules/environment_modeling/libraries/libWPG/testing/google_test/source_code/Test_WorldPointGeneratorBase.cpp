@@ -46,7 +46,7 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorBaseDummy : public WorldPointGeneratorBase
 {
-    friend class TestWorldPointGeneratorBase;
+    friend class TestWorldPointGeneratorBase; ///< Friend class to allow for access to non-public members.
 
 public:
     ///////////////////////////////////////////////////////////////////////////////
