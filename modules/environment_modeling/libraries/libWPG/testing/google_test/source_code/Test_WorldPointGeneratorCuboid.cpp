@@ -320,13 +320,6 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_M
     CompareWorldPointGenerators(WPG, WPG); // NOLINT(bugprone-use-after-move)
 }
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the number of world points.
-///
-/// This parameterized test checks for different configurations of the
-/// parameter "NumberOfWorldPointsToGenerate" whether the number of actually
-/// generated world points match the expected value or not.
-///////////////////////////////////////////////////////////////////////////////
 INSTANTIATE_TEST_SUITE_P(TestWorldPointNumber,
                          TestWorldPointGeneratorCuboidParameterizedWorldPointNumber,
                          // List of parameters: NumberOfWorldPointsToGenerate
@@ -335,6 +328,13 @@ INSTANTIATE_TEST_SUITE_P(TestWorldPointNumber,
                                          50U,
                                          100U));
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the number of world points.
+///
+/// This parameterized test checks for different configurations of the
+/// parameter "NumberOfWorldPointsToGenerate" whether the number of actually
+/// generated world points match the expected value or not.
+///////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWorldPointNumber, Test_NumberOfWorldPoints_IsMatching)
 {
     // prepare test
@@ -347,13 +347,6 @@ TEST_NUMBEROFWORLDPOINTS_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWo
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), m_NumberOfWorldPointsToGenerate);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the coordinates of a world point.
-///
-/// This parameterized test checks for different configurations of
-/// "NumberOfWorldPointsToGenerate", "Seed", and "Index" whether the
-/// coordinates of the generated world point match the expected values or not.
-///////////////////////////////////////////////////////////////////////////////
 INSTANTIATE_TEST_SUITE_P(TestWorldPointCoordinate,
                          TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate,
                          // List of parameters: NumberOfWorldPointsToGenerate, Seed, Index, ValueExpectedX, ValueExpectedY, ValueExpectedZ
@@ -363,6 +356,13 @@ INSTANTIATE_TEST_SUITE_P(TestWorldPointCoordinate,
                                          std::tuple(1000U, 10U, 0U, -2.0123884133731003, -0.02164028676156704, 14.961403547811438), // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
                                          std::tuple(1000U, 10U, 4U, -1.6392841678952141, 1.5632661213280561, 8.3492889972265729))); // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the coordinates of a world point.
+///
+/// This parameterized test checks for different configurations of
+/// "NumberOfWorldPointsToGenerate", "Seed", and "Index" whether the
+/// coordinates of the generated world point match the expected values or not.
+///////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINTCOORDINATE_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate, Test_WorldPointCoordinate_IsMatching)
 {
     // prepare test
