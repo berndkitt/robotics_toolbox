@@ -41,9 +41,13 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 /// This is a dummy class only which enables unit tests for both, the copy
 /// assignment operator and the move assignment operator, of the
 /// WorldPointGeneratorBase class in case a self assignment happens.
+/// Additionally, the class allows for testing the protected member variables,
+/// as the tests can be made friend classes of this class.
 ///////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorBaseDummy : public WorldPointGeneratorBase
 {
+    friend class TestWorldPointGeneratorBase;
+
 public:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Constructor.
@@ -149,19 +153,12 @@ public:
     inline static void CompareWorldPointGenerators(const WorldPointGeneratorBaseDummy& WorldPointGenerator1,
                                                    const WorldPointGeneratorBaseDummy& WorldPointGenerator2)
     {
-        const ListColumnVectorFloat64_3d& WorldPoints1 = WorldPointGenerator1.GetWorldPoints();
-        const ListColumnVectorFloat64_3d& WorldPoints2 = WorldPointGenerator2.GetWorldPoints();
+        ASSERT_EQ(WorldPointGenerator1.m_RandomNumberEngine, WorldPointGenerator2.m_RandomNumberEngine);
+        ASSERT_EQ(WorldPointGenerator1.m_NumberOfWorldPoints, WorldPointGenerator2.m_NumberOfWorldPoints);
 
-        ASSERT_EQ(WorldPointGenerator1.GetNumberOfWorldPoints(), WorldPointGenerator2.GetNumberOfWorldPoints());
-
-        for(uint64 i_WorldPoint{0U}; i_WorldPoint < WorldPointGenerator1.GetNumberOfWorldPoints(); i_WorldPoint++)
+        for(uint64 i_WorldPoint{0U}; i_WorldPoint < WorldPointGenerator1.m_NumberOfWorldPoints; i_WorldPoint++)
         {
-            const ColumnVectorFloat64_3d& CurrentWorldPoint1 = WorldPoints1[i_WorldPoint];
-            const ColumnVectorFloat64_3d& CurrentWorldPoint2 = WorldPoints2[i_WorldPoint];
-
-            ASSERT_EQ(CurrentWorldPoint1(0, 0), CurrentWorldPoint2(0, 0));
-            ASSERT_EQ(CurrentWorldPoint1(1, 0), CurrentWorldPoint2(1, 0));
-            ASSERT_EQ(CurrentWorldPoint1(2, 0), CurrentWorldPoint2(2, 0));
+            ASSERT_EQ(WorldPointGenerator1.m_ListOfWorldPoints[i_WorldPoint], WorldPointGenerator2.m_ListOfWorldPoints[i_WorldPoint]);
         }
     }
 };

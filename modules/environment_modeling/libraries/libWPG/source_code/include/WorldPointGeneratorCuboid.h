@@ -113,11 +113,12 @@ public:
     ///////////////////////////////////////////////////////////////////////////////
     WorldPointGeneratorCuboid& operator=(WorldPointGeneratorCuboid&& Rhs) noexcept;
 
-private:
+protected:
     std::uniform_real_distribution<float64> m_UniformDistributionX; ///< Uniform distribution for X-coordinate of the 3d world points.
     std::uniform_real_distribution<float64> m_UniformDistributionY; ///< Uniform distribution for Y-coordinate of the 3d world points.
     std::uniform_real_distribution<float64> m_UniformDistributionZ; ///< Uniform distribution for Z-coordinate of the 3d world points.
 
+private:
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Generates a single world point.
     ///

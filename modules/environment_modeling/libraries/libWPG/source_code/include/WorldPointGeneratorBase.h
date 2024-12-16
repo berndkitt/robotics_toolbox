@@ -72,7 +72,9 @@ public:
     const ListColumnVectorFloat64_3d& GetWorldPoints() const;
 
 protected:
-    std::mt19937 m_RandomNumberEngine; ///< Random number engine used to generate the 3d world points.
+    std::mt19937               m_RandomNumberEngine;  ///< Random number engine used to generate the 3d world points.
+    uint32                     m_NumberOfWorldPoints; ///< Number of generated 3d world points.
+    ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the generated 3d world points.
 
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Copy constructor.
@@ -129,9 +131,6 @@ protected:
     void GeneratePointCloud();
 
 private:
-    uint32                     m_NumberOfWorldPoints; ///< Number of generated 3d world points.
-    ListColumnVectorFloat64_3d m_ListOfWorldPoints;   ///< List containing the generated 3d world points.
-
     ///////////////////////////////////////////////////////////////////////////////
     /// \brief Generates a single world point.
     ///
