@@ -320,6 +320,9 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_M
     CompareWorldPointGenerators(WPG, WPG); // NOLINT(bugprone-use-after-move)
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Instantiation of the test for the number of a world points.
+///////////////////////////////////////////////////////////////////////////////
 INSTANTIATE_TEST_SUITE_P(TestWorldPointNumber,
                          TestWorldPointGeneratorCuboidParameterizedWorldPointNumber,
                          // List of parameters: NumberOfWorldPointsToGenerate
@@ -347,6 +350,9 @@ TEST_NUMBEROFWORLDPOINTS_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWo
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), m_NumberOfWorldPointsToGenerate);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Instantiation of the test for the coordinates of a world point.
+///////////////////////////////////////////////////////////////////////////////
 INSTANTIATE_TEST_SUITE_P(TestWorldPointCoordinate,
                          TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate,
                          // List of parameters: NumberOfWorldPointsToGenerate, Seed, Index, ValueExpectedX, ValueExpectedY, ValueExpectedZ
