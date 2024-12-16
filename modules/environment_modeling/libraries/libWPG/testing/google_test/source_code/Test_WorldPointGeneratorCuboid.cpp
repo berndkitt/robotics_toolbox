@@ -1,8 +1,8 @@
-///////////////////////////////////////////////////////////////////////////////
-/// \file  Test_WorldPointGeneratorCuboid.cpp
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// \file Test_WorldPointGeneratorCuboid.cpp
 ///
 /// \brief Source file containing the unit tests for WorldPointGeneratorCuboid.
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
 This file is part of the Robotics Toolbox.
@@ -41,14 +41,16 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 #define TEST_WORLDPOINTCOORDINATE_ISMATCHING       TEST_P ///< Define to get a unique test name.
 #define TEST_WORLDPOINTS_INRANGE                   TEST_F ///< Define to get a unique test name.
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \class WorldPointGeneratorCuboidDummy
 ///
-/// \brief Class to generate 3d world points.
+/// \brief Dummy class derived from the WorldPointGeneratorCuboid class.
 ///
-/// This is a dummy class only which allows for testing the protected member
-/// variables, as the tests can be made friend classes of this class.
-///////////////////////////////////////////////////////////////////////////////
+/// The WorldPointGeneratorCuboidDummy class is a dummy class derived from the
+/// WorldPointGeneratorCuboid class. Its main purpose is to get access to non-public members of the
+/// WorldPointGeneratorCuboid class, enabling unit tests to access those members directly. This is
+/// being done by making the test classes friends of the WorldPointGeneratorCuboidDummy class.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 class WorldPointGeneratorCuboidDummy : public WorldPointGeneratorCuboid
 {
     friend class TestWorldPointGeneratorCuboid;                                  ///< Friend class to allow for access to non-public members.
@@ -56,15 +58,13 @@ class WorldPointGeneratorCuboidDummy : public WorldPointGeneratorCuboid
     friend class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate; ///< Friend class to allow for access to non-public members.
 
 public:
-    ///////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     /// \brief Constructor.
     ///
-    /// Initializes the member variables of the class and generates uniform
-    /// distributions in X-, Y-, and Z-direction which will be used to generate the
-    /// 3d world points inside the cuboid. This happens by calling the constructor
-    /// of the WorldPointGeneratorCuboid class.
+    /// Initializes the member variables of the class by calling the constructor of the
+    /// WorldPointGeneratorCuboid class. This also generates the set of 3d world points.
     ///
-    /// \param[in] NumberOfWorldPointsToGenerate Number of 3d world points.
+    /// \param[in] NumberOfWorldPointsToGenerate Number of 3d world points to generate.
     /// \param[in] MinX                          Smallest value of the 3d world points inside the cuboid in X-direction.
     /// \param[in] MaxX                          Largest value of the 3d world points inside the cuboid in X-direction.
     /// \param[in] MinY                          Smallest value of the 3d world points inside the cuboid in Y-direction.
@@ -72,7 +72,7 @@ public:
     /// \param[in] MinZ                          Smallest value of the 3d world points inside the cuboid in Z-direction.
     /// \param[in] MaxZ                          Largest value of the 3d world points inside the cuboid in Z-direction.
     /// \param[in] SeedValue                     Seed value used to initialize the random number engine.
-    ///////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     inline WorldPointGeneratorCuboidDummy(const uint32  NumberOfWorldPointsToGenerate = 1000U,
                                           const float64 MinX                          = -5.0,
                                           const float64 MaxX                          = 5.0,
@@ -86,25 +86,24 @@ public:
     }
 };
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \class TestWorldPointGeneratorCuboid
 ///
 /// \brief Test class.
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 class TestWorldPointGeneratorCuboid : public testing::Test
 {
 public:
-    ///////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     /// \brief Compares two WorldPointGeneratorCuboidDummy objects.
     ///
-    /// The function is used to compare two WorldPointGeneratorCuboidDummy objects.
-    /// It checks all member variables of the objects and checks whether they are
-    /// identical or not. In case they are not, the corresponding unit test is
-    /// considered failed.
+    /// Compares two WorldPointGeneratorCuboidDummy objects. All members of the two objects are
+    /// compared. In case that any member is not identical, the corresponding unit test is
+    /// considered failed. Otherwise, it is considered passed.
     ///
     /// \param[in] WorldPointGenerator1 First WorldPointGeneratorCuboidDummy object.
     /// \param[in] WorldPointGenerator2 Second WorldPointGeneratorCuboidDummy object.
-    ///////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     inline static void CompareWorldPointGenerators(const WorldPointGeneratorCuboidDummy& WorldPointGenerator1,
                                                    const WorldPointGeneratorCuboidDummy& WorldPointGenerator2)
     {
@@ -121,22 +120,22 @@ public:
     }
 };
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \class TestWorldPointGeneratorCuboidParameterizedWorldPointNumber
 ///
 /// \brief Parameterized test class.
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 class TestWorldPointGeneratorCuboidParameterizedWorldPointNumber : public testing::TestWithParam<uint32>
 {
 protected:
     uint32 m_NumberOfWorldPointsToGenerate{0U}; ///< Number of 3d world points to generate.
 };
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate
 ///
 /// \brief Parameterized test class.
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 class TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate : public testing::TestWithParam<std::tuple<uint32, uint32, uint32, float64, float64, float64>>
 {
 protected:
@@ -155,12 +154,12 @@ protected:
     const float64 m_MaxZ{30.0}; ///< Largest value of the 3d world points inside the cuboid in Z-direction.
 };
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the copy constructor.
 ///
-/// Tests whether or not the number of world points as well as the coordinates
-/// of the world points match in case the copy constructor is being called.
-///////////////////////////////////////////////////////////////////////////////
+/// Tests whether or not two objects of the WorldPointGeneratorCuboidDummy class are identical in
+/// case that the copy constructor is being used.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 TEST_COPYCONSTRUCTOR(TestWorldPointGeneratorCuboid, Test_CopyConstructor)
 {
     // prepare test
@@ -175,13 +174,12 @@ TEST_COPYCONSTRUCTOR(TestWorldPointGeneratorCuboid, Test_CopyConstructor)
     CompareWorldPointGenerators(WPG1, WPG2);
 }
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the move constructor.
 ///
-/// Tests whether or not the number of world points as well as the coordinates
-/// of the first and last world point match in case the move constructor is
-/// being called.
-///////////////////////////////////////////////////////////////////////////////
+/// Tests whether or not two objects of the WorldPointGeneratorCuboidDummy class are identical in
+/// case that the move constructor is being used.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 TEST_MOVECONSTRUCTOR(TestWorldPointGeneratorCuboid, Test_MoveConstructor)
 {
     // prepare test
@@ -214,13 +212,12 @@ TEST_MOVECONSTRUCTOR(TestWorldPointGeneratorCuboid, Test_MoveConstructor)
     ASSERT_EQ(WorldPoint2_Last(2, 0), WorldPoint1_Last(2, 0));
 }
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the copy assignment operator.
 ///
-/// Tests whether or not the number of world points as well as the coordinates
-/// of the world points match in case the copy assignment operator is being
-/// called.
-///////////////////////////////////////////////////////////////////////////////
+/// Tests whether or not two objects of the WorldPointGeneratorCuboidDummy class are identical in
+/// case that the copy assignment operator is being used.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 TEST_COPYASSIGNMENTOPERATOR(TestWorldPointGeneratorCuboid, Test_CopyAssignmentOperator)
 {
     // prepare test
@@ -237,13 +234,12 @@ TEST_COPYASSIGNMENTOPERATOR(TestWorldPointGeneratorCuboid, Test_CopyAssignmentOp
     CompareWorldPointGenerators(WPG1, WPG2);
 }
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the copy assignment operator (self assignment).
 ///
-/// Tests whether or not the number of world points as well as the coordinates
-/// of the world points match in case the copy assignment operator is being
-/// called.
-///////////////////////////////////////////////////////////////////////////////
+/// Tests whether or not two objects of the WorldPointGeneratorCuboidDummy class are identical in
+/// case that the copy assignment operator is being used.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_CopyAssignmentOperator_SelfAssignment)
 {
     // prepare test
@@ -258,13 +254,12 @@ TEST_COPYASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_C
     CompareWorldPointGenerators(WPG, WPG);
 }
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the move assignment operator.
 ///
-/// Tests whether or not the number of world points as well as the coordinates
-/// of the first and last world point match in case the move assignment
-/// operator is being called.
-///////////////////////////////////////////////////////////////////////////////
+/// Tests whether or not two objects of the WorldPointGeneratorCuboidDummy class are identical in
+/// case that the move assignment operator is being used.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 TEST_MOVEASSIGNMENTOPERATOR(TestWorldPointGeneratorCuboid, Test_MoveAssignmentOperator)
 {
     // prepare test
@@ -299,13 +294,12 @@ TEST_MOVEASSIGNMENTOPERATOR(TestWorldPointGeneratorCuboid, Test_MoveAssignmentOp
     ASSERT_EQ(WorldPoint2_Last(2, 0), WorldPoint1_Last(2, 0));
 }
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the move assignment operator (self assignment).
 ///
-/// Tests whether or not the number of world points as well as the coordinates
-/// of the world points match in case the move assignment operator is being
-/// called.
-///////////////////////////////////////////////////////////////////////////////
+/// Tests whether or not two objects of the WorldPointGeneratorCuboidDummy class are identical in
+/// case that the move assignment operator is being used.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_MoveAssignmentOperator_SelfAssignment)
 {
     // prepare test
@@ -320,9 +314,9 @@ TEST_MOVEASSIGNMENTOPERATOR_SELFASSIGNMENT(TestWorldPointGeneratorCuboid, Test_M
     CompareWorldPointGenerators(WPG, WPG); // NOLINT(bugprone-use-after-move)
 }
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Instantiation of the test for the number of a world points.
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 INSTANTIATE_TEST_SUITE_P(TestWorldPointNumber,
                          TestWorldPointGeneratorCuboidParameterizedWorldPointNumber,
                          // List of parameters: NumberOfWorldPointsToGenerate
@@ -331,13 +325,12 @@ INSTANTIATE_TEST_SUITE_P(TestWorldPointNumber,
                                          50U,
                                          100U));
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the number of world points.
 ///
-/// This parameterized test checks for different configurations of the
-/// parameter "NumberOfWorldPointsToGenerate" whether the number of actually
-/// generated world points match the expected value or not.
-///////////////////////////////////////////////////////////////////////////////
+/// Tests whether the actually generated number of 3d world points matches the number of 3d world
+/// points to generate. This is a parameterized test which checks different configurations.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 TEST_NUMBEROFWORLDPOINTS_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWorldPointNumber, Test_NumberOfWorldPoints_IsMatching)
 {
     // prepare test
@@ -350,9 +343,9 @@ TEST_NUMBEROFWORLDPOINTS_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWo
     ASSERT_EQ(WPG.GetNumberOfWorldPoints(), m_NumberOfWorldPointsToGenerate);
 }
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Instantiation of the test for the coordinates of a world point.
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 INSTANTIATE_TEST_SUITE_P(TestWorldPointCoordinate,
                          TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate,
                          // List of parameters: NumberOfWorldPointsToGenerate, Seed, Index, ValueExpectedX, ValueExpectedY, ValueExpectedZ
@@ -362,13 +355,12 @@ INSTANTIATE_TEST_SUITE_P(TestWorldPointCoordinate,
                                          std::tuple(1000U, 10U, 0U, -2.0123884133731003, -0.02164028676156704, 14.961403547811438), // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
                                          std::tuple(1000U, 10U, 4U, -1.6392841678952141, 1.5632661213280561, 8.3492889972265729))); // NOLINT(cppcoreguidelines-avoid-magic-numbers, readability-magic-numbers)
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief Test for the coordinates of a world point.
 ///
-/// This parameterized test checks for different configurations of
-/// "NumberOfWorldPointsToGenerate", "Seed", and "Index" whether the
-/// coordinates of the generated world point match the expected values or not.
-///////////////////////////////////////////////////////////////////////////////
+/// Test whether the coordinates of a specific 3d world points match the expected coordinates or
+/// not. This is a parameterized test which checks different configurations.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINTCOORDINATE_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedWorldPointCoordinate, Test_WorldPointCoordinate_IsMatching)
 {
     // prepare test
@@ -389,14 +381,13 @@ TEST_WORLDPOINTCOORDINATE_ISMATCHING(TestWorldPointGeneratorCuboidParameterizedW
     ASSERT_DOUBLE_EQ(ValueZ, m_ValueExpectedZ);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Test for the location of the generated world points.
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// \brief Test for the coordinates of the generated world points.
 ///
-/// Tests whether the location of the generated world points is within the
-/// predefined size of the cuboid. Hence, a big number of world points is
-/// generated and the location of each world point is checked against the size
-/// of the cuboid.
-///////////////////////////////////////////////////////////////////////////////
+/// Tests whether the coordinates of all generated 3d world points are within the cuboid. For this
+/// purpose, a large number of 3d world points is generated and the location of all 3d world point
+/// is compared against the size of the cuboid.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 TEST_WORLDPOINTS_INRANGE(TestWorldPointGeneratorCuboid, Test_WorldPoints_InRange)
 {
     // prepare test
