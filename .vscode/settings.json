@@ -18,7 +18,8 @@
         "**/bin/**": true,
         "**/build/**": true,
         "**/documentation/html/**": true,
-        "**/documentation/latex/**": true
+        "**/documentation/latex/**": true,
+        "**/venv/**": true
     },
     "testMate.cpp.test.advancedExecutables": [
         {
