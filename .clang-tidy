@@ -28,7 +28,8 @@ Checks: >
     -modernize-use-equals-default,
     -modernize-use-trailing-return-type,
     -performance-avoid-endl,
-    -readability-function-cognitive-complexity
+    -readability-function-cognitive-complexity,
+    -readability-math-missing-parentheses
 
 # define options for specific checks
 CheckOptions:
