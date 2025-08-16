@@ -7,7 +7,6 @@ ARG USER_ID
 # define variables
 ARG UBUNTU_VERSION_CODENAME=noble
 ARG CLANG_VERSION=21
-ARG DIR_DEV_TOOLS="/development_tools"
 ARG GCC_VERSION=14
 ARG PYTHON_VERSION=3.10
 ARG PYTHON_VIRTUAL_ENV=/opt/venv
@@ -23,6 +22,11 @@ RUN apt install -y build-essential \
                    gdb \
                    git \
                    graphviz \
+                   libboost-all-dev \
+                   libeigen3-dev \
+                   libgmock-dev \
+                   libgtest-dev \
+                   libopencv-dev \
                    plantuml \
                    software-properties-common \
                    wget
@@ -74,37 +78,6 @@ RUN python${PYTHON_VERSION} -m pip install coverxygen \
                                            gcovr \
                                            gitpython \
                                            metrixpp
-
-# install development tools
-RUN mkdir ${DIR_DEV_TOOLS}
-
-RUN cd ${DIR_DEV_TOOLS} && \
-    git clone --recursive https://github.com/opencv/opencv.git && \
-    git clone --recursive https://github.com/opencv/opencv_contrib.git && \
-    cd ${DIR_DEV_TOOLS}/opencv/ && \
-    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules/ -D OPENCV_ENABLE_NONFREE=ON -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D BUILD_EXAMPLES=OFF -D BUILD_TESTS=OFF -D BUILD_PERF_TESTS=OFF -B ./build/ -S ./ && \
-    cmake --build ./build/ -t install -j8
-
-RUN cd ${DIR_DEV_TOOLS} && \
-    git clone --recursive https://github.com/google/googletest.git && \
-    cd ${DIR_DEV_TOOLS}/googletest/ && \
-    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ -B ./build/ -S ./ && \
-    cmake --build ./build/ -t install -j8
-
-RUN cd ${DIR_DEV_TOOLS} && \
-    git clone --recursive https://gitlab.com/libeigen/eigen.git && \
-    cd ${DIR_DEV_TOOLS}/eigen/ && \
-    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/ -B ./build/ -S ./ && \
-    cmake --build ./build/ -t install -j8
-
-RUN cd ${DIR_DEV_TOOLS} && \
-    git clone --recursive https://github.com/boostorg/boost.git && \
-    cd ${DIR_DEV_TOOLS}/boost/ && \
-    ./bootstrap.sh --prefix=/usr/local/ && \
-    ./b2 -j8 link=static install
-
-# cleanup
-RUN rm -rf ${DIR_DEV_TOOLS}
 
 # create user
 RUN useradd -u "${USER_ID}" -s /bin/bash jenkins
