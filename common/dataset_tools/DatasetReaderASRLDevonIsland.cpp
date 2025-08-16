@@ -133,7 +133,7 @@ uint64 DatasetReaderASRLDevonIsland::ExtractTimestamps(const std::filesystem::pa
     for(uint64 i_FrameCounter{0}; i_FrameCounter < Reader.GetNumberOfRows(); i_FrameCounter++)
     {
         const std::regex regular_expression_timestamp("[-:T.]{1}");
-        
+
         std::string Timestamp{Reader.GetValue(i_FrameCounter, 1U)};
 
         std::sregex_token_iterator       iter(Timestamp.begin(), Timestamp.end(), regular_expression_timestamp, -1);
