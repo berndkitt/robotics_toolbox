@@ -77,7 +77,7 @@ uint32 DatasetReaderBase::GetImageWidthStereoImages() const
 uint64 DatasetReaderBase::GetNumberOfFrames() const
 {
     // get number of frames (based on the list of the left stereo camera images)
-    uint64 NumberOfFrames{m_FilenamesWithPathImagesStereoLeft.size()};
+    const uint64 NumberOfFrames{m_FilenamesWithPathImagesStereoLeft.size()};
 
     return NumberOfFrames;
 }

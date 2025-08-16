@@ -49,8 +49,8 @@ DatasetReaderASRL::DatasetReaderASRL(const std::string& BaseDirectory,
     const std::filesystem::path AbsolutePathCalibrationStereo{m_BaseDirectory / FilenameCalibrationStereo};
 
     // extract filenames of the stereo camera images
-    FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
-    FileInterface FileInterfaceImagesStereoRight(AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo);
+    const FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
+    const FileInterface FileInterfaceImagesStereoRight(AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo);
 
     m_NumberOfImagesStereoLeft  = FileInterfaceImagesStereoLeft.GetNumberOfFiles();
     m_NumberOfImagesStereoRight = FileInterfaceImagesStereoRight.GetNumberOfFiles();
@@ -78,7 +78,7 @@ void DatasetReaderASRL::ExtractProjectionMatrices(const std::string& FilenameCal
                                                   MatrixFloat64_3x4& ProjectionMatrixStereoRight)
 {
     // read file
-    CSVReader Reader(FilenameCalibration, " ");
+    const CSVReader Reader(FilenameCalibration, " ");
 
     // extract data
     const uint64 ColumnIndexFocalLengthHorizontal{2U};

@@ -45,7 +45,7 @@ FileInterface::FileInterface(const std::string& Path,
     }
 
     // get filenames (i.e. iterate through all files in the directory)
-    std::filesystem::directory_iterator DirectoryIterator(m_Path);
+    const std::filesystem::directory_iterator DirectoryIterator(m_Path);
 
     for(const auto& FilenameWithPath : DirectoryIterator)
     {
@@ -98,7 +98,7 @@ std::string FileInterface::GetFilename(uint64 Index) const
     }
 
     // get filename
-    std::filesystem::path FilenameWithPath(m_ListFilenamesWithPath[Index]);
+    const std::filesystem::path FilenameWithPath(m_ListFilenamesWithPath[Index]);
 
     // return filename
     return FilenameWithPath.filename();

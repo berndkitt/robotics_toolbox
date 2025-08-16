@@ -54,8 +54,8 @@ DatasetReader4Seasons::DatasetReader4Seasons(const std::string& BaseDirectory,
     const std::filesystem::path AbsolutePathExtrinsicCalibrationStereo{m_BaseDirectory / RelativePathCalibration / FilenameExtrinsicCalibration};
 
     // extract filenames of the stereo camera images
-    FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
-    FileInterface FileInterfaceImagesStereoRight(AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo);
+    const FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
+    const FileInterface FileInterfaceImagesStereoRight(AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo);
 
     m_NumberOfImagesStereoLeft  = FileInterfaceImagesStereoLeft.GetNumberOfFiles();
     m_NumberOfImagesStereoRight = FileInterfaceImagesStereoRight.GetNumberOfFiles();
@@ -85,9 +85,9 @@ void DatasetReader4Seasons::ExtractProjectionMatrices(const std::string& Filenam
                                                       MatrixFloat64_3x4& ProjectionMatrixStereoRight)
 {
     // read files
-    CSVReader ReaderIntrinsicLeft(FilenameIntrinsicCalibrationLeft, " ");
-    CSVReader ReaderIntrinsicRight(FilenameIntrinsicCalibrationRight, " ");
-    CSVReader ReaderExtrinsic(FilenameExtrinsicCalibration, " ");
+    const CSVReader ReaderIntrinsicLeft(FilenameIntrinsicCalibrationLeft, " ");
+    const CSVReader ReaderIntrinsicRight(FilenameIntrinsicCalibrationRight, " ");
+    const CSVReader ReaderExtrinsic(FilenameExtrinsicCalibration, " ");
 
     // extract data
     const uint64 ColumnIndexFocalLengthHorizontal{1U};
