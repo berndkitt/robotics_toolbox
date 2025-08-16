@@ -60,8 +60,8 @@ public:
     /// \param[in] NumberOfWorldPointsToGenerate Number of 3d world points to generate.
     /// \param[in] SeedValue                     Seed value used to initialize the random number engine.
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    inline WorldPointGeneratorBaseDummy(const uint32 NumberOfWorldPointsToGenerate = 1000U,
-                                        const uint32 SeedValue                     = 0U) :
+    WorldPointGeneratorBaseDummy(const uint32 NumberOfWorldPointsToGenerate = 1000U,
+                                 const uint32 SeedValue                     = 0U) :
         WorldPointGeneratorBase(NumberOfWorldPointsToGenerate, SeedValue)
     {
         GeneratePointCloud();
@@ -74,7 +74,7 @@ public:
     ///
     /// \param[in] Src Source object to copy.
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    inline WorldPointGeneratorBaseDummy(const WorldPointGeneratorBaseDummy& Src) :
+    WorldPointGeneratorBaseDummy(const WorldPointGeneratorBaseDummy& Src) :
         WorldPointGeneratorBase{Src}
     {
     }
@@ -86,7 +86,7 @@ public:
     ///
     /// \param[in] Src Source object to move.
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    inline WorldPointGeneratorBaseDummy(WorldPointGeneratorBaseDummy&& Src) noexcept :
+    WorldPointGeneratorBaseDummy(WorldPointGeneratorBaseDummy&& Src) noexcept :
         WorldPointGeneratorBase{std::move(Src)}
     {
     }
@@ -107,7 +107,7 @@ public:
     ///
     /// \return Copied object.
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    inline WorldPointGeneratorBaseDummy& operator=(const WorldPointGeneratorBaseDummy& Rhs) // NOLINT(cert-oop54-cpp)
+    WorldPointGeneratorBaseDummy& operator=(const WorldPointGeneratorBaseDummy& Rhs) // NOLINT(cert-oop54-cpp)
     {
         WorldPointGeneratorBase::operator=(Rhs);
 
@@ -125,7 +125,7 @@ public:
     ///
     /// \return Moved object.
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    inline WorldPointGeneratorBaseDummy& operator=(WorldPointGeneratorBaseDummy&& Rhs) noexcept
+    WorldPointGeneratorBaseDummy& operator=(WorldPointGeneratorBaseDummy&& Rhs) noexcept
     {
         WorldPointGeneratorBase::operator=(std::move(Rhs));
 
@@ -170,8 +170,8 @@ public:
     /// \param[in] WorldPointGenerator1 First WorldPointGeneratorBaseDummy object.
     /// \param[in] WorldPointGenerator2 Second WorldPointGeneratorBaseDummy object.
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    inline static void CompareWorldPointGenerators(const WorldPointGeneratorBaseDummy& WorldPointGenerator1,
-                                                   const WorldPointGeneratorBaseDummy& WorldPointGenerator2)
+    static void CompareWorldPointGenerators(const WorldPointGeneratorBaseDummy& WorldPointGenerator1,
+                                            const WorldPointGeneratorBaseDummy& WorldPointGenerator2)
     {
         ASSERT_EQ(WorldPointGenerator1.m_RandomNumberEngine, WorldPointGenerator2.m_RandomNumberEngine);
         ASSERT_EQ(WorldPointGenerator1.m_NumberOfWorldPoints, WorldPointGenerator2.m_NumberOfWorldPoints);

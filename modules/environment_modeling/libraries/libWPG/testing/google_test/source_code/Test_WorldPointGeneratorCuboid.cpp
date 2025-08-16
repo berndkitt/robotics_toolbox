@@ -73,14 +73,14 @@ public:
     /// \param[in] MaxZ                          Largest value of the 3d world points inside the cuboid in Z-direction.
     /// \param[in] SeedValue                     Seed value used to initialize the random number engine.
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    inline WorldPointGeneratorCuboidDummy(const uint32  NumberOfWorldPointsToGenerate = 1000U,
-                                          const float64 MinX                          = -5.0,
-                                          const float64 MaxX                          = 5.0,
-                                          const float64 MinY                          = -2.0,
-                                          const float64 MaxY                          = 2.0,
-                                          const float64 MinZ                          = 3.0,
-                                          const float64 MaxZ                          = 30.0,
-                                          const uint32  SeedValue                     = 0U) :
+    WorldPointGeneratorCuboidDummy(const uint32  NumberOfWorldPointsToGenerate = 1000U,
+                                   const float64 MinX                          = -5.0,
+                                   const float64 MaxX                          = 5.0,
+                                   const float64 MinY                          = -2.0,
+                                   const float64 MaxY                          = 2.0,
+                                   const float64 MinZ                          = 3.0,
+                                   const float64 MaxZ                          = 30.0,
+                                   const uint32  SeedValue                     = 0U) :
         WorldPointGeneratorCuboid(NumberOfWorldPointsToGenerate, MinX, MaxX, MinY, MaxY, MinZ, MaxZ, SeedValue)
     {
     }
@@ -104,8 +104,8 @@ public:
     /// \param[in] WorldPointGenerator1 First WorldPointGeneratorCuboidDummy object.
     /// \param[in] WorldPointGenerator2 Second WorldPointGeneratorCuboidDummy object.
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    inline static void CompareWorldPointGenerators(const WorldPointGeneratorCuboidDummy& WorldPointGenerator1,
-                                                   const WorldPointGeneratorCuboidDummy& WorldPointGenerator2)
+    static void CompareWorldPointGenerators(const WorldPointGeneratorCuboidDummy& WorldPointGenerator1,
+                                            const WorldPointGeneratorCuboidDummy& WorldPointGenerator2)
     {
         ASSERT_EQ(WorldPointGenerator1.m_RandomNumberEngine, WorldPointGenerator2.m_RandomNumberEngine);
         ASSERT_EQ(WorldPointGenerator1.m_NumberOfWorldPoints, WorldPointGenerator2.m_NumberOfWorldPoints);
