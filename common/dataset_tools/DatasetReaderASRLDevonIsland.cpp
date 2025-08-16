@@ -136,7 +136,7 @@ uint64 DatasetReaderASRLDevonIsland::ExtractTimestamps(const std::filesystem::pa
     {
         std::string Timestamp{Reader.GetValue(i_FrameCounter, 1U)};
 
-        std::sregex_token_iterator iter(Timestamp.begin(), Timestamp.end(), regular_expression_timestamp, -1);
+        std::sregex_token_iterator       iter(Timestamp.begin(), Timestamp.end(), regular_expression_timestamp, -1);
         const std::sregex_token_iterator end;
 
         std::vector<std::string> TimestampParts;

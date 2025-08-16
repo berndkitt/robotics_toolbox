@@ -165,7 +165,7 @@ TEST_COPYCONSTRUCTOR(TestWorldPointGeneratorCuboid, Test_CopyConstructor)
     // prepare test
     const uint32 NumberOfWorldPointsToGenerate1{10U};
 
-   const WorldPointGeneratorCuboidDummy WPG1(NumberOfWorldPointsToGenerate1);
+    const WorldPointGeneratorCuboidDummy WPG1(NumberOfWorldPointsToGenerate1);
 
     // call function under test
     const WorldPointGeneratorCuboidDummy WPG2(WPG1); // NOLINT(performance-unnecessary-copy-initialization)
@@ -225,7 +225,7 @@ TEST_COPYASSIGNMENTOPERATOR(TestWorldPointGeneratorCuboid, Test_CopyAssignmentOp
     const uint32 NumberOfWorldPointsToGenerate2{20U};
 
     const WorldPointGeneratorCuboidDummy WPG1(NumberOfWorldPointsToGenerate1);
-    WorldPointGeneratorCuboidDummy WPG2(NumberOfWorldPointsToGenerate2);
+    WorldPointGeneratorCuboidDummy       WPG2(NumberOfWorldPointsToGenerate2);
 
     // call function under test
     WPG2 = WPG1;
