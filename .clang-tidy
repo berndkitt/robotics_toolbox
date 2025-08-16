@@ -22,6 +22,7 @@ Checks: >
     readability-identifier-naming,
     -bugprone-branch-clone,
     -bugprone-easily-swappable-parameters,
+    -bugprone-use-after-move,
     -cert-msc32-c,
     -cert-msc51-cpp,
     -cppcoreguidelines-avoid-const-or-ref-data-members,
