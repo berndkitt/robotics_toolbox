@@ -36,7 +36,8 @@ Checks: >
     -readability-avoid-const-params-in-decls,
     -readability-convert-member-functions-to-static,
     -readability-function-cognitive-complexity,
-    -readability-math-missing-parentheses
+    -readability-math-missing-parentheses,
+    -readability-redundant-declaration
 
 # define options for specific checks
 CheckOptions:
