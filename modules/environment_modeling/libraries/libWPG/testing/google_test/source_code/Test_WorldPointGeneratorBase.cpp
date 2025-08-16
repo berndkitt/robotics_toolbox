@@ -140,7 +140,7 @@ public:
     ///
     /// \param[out] WorldPoint Randomly generated 3d world point.
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    inline void GenerateWorldPoint(ColumnVectorFloat64_3d& WorldPoint) override
+    void GenerateWorldPoint(ColumnVectorFloat64_3d& WorldPoint) override
     {
         const float64 DummyValueX = 0.0;
         const float64 DummyValueY = 1.0;
