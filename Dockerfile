@@ -56,6 +56,9 @@ RUN ln -sf /usr/bin/clang-format-${CLANG_VERSION} /usr/bin/clang-format
 RUN ln -sf /usr/bin/clang-tidy-${CLANG_VERSION} /usr/bin/clang-tidy
 RUN ln -sf /usr/bin/g++-${GCC_VERSION} /usr/bin/g++
 RUN ln -sf /usr/bin/gcc-${GCC_VERSION} /usr/bin/gcc
+RUN ln -sf /usr/bin/gcov-${GCC_VERSION} /usr/bin/gcov
+RUN ln -sf /usr/bin/gcov-dump-${GCC_VERSION} /usr/bin/gcov-dump
+RUN ln -sf /usr/bin/gcov-tool-${GCC_VERSION} /usr/bin/gcov-tool
 RUN ln -sf /usr/bin/python${PYTHON_VERSION} /usr/bin/python3
 
 # create Python virtual environment
