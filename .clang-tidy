@@ -23,9 +23,11 @@ Checks: >
     -bugprone-easily-swappable-parameters,
     -cert-msc32-c,
     -cert-msc51-cpp,
+    -misc-include-cleaner,
     -modernize-pass-by-value,
     -modernize-use-equals-default,
     -modernize-use-trailing-return-type,
+    -performance-avoid-endl,
     -readability-function-cognitive-complexity
 
 # define options for specific checks
