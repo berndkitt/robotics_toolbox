@@ -18,7 +18,7 @@ pipeline
 
     environment
     {
-        BUILD_COMPILER                    = "g++-11"
+        BUILD_COMPILER                    = "g++"
         BUILD_TYPE                        = "Debug"
         CMAKE_BUILD_DIRECTORY             = "build"
         JENKINS_BUILD_ARTIFACTS_DIRECTORY = "jenkins_build_artifacts"
@@ -47,7 +47,7 @@ pipeline
                 sh "mkdir ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}"
             }
         }
-        stage("CMake (Debug, G++ 11)")
+        stage("CMake (Debug, Default G++)")
         {
             steps
             {
