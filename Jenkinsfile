@@ -23,6 +23,7 @@ pipeline
         CMAKE_BUILD_DIRECTORY             = "build"
         JENKINS_BUILD_ARTIFACTS_DIRECTORY = "jenkins_build_artifacts"
         NUMBER_OF_THREADS                 = "8"
+        PYTHON_VENV_DIRECTORY             = "/opt/venv/"
     }
 
     options
@@ -63,21 +64,21 @@ pipeline
                 {
                     steps
                     {
-                        sh "python3 ./scripts/RunClangFormat.py --base_directory ./ --configuration_json ./settings/clang_format/file_configuration_all.json --dry_run"
+                        sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunClangFormat.py --base_directory ./ --configuration_json ./settings/clang_format/file_configuration_all.json --dry_run"
                     }
                 }
                 stage("Clang-Tidy")
                 {
                     steps
                     {
-                        sh "python3 ./scripts/RunClangTidy.py --base_directory ./ --configuration_json ./settings/clang_tidy/file_configuration_all.json --filename_output ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/clang_tidy_results.txt"
+                        sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunClangTidy.py --base_directory ./ --configuration_json ./settings/clang_tidy/file_configuration_all.json --filename_output ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/clang_tidy_results.txt"
                     }
                 }
                 stage("Flake8")
                 {
                     steps
                     {
-                        sh "python3 -m flake8 --tee --output-file ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/flake8_results.txt **/*.py"
+                        sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 -m flake8 --tee --output-file ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/flake8_results.txt **/*.py"
                     }
                 }
             }
@@ -108,7 +109,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 91.2 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 91.2 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -122,14 +123,14 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFB/ --configuration_xml ./modules/mapping_and_localization/libraries/libFB/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/cppcheck_libFB.log"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFB/ --configuration_xml ./modules/mapping_and_localization/libraries/libFB/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/cppcheck_libFB.log"
                             }
                         }
                         stage("Metrix++")
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFB/ --configuration_json ./modules/mapping_and_localization/libraries/libFB/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/metrixplusplus_libFB.log"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFB/ --configuration_json ./modules/mapping_and_localization/libraries/libFB/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/metrixplusplus_libFB.log"
                             }
                         }
                     }
@@ -156,7 +157,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_summary.json --threshold_branch_coverage 5.9 --threshold_function_coverage 41.7 --threshold_line_coverage 10.6"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/gcovr_libFBVis_summary.json --threshold_branch_coverage 5.9 --threshold_function_coverage 41.7 --threshold_line_coverage 10.6"
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -170,14 +171,14 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_xml ./modules/mapping_and_localization/libraries/libFBVis/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/cppcheck_libFBVis.log"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_xml ./modules/mapping_and_localization/libraries/libFBVis/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/cppcheck_libFBVis.log"
                             }
                         }
                         stage("Metrix++")
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_json ./modules/mapping_and_localization/libraries/libFBVis/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/metrixplusplus_libFBVis.log"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFBVis/ --configuration_json ./modules/mapping_and_localization/libraries/libFBVis/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFBVis/metrixplusplus_libFBVis.log"
                             }
                         }
                     }
@@ -204,7 +205,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_summary.json --threshold_branch_coverage 10.3 --threshold_function_coverage 55.6 --threshold_line_coverage 16.0"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/gcovr_libFM_summary.json --threshold_branch_coverage 10.3 --threshold_function_coverage 55.6 --threshold_line_coverage 16.0"
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -218,14 +219,14 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_xml ./modules/mapping_and_localization/libraries/libFM/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/cppcheck_libFM.log"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunCppcheck.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_xml ./modules/mapping_and_localization/libraries/libFM/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/cppcheck_libFM.log"
                             }
                         }
                         stage("Metrix++")
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_json ./modules/mapping_and_localization/libraries/libFM/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/metrixplusplus_libFM.log"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/mapping_and_localization/libraries/libFM/ --configuration_json ./modules/mapping_and_localization/libraries/libFM/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFM/metrixplusplus_libFM.log"
                             }
                         }
                     }
@@ -252,7 +253,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 100.0 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 100.0 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -266,14 +267,14 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunCppcheck.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_xml ./modules/environment_modeling/libraries/libWPG/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/cppcheck_libWPG.log"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunCppcheck.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_xml ./modules/environment_modeling/libraries/libWPG/testing/cppcheck/configuration.xml --cppcheck_configuration_json ./settings/cppcheck/CppcheckDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/cppcheck_libWPG.log"
                             }
                         }
                         stage("Metrix++")
                         {
                             steps
                             {
-                                sh "python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_json ./modules/environment_modeling/libraries/libWPG/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/metrixplusplus_libWPG.log"
+                                sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/RunMetrixPlusPlus.py --base_directory ./modules/environment_modeling/libraries/libWPG/ --configuration_json ./modules/environment_modeling/libraries/libWPG/testing/metrixplusplus/file_configuration.json --metrixplusplus_configuration ./settings/metrixplusplus/MetrixplusplusDefault.json --filename_report ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/metrixplusplus_libWPG.log"
                             }
                         }
                     }
@@ -351,10 +352,10 @@ pipeline
 def Doxygen(base_path, entity)
 {
     // create Doxygen documentation
-    sh "python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ${base_path} --entity ${entity} --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/"
+    sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/GenerateDoxygenDocumentation.py --base_path ${base_path} --entity ${entity} --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/"
 
     // check documentation coverage
-    sh "python3 ./scripts/CheckDoxygenCoverage.py --base_path ${base_path} --entity ${entity} --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/"
+    sh "${env.PYTHON_VENV_DIRECTORY}/bin/python3 ./scripts/CheckDoxygenCoverage.py --base_path ${base_path} --entity ${entity} --output_path ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/${entity}/"
 }
 
 // Function to run GoogleTest and Gcovr
