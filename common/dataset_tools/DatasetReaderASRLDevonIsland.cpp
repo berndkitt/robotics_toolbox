@@ -69,8 +69,8 @@ DatasetReaderASRLDevonIsland::DatasetReaderASRLDevonIsland(const std::string&  B
     const std::filesystem::path AbsolutePathImagesStereoRight{m_BaseDirectory / DirectoryIdentifier / SequenceDirectory};
 
     // extract filenames of the stereo camera images
-    FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereoLeft, FileExtensionImagesStereo);
-    FileInterface FileInterfaceImagesStereoRight(AbsolutePathImagesStereoRight, FileBasenameImagesStereoRight, FileExtensionImagesStereo);
+    const FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereoLeft, FileExtensionImagesStereo);
+    const FileInterface FileInterfaceImagesStereoRight(AbsolutePathImagesStereoRight, FileBasenameImagesStereoRight, FileExtensionImagesStereo);
 
     m_NumberOfImagesStereoLeft  = FileInterfaceImagesStereoLeft.GetNumberOfFiles();
     m_NumberOfImagesStereoRight = FileInterfaceImagesStereoRight.GetNumberOfFiles();
@@ -125,19 +125,19 @@ uint64 DatasetReaderASRLDevonIsland::ExtractTimestamps(const std::filesystem::pa
     uint64 NumberOfTimestampsFound{0U};
 
     // read file
-    CSVReader Reader(FileTimestampsWithPath, " ");
+    const CSVReader Reader(FileTimestampsWithPath, " ");
 
     // extract all timestamps
     ListUInt64 ListTimestampsAll;
 
-    std::regex regular_expression_timestamp("[-:T.]{1}");
-
     for(uint64 i_FrameCounter{0}; i_FrameCounter < Reader.GetNumberOfRows(); i_FrameCounter++)
     {
+        const std::regex regular_expression_timestamp("[-:T.]{1}");
+
         std::string Timestamp{Reader.GetValue(i_FrameCounter, 1U)};
 
-        std::sregex_token_iterator iter(Timestamp.begin(), Timestamp.end(), regular_expression_timestamp, -1);
-        std::sregex_token_iterator end;
+        std::sregex_token_iterator       iter(Timestamp.begin(), Timestamp.end(), regular_expression_timestamp, -1);
+        const std::sregex_token_iterator end;
 
         std::vector<std::string> TimestampParts;
 
@@ -176,8 +176,8 @@ uint64 DatasetReaderASRLDevonIsland::FilterTimestamps(const ListUInt64& ListTime
     const std::string FramenumberFirstTemp{FilenameFirst.substr(FilenameFirstIndexStartFramenumber + 1, FilenameFirstFramenumberLength)};
     const std::string FramenumberLastTemp{FilenameLast.substr(FilenameLastIndexStartFramenumber + 1, FilenameLastFramenumberLength)};
 
-    uint64 FramenumberFirst{static_cast<uint64>(std::stoi(FramenumberFirstTemp))};
-    uint64 FramenumberLast{static_cast<uint64>(std::stoi(FramenumberLastTemp))};
+    const uint64 FramenumberFirst{static_cast<uint64>(std::stoi(FramenumberFirstTemp))};
+    const uint64 FramenumberLast{static_cast<uint64>(std::stoi(FramenumberLastTemp))};
 
     for(uint64 i_Frame{FramenumberFirst}; i_Frame <= FramenumberLast; i_Frame++)
     {

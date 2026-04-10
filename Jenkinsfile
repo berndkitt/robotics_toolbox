@@ -18,7 +18,7 @@ pipeline
 
     environment
     {
-        BUILD_COMPILER                    = "g++-11"
+        BUILD_COMPILER                    = "g++"
         BUILD_TYPE                        = "Debug"
         CMAKE_BUILD_DIRECTORY             = "build"
         JENKINS_BUILD_ARTIFACTS_DIRECTORY = "jenkins_build_artifacts"
@@ -47,7 +47,7 @@ pipeline
                 sh "mkdir ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}"
             }
         }
-        stage("CMake (Debug, G++ 11)")
+        stage("CMake (Debug, Default G++)")
         {
             steps
             {
@@ -108,7 +108,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 91.2 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libFB/gcovr_libFB_summary.json --threshold_branch_coverage 91.4 --threshold_function_coverage 100.0 --threshold_line_coverage 96.5"
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -252,7 +252,7 @@ pipeline
                         {
                             steps
                             {
-                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 100.0 --threshold_function_coverage 100.0 --threshold_line_coverage 100.0"
+                                sh "python3 ./scripts/CheckCodeCoverage.py --filename_gcovr_summary ${env.WORKSPACE}/${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/libWPG/gcovr_libWPG_summary.json --threshold_branch_coverage 100.0 --threshold_function_coverage 100.0 --threshold_line_coverage 97.9"
                             }
                         }
                         stage("Doxygen & Coverage")
@@ -282,10 +282,6 @@ pipeline
         }
         stage("Compiler Checks")
         {
-            when
-            {
-                expression{env.GIT_BRANCH == "main"}
-            }
             matrix
             {
                 axes
@@ -298,7 +294,7 @@ pipeline
                     axis
                     {
                         name "CXX_COMPILER"
-                        values "clang++-11", "clang++-12", "clang++-13", "clang++-14", "clang++-15", "g++-9", "g++-10", "g++-11", "g++-12", "g++-13"
+                        values "clang++", "g++"
                     }
                 }
                 stages

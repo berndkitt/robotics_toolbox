@@ -57,14 +57,14 @@ CSVReader::CSVReader(const std::string& Filename,
         Trim(CurrentRow);
 
         // split current row into parts (if not empty)
-        if(CurrentRow.length() > 0U)
+        if(!CurrentRow.empty())
         {
             // split current row into parts (defined by the separators)
             boost::algorithm::split(*CurrentRowSplit, CurrentRow, boost::algorithm::is_any_of(Separators));
         }
 
         // save current row
-        if((CurrentRow.length() > 0U) || (ExtractEmptyRows))
+        if((!CurrentRow.empty()) || (ExtractEmptyRows))
         {
             m_Entries.push_back(CurrentRowSplit);
 

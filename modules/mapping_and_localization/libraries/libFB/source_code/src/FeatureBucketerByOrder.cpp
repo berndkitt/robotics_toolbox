@@ -53,7 +53,7 @@ void FeatureBucketerByOrder::BucketFeaturesWithScheme()
     for(uint16 i_Bucket{0U}; i_Bucket < m_NumberOfBuckets; i_Bucket++)
     {
         // get maximum number of features in current bucket
-        const uint8 MaximumNumberOfFeaturesInCurrentBucket{m_FeatureMask(i_Bucket)};
+        const uint64 MaximumNumberOfFeaturesInCurrentBucket{m_FeatureMask(i_Bucket)};
 
         // get number of features in current bucket
         const uint64 NumberOfFeaturesInCurrentBucket{m_FeatureIndices[i_Bucket].size()};
@@ -67,7 +67,7 @@ void FeatureBucketerByOrder::BucketFeaturesWithScheme()
         else
         {
             // collect selected features
-            for(uint8 i_Feature{0U}; i_Feature < MaximumNumberOfFeaturesInCurrentBucket; i_Feature++)
+            for(uint64 i_Feature{0U}; i_Feature < MaximumNumberOfFeaturesInCurrentBucket; i_Feature++)
             {
                 const uint64 CurrentFeatureIndex{m_FeatureIndices[i_Bucket][i_Feature]};
 
@@ -75,7 +75,7 @@ void FeatureBucketerByOrder::BucketFeaturesWithScheme()
             }
 
             // collect rejected features
-            for(uint8 i_Feature{MaximumNumberOfFeaturesInCurrentBucket}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
+            for(uint64 i_Feature{MaximumNumberOfFeaturesInCurrentBucket}; i_Feature < NumberOfFeaturesInCurrentBucket; i_Feature++)
             {
                 const uint64 CurrentFeatureIndex{m_FeatureIndices[i_Bucket][i_Feature]};
 

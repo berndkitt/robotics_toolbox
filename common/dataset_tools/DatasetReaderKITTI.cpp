@@ -49,8 +49,8 @@ DatasetReaderKITTI::DatasetReaderKITTI(const std::string& BaseDirectory,
     const std::filesystem::path AbsolutePathCalibrationStereo{m_BaseDirectory / m_SequenceName / FilenameCalibrationStereo};
 
     // extract filenames of the stereo camera images
-    FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
-    FileInterface FileInterfaceImagesStereoRight(AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo);
+    const FileInterface FileInterfaceImagesStereoLeft(AbsolutePathImagesStereoLeft, FileBasenameImagesStereo, FileExtensionImagesStereo);
+    const FileInterface FileInterfaceImagesStereoRight(AbsolutePathImagesStereoRight, FileBasenameImagesStereo, FileExtensionImagesStereo);
 
     m_NumberOfImagesStereoLeft  = FileInterfaceImagesStereoLeft.GetNumberOfFiles();
     m_NumberOfImagesStereoRight = FileInterfaceImagesStereoRight.GetNumberOfFiles();
@@ -78,7 +78,7 @@ void DatasetReaderKITTI::ExtractProjectionMatrices(const std::string& FilenameCa
                                                    MatrixFloat64_3x4& ProjectionMatrixStereoRight)
 {
     // read file
-    CSVReader Reader(FilenameCalibration, " ");
+    const CSVReader Reader(FilenameCalibration, " ");
 
     // create projection matrices
     ProjectionMatrixStereoLeft(0U, 0U) = std::stod(Reader.GetValue(0U, 1U));

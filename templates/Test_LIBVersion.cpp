@@ -79,7 +79,7 @@ TEST_BUILDUSER_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_BuildUser
 ///////////////////////////////////////////////////////////////////////////////
 TEST_COMPILERINFORMATION_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_CompilerInformation_IsMatching)
 {
-    std::string CompilerInformationExpected{CompilerIdentifier + " " + CompilerVersion};
+    const std::string CompilerInformationExpected{CompilerIdentifier + " " + CompilerVersion};
 
     ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetCompilerInformation(), CompilerInformationExpected);
 }
@@ -103,7 +103,7 @@ TEST_GITCOMMITHASH_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_GitCo
 ///////////////////////////////////////////////////////////////////////////////
 TEST_VERSIONSTRING_ISMATCHING(LIB$LIB_ABBREVIATION_UPPERCASE$Version, Test_VersionString_IsMatching)
 {
-    std::string VersionStringExpected{"lib$LIB_ABBREVIATION$ v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
+    const std::string VersionStringExpected{"lib$LIB_ABBREVIATION$ v" + std::to_string(VersionMajor) + "." + std::to_string(VersionMinor) + "." + std::to_string(VersionPatch)};
 
     ASSERT_EQ(LIB$LIB_ABBREVIATION_UPPERCASE$Version::GetVersionString(), VersionStringExpected);
 }

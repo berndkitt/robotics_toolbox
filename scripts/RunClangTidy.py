@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     # run Clang-Tidy for all files
     extra_arguments     = "--extra-arg=-std=c++17"
-    include_directories = "-I ./common -I /usr/local/include/eigen3 -I /usr/local/include/opencv4"
+    include_directories = "-I ./common -I /usr/include/eigen3 -I /usr/include/opencv4"
 
     clang_format_call = f"clang-tidy {list_of_files_as_string} {extra_arguments} -- {include_directories}"
 

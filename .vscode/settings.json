@@ -18,7 +18,11 @@
         "**/bin/**": true,
         "**/build/**": true,
         "**/documentation/html/**": true,
-        "**/documentation/latex/**": true
+        "**/documentation/latex/**": true,
+        "**/venv/**": true
+    },
+    "github.copilot.enable": {
+        "*": false
     },
     "testMate.cpp.test.advancedExecutables": [
         {

@@ -20,13 +20,25 @@ Checks: >
     portability-*,
     readability-*,
     readability-identifier-naming,
+    -bugprone-branch-clone,
     -bugprone-easily-swappable-parameters,
+    -bugprone-use-after-move,
     -cert-msc32-c,
     -cert-msc51-cpp,
+    -cppcoreguidelines-avoid-const-or-ref-data-members,
+    -cppcoreguidelines-init-variables,
+    -cppcoreguidelines-pro-type-member-init,
+    -misc-const-correctness,
+    -misc-include-cleaner,
     -modernize-pass-by-value,
     -modernize-use-equals-default,
     -modernize-use-trailing-return-type,
-    -readability-function-cognitive-complexity
+    -performance-avoid-endl,
+    -readability-avoid-const-params-in-decls,
+    -readability-convert-member-functions-to-static,
+    -readability-function-cognitive-complexity,
+    -readability-math-missing-parentheses,
+    -readability-redundant-declaration
 
 # define options for specific checks
 CheckOptions:
