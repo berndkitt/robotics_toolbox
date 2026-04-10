@@ -21,6 +21,9 @@
         "**/documentation/latex/**": true,
         "**/venv/**": true
     },
+    "github.copilot.enable": {
+        "*": false
+    },
     "testMate.cpp.test.advancedExecutables": [
         {
             "pattern": "**/unit_tests_*"
