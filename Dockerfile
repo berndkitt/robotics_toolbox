@@ -69,7 +69,7 @@ ENV PATH="${PYTHON_VIRTUAL_ENV}/bin:$PATH"
 RUN python${PYTHON_VERSION} -m pip install --upgrade pip
 
 # install additional Python packages
-RUN python${PYTHON_VERSION} -m pip install coverxygen=1.8.1 \
+RUN python${PYTHON_VERSION} -m pip install coverxygen==1.8.1 \
                                            flake8 \
                                            flake8-bugbear \
                                            flake8-builtins \
