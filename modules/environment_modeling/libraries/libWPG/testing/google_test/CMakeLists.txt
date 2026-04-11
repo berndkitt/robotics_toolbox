@@ -5,6 +5,7 @@ project(unit_tests_libWPG)
 add_executable(${PROJECT_NAME}
     source_code/main.cpp
     source_code/Test_LIBWPGVersion.cpp
+    source_code/Test_WorldPointGeneratorBase.cpp
     source_code/Test_WorldPointGeneratorCuboid.cpp)
 
 # define include directories for the unit tests

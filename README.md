@@ -58,10 +58,10 @@ in the terminal. This will create a directory called `libs` which contains all t
 In order to make use of the Docker container, the first step is to build the Docker image by running
 
 ```bash
-docker build -t robotics_toolbox .
+docker build -t robotics_toolbox --build-arg USER_ID=<user_id> .
 ```
 
-in the terminal.
+in the terminal. The `user_id` can be any random number as it is only needed when the container is used in Jenkins.
 
 After the Docker image has been built, a Docker container can by started by running
 
@@ -74,6 +74,8 @@ in the terminal.
 Using the command above, the local version of the repository is made available inside the Docker container. `absolute_path_on_host` needs to be replaced by the directory the repository was cloned into on the host machine (see [Clone Repository](#clone-repository) section), `absolute_path_in_container` needs to be replaced by the path the repository shall be available inside the container.
 
 Example: `docker run -dit -v /development/robotics_toolbox/:/mnt/ --name robotics_toolbox -h ubuntu robotics_toolbox`
+
+As soon as the container is running, it is possible to attach Visual Studio Code to the container and work like on the local machine.
 
 Changes made in the repository while working inside the container will also be available on the host machine.
 

@@ -1,8 +1,8 @@
-# define project name
-project(robotics_toolbox)
-
 # define minimum required version of CMake
 cmake_minimum_required(VERSION 3.5)
+
+# define project name
+project(robotics_toolbox)
 
 # include CMake modules
 INCLUDE(CheckTypeSize)
@@ -65,7 +65,20 @@ set(OPTION_COPY_TO_TARGET_DIRECTORIES ON CACHE BOOL "Copy the exectuables and li
 
 # search for 3rd party packages
 find_package(Eigen3 REQUIRED)
+find_package(Python3 REQUIRED)
 find_package(OpenCV REQUIRED)
+
+# create and activate virtual environment for Python
+IF(NOT EXISTS "${CMAKE_SOURCE_DIR}/venv")
+    execute_process(COMMAND ${Python3_EXECUTABLE} -m venv ${CMAKE_SOURCE_DIR}/venv)
+    UNSET(${Python3_EXECUTABLE})
+ENDIF()
+
+set(ENV{VIRTUAL_ENV} "${CMAKE_SOURCE_DIR}/venv")
+set(Python3_FIND_VIRTUALENV FIRST)
+unset (Python3_EXECUTABLE)
+find_package (Python3 COMPONENTS Interpreter Development)
+execute_process(COMMAND ${Python3_EXECUTABLE} -m pip install -r ${CMAKE_SOURCE_DIR}/requirements.txt --upgrade)
 
 # set compile options
 set(CMAKE_CXX_FLAGS         "-Wall -Wextra -Wpedantic")

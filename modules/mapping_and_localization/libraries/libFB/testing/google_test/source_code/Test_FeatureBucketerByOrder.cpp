@@ -64,7 +64,7 @@ TEST_BUCKETSIZEHORIZONTAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBucketerB
 {
     const float64 BucketSizeHorizontal{128.0};
 
-    FeatureBucketerByOrder Bucketer;
+    const FeatureBucketerByOrder Bucketer;
 
     ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeHorizontal(), BucketSizeHorizontal);
 }
@@ -84,7 +84,7 @@ TEST_BUCKETSIZEHORIZONTAL_80_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_Buc
     const uint8   NumberOfBucketsVertical{8U};
     const float64 BucketSizeHorizontal{80.0};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeHorizontal(), BucketSizeHorizontal);
 }
@@ -105,7 +105,7 @@ TEST_BUCKETSIZEHORIZONTAL_250_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_Bu
     const MatrixUInt8 FeatureMask{MatrixUInt8::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
     const float64     BucketSizeHorizontal{250.0};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeHorizontal(), BucketSizeHorizontal);
 }
@@ -121,7 +121,7 @@ TEST_BUCKETSIZEVERTICAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBucketerByO
 {
     const float64 BucketSizeVertical{192.0};
 
-    FeatureBucketerByOrder Bucketer;
+    const FeatureBucketerByOrder Bucketer;
 
     ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeVertical(), BucketSizeVertical);
 }
@@ -140,7 +140,7 @@ TEST_BUCKETSIZEVERTICAL_50_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_Bucke
     const uint8   NumberOfBucketsVertical{8U};
     const float64 BucketSizeVertical{50.0};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeVertical(), BucketSizeVertical);
 }
@@ -160,7 +160,7 @@ TEST_BUCKETSIZEVERTICAL_300_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_Buck
     const MatrixUInt8 FeatureMask{MatrixUInt8::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
     const float64     BucketSizeVertical{300.0};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetBucketSizeVertical(), BucketSizeVertical);
 }
@@ -176,7 +176,7 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBuck
 {
     const uint8 NumberOfBucketsHorizontal{8U};
 
-    FeatureBucketerByOrder Bucketer;
+    const FeatureBucketerByOrder Bucketer;
 
     ASSERT_EQ(Bucketer.GetNumberOfBucketsHorizontal(), NumberOfBucketsHorizontal);
 }
@@ -195,7 +195,7 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_4_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test
     const uint8       NumberOfBucketsVertical{2U};
     const MatrixUInt8 FeatureMask{MatrixUInt8::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfBucketsHorizontal(), NumberOfBucketsHorizontal);
 }
@@ -213,7 +213,7 @@ TEST_NUMBEROFBUCKETSHORIZONTAL_10_BYORDER_ISMATCHING(FeatureBucketerByOrder, Tes
     const uint8  NumberOfBucketsHorizontal{10U};
     const uint8  NumberOfBucketsVertical{8U};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfBucketsHorizontal(), NumberOfBucketsHorizontal);
 }
@@ -229,7 +229,7 @@ TEST_NUMBEROFBUCKETSVERTICAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBucket
 {
     const uint8 NumberOfBucketsVertical{4U};
 
-    FeatureBucketerByOrder Bucketer;
+    const FeatureBucketerByOrder Bucketer;
 
     ASSERT_EQ(Bucketer.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
 }
@@ -248,7 +248,7 @@ TEST_NUMBEROFBUCKETSVERTICAL_2_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_N
     const uint8       NumberOfBucketsVertical{2U};
     const MatrixUInt8 FeatureMask{MatrixUInt8::Zero(NumberOfBucketsVertical, NumberOfBucketsHorizontal)};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
 }
@@ -266,7 +266,7 @@ TEST_NUMBEROFBUCKETSVERTICAL_8_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_N
     const uint8  NumberOfBucketsHorizontal{10U};
     const uint8  NumberOfBucketsVertical{8U};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfBucketsVertical(), NumberOfBucketsVertical);
 }
@@ -303,7 +303,7 @@ TEST_NUMBEROFINDICES_8_SELECTED_0_REJECTED_BYORDER_ISMATCHING(FeatureBucketerByO
         {
             const float64 CoordinateHorizontal{BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column))};
 
-            ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
+            const ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
 
             ImagePoints.push_back(ImagePoint);
         }
@@ -354,7 +354,7 @@ TEST_NUMBEROFINDICES_16_SELECTED_8_REJECTED_BYORDER_ISMATCHING(FeatureBucketerBy
             {
                 const float64 CoordinateHorizontal{BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
-                ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
+                const ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
 
                 ImagePoints.push_back(ImagePoint);
             }
@@ -381,7 +381,7 @@ TEST_NUMBEROFPIXELSHORIZONTAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBucke
 {
     const uint64 NumberOfPixelsHorizontal{1024U};
 
-    FeatureBucketerByOrder Bucketer;
+    const FeatureBucketerByOrder Bucketer;
 
     ASSERT_EQ(Bucketer.GetNumberOfPixelsHorizontal(), NumberOfPixelsHorizontal);
 }
@@ -399,7 +399,7 @@ TEST_NUMBEROFPIXELSHORIZONTAL_800_BYORDER_ISMATCHING(FeatureBucketerByOrder, Tes
     const uint8  NumberOfBucketsHorizontal{10U};
     const uint8  NumberOfBucketsVertical{8U};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfPixelsHorizontal(), NumberOfPixelsHorizontal);
 }
@@ -418,7 +418,7 @@ TEST_NUMBEROFPIXELSHORIZONTAL_1000_BYORDER_ISMATCHING(FeatureBucketerByOrder, Te
     const uint8       NumberOfBucketsVertical{2U};
     const MatrixUInt8 FeatureMask{MatrixUInt8::Zero(NumberOfBucketsHorizontal, NumberOfBucketsVertical)};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfPixelsHorizontal(), NumberOfPixelsHorizontal);
 }
@@ -434,7 +434,7 @@ TEST_NUMBEROFPIXELSVERTICAL_DEFAULTCONSTRUCTOR_BYORDER_ISMATCHING(FeatureBuckete
 {
     const uint64 NumberOfPixelsVertical{768U};
 
-    FeatureBucketerByOrder Bucketer;
+    const FeatureBucketerByOrder Bucketer;
 
     ASSERT_EQ(Bucketer.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
 }
@@ -452,7 +452,7 @@ TEST_NUMBEROFPIXELSVERTICAL_400_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_
     const uint8  NumberOfBucketsHorizontal{10U};
     const uint8  NumberOfBucketsVertical{8U};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, NumberOfBucketsHorizontal, NumberOfBucketsVertical);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
 }
@@ -471,7 +471,7 @@ TEST_NUMBEROFPIXELSVERTICAL_600_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_
     const uint8       NumberOfBucketsVertical{2U};
     const MatrixUInt8 FeatureMask{MatrixUInt8::Zero(NumberOfBucketsHorizontal, NumberOfBucketsVertical)};
 
-    FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
+    const FeatureBucketerByOrder Bucketer(NumberOfPixelsHorizontal, NumberOfPixelsVertical, FeatureMask);
 
     ASSERT_DOUBLE_EQ(Bucketer.GetNumberOfPixelsVertical(), NumberOfPixelsVertical);
 }
@@ -509,7 +509,7 @@ TEST_REJECTEDFEATURE_0_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_RejectedF
             {
                 const float64 CoordinateHorizontal{BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
-                ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
+                const ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
 
                 ImagePoints.push_back(ImagePoint);
             }
@@ -562,7 +562,7 @@ TEST_SELECTEDFEATURE_0_BYORDER_ISMATCHING(FeatureBucketerByOrder, Test_SelectedF
             {
                 const float64 CoordinateHorizontal{BucketSizeHorizontal * (0.5 + static_cast<float64>(i_Column)) + static_cast<float64>(i_ImagePoint) * PixelOffset};
 
-                ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
+                const ColumnVectorFloat64_2d ImagePoint(CoordinateHorizontal, CoordinateVertical);
 
                 ImagePoints.push_back(ImagePoint);
             }

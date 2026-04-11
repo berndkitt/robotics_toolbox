@@ -1,8 +1,8 @@
-///////////////////////////////////////////////////////////////////////////////
-/// \file  WorldPointGeneratorCuboid.cpp
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// \file WorldPointGeneratorCuboid.cpp
 ///
 /// \brief Source file containing the WorldPointGeneratorCuboid class.
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
 This file is part of the Robotics Toolbox.
@@ -27,46 +27,71 @@ the Robotics Toolbox. If not, see https://www.gnu.org/licenses/.
 
 #include "../include/WorldPointGeneratorCuboid.h"
 
-WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint64  NumberOfWorldPoints,
+WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const uint32  NumberOfWorldPointsToGenerate,
                                                      const float64 MinX,
                                                      const float64 MaxX,
                                                      const float64 MinY,
                                                      const float64 MaxY,
                                                      const float64 MinZ,
                                                      const float64 MaxZ,
-                                                     const uint64  SeedValue) :
-    WorldPointGeneratorBase(NumberOfWorldPoints, SeedValue),
-    m_MinX{MinX},
-    m_MaxX{MaxX},
-    m_MinY{MinY},
-    m_MaxY{MaxY},
-    m_MinZ{MinZ},
-    m_MaxZ{MaxZ}
+                                                     const uint32  SeedValue) :
+    WorldPointGeneratorBase(NumberOfWorldPointsToGenerate, SeedValue),
+    m_UniformDistributionX(MinX, MaxX),
+    m_UniformDistributionY(MinY, MaxY),
+    m_UniformDistributionZ(MinZ, MaxZ)
 {
-    // create uniform distributions
-    std::uniform_real_distribution<float64> UniformDistributionX(m_MinX, m_MaxX);
-    std::uniform_real_distribution<float64> UniformDistributionY(m_MinY, m_MaxY);
-    std::uniform_real_distribution<float64> UniformDistributionZ(m_MinZ, m_MaxZ);
-
-    // randomly generate the 3d world points
-    ColumnVectorFloat64_3d CurrentWorldPoint;
-
-    for(uint64 i_WorldPoint{0U}; i_WorldPoint < m_NumberOfWorldPoints; i_WorldPoint++)
-    {
-        // randomly generate the coordinates of the current 3d world point
-        const float64 CurrentCoordinateX{UniformDistributionX(m_RandomNumberEngine)};
-        const float64 CurrentCoordinateY{UniformDistributionY(m_RandomNumberEngine)};
-        const float64 CurrentCoordinateZ{UniformDistributionZ(m_RandomNumberEngine)};
-
-        // add the current 3d world point
-        CurrentWorldPoint(0) = CurrentCoordinateX;
-        CurrentWorldPoint(1) = CurrentCoordinateY;
-        CurrentWorldPoint(2) = CurrentCoordinateZ;
-
-        m_ListOfWorldPoints[i_WorldPoint] = CurrentWorldPoint;
-    }
+    GeneratePointCloud();
 }
 
-WorldPointGeneratorCuboid::~WorldPointGeneratorCuboid()
+WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(const WorldPointGeneratorCuboid& Src) :
+    WorldPointGeneratorBase{Src},
+    m_UniformDistributionX{Src.m_UniformDistributionX},
+    m_UniformDistributionY{Src.m_UniformDistributionY},
+    m_UniformDistributionZ{Src.m_UniformDistributionZ}
 {
+}
+
+WorldPointGeneratorCuboid::WorldPointGeneratorCuboid(WorldPointGeneratorCuboid&& Src) noexcept :
+    WorldPointGeneratorBase{std::move(Src)},
+    m_UniformDistributionX{Src.m_UniformDistributionX},
+    m_UniformDistributionY{Src.m_UniformDistributionY},
+    m_UniformDistributionZ{Src.m_UniformDistributionZ}
+{
+}
+
+WorldPointGeneratorCuboid& WorldPointGeneratorCuboid::operator=(const WorldPointGeneratorCuboid& Rhs)
+{
+    if(this != &Rhs)
+    {
+        WorldPointGeneratorBase::operator=(Rhs);
+        m_UniformDistributionX = Rhs.m_UniformDistributionX;
+        m_UniformDistributionY = Rhs.m_UniformDistributionY;
+        m_UniformDistributionZ = Rhs.m_UniformDistributionZ;
+    }
+
+    return *this;
+}
+
+WorldPointGeneratorCuboid& WorldPointGeneratorCuboid::operator=(WorldPointGeneratorCuboid&& Rhs) noexcept
+{
+    if(this != &Rhs)
+    {
+        WorldPointGeneratorBase::operator=(std::move(Rhs));
+        m_UniformDistributionX = Rhs.m_UniformDistributionX; // NOLINT(bugprone-use-after-move)
+        m_UniformDistributionY = Rhs.m_UniformDistributionY;
+        m_UniformDistributionZ = Rhs.m_UniformDistributionZ;
+    }
+
+    return *this;
+}
+
+void WorldPointGeneratorCuboid::GenerateWorldPoint(ColumnVectorFloat64_3d& WorldPoint)
+{
+    const float64 CurrentCoordinateX{m_UniformDistributionX(m_RandomNumberEngine)};
+    const float64 CurrentCoordinateY{m_UniformDistributionY(m_RandomNumberEngine)};
+    const float64 CurrentCoordinateZ{m_UniformDistributionZ(m_RandomNumberEngine)};
+
+    WorldPoint(0) = CurrentCoordinateX;
+    WorldPoint(1) = CurrentCoordinateY;
+    WorldPoint(2) = CurrentCoordinateZ;
 }

@@ -35,8 +35,8 @@ class MetrixPlusPlusAnalyzer:
         os.makedirs(self._directory_results, exist_ok=True)
 
         # run analysis for defined entity
-        command_collect = f"python3 /usr/local/bin/metrix++ collect --std.code.filelines.code --std.code.lines.code --std.code.complexity.cyclomatic --std.code.complexity.maxindent --std.code.maintindex.simple --db-file={self._filename_database_with_path} -- {self._list_of_files_as_string}"
-        command_export  = f"python3 /usr/local/bin/metrix++ export --db-file={self._filename_database_with_path} > {self._filename_results_with_path}"
+        command_collect = f"python3 /opt/venv/bin/metrix++ collect --std.code.filelines.code --std.code.lines.code --std.code.complexity.cyclomatic --std.code.complexity.maxindent --std.code.maintindex.simple --db-file={self._filename_database_with_path} -- {self._list_of_files_as_string}"
+        command_export  = f"python3 /opt/venv/bin/metrix++ export --db-file={self._filename_database_with_path} > {self._filename_results_with_path}"
 
         os.system(command_collect)
         os.system(command_export)

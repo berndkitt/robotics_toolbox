@@ -7,6 +7,7 @@
     "editor.rulers": [100, 120],
     "editor.tabSize": 4,
     "files.associations": {
+        ".clang-format": "yaml",
         ".clang-tidy": "yaml",
         "LICENSE": "plaintext"
     },
@@ -17,7 +18,11 @@
         "**/bin/**": true,
         "**/build/**": true,
         "**/documentation/html/**": true,
-        "**/documentation/latex/**": true
+        "**/documentation/latex/**": true,
+        "**/venv/**": true
+    },
+    "github.copilot.enable": {
+        "*": false
     },
     "testMate.cpp.test.advancedExecutables": [
         {
