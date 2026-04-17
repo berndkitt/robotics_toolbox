@@ -88,7 +88,7 @@ def check_file_for_license_header(filename: pathlib.Path,
         lines = file.readlines()
 
         for current_line in lines:
-            if not current_line.find(string_to_check) is -1:
+            if current_line.find(string_to_check) != -1:
                 is_license_header_present = True
                 break
 
