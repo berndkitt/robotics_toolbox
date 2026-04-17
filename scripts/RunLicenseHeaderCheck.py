@@ -40,6 +40,7 @@ LOG_LEVELS = {"debug": logging.DEBUG,
               "error": logging.ERROR,
               "critical": logging.CRITICAL}
 
+
 def parse_arguments() -> argparse.Namespace:
     """
     Parse the command line arguments.
@@ -68,10 +69,11 @@ def parse_arguments() -> argparse.Namespace:
 
     return args
 
+
 def check_file_for_license_header(filename: pathlib.Path,
                                   string_to_check: str = "GNU General Public License") -> bool:
     """
-    Checks whether the license header is present in a file.
+    Check whether the license header is present in a file.
 
     Args:
         filename (pathlib.Path):         Filename including its path.
@@ -91,6 +93,7 @@ def check_file_for_license_header(filename: pathlib.Path,
                 break
 
     return is_license_header_present
+
 
 if __name__ == "__main__":
     args = parse_arguments()
