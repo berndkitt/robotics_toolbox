@@ -80,6 +80,13 @@ pipeline
                         sh "python3 -m flake8 --tee --output-file ./${env.JENKINS_BUILD_ARTIFACTS_DIRECTORY}/flake8_results.txt **/*.py"
                     }
                 }
+                stage("License Header")
+                {
+                    steps
+                    {
+                        sh "python3 ./scripts/RunLicenseHeaderCheck.py --base_directory ./ --configuration_json ./settings/license_header/file_configuration.json"
+                    }
+                }
             }
         }
         stage("Modules")
