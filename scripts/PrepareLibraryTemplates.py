@@ -1,6 +1,6 @@
 # This file is part of the Robotics Toolbox.
 
-# Copyright (C) 2023
+# Copyright (C) 2026
 
 # Authors: Bernd Kitt (b.kitt@berndkitt.de)
 
