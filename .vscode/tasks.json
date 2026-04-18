@@ -74,6 +74,24 @@
             }
         },
         {
+            "label": "License Header Check",
+            "detail": "Trigger the License Header Check",
+            "type": "shell",
+            "group": "test",
+            "command": "python3 ./scripts/RunLicenseHeaderCheck.py --base_directory ./ --configuration_json ./settings/license_header/file_configuration.json",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true
+            },
+            "args": [],
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        },
+        {
             "label": "Flake8 (current file)",
             "detail": "Trigger Flake8 checks for the current file",
             "type": "shell",

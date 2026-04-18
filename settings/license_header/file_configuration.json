@@ -1,0 +1,19 @@
+{
+    "directories": [
+        "common/",
+        "modules/",
+        "scripts/"
+    ],
+    "extensions": [
+        ".cpp",
+        ".h",
+        ".py"
+    ],
+    "files_excluded": [
+        "modules/environment_modeling/libraries/libWPG/versioning/libWPG_Version.h",
+        "modules/mapping_and_localization/libraries/libFB/versioning/libFB_Version.h",
+        "modules/mapping_and_localization/libraries/libFBVis/versioning/libFBVis_Version.h",
+        "modules/mapping_and_localization/libraries/libFM/versioning/libFM_Version.h"
+    ],
+    "files_included": []
+}
